@@ -1,5 +1,7 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+
+import { BlogLayout } from "@/routes/blog";
 
 export const Route = createFileRoute("/en/blog")({
-  component: () => <Outlet />,
+  component: BlogLayout,
 });
