@@ -32,5 +32,12 @@ export default defineConfig({
   },
   vite: {
     define: processEnvDefine,
+    // Vite 8 environments API: top-level define doesn't propagate to the
+    // client environment in production builds, so set it explicitly here too.
+    environments: {
+      client: {
+        define: processEnvDefine,
+      },
+    },
   },
 });
