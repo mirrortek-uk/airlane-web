@@ -26,9 +26,12 @@ import {
   Globe,
   Network,
   Radio,
+  Send,
   Shield,
   Sparkles,
+  Twitter,
   Workflow,
+  Youtube,
   Zap,
 } from "lucide-react";
 
@@ -705,8 +708,8 @@ function CoreFeatures() {
           <div className="mt-5 rounded-2xl bg-ink text-cream p-4 font-mono text-xs leading-relaxed">
             <div className="text-cream/90">{t("home.features.card1.mock.default")}</div>
             <div className="pl-4 text-sky">├─ {t("home.features.card1.mock.asia")}</div>
-            <div className="pl-8 text-cream/50">├─ 东京 Edge-03</div>
-            <div className="pl-8 text-cream/50">└─ 新加坡 Edge-01</div>
+            <div className="pl-8 text-cream/50">├─ Tokyo Edge-03</div>
+            <div className="pl-8 text-cream/50">└─ Singapore Edge-01</div>
             <div className="pl-4 text-sunset">└─ {t("home.features.card1.mock.streaming")}</div>
           </div>
         </div></Reveal>
@@ -956,28 +959,41 @@ function MeshNetwork() {
 }
 
 function ResourcePool() {
+  const { locale } = useI18n();
+  const lang = docLang(locale);
+  const items = lang === "zh"
+    ? [
+        { label: "Provider", desc: "VPS / 宽带 / NAS / 云服务器" },
+        { label: "Resource", desc: "网络资源抽象" },
+        { label: "Edge", desc: "东京 / 香港 / 洛杉矶" },
+        { label: "Group", desc: "共享组与策略" },
+        { label: "Member", desc: "用户 A · B · C" },
+      ]
+    : [
+        { label: "Provider", desc: "VPS / Broadband / NAS / Cloud" },
+        { label: "Resource", desc: "Network resource abstraction" },
+        { label: "Edge", desc: "Tokyo / Hong Kong / Los Angeles" },
+        { label: "Group", desc: "Shared groups & policies" },
+        { label: "Member", desc: "User A · B · C" },
+      ];
   return (
     <section className="max-w-6xl mx-auto px-6 py-20" id="pool">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
-          05 · 共享网络资源池
+          {lang === "zh" ? "05 · 共享网络资源池" : "05 · Shared Network Resource Pool"}
         </p>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          共享的不只是 VPS，而是网络能力
+          {lang === "zh" ? "共享的不只是 VPS，而是网络能力" : "Sharing More Than VPS — Network Capability"}
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Provider → Network Resource → Edge / Exit → Group → Member，构建可共享、可计费的网络资源模型。
+          {lang === "zh"
+            ? "Provider → Network Resource → Edge / Exit → Group → Member，构建可共享、可计费的网络资源模型。"
+            : "Provider → Network Resource → Edge / Exit → Group → Member — a shareable, billable network resource model."}
         </p>
       </div>
       <div className="rounded-3xl border border-border bg-card/60 p-8 shadow-card hover-lift">
         <div className="grid md:grid-cols-5 gap-4 text-center">
-          {[
-            { label: "Provider", desc: "VPS / 宽带 / NAS / 云服务器" },
-            { label: "Resource", desc: "网络资源抽象" },
-            { label: "Edge", desc: "东京 / 香港 / 洛杉矶" },
-            { label: "Group", desc: "共享组与策略" },
-            { label: "Member", desc: "用户 A · B · C" },
-          ].map((item, i) => (
+          {items.map((item, i) => (
             <div key={item.label} className="relative">
               <div className="rounded-2xl border border-border bg-background p-5 h-full hover-lift">
                 <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2">
@@ -998,11 +1014,19 @@ function ResourcePool() {
 }
 
 function NetworkProfiles() {
-  const profiles = [
-    { name: "工作", desc: "公司网络优先 · Teams 稳定", active: true },
-    { name: "娱乐", desc: "Streaming 自动 · Netflix 美国", active: false },
-    { name: "旅行", desc: "自动最低延迟 · 公共 WiFi 隐私", active: false },
-  ];
+  const { locale } = useI18n();
+  const lang = docLang(locale);
+  const profiles = lang === "zh"
+    ? [
+        { name: "工作", desc: "公司网络优先 · Teams 稳定", active: true },
+        { name: "娱乐", desc: "Streaming 自动 · Netflix 美国", active: false },
+        { name: "旅行", desc: "自动最低延迟 · 公共 WiFi 隐私", active: false },
+      ]
+    : [
+        { name: "Work", desc: "Corporate network priority · Teams stable", active: true },
+        { name: "Entertainment", desc: "Auto streaming · Netflix US", active: false },
+        { name: "Travel", desc: "Auto lowest latency · Public WiFi privacy", active: false },
+      ];
 
   return (
     <section className="bg-muted/30 py-20" id="profiles">
@@ -1010,14 +1034,15 @@ function NetworkProfiles() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
-              06 · 网络场景 Profile
+              {lang === "zh" ? "06 · 网络场景 Profile" : "06 · Network Profiles"}
             </p>
             <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-              一键切换整个网络策略
+              {lang === "zh" ? "一键切换整个网络策略" : "Switch Your Entire Network Policy in One Click"}
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              工作、娱乐、旅行……每个场景对应一套完整的策略、规则、DNS 与出口配置。未来更可根据连接的
-              WiFi 自动切换。
+              {lang === "zh"
+                ? "工作、娱乐、旅行……每个场景对应一套完整的策略、规则、DNS 与出口配置。未来更可根据连接的 WiFi 自动切换。"
+                : "Work, entertainment, travel... each scenario maps to a complete set of policies, rules, DNS, and exit configs. Future versions will auto-switch based on connected WiFi."}
             </p>
           </div>
           <div className="space-y-3">
@@ -1041,7 +1066,9 @@ function NetworkProfiles() {
                   <p className="text-sm text-muted-foreground">{p.desc}</p>
                 </div>
                 {p.active && (
-                  <span className="font-mono text-xs text-brand">已激活</span>
+                  <span className="font-mono text-xs text-brand">
+                    {lang === "zh" ? "已激活" : "Active"}
+                  </span>
                 )}
               </div>
             ))}
@@ -1053,21 +1080,30 @@ function NetworkProfiles() {
 }
 
 function Diagnostics() {
-  const items = [
-    { label: "实时连接列表", desc: "每一条会话的协议、出口、流量一目了然" },
-    { label: "DNS / WebRTC / IPv6 泄漏检测", desc: "内置隐私检测，无需第三方站点" },
-    { label: "链路追踪", desc: "拆解 DNS → 规则 → 策略 → 出口的完整耗时" },
-    { label: "解锁检测", desc: "批量检测节点对主流服务的可用性" },
-  ];
+  const { locale } = useI18n();
+  const lang = docLang(locale);
+  const items = lang === "zh"
+    ? [
+        { label: "实时连接列表", desc: "每一条会话的协议、出口、流量一目了然" },
+        { label: "DNS / WebRTC / IPv6 泄漏检测", desc: "内置隐私检测，无需第三方站点" },
+        { label: "链路追踪", desc: "拆解 DNS → 规则 → 策略 → 出口的完整耗时" },
+        { label: "解锁检测", desc: "批量检测节点对主流服务的可用性" },
+      ]
+    : [
+        { label: "Real-time Connection List", desc: "Every session's protocol, exit, and traffic at a glance" },
+        { label: "DNS / WebRTC / IPv6 Leak Detection", desc: "Built-in privacy detection — no third-party sites needed" },
+        { label: "Link Tracing", desc: "Break down full latency: DNS → Rule → Policy → Exit" },
+        { label: "Unlock Detection", desc: "Batch-test node availability for mainstream services" },
+      ];
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-20" id="diagnostics">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
-          07 · 全套诊断
+          {lang === "zh" ? "07 · 全套诊断" : "07 · Full Diagnostics"}
         </p>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          当网络出现问题，你不需要猜
+          {lang === "zh" ? "当网络出现问题，你不需要猜" : "When Network Issues Arise, You Don't Need to Guess"}
         </h2>
       </div>
       <div className="grid md:grid-cols-2 gap-6">
@@ -1091,22 +1127,28 @@ function Diagnostics() {
 }
 
 function Migration() {
+  const { locale } = useI18n();
+  const lang = docLang(locale);
   const lp = useLocalePrefix();
   return (
     <section className="bg-muted/30 py-20" id="migration">
       <div className="max-w-6xl mx-auto px-6">
         <div className="rounded-3xl bg-gradient-to-r from-ink to-neutral-900 text-cream px-8 py-10 shadow-sun flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <h2 className="font-display text-3xl tracking-tight">不需要从零开始</h2>
+            <h2 className="font-display text-3xl tracking-tight">
+              {lang === "zh" ? "不需要从零开始" : "No Need to Start from Scratch"}
+            </h2>
             <p className="mt-2 text-cream/60 max-w-md text-sm leading-relaxed">
-              导入你的 Clash / Mihomo 订阅，AirLane 生成迁移报告，自动转换策略与规则，微调即可启用。
+              {lang === "zh"
+                ? "导入你的 Clash / Mihomo 订阅，AirLane 生成迁移报告，自动转换策略与规则，微调即可启用。"
+                : "Import your Clash / Mihomo subscription. AirLane generates a migration report, auto-converts policies and rules — fine-tune and you're ready to go."}
             </p>
           </div>
           <Link
             to={`${lp}/migration`}
             className="shrink-0 rounded-full bg-gradient-brand text-cream font-semibold px-7 py-3.5 transition hover:brightness-105 inline-flex items-center gap-2"
           >
-            查看迁移指南
+            {lang === "zh" ? "查看迁移指南" : "Migration Guide"}
             <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -1116,37 +1158,52 @@ function Migration() {
 }
 
 function ComparisonTable() {
-  const rows = [
-    { capability: "配置方式", traditional: "配置文件为核心", airlane: "可视化对象模型" },
-    { capability: "策略组", traditional: "Proxy Group", airlane: "可嵌套策略树" },
-    { capability: "决策路径", traditional: "日志查看", airlane: "可视化决策追踪" },
-    { capability: "规则调试", traditional: "手工分析", airlane: "决策模拟与路径追踪" },
-    { capability: "Mesh 组网", traditional: "独立工具部署", airlane: "产品级集成" },
-    { capability: "VPS 资源管理", traditional: "第三方工具", airlane: "Web Control Plane" },
-    { capability: "网络健康", traditional: "第三方工具", airlane: "内置评分 + 自愈" },
-    { capability: "配置迁移", traditional: "YAML 拷贝", airlane: "Clash/Mihomo 导入与转换" },
-  ];
+  const { locale } = useI18n();
+  const lang = docLang(locale);
+  const rows = lang === "zh"
+    ? [
+        { capability: "配置方式", traditional: "配置文件为核心", airlane: "可视化对象模型" },
+        { capability: "策略组", traditional: "Proxy Group", airlane: "可嵌套策略树" },
+        { capability: "决策路径", traditional: "日志查看", airlane: "可视化决策追踪" },
+        { capability: "规则调试", traditional: "手工分析", airlane: "决策模拟与路径追踪" },
+        { capability: "Mesh 组网", traditional: "独立工具部署", airlane: "产品级集成" },
+        { capability: "VPS 资源管理", traditional: "第三方工具", airlane: "Web Control Plane" },
+        { capability: "网络健康", traditional: "第三方工具", airlane: "内置评分 + 自愈" },
+        { capability: "配置迁移", traditional: "YAML 拷贝", airlane: "Clash/Mihomo 导入与转换" },
+      ]
+    : [
+        { capability: "Configuration", traditional: "Config-file centric", airlane: "Visual object model" },
+        { capability: "Policy Groups", traditional: "Proxy Group", airlane: "Nestable policy tree" },
+        { capability: "Decision Path", traditional: "Log inspection", airlane: "Visual decision trace" },
+        { capability: "Rule Debugging", traditional: "Manual analysis", airlane: "Decision simulation & path tracing" },
+        { capability: "Mesh Networking", traditional: "Standalone tool setup", airlane: "Product-level integration" },
+        { capability: "VPS Resource Mgmt", traditional: "Third-party tools", airlane: "Web Control Plane" },
+        { capability: "Network Health", traditional: "Third-party tools", airlane: "Built-in scoring + self-healing" },
+        { capability: "Config Migration", traditional: "YAML copy", airlane: "Clash/Mihomo import & conversion" },
+      ];
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-20" id="compare">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
-          能力对照
+          {lang === "zh" ? "能力对照" : "Capability Comparison"}
         </p>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          强大的代理能力，只是开始
+          {lang === "zh" ? "强大的代理能力，只是开始" : "Powerful Proxying Is Just the Beginning"}
         </h2>
         <p className="mt-4 text-muted-foreground">
-          传统 Clash / Mihomo 生态成熟强大；AirLane 在其之上补齐策略编排、网络观测与共享资源管理。
+          {lang === "zh"
+            ? "传统 Clash / Mihomo 生态成熟强大；AirLane 在其之上补齐策略编排、网络观测与共享资源管理。"
+            : "The traditional Clash / Mihomo ecosystem is mature and powerful; AirLane adds policy orchestration, network observability, and shared resource management on top."}
         </p>
       </div>
       <div className="rounded-3xl border border-border bg-card/60 shadow-card overflow-hidden hover-lift">
         <div className="grid grid-cols-3 border-b border-border bg-muted/50">
           <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            能力
+            {lang === "zh" ? "能力" : "Capability"}
           </div>
           <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            传统 Clash / Mihomo 生态
+            {lang === "zh" ? "传统 Clash / Mihomo 生态" : "Traditional Clash / Mihomo"}
           </div>
           <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-brand">
             AirLane
@@ -1161,26 +1218,32 @@ function ComparisonTable() {
         ))}
       </div>
       <p className="mt-4 font-mono text-xs text-muted-foreground">
-        * 传统生态性能强大、生态成熟；AirLane 在其上补齐可视化编排、一体化 Mesh 与共享资源能力。
+        {lang === "zh"
+          ? "* 传统生态性能强大、生态成熟；AirLane 在其上补齐可视化编排、一体化 Mesh 与共享资源能力。"
+          : "* The traditional ecosystem is powerful and mature; AirLane adds visual orchestration, integrated Mesh, and shared resource capabilities on top."}
       </p>
     </section>
   );
 }
 
 function Roadmap() {
+  const { locale } = useI18n();
+  const lang = docLang(locale);
   const lp = useLocalePrefix();
   return (
     <section className="bg-muted/30 py-20" id="roadmap">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/5 px-4 py-2 font-mono text-xs text-brand mb-6">
           <Sparkles className="size-3.5" />
-          持续迭代中
+          {lang === "zh" ? "持续迭代中" : "Actively Iterating"}
         </div>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          项目正在高速迭代
+          {lang === "zh" ? "项目正在高速迭代" : "The Project Is Moving Fast"}
         </h2>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-          部分高级功能持续完善中。欢迎在博客跟进进展，参与共建 AirLane 的航线图。
+          {lang === "zh"
+            ? "部分高级功能持续完善中。欢迎在博客跟进进展，参与共建 AirLane 的航线图。"
+            : "Advanced features are continually being refined. Follow our blog for progress and help shape AirLane's roadmap."}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
@@ -1188,14 +1251,14 @@ function Roadmap() {
             className="rounded-full border border-border bg-card px-6 py-2.5 font-semibold text-foreground hover:bg-muted transition inline-flex items-center gap-2"
           >
             <Newspaper className="size-4" />
-            阅读博客
+            {lang === "zh" ? "阅读博客" : "Read Blog"}
           </Link>
           <Link
             to={`${lp}/download`}
             className="rounded-full bg-gradient-brand text-cream px-6 py-2.5 font-semibold hover:brightness-105 transition inline-flex items-center gap-2"
           >
             <Download className="size-4" />
-            下载客户端
+            {lang === "zh" ? "下载客户端" : "Download Client"}
           </Link>
         </div>
       </div>
@@ -1204,6 +1267,8 @@ function Roadmap() {
 }
 
 function Footer() {
+  const { locale } = useI18n();
+  const lang = docLang(locale);
   const lp = useLocalePrefix();
   return (
     <footer className="border-t border-border">
@@ -1213,45 +1278,76 @@ function Footer() {
             <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
 
             <p className="mt-3 text-sm text-muted-foreground max-w-sm">
-              现代网络编排平台。从流量代理，到网络编排。
+              {lang === "zh"
+                ? "现代网络编排平台。从流量代理，到网络编排。"
+                : "Modern network orchestration platform. From traffic proxying to network orchestration."}
             </p>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href="https://x.com/airlanecloud"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className="inline-flex items-center justify-center size-8 rounded-full border border-ink/15 bg-white/50 text-muted-foreground transition hover:bg-white/80 hover:text-foreground"
+              >
+                <Twitter className="size-4" />
+              </a>
+              <a
+                href="https://t.me/airlanecloud"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+                className="inline-flex items-center justify-center size-8 rounded-full border border-ink/15 bg-white/50 text-muted-foreground transition hover:bg-white/80 hover:text-foreground"
+              >
+                <Send className="size-4" />
+              </a>
+              <a
+                href="https://youtube.com/@airlanecloud"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="inline-flex items-center justify-center size-8 rounded-full border border-ink/15 bg-white/50 text-muted-foreground transition hover:bg-white/80 hover:text-foreground"
+              >
+                <Youtube className="size-4" />
+              </a>
+            </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                产品
+                {lang === "zh" ? "产品" : "Product"}
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
                 <li>
                   <Link to={`${lp}/download`} className="hover:text-brand transition">
-                    下载
+                    {lang === "zh" ? "下载" : "Download"}
                   </Link>
                 </li>
                 <li>
                   <Link to={`${lp}/docs`} className="hover:text-brand transition">
-                    文档
+                    {lang === "zh" ? "文档" : "Docs"}
                   </Link>
                 </li>
                 <li>
                   <Link to={`${lp}/migration`} className="hover:text-brand transition">
-                    从 Clash 迁移
+                    {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                社区
+                {lang === "zh" ? "社区" : "Community"}
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
                 <li>
                   <Link to={`${lp}/blog`} className="hover:text-brand transition">
-                    博客
+                    {lang === "zh" ? "博客" : "Blog"}
                   </Link>
                 </li>
                 <li>
                   <a
-                    href="https://x.com/airlane"
+                    href="https://x.com/airlanecloud"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-brand transition"
@@ -1261,22 +1357,24 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://airlane.cloud"
+                    href="https://t.me/airlanecloud"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-brand transition"
                   >
-                    airlane.cloud
+                    Telegram
                   </a>
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                状态
+                {lang === "zh" ? "状态" : "Status"}
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-brand animate-pulse" />
-                  开发迭代中
+                  {lang === "zh" ? "开发迭代中" : "In Active Development"}
                 </li>
                 <li>
                   <a href="#roadmap" className="hover:text-brand transition">
@@ -1289,7 +1387,9 @@ function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <span>© 2025 AirLane · airlane.cloud</span>
-          <span className="font-mono text-xs">让每一条流量，找到最优航线</span>
+          <span className="font-mono text-xs">
+            {lang === "zh" ? "让每一条流量，找到最优航线" : "Find the optimal route for every packet"}
+          </span>
         </div>
       </div>
     </footer>
