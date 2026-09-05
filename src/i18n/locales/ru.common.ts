@@ -1,0 +1,42 @@
+const dict: Record<string, string> = {
+  "brand.name": "AirLane",
+  "brand.tagline": "Каждый пакет находит свой лучший маршрут",
+
+  "nav.features": "Возможности",
+  "nav.decisionTrace": "Трассировка решений",
+  "nav.migration": "Миграция с Clash",
+  "nav.download": "Скачать AirLane",
+  "nav.docs": "Читать документацию",
+  "nav.blog": "Блог",
+  "nav.github": "GitHub",
+  "nav.account": "Аккаунт",
+  "nav.devices": "Привязка устройств",
+  "nav.signIn": "Войти / Регистрация",
+  "nav.signOut": "Выйти",
+  "nav.language": "Язык",
+  "nav.backHome": "На главную",
+
+  "common.loading": "Загрузка…",
+  "common.save": "Сохранить",
+  "common.cancel": "Отмена",
+  "common.confirm": "Подтвердить",
+  "common.copy": "Копировать",
+  "common.copied": "Скопировано",
+  "common.email": "Email",
+  "common.password": "Пароль",
+  "common.optional": "Необязательно",
+  "common.close": "Закрыть",
+  "common.retry": "Повторить",
+  "common.error": "Что-то пошло не так. Пожалуйста, попробуйте ещё раз.",
+
+  "footer.tagline": "Современная платформа оркестрации сети — больше, чем прокси-трафик.",
+  "footer.product": "Продукт",
+  "footer.community": "Сообщество",
+  "footer.resources": "Ресурсы",
+  "footer.status": "Статус",
+  "footer.roadmap": "Дорожная карта",
+  "footer.docs": "Документация",
+  "footer.rights": "© {year} AirLane. Все права защищены.",
+};
+
+export default dict;

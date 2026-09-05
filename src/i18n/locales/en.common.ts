@@ -1,0 +1,42 @@
+const dict: Record<string, string> = {
+  "brand.name": "AirLane",
+  "brand.tagline": "Every packet finds its best route",
+
+  "nav.features": "Capabilities",
+  "nav.decisionTrace": "Decision trace",
+  "nav.migration": "Migrate from Clash",
+  "nav.download": "Download AirLane",
+  "nav.docs": "Read the docs",
+  "nav.blog": "Blog",
+  "nav.github": "GitHub",
+  "nav.account": "Account",
+  "nav.devices": "Device pairing",
+  "nav.signIn": "Sign in / Sign up",
+  "nav.signOut": "Sign out",
+  "nav.language": "Language",
+  "nav.backHome": "Back to home",
+
+  "common.loading": "Loading…",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.confirm": "Confirm",
+  "common.copy": "Copy",
+  "common.copied": "Copied",
+  "common.email": "Email",
+  "common.password": "Password",
+  "common.optional": "Optional",
+  "common.close": "Close",
+  "common.retry": "Retry",
+  "common.error": "Something went wrong. Please try again.",
+
+  "footer.tagline": "A modern network orchestration platform — beyond traffic proxying.",
+  "footer.product": "Product",
+  "footer.community": "Community",
+  "footer.resources": "Resources",
+  "footer.status": "Status",
+  "footer.roadmap": "Roadmap",
+  "footer.docs": "Docs",
+  "footer.rights": "© {year} AirLane. All rights reserved.",
+};
+
+export default dict;

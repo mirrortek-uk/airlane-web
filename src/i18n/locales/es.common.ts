@@ -1,0 +1,42 @@
+const dict: Record<string, string> = {
+  "brand.name": "AirLane",
+  "brand.tagline": "Cada paquete encuentra su mejor ruta",
+
+  "nav.features": "Capacidades",
+  "nav.decisionTrace": "Traza de decisión",
+  "nav.migration": "Migrar desde Clash",
+  "nav.download": "Descargar AirLane",
+  "nav.docs": "Leer la documentación",
+  "nav.blog": "Blog",
+  "nav.github": "GitHub",
+  "nav.account": "Cuenta",
+  "nav.devices": "Emparejamiento de dispositivos",
+  "nav.signIn": "Iniciar sesión / Registrarse",
+  "nav.signOut": "Cerrar sesión",
+  "nav.language": "Idioma",
+  "nav.backHome": "Volver al inicio",
+
+  "common.loading": "Cargando…",
+  "common.save": "Guardar",
+  "common.cancel": "Cancelar",
+  "common.confirm": "Confirmar",
+  "common.copy": "Copiar",
+  "common.copied": "Copiado",
+  "common.email": "Correo electrónico",
+  "common.password": "Contraseña",
+  "common.optional": "Opcional",
+  "common.close": "Cerrar",
+  "common.retry": "Reintentar",
+  "common.error": "Algo salió mal. Inténtalo de nuevo.",
+
+  "footer.tagline": "Una plataforma moderna de orquestación de red — más allá del proxy de tráfico.",
+  "footer.product": "Producto",
+  "footer.community": "Comunidad",
+  "footer.resources": "Recursos",
+  "footer.status": "Estado",
+  "footer.roadmap": "Hoja de ruta",
+  "footer.docs": "Documentación",
+  "footer.rights": "© {year} AirLane. Todos los derechos reservados.",
+};
+
+export default dict;

@@ -1,0 +1,42 @@
+const dict: Record<string, string> = {
+  "brand.name": "AirLane",
+  "brand.tagline": "讓每一條流量，找到最優航線",
+
+  "nav.features": "產品能力",
+  "nav.decisionTrace": "決策追蹤",
+  "nav.migration": "從 Clash 遷移",
+  "nav.download": "下載 AirLane",
+  "nav.docs": "閱讀文件",
+  "nav.blog": "部落格",
+  "nav.github": "GitHub",
+  "nav.account": "帳號中心",
+  "nav.devices": "裝置配對",
+  "nav.signIn": "登入 / 註冊",
+  "nav.signOut": "登出",
+  "nav.language": "語言",
+  "nav.backHome": "返回首頁",
+
+  "common.loading": "載入中…",
+  "common.save": "儲存",
+  "common.cancel": "取消",
+  "common.confirm": "確認",
+  "common.copy": "複製",
+  "common.copied": "已複製",
+  "common.email": "電子郵件",
+  "common.password": "密碼",
+  "common.optional": "可選",
+  "common.close": "關閉",
+  "common.retry": "重試",
+  "common.error": "發生錯誤，請稍後再試。",
+
+  "footer.tagline": "現代網路編排平台，從流量代理到網路編排。",
+  "footer.product": "產品",
+  "footer.community": "社群",
+  "footer.resources": "資源",
+  "footer.status": "狀態",
+  "footer.roadmap": "路線圖",
+  "footer.docs": "文件",
+  "footer.rights": "© {year} AirLane. 保留所有權利。",
+};
+
+export default dict;
