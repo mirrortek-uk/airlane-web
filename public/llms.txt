@@ -18,6 +18,7 @@
 ## Blog
 
 - [AirLane 1.0: From Traffic Proxy to Network Orchestration](https://www.airlane.cloud/blog/hello-airlane): Why we rebuilt a client from scratch — policy trees, decision traces, exit pools, mesh networking, and a shared resource pool
+- [Sing-Box vs Clash Mihomo: Stop Comparing Speed](https://www.airlane.cloud/blog/singbox-vs-clash-mihomo): Why top-tier network orchestration products choose sing-box as the data plane — architecture, ecosystem compatibility, and the real selection logic
 
 ## Key Concepts
 
