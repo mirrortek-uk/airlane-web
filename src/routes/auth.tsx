@@ -107,8 +107,8 @@ function AuthPage() {
       <div className="aurora-layer pointer-events-none absolute inset-0 opacity-70" aria-hidden />
       <div className="relative mx-auto flex max-w-lg flex-col gap-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="font-display text-lg font-semibold text-foreground">
-            AirLane
+          <Link to="/" aria-label="AirLane">
+            <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
           <LanguageSwitcher />
         </div>

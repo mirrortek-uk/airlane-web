@@ -143,8 +143,8 @@ function AccountPage() {
       <div className="aurora-layer pointer-events-none absolute inset-0 opacity-60" aria-hidden />
       <div className="relative mx-auto flex max-w-4xl flex-col gap-8">
         <header className="flex items-center justify-between">
-          <Link to="/" className="font-display text-lg font-semibold text-foreground">
-            AirLane
+          <Link to="/" aria-label="AirLane">
+            <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
