@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
+import { organizationSchema, websiteSchema, canonical, jsonLd } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -96,17 +97,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/") },
+      { property: "og:site_name", content: "AirLane" },
+      { property: "og:locale", content: "zh_CN" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@airlane" },
+      { name: "twitter:title", content: "AirLane — 让每一条流量，找到最优航线" },
+      {
+        name: "twitter:description",
+        content:
+          "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "canonical", href: canonical("/") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: jsonLd([organizationSchema(), websiteSchema()]),
       },
     ],
   }),

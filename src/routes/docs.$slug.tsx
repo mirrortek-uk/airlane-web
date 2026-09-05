@@ -7,8 +7,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { useI18n } from "@/i18n";
 import { docLang, docsQueries, pick } from "@/lib/docs";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/docs/$slug")({
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} | AirLane 文档` },
+      { name: "description", content: "AirLane 文档" },
+      { property: "og:type", content: "article" },
+      { property: "og:url", content: canonical(`/docs/${params.slug}`) },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: canonical(`/docs/${params.slug}`) },
+    ],
+  }),
   component: DocPageView,
 });
 
@@ -53,6 +66,19 @@ function DocPageView() {
 
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd([
+            organizationSchema(),
+            breadcrumbSchema([
+              { name: "首页", url: canonical("/") },
+              { name: "文档", url: canonical("/docs") },
+              { name: pick(page, "title", lang), url: canonical(`/docs/${slug}`) },
+            ]),
+          ]),
+        }}
+      />
       <p className="text-xs font-mono text-muted-foreground">
         {new Date(page.updated_at).toLocaleDateString()}
       </p>

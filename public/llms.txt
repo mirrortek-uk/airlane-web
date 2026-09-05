@@ -1,0 +1,30 @@
+# AirLane
+
+> AirLane is a modern network orchestration platform built on sing-box. It transforms traffic proxying into visual policy trees, decision tracing, exit pools, Mesh networking, and shared resource pools. Supports 38+ protocols including REALITY, Hysteria2, TUIC v5, AnyTLS, Snell v4, and WireGuard. Compatible with Clash/Mihomo ecosystem.
+
+## Core Pages
+
+- [AirLane Homepage](https://www.airlane.cloud/): Network orchestration platform overview
+- [Download AirLane](https://www.airlane.cloud/download): Cross-platform client for Windows, macOS, Linux, Android, and iOS
+- [Clash / Mihomo Migration](https://www.airlane.cloud/migration): Import existing subscriptions and configs
+- [Device Management](https://www.airlane.cloud/devices): Pair clients with cloud identity via pairing codes
+
+## Documentation
+
+- [AirLane Help Center](https://www.airlane.cloud/docs): Installation, protocols, policy orchestration, Mesh networking
+- [Welcome to AirLane](https://www.airlane.cloud/docs/welcome): Platform introduction and install guide
+- [Quick Start](https://www.airlane.cloud/docs/quick-start): Add egress, create policies, verify with Decision Trace
+
+## Blog
+
+- [AirLane 1.0: From Traffic Proxy to Network Orchestration](https://www.airlane.cloud/blog/hello-airlane): Why we rebuilt a client from scratch — policy trees, decision traces, exit pools, mesh networking, and a shared resource pool
+
+## Key Concepts
+
+- **Policy Tree**: Visual decision relationships replacing config file syntax
+- **Decision Trace**: Every network decision is traceable — see why traffic took a specific path
+- **Exit**: Unified abstraction for network endpoints (VLESS, Shadowsocks, Hysteria2, WireGuard)
+- **Exit Pool**: Resource pools with selection strategies (Latency Aware, Health Aware, Failover)
+- **Exit Health**: Multi-dimensional health scoring (Reachability, Latency, Reliability, Transport Quality, Throughput, Service Capability)
+- **Mesh**: Link multiple devices into a private network fabric
+- **NodeFlow IR**: Intermediate representation connecting AirLane policy engine to sing-box runtime

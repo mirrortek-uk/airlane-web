@@ -3,6 +3,7 @@ import { ArrowLeft, Check, FileInput, Settings, Zap } from "lucide-react";
 
 import { useT } from "@/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/migration")({
   head: () => ({
@@ -23,7 +24,24 @@ export const Route = createFileRoute("/migration")({
           "导入已有订阅与配置，AirLane 帮你完成迁移。支持 Clash、Mihomo、sing-box 订阅链接与本地配置。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/migration") },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "从 Clash / Mihomo 迁移到 AirLane" },
+    ],
+    links: [
+      { rel: "canonical", href: canonical("/migration") },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: jsonLd([
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "首页", url: canonical("/") },
+            { name: "迁移", url: canonical("/migration") },
+          ]),
+        ]),
+      },
     ],
   }),
   component: MigrationPage,

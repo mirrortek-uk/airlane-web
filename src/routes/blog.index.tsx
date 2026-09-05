@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -21,7 +22,24 @@ export const Route = createFileRoute("/blog/")({
         content: "产品发布说明、协议实践、策略编排与 Mesh 组网心得。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/blog") },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "AirLane 博客 — 产品更新与网络编排实践" },
+    ],
+    links: [
+      { rel: "canonical", href: canonical("/blog") },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: jsonLd([
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "首页", url: canonical("/") },
+            { name: "博客", url: canonical("/blog") },
+          ]),
+        ]),
+      },
     ],
   }),
   component: BlogIndex,

@@ -7,8 +7,21 @@ import { ChevronLeft } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
+import { canonical, blogPostSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/$slug")({
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} | AirLane 博客` },
+      { name: "description", content: "AirLane 博客文章" },
+      { property: "og:type", content: "article" },
+      { property: "og:url", content: canonical(`/blog/${params.slug}`) },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: canonical(`/blog/${params.slug}`) },
+    ],
+  }),
   component: BlogPostView,
 });
 
@@ -34,8 +47,30 @@ function BlogPostView() {
     );
   }
 
+  const postUrl = canonical(`/blog/${slug}`);
+
   return (
     <article className="max-w-3xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd([
+            organizationSchema(),
+            blogPostSchema({
+              slug,
+              title: pick(post, "title", lang),
+              description: pick(post, "summary", lang),
+              datePublished: post.published_at,
+              tags: post.tags,
+            }),
+            breadcrumbSchema([
+              { name: "首页", url: canonical("/") },
+              { name: "博客", url: canonical("/blog") },
+              { name: pick(post, "title", lang), url: postUrl },
+            ]),
+          ]),
+        }}
+      />
       <Link
         to="/blog"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"

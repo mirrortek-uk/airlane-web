@@ -1,0 +1,89 @@
+# AirLane — Full Documentation for LLM Ingestion
+
+> AirLane is a modern network orchestration platform built on sing-box. It moves from traffic proxying to network orchestration: policy trees, decision traces, exit pools, mesh networking, and shared resource pools. Supports 38+ protocols. Compatible with Clash/Mihomo ecosystem.
+
+---
+
+## Homepage
+
+AirLane is a network orchestration platform: more than a proxy, it adds policy trees, decision tracing, private mesh networking and shared resource pools. From complex config files to visual network orchestration. Manage exits, policies, rules, Mesh networks and shared resources.
+
+Key features:
+- Visual policy tree for traffic decisions
+- Decision trace for every request
+- 38+ protocols: REALITY, Hysteria2, TUIC v5, AnyTLS, Snell v4, WireGuard
+- Mesh networking across devices
+- Clash/Mihomo one-click migration
+- Shared resource pools
+
+---
+
+## AirLane 1.0: From Traffic Proxy to Network Orchestration
+
+AirLane 1.0 moves from traffic proxying to network orchestration. The core abstraction has changed from Proxy/Rule/ProxyGroup/Config to Traffic/Classifier/Behavior/Policy/Exit/ExitPool/Health/Decision/Mesh/Resource.
+
+### Why a new client?
+
+Traditional proxy clients solve "which node should this traffic take?" but cannot answer "why?" As networks grow complex (dozens of nodes, multiple protocols, multiple devices, mesh, shared VPSs, dynamic failover), the proxy client abstraction is no longer enough.
+
+### Decision Chain
+
+AirLane splits traffic processing into a clear decision chain:
+Traffic -> Traffic Classifier -> Traffic Behavior -> Traffic Policy -> Exit / Exit Pool -> NodeFlow -> sing-box
+
+Each layer is responsible for exactly one thing:
+- **Traffic Classifier**: What kind of traffic is this? (AI, Google, Social, Streaming, Gaming, China, etc.)
+- **Traffic Behavior**: How should we handle it? (Route, Direct, Block, Reject, DNS)
+- **Traffic Policy**: Through which network path should this traffic exit?
+
+### Policy Tree
+
+A policy tree describes decision relationships, not configuration syntax. Users care about "AI traffic -> US, China traffic -> Direct, Other -> Europe" not "DOMAIN-SUFFIX,...".
+
+### Decision Trace
+
+Every network decision is traceable. For chatgpt.com, AirLane shows: Classifier=AI, Behavior=Route, Policy=AI Global, Target=US Exit Pool, Selection=Latency Aware, Selected=US-01, Exit=VLESS/US-01.
+
+### Exit and Exit Pool
+
+An Exit is a unified abstraction for network endpoints. An Exit Pool is a set of resources. The pool does not decide which one to pick — selection happens in Policy with strategies like Latency Aware, Health Aware, or Failover.
+
+### Exit Health
+
+Multi-dimensional scoring: Reachability, Latency, Reliability, Transport Quality, Throughput, Service Capability. Results in a 0-100 health score. Health Score and Selection Strategy are separate concepts.
+
+### Mesh Networking
+
+AirLane Mesh links multiple devices (Laptop, Phone, Router) into a private network fabric. Devices discover each other, share network capabilities, and one node can become another device's Exit.
+
+### Shared Resource Pool
+
+VPS resources can become standardized Exit Resources entering resource pools. Future: AirLane Shared Resource Pool for contributing or purchasing network resources.
+
+### sing-box Foundation
+
+AirLane handles Policy, Classifier, Behavior, Exit, Exit Pool, Health, Decision, Mesh, Resource. sing-box handles TUN, Inbound, Outbound, DNS, Transport, VLESS, Shadowsocks, Hysteria2, WireGuard, Routing Runtime. Connected by NodeFlow IR.
+
+### Clash Compatibility
+
+AirLane parses Clash/Mihomo configs into NodeFlow IR, then compiles to AirLane Policy Model and sing-box. Compatible with the ecosystem without inheriting old product abstractions.
+
+---
+
+## Quick Start
+
+1. Add egress: Add a subscription or manual nodes on the Network page. AirLane supports 38+ protocols.
+2. Create policies: Use the policy tree to split traffic by domain, app or region.
+3. Verify: Open Decision Trace to inspect the rule chain a request matched.
+
+---
+
+## Download
+
+AirLane client is available for Windows, macOS, Linux, Android, and iOS. Based on sing-box.
+
+---
+
+## Migration
+
+AirLane supports Clash, Mihomo, and sing-box subscription links and local configs. Import your existing subscription and AirLane generates a migration report with visual policy and rule editing.

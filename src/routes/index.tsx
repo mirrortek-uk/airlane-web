@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useI18n, useT } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import {
   CountUp,
@@ -115,7 +116,31 @@ export const Route = createFileRoute("/")({
           "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/") },
+      { property: "og:site_name", content: "AirLane" },
+      { property: "og:locale", content: "zh_CN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "AirLane — 让每一条流量，找到最优航线" },
+      {
+        name: "twitter:description",
+        content:
+          "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
+      },
+    ],
+    links: [
+      { rel: "canonical", href: canonical("/") },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: jsonLd([
+          organizationSchema(),
+          websiteSchema(),
+          breadcrumbSchema([
+            { name: "首页", url: canonical("/") },
+          ]),
+        ]),
+      },
     ],
   }),
   component: Index,

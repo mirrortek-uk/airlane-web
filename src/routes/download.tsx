@@ -3,6 +3,7 @@ import { ArrowLeft, Download, Github, Monitor, Smartphone } from "lucide-react";
 
 import { useT } from "@/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { canonical, softwareApplicationSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/download")({
   head: () => ({
@@ -23,7 +24,25 @@ export const Route = createFileRoute("/download")({
           "支持 Windows、macOS、Linux、Android 与 iOS。基于 sing-box 的现代网络编排平台。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/download") },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "下载 AirLane — 跨平台网络编排客户端" },
+    ],
+    links: [
+      { rel: "canonical", href: canonical("/download") },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: jsonLd([
+          organizationSchema(),
+          softwareApplicationSchema(),
+          breadcrumbSchema([
+            { name: "首页", url: canonical("/") },
+            { name: "下载", url: canonical("/download") },
+          ]),
+        ]),
+      },
     ],
   }),
   component: DownloadPage,
