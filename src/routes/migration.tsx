@@ -30,6 +30,9 @@ export const Route = createFileRoute("/migration")({
     ],
     links: [
       { rel: "canonical", href: canonical("/migration") },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical("/migration") },
+      { rel: "alternate", hrefLang: "en", href: canonical("/en/migration") },
+      { rel: "alternate", hrefLang: "x-default", href: canonical("/migration") },
     ],
     scripts: [
       {
@@ -47,7 +50,7 @@ export const Route = createFileRoute("/migration")({
   component: MigrationPage,
 });
 
-function MigrationPage() {
+export function MigrationPage() {
   const t = useT();
 
   const steps = [

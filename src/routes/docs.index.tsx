@@ -27,6 +27,9 @@ export const Route = createFileRoute("/docs/")({
     ],
     links: [
       { rel: "canonical", href: canonical("/docs") },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical("/docs") },
+      { rel: "alternate", hrefLang: "en", href: canonical("/en/docs") },
+      { rel: "alternate", hrefLang: "x-default", href: canonical("/docs") },
     ],
     scripts: [
       {
@@ -44,7 +47,7 @@ export const Route = createFileRoute("/docs/")({
   component: DocsIndex,
 });
 
-function DocsIndex() {
+export function DocsIndex() {
   const { locale } = useI18n();
   const lang = docLang(locale);
   const sections = useQuery(docsQueries.sections());

@@ -129,6 +129,9 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: canonical("/") },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical("/") },
+      { rel: "alternate", hrefLang: "en", href: canonical("/en/") },
+      { rel: "alternate", hrefLang: "x-default", href: canonical("/") },
     ],
     scripts: [
       {
@@ -146,7 +149,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Index() {
+export function Index() {
   return (
     <div className="min-h-screen bg-background font-sans antialiased selection:bg-brand/30 selection:text-ink">
       <Header />

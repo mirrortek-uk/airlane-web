@@ -16,6 +16,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DownloadRouteImport } from './routes/download'
+import { Route as EnRouteImport } from './routes/en'
 import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
@@ -24,6 +25,15 @@ import { Route as BlogAdminRouteImport } from './routes/blog.admin'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 import { Route as DocsAdminRouteImport } from './routes/docs.admin'
+import { Route as EnIndexRouteImport } from './routes/en.index'
+import { Route as EnBlogRouteImport } from './routes/en.blog'
+import { Route as EnDocsRouteImport } from './routes/en.docs'
+import { Route as EnDownloadRouteImport } from './routes/en.download'
+import { Route as EnMigrationRouteImport } from './routes/en.migration'
+import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
+import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
+import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
+import { Route as EnDocsSlugRouteImport } from './routes/en.docs.$slug'
 import { Route as ApiPublicPairClaimRouteImport } from './routes/api/public/pair/claim'
 import { Route as ApiPublicPairHeartbeatRouteImport } from './routes/api/public/pair/heartbeat'
 
@@ -60,6 +70,11 @@ const DocsRoute = DocsRouteImport.update({
 const DownloadRoute = DownloadRouteImport.update({
   id: '/download',
   path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnRoute = EnRouteImport.update({
+  id: '/en',
+  path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MigrationRoute = MigrationRouteImport.update({
@@ -102,6 +117,51 @@ const DocsAdminRoute = DocsAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => DocsRoute,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnBlogRoute = EnBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnDocsRoute = EnDocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnDownloadRoute = EnDownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnMigrationRoute = EnMigrationRouteImport.update({
+  id: '/migration',
+  path: '/migration',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EnBlogRoute,
+} as any)
+const EnBlogSlugRoute = EnBlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EnBlogRoute,
+} as any)
+const EnDocsIndexRoute = EnDocsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => EnDocsRoute,
+} as any)
+const EnDocsSlugRoute = EnDocsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EnDocsRoute,
+} as any)
 const ApiPublicPairClaimRoute = ApiPublicPairClaimRouteImport.update({
   id: '/api/public/pair/claim',
   path: '/api/public/pair/claim',
@@ -121,14 +181,24 @@ export interface FileRoutesByFullPath {
   '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
+  '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
   '/reset-password': typeof ResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
+  '/en/blog': typeof EnBlogRouteWithChildren
+  '/en/docs': typeof EnDocsRouteWithChildren
+  '/en/download': typeof EnDownloadRoute
+  '/en/migration': typeof EnMigrationRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/docs/$slug': typeof EnDocsSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
+  '/en/docs/': typeof EnDocsIndexRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -144,8 +214,15 @@ export interface FileRoutesByTo {
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
+  '/en/download': typeof EnDownloadRoute
+  '/en/migration': typeof EnMigrationRoute
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
+  '/en': typeof EnIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/docs/$slug': typeof EnDocsSlugRoute
+  '/en/blog': typeof EnBlogIndexRoute
+  '/en/docs': typeof EnDocsIndexRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -158,14 +235,24 @@ export interface FileRoutesById {
   '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
+  '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
   '/reset-password': typeof ResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
+  '/en/blog': typeof EnBlogRouteWithChildren
+  '/en/docs': typeof EnDocsRouteWithChildren
+  '/en/download': typeof EnDownloadRoute
+  '/en/migration': typeof EnMigrationRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/docs/$slug': typeof EnDocsSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
+  '/en/docs/': typeof EnDocsIndexRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -179,14 +266,24 @@ export interface FileRouteTypes {
     | '/devices'
     | '/docs'
     | '/download'
+    | '/en'
     | '/migration'
     | '/reset-password'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
+    | '/en/blog'
+    | '/en/docs'
+    | '/en/download'
+    | '/en/migration'
     | '/blog/'
     | '/docs/'
+    | '/en/'
+    | '/en/blog/$slug'
+    | '/en/docs/$slug'
+    | '/en/blog/'
+    | '/en/docs/'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   fileRoutesByTo: FileRoutesByTo
@@ -202,8 +299,15 @@ export interface FileRouteTypes {
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
+    | '/en/download'
+    | '/en/migration'
     | '/blog'
     | '/docs'
+    | '/en'
+    | '/en/blog/$slug'
+    | '/en/docs/$slug'
+    | '/en/blog'
+    | '/en/docs'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   id:
@@ -215,14 +319,24 @@ export interface FileRouteTypes {
     | '/devices'
     | '/docs'
     | '/download'
+    | '/en'
     | '/migration'
     | '/reset-password'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
+    | '/en/blog'
+    | '/en/docs'
+    | '/en/download'
+    | '/en/migration'
     | '/blog/'
     | '/docs/'
+    | '/en/'
+    | '/en/blog/$slug'
+    | '/en/docs/$slug'
+    | '/en/blog/'
+    | '/en/docs/'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   fileRoutesById: FileRoutesById
@@ -235,6 +349,7 @@ export interface RootRouteChildren {
   DevicesRoute: typeof DevicesRoute
   DocsRoute: typeof DocsRouteWithChildren
   DownloadRoute: typeof DownloadRoute
+  EnRoute: typeof EnRouteWithChildren
   MigrationRoute: typeof MigrationRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
@@ -290,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/download'
       fullPath: '/download'
       preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en': {
+      id: '/en'
+      path: '/en'
+      fullPath: '/en'
+      preLoaderRoute: typeof EnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/migration': {
@@ -348,6 +470,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsAdminRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/en/': {
+      id: '/en/'
+      path: '/'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/blog': {
+      id: '/en/blog'
+      path: '/blog'
+      fullPath: '/en/blog'
+      preLoaderRoute: typeof EnBlogRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/docs': {
+      id: '/en/docs'
+      path: '/docs'
+      fullPath: '/en/docs'
+      preLoaderRoute: typeof EnDocsRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/download': {
+      id: '/en/download'
+      path: '/download'
+      fullPath: '/en/download'
+      preLoaderRoute: typeof EnDownloadRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/migration': {
+      id: '/en/migration'
+      path: '/migration'
+      fullPath: '/en/migration'
+      preLoaderRoute: typeof EnMigrationRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/blog/': {
+      id: '/en/blog/'
+      path: '/'
+      fullPath: '/en/blog/'
+      preLoaderRoute: typeof EnBlogIndexRouteImport
+      parentRoute: typeof EnBlogRoute
+    }
+    '/en/blog/$slug': {
+      id: '/en/blog/$slug'
+      path: '/$slug'
+      fullPath: '/en/blog/$slug'
+      preLoaderRoute: typeof EnBlogSlugRouteImport
+      parentRoute: typeof EnBlogRoute
+    }
+    '/en/docs/': {
+      id: '/en/docs/'
+      path: '/'
+      fullPath: '/en/docs/'
+      preLoaderRoute: typeof EnDocsIndexRouteImport
+      parentRoute: typeof EnDocsRoute
+    }
+    '/en/docs/$slug': {
+      id: '/en/docs/$slug'
+      path: '/$slug'
+      fullPath: '/en/docs/$slug'
+      preLoaderRoute: typeof EnDocsSlugRouteImport
+      parentRoute: typeof EnDocsRoute
+    }
     '/api/public/pair/claim': {
       id: '/api/public/pair/claim'
       path: '/api/public/pair/claim'
@@ -393,6 +578,50 @@ const DocsRouteChildren: DocsRouteChildren = {
 
 const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 
+interface EnBlogRouteChildren {
+  EnBlogSlugRoute: typeof EnBlogSlugRoute
+  EnBlogIndexRoute: typeof EnBlogIndexRoute
+}
+
+const EnBlogRouteChildren: EnBlogRouteChildren = {
+  EnBlogSlugRoute: EnBlogSlugRoute,
+  EnBlogIndexRoute: EnBlogIndexRoute,
+}
+
+const EnBlogRouteWithChildren =
+  EnBlogRoute._addFileChildren(EnBlogRouteChildren)
+
+interface EnDocsRouteChildren {
+  EnDocsSlugRoute: typeof EnDocsSlugRoute
+  EnDocsIndexRoute: typeof EnDocsIndexRoute
+}
+
+const EnDocsRouteChildren: EnDocsRouteChildren = {
+  EnDocsSlugRoute: EnDocsSlugRoute,
+  EnDocsIndexRoute: EnDocsIndexRoute,
+}
+
+const EnDocsRouteWithChildren =
+  EnDocsRoute._addFileChildren(EnDocsRouteChildren)
+
+interface EnRouteChildren {
+  EnBlogRoute: typeof EnBlogRouteWithChildren
+  EnDocsRoute: typeof EnDocsRouteWithChildren
+  EnDownloadRoute: typeof EnDownloadRoute
+  EnMigrationRoute: typeof EnMigrationRoute
+  EnIndexRoute: typeof EnIndexRoute
+}
+
+const EnRouteChildren: EnRouteChildren = {
+  EnBlogRoute: EnBlogRouteWithChildren,
+  EnDocsRoute: EnDocsRouteWithChildren,
+  EnDownloadRoute: EnDownloadRoute,
+  EnMigrationRoute: EnMigrationRoute,
+  EnIndexRoute: EnIndexRoute,
+}
+
+const EnRouteWithChildren = EnRoute._addFileChildren(EnRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
@@ -401,6 +630,7 @@ const rootRouteChildren: RootRouteChildren = {
   DevicesRoute: DevicesRoute,
   DocsRoute: DocsRouteWithChildren,
   DownloadRoute: DownloadRoute,
+  EnRoute: EnRouteWithChildren,
   MigrationRoute: MigrationRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,

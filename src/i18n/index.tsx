@@ -10,6 +10,7 @@ import {
 
 import {
   DEFAULT_LOCALE,
+  LOCALES,
   LOCALE_HTML_LANG,
   STORAGE_KEY,
   normalizeLocale,
@@ -53,11 +54,43 @@ function interpolate(text: string, vars?: Record<string, string | number>) {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    // Detect locale from URL path on first render (SSR + client)
+    // /en/... -> English, /ru/... -> Russian, etc.
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      for (const l of LOCALES) {
+        if (l === "zh") continue; // zh is default, no prefix
+        const prefix = `/${l === "zh-TW" ? "zh-TW" : l}/`;
+        if (path.startsWith(prefix) || path === `/${l}`) {
+          return l;
+        }
+      }
+    }
+    return DEFAULT_LOCALE;
+  });
 
   useEffect(() => {
-    const stored = normalizeLocale(window.localStorage.getItem(STORAGE_KEY));
-    const detected = stored ?? normalizeLocale(navigator.language);
+    // On client mount, check URL path first, then localStorage, then browser language
+    const path = window.location.pathname;
+    let detected: Locale | null = null;
+
+    // Check URL path prefix
+    for (const l of LOCALES) {
+      if (l === "zh") continue;
+      const prefix = `/${l === "zh-TW" ? "zh-TW" : l}/`;
+      if (path.startsWith(prefix) || path === `/${l}`) {
+        detected = l;
+        break;
+      }
+    }
+
+    // If no URL prefix, fall back to stored preference or browser language
+    if (!detected) {
+      const stored = normalizeLocale(window.localStorage.getItem(STORAGE_KEY));
+      detected = stored ?? normalizeLocale(navigator.language);
+    }
+
     if (detected && detected !== locale) setLocaleState(detected);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

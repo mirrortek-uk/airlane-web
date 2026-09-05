@@ -20,12 +20,15 @@ export const Route = createFileRoute("/blog/$slug")({
     ],
     links: [
       { rel: "canonical", href: canonical(`/blog/${params.slug}`) },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical(`/blog/${params.slug}`) },
+      { rel: "alternate", hrefLang: "en", href: canonical(`/en/blog/${params.slug}`) },
+      { rel: "alternate", hrefLang: "x-default", href: canonical(`/blog/${params.slug}`) },
     ],
   }),
   component: BlogPostView,
 });
 
-function BlogPostView() {
+export function BlogPostView() {
   const { slug } = Route.useParams();
   const { locale, t } = useI18n();
   const lang = docLang(locale);

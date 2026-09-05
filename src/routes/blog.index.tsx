@@ -28,6 +28,9 @@ export const Route = createFileRoute("/blog/")({
     ],
     links: [
       { rel: "canonical", href: canonical("/blog") },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical("/blog") },
+      { rel: "alternate", hrefLang: "en", href: canonical("/en/blog") },
+      { rel: "alternate", hrefLang: "x-default", href: canonical("/blog") },
     ],
     scripts: [
       {
@@ -45,7 +48,7 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
 });
 
-function BlogIndex() {
+export function BlogIndex() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const posts = useQuery(blogQueries.posts());

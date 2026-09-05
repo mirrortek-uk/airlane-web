@@ -7,7 +7,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.airlane.cloud/en/docs/welcome</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.airlane.cloud/docs/quick-start</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/docs/quick-start</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

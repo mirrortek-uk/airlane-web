@@ -11,7 +11,7 @@ export const Route = createFileRoute("/docs")({
   component: DocsLayout,
 });
 
-function DocsLayout() {
+export function DocsLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const [query, setQuery] = useState("");

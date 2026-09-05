@@ -30,6 +30,9 @@ export const Route = createFileRoute("/download")({
     ],
     links: [
       { rel: "canonical", href: canonical("/download") },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical("/download") },
+      { rel: "alternate", hrefLang: "en", href: canonical("/en/download") },
+      { rel: "alternate", hrefLang: "x-default", href: canonical("/download") },
     ],
     scripts: [
       {
@@ -48,7 +51,7 @@ export const Route = createFileRoute("/download")({
   component: DownloadPage,
 });
 
-function DownloadPage() {
+export function DownloadPage() {
   const t = useT();
 
   const platforms = [

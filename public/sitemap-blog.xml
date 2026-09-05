@@ -7,7 +7,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.airlane.cloud/en/blog/hello-airlane</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.airlane.cloud/blog/singbox-vs-clash-mihomo</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/blog/singbox-vs-clash-mihomo</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

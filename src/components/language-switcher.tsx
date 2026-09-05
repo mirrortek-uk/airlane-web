@@ -1,10 +1,40 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Check, Languages } from "lucide-react";
 
 import { LOCALES, LOCALE_LABELS, LOCALE_SHORT, useI18n } from "@/i18n";
 
+/**
+ * Build the target URL when switching locale.
+ * - zh: strip the /en, /ru, /de, etc. prefix
+ * - other locales: add or replace the prefix
+ */
+function buildLocaleUrl(targetLocale: string, currentPath: string): string {
+  // Strip existing locale prefix (e.g. /en/, /ru/, /zh-TW/)
+  let path = currentPath;
+  for (const l of LOCALES) {
+    if (l === "zh") continue;
+    const prefix = `/${l}/`;
+    if (path.startsWith(prefix)) {
+      path = path.slice(prefix.length - 1); // keep leading slash
+      break;
+    }
+    if (path === `/${l}`) {
+      path = "/";
+      break;
+    }
+  }
+
+  // zh is the default — no prefix
+  if (targetLocale === "zh") return path;
+
+  // Add the target locale prefix
+  return `/${targetLocale}${path === "/" ? "" : path}`;
+}
+
 export function LanguageSwitcher({ className = "" }: { className?: string }) {
   const { locale, setLocale, t } = useI18n();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -16,6 +46,20 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, [open]);
+
+  function switchLocale(target: (typeof LOCALES)[number]) {
+    setLocale(target);
+    setOpen(false);
+    // Only navigate if the URL path needs to change
+    // zh <-> en navigation; other locales stay client-side
+    if (target === "zh" || target === "en") {
+      const currentPath = window.location.pathname;
+      const newUrl = buildLocaleUrl(target, currentPath);
+      if (newUrl !== currentPath) {
+        navigate({ to: newUrl });
+      }
+    }
+  }
 
   return (
     <div ref={ref} className={`relative ${className}`}>
@@ -35,10 +79,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
             <button
               key={item}
               type="button"
-              onClick={() => {
-                setLocale(item);
-                setOpen(false);
-              }}
+              onClick={() => switchLocale(item)}
               className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm text-foreground transition hover:bg-brand/10"
             >
               {LOCALE_LABELS[item]}

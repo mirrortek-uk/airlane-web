@@ -20,12 +20,15 @@ export const Route = createFileRoute("/docs/$slug")({
     ],
     links: [
       { rel: "canonical", href: canonical(`/docs/${params.slug}`) },
+      { rel: "alternate", hrefLang: "zh-CN", href: canonical(`/docs/${params.slug}`) },
+      { rel: "alternate", hrefLang: "en", href: canonical(`/en/docs/${params.slug}`) },
+      { rel: "alternate", hrefLang: "x-default", href: canonical(`/docs/${params.slug}`) },
     ],
   }),
   component: DocPageView,
 });
 
-function DocPageView() {
+export function DocPageView() {
   const { slug } = Route.useParams();
   const { locale, t } = useI18n();
   const lang = docLang(locale);

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/blog")({
   component: BlogLayout,
 });
 
-function BlogLayout() {
+export function BlogLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const admin = useQuery(docsQueries.admin());
