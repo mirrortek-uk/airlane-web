@@ -6,6 +6,16 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Lovable's envDefine uses loadEnv() which only reads .env files. On Vercel (and other
+// CI hosts) env vars are injected via process.env with no .env file, so VITE_* vars
+// never reach the client bundle. Supplement define with process.env values so the
+// client build gets them regardless of where it runs.
+const processEnvDefine = Object.fromEntries(
+  Object.entries(process.env)
+    .filter(([key]) => key.startsWith("VITE_"))
+    .map(([key, value]) => [`import.meta.env.${key}`, JSON.stringify(value)]),
+);
+
 export default defineConfig({
   // Lovable defaults to Cloudflare Workers; deploy this site on Vercel instead.
   cloudflare: false,
@@ -16,5 +26,8 @@ export default defineConfig({
   },
   nitro: {
     preset: "vercel",
+  },
+  vite: {
+    define: processEnvDefine,
   },
 });
