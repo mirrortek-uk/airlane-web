@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { docLang, docsQueries, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/docs/")({
   head: () => ({
@@ -52,6 +53,7 @@ export function DocsIndex() {
   const lang = docLang(locale);
   const sections = useQuery(docsQueries.sections());
   const pages = useQuery(docsQueries.pages());
+  const lp = useLocalePrefix();
 
   return (
     <div>
@@ -77,7 +79,7 @@ export function DocsIndex() {
                 {items.map((page) => (
                   <li key={page.id}>
                     <Link
-                      to="/docs/$slug"
+                      to={`${lp}/docs/$slug`}
                       params={{ slug: page.slug }}
                       className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-brand transition"
                     >

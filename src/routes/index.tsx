@@ -7,6 +7,7 @@ import { useI18n, useT } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import {
   CountUp,
@@ -210,6 +211,7 @@ function BlogTeaser() {
   const lang = docLang(locale);
   const posts = useQuery(blogQueries.posts());
   const latest = (posts.data ?? []).slice(0, 3);
+  const lp = useLocalePrefix();
 
   if (latest.length === 0) return null;
 
@@ -226,7 +228,7 @@ function BlogTeaser() {
             </h2>
           </div>
           <Link
-            to="/blog"
+            to={`${lp}/blog`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline"
           >
             {lang === "zh" ? "查看全部" : "View all"}
@@ -238,7 +240,7 @@ function BlogTeaser() {
           {latest.map((post) => (
             <Link
               key={post.id}
-              to="/blog/$slug"
+              to={`${lp}/blog/$slug`}
               params={{ slug: post.slug }}
               className="group rounded-2xl border border-ink/10 bg-card p-6 shadow-card hover:-translate-y-1 transition duration-500"
             >
@@ -270,6 +272,7 @@ function BlogTeaser() {
 
 function Header() {
   const t = useT();
+  const lp = useLocalePrefix();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -291,7 +294,7 @@ function Header() {
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5" aria-label={t("brand.name")}>
+        <Link to={lp || "/"} className="flex items-center gap-2.5" aria-label={t("brand.name")}>
           <img
             src="/brand/lockup-on-light.svg"
             alt="AirLane"
@@ -303,13 +306,13 @@ function Header() {
           <a href="#features" className="nav-glow">
             {t("nav.features")}
           </a>
-          <Link to="/migration" className="nav-glow">
+          <Link to={`${lp}/migration`} className="nav-glow">
             {t("home.header.nav.migration")}
           </Link>
-          <Link to="/docs" className="nav-glow">
+          <Link to={`${lp}/docs`} className="nav-glow">
             {t("nav.docs")}
           </Link>
-          <Link to="/blog" className="nav-glow">
+          <Link to={`${lp}/blog`} className="nav-glow">
             {t("nav.blog")}
           </Link>
         </nav>
@@ -322,7 +325,7 @@ function Header() {
           </Link>
           <LanguageSwitcher />
           <Link
-            to="/download"
+            to={`${lp}/download`}
             className="rounded-full bg-ink text-cream text-sm font-semibold px-5 py-2.5 shadow-card hover:bg-ink/90 transition shine"
           >
             {t("nav.download")}
@@ -335,6 +338,7 @@ function Header() {
 
 function Hero() {
   const t = useT();
+  const lp = useLocalePrefix();
   return (
     <section className="glow-hero relative overflow-hidden">
       <div className="aurora-layer" aria-hidden="true" />
@@ -365,14 +369,14 @@ function Hero() {
           <Reveal delay={360}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                to="/download"
+                to={`${lp}/download`}
                 className="shine rounded-full bg-gradient-brand text-cream font-semibold px-7 py-3.5 shadow-sun transition duration-500 hover:brightness-105 hover:-translate-y-0.5 inline-flex items-center gap-2"
               >
                 <Download className="size-4" />
                 {t("nav.download")}
               </Link>
               <Link
-                to="/docs"
+                to={`${lp}/docs`}
                 className="rounded-full border border-ink/15 bg-white/50 px-7 py-3.5 font-semibold transition duration-500 hover:bg-white/80 hover:-translate-y-0.5 inline-flex items-center gap-2"
               >
                 <FileText className="size-4" />
@@ -1087,6 +1091,7 @@ function Diagnostics() {
 }
 
 function Migration() {
+  const lp = useLocalePrefix();
   return (
     <section className="bg-muted/30 py-20" id="migration">
       <div className="max-w-6xl mx-auto px-6">
@@ -1098,7 +1103,7 @@ function Migration() {
             </p>
           </div>
           <Link
-            to="/migration"
+            to={`${lp}/migration`}
             className="shrink-0 rounded-full bg-gradient-brand text-cream font-semibold px-7 py-3.5 transition hover:brightness-105 inline-flex items-center gap-2"
           >
             查看迁移指南
@@ -1163,6 +1168,7 @@ function ComparisonTable() {
 }
 
 function Roadmap() {
+  const lp = useLocalePrefix();
   return (
     <section className="bg-muted/30 py-20" id="roadmap">
       <div className="max-w-6xl mx-auto px-6 text-center">
@@ -1178,14 +1184,14 @@ function Roadmap() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
-            to="/blog"
+            to={`${lp}/blog`}
             className="rounded-full border border-border bg-card px-6 py-2.5 font-semibold text-foreground hover:bg-muted transition inline-flex items-center gap-2"
           >
             <Newspaper className="size-4" />
             阅读博客
           </Link>
           <Link
-            to="/download"
+            to={`${lp}/download`}
             className="rounded-full bg-gradient-brand text-cream px-6 py-2.5 font-semibold hover:brightness-105 transition inline-flex items-center gap-2"
           >
             <Download className="size-4" />
@@ -1198,6 +1204,7 @@ function Roadmap() {
 }
 
 function Footer() {
+  const lp = useLocalePrefix();
   return (
     <footer className="border-t border-border">
       <div className="max-w-6xl mx-auto px-6 py-12">
@@ -1216,17 +1223,17 @@ function Footer() {
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
                 <li>
-                  <Link to="/download" className="hover:text-brand transition">
+                  <Link to={`${lp}/download`} className="hover:text-brand transition">
                     下载
                   </Link>
                 </li>
                 <li>
-                  <Link to="/docs" className="hover:text-brand transition">
+                  <Link to={`${lp}/docs`} className="hover:text-brand transition">
                     文档
                   </Link>
                 </li>
                 <li>
-                  <Link to="/migration" className="hover:text-brand transition">
+                  <Link to={`${lp}/migration`} className="hover:text-brand transition">
                     从 Clash 迁移
                   </Link>
                 </li>
@@ -1238,7 +1245,7 @@ function Footer() {
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
                 <li>
-                  <Link to="/blog" className="hover:text-brand transition">
+                  <Link to={`${lp}/blog`} className="hover:text-brand transition">
                     博客
                   </Link>
                 </li>

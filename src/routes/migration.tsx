@@ -4,6 +4,7 @@ import { ArrowLeft, Check, FileInput, Settings, Zap } from "lucide-react";
 import { useT } from "@/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/migration")({
   head: () => ({
@@ -52,6 +53,7 @@ export const Route = createFileRoute("/migration")({
 
 export function MigrationPage() {
   const t = useT();
+  const lp = useLocalePrefix();
 
   const steps = [
     {
@@ -90,7 +92,7 @@ export function MigrationPage() {
     <div className="min-h-screen bg-background font-sans antialiased">
       <header className="max-w-6xl mx-auto px-6 pt-7 flex items-center justify-between">
         <Link
-          to="/"
+          to={lp || "/"}
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
         >
           <ArrowLeft className="size-4" />
@@ -164,7 +166,7 @@ export function MigrationPage() {
             {t("pages.migration.cta.desc")}
           </p>
           <Link
-            to="/download"
+            to={`${lp}/download`}
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-brand text-cream font-semibold px-7 py-3 hover:brightness-105 transition"
           >
             {t("pages.migration.cta.button")}
@@ -174,7 +176,7 @@ export function MigrationPage() {
       </main>
 
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-        <Link to="/" className="hover:text-foreground transition">
+        <Link to={lp || "/"} className="hover:text-foreground transition">
           © 2025 AirLane
         </Link>
       </footer>

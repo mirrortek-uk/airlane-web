@@ -6,6 +6,7 @@ import { Search, PenLine } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/i18n";
 import { docLang, docsQueries, pick } from "@/lib/docs";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/docs")({
   component: DocsLayout,
@@ -15,6 +16,7 @@ export function DocsLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const [query, setQuery] = useState("");
+  const lp = useLocalePrefix();
 
   const sections = useQuery(docsQueries.sections());
   const pages = useQuery(docsQueries.pages());
@@ -41,7 +43,7 @@ export function DocsLayout() {
       <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Link to="/" aria-label={t("brand.name")}>
+            <Link to={lp || "/"} aria-label={t("brand.name")}>
               <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
             </Link>
             <span className="hidden sm:inline text-sm font-mono text-muted-foreground">
@@ -86,7 +88,7 @@ export function DocsLayout() {
                     {items.map((page) => (
                       <li key={page.id}>
                         <Link
-                          to="/docs/$slug"
+                          to={`${lp}/docs/$slug`}
                           params={{ slug: page.slug }}
                           className="block -ml-px border-l-2 border-transparent pl-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:border-brand/50 transition"
                           activeProps={{

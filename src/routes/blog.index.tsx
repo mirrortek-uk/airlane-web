@@ -6,6 +6,7 @@ import { useI18n } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -52,6 +53,7 @@ export function BlogIndex() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const posts = useQuery(blogQueries.posts());
+  const lp = useLocalePrefix();
 
   return (
     <div>
@@ -72,7 +74,7 @@ export function BlogIndex() {
         {(posts.data ?? []).map((post) => (
           <Link
             key={post.id}
-            to="/blog/$slug"
+            to={`${lp}/blog/$slug`}
             params={{ slug: post.slug }}
             className="group block rounded-2xl border border-ink/10 bg-white/60 p-6 hover:bg-white hover:-translate-y-0.5 transition"
           >

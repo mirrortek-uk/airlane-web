@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Github, Monitor, Smartphone } from "lucide-react";
 import { useT } from "@/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { canonical, softwareApplicationSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/download")({
   head: () => ({
@@ -53,6 +54,7 @@ export const Route = createFileRoute("/download")({
 
 export function DownloadPage() {
   const t = useT();
+  const lp = useLocalePrefix();
 
   const platforms = [
     {
@@ -91,7 +93,7 @@ export function DownloadPage() {
     <div className="min-h-screen bg-background font-sans antialiased">
       <header className="max-w-6xl mx-auto px-6 pt-7 flex items-center justify-between">
         <Link
-          to="/"
+          to={lp || "/"}
           className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
         >
           <ArrowLeft className="size-4" />
@@ -165,7 +167,7 @@ export function DownloadPage() {
       </main>
 
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-        <Link to="/" className="hover:text-foreground transition">
+        <Link to={lp || "/"} className="hover:text-foreground transition">
           © 2025 AirLane
         </Link>
       </footer>

@@ -8,6 +8,7 @@ import { useI18n } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, blogPostSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/blog/$slug")({
   head: ({ params }) => ({
@@ -34,6 +35,7 @@ export function BlogPostView() {
   const lang = docLang(locale);
   const posts = useQuery(blogQueries.posts());
   const post = (posts.data ?? []).find((p) => p.slug === slug);
+  const lp = useLocalePrefix();
 
   if (posts.isLoading) return <p className="text-muted-foreground">{t("common.loading")}</p>;
 
@@ -43,7 +45,7 @@ export function BlogPostView() {
         <h1 className="font-display text-3xl">
           {lang === "zh" ? "找不到这篇文章" : "Post not found"}
         </h1>
-        <Link to="/blog" className="mt-4 inline-block text-brand hover:underline">
+        <Link to={`${lp}/blog`} className="mt-4 inline-block text-brand hover:underline">
           {lang === "zh" ? "返回博客" : "Back to blog"}
         </Link>
       </div>
@@ -75,7 +77,7 @@ export function BlogPostView() {
         }}
       />
       <Link
-        to="/blog"
+        to={`${lp}/blog`}
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
       >
         <ChevronLeft className="size-3.5" />

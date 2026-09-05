@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { docLang, docsQueries, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/docs/$slug")({
   head: ({ params }) => ({
@@ -32,6 +33,7 @@ export function DocPageView() {
   const { slug } = Route.useParams();
   const { locale, t } = useI18n();
   const lang = docLang(locale);
+  const lp = useLocalePrefix();
 
   const pages = useQuery(docsQueries.pages());
   const sections = useQuery(docsQueries.sections());
@@ -60,7 +62,7 @@ export function DocPageView() {
         <h1 className="font-display text-3xl">
           {lang === "zh" ? "找不到这篇文档" : "Document not found"}
         </h1>
-        <Link to="/docs" className="mt-4 inline-block text-brand hover:underline">
+        <Link to={`${lp}/docs`} className="mt-4 inline-block text-brand hover:underline">
           {lang === "zh" ? "返回帮助中心" : "Back to docs"}
         </Link>
       </div>
@@ -92,7 +94,7 @@ export function DocPageView() {
       <div className="mt-14 grid sm:grid-cols-2 gap-4 border-t border-ink/10 pt-6">
         {prev ? (
           <Link
-            to="/docs/$slug"
+            to={`${lp}/docs/$slug`}
             params={{ slug: prev.slug }}
             className="rounded-xl border border-ink/10 bg-white/60 p-4 hover:bg-white transition"
           >
@@ -107,7 +109,7 @@ export function DocPageView() {
         )}
         {next ? (
           <Link
-            to="/docs/$slug"
+            to={`${lp}/docs/$slug`}
             params={{ slug: next.slug }}
             className="rounded-xl border border-ink/10 bg-white/60 p-4 text-right hover:bg-white transition"
           >
