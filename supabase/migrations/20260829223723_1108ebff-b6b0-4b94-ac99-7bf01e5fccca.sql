@@ -1,3 +1,6 @@
+-- Ensure pgcrypto is available for gen_random_uuid() / gen_random_bytes()
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- profiles
 CREATE TABLE public.profiles (
   id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -114,7 +117,7 @@ CREATE TABLE public.mesh_groups (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   owner_user_id uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   name text NOT NULL,
-  invite_code text NOT NULL UNIQUE DEFAULT encode(gen_random_bytes(6), 'hex'),
+  invite_code text NOT NULL UNIQUE DEFAULT encode(extensions.gen_random_bytes(6), 'hex'),
   created_at timestamptz NOT NULL DEFAULT now()
 );
 GRANT SELECT, INSERT, UPDATE, DELETE ON public.mesh_groups TO authenticated;

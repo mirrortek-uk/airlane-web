@@ -39,3 +39,9 @@ _extract/
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
+.env*
+
+# Supabase CLI temp
+supabase/.temp/
