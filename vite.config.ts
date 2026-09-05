@@ -16,9 +16,6 @@ const processEnvDefine = Object.fromEntries(
     .map(([key, value]) => [`import.meta.env.${key}`, JSON.stringify(value)]),
 );
 
-// Debug: log which VITE_ vars are visible at build time
-console.log(`[vite.config] processEnvDefine keys: ${Object.keys(processEnvDefine).join(", ") || "(none)"}`);
-
 export default defineConfig({
   // Lovable defaults to Cloudflare Workers; deploy this site on Vercel instead.
   cloudflare: false,
