@@ -1,11 +1,11 @@
 const dict: Record<string, string> = {
   "home.header.nav.migration": "从 Clash 迁移",
 
-  "home.hero.badge": "现代网络编排平台 · 基于 sing-box",
-  "home.hero.title1": "让每一条流量，",
-  "home.hero.title2": "找到",
-  "home.hero.titleGradient": "最优航线",
-  "home.hero.subtitle": "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源，让网络真正变得可见、可控。",
+  "home.hero.badge": "可视化代理客户端 · 基于 sing-box",
+  "home.hero.title1": "AirLane｜可视化",
+  "home.hero.title2": "代理",
+  "home.hero.titleGradient": "客户端",
+  "home.hero.subtitle": "让每一流量自动走最优线路。导入订阅链接，管理应用分流、策略规则、节点资源池与自动选路。告别复杂配置文件，直观控制你的网络出口。",
   "home.hero.imageAlt": "AirLane 网络仪表盘",
 
   "home.stats.protocols": "协议支持",

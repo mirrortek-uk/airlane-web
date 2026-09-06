@@ -1,11 +1,11 @@
 const dict: Record<string, string> = {
   "home.header.nav.migration": "Migrate from Clash",
 
-  "home.hero.badge": "A modern network orchestration platform · powered by sing-box",
-  "home.hero.title1": "Every packet finds",
-  "home.hero.title2": "its",
-  "home.hero.titleGradient": "best route",
-  "home.hero.subtitle": "From tangled config files to visual network orchestration. Manage exits, policies, rules, mesh networks, and shared resources — make your network visible and controllable.",
+  "home.hero.badge": "Visual proxy client · powered by sing-box",
+  "home.hero.title1": "AirLane | Visual",
+  "home.hero.title2": "Proxy",
+  "home.hero.titleGradient": "Client",
+  "home.hero.subtitle": "Every flow automatically takes the best route. Import subscription links, manage app-based traffic splitting, policy rules, node resource pools, and automatic routing. Say goodbye to complex config files — visually control your network exits.",
   "home.hero.imageAlt": "AirLane network dashboard",
 
   "home.stats.protocols": "Protocols supported",
