@@ -9,6 +9,7 @@ import { Plus, Trash2, Save, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { claimFirstAdmin } from "@/lib/docs-admin.functions";
 import { docsQueries, type DocPage } from "@/lib/docs";
+import { ImageUploadButton } from "@/components/image-upload-button";
 
 export const Route = createFileRoute("/docs/admin")({
   head: () => ({
@@ -275,7 +276,24 @@ function DocsAdmin() {
             </div>
 
             <Field label="中文正文（Markdown）">
+              <div className="flex items-center gap-2 mb-1.5">
+                <ImageUploadButton
+                  subdir={`docs/${draft.slug || "draft"}`}
+                  onInsert={(md) => {
+                    const ta = document.getElementById("docs-body-zh") as HTMLTextAreaElement | null;
+                    if (ta) {
+                      const start = ta.selectionStart;
+                      const end = ta.selectionEnd;
+                      const newVal = (draft.body_zh ?? "").slice(0, start) + md + "\n" + (draft.body_zh ?? "").slice(end);
+                      setDraft({ ...draft, body_zh: newVal });
+                    } else {
+                      setDraft({ ...draft, body_zh: (draft.body_zh ?? "") + "\n" + md + "\n" });
+                    }
+                  }}
+                />
+              </div>
               <textarea
+                id="docs-body-zh"
                 rows={16}
                 className={`${inputCls} font-mono text-sm`}
                 value={draft.body_zh ?? ""}
@@ -283,7 +301,24 @@ function DocsAdmin() {
               />
             </Field>
             <Field label="英文正文（Markdown，留空则显示中文）">
+              <div className="flex items-center gap-2 mb-1.5">
+                <ImageUploadButton
+                  subdir={`docs/${draft.slug || "draft"}`}
+                  onInsert={(md) => {
+                    const ta = document.getElementById("docs-body-en") as HTMLTextAreaElement | null;
+                    if (ta) {
+                      const start = ta.selectionStart;
+                      const end = ta.selectionEnd;
+                      const newVal = (draft.body_en ?? "").slice(0, start) + md + "\n" + (draft.body_en ?? "").slice(end);
+                      setDraft({ ...draft, body_en: newVal });
+                    } else {
+                      setDraft({ ...draft, body_en: (draft.body_en ?? "") + "\n" + md + "\n" });
+                    }
+                  }}
+                />
+              </div>
               <textarea
+                id="docs-body-en"
                 rows={12}
                 className={`${inputCls} font-mono text-sm`}
                 value={draft.body_en ?? ""}
