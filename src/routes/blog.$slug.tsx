@@ -10,22 +10,49 @@ import { docLang, pick } from "@/lib/docs";
 import { canonical, blogPostSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
 
+// Static metadata for known blog posts (used by SSR head before client data loads)
+export const POST_META: Record<string, { title_zh: string; title_en: string; summary_zh: string; summary_en: string }> = {
+  "hello-airlane": {
+    title_zh: "AirLane 1.0：从流量代理到网络编排",
+    title_en: "AirLane 1.0: From Traffic Proxy to Network Orchestration",
+    summary_zh: "为什么我们要从零重建一个客户端：策略树、决策追踪、Mesh 组网与共享资源池。AirLane 1.0 从流量代理走向网络编排。",
+    summary_en: "Why we rebuilt a client from scratch: policy trees, decision traces, exit pools, mesh networking, and a shared resource pool. AirLane 1.0 moves from traffic proxying to network orchestration.",
+  },
+  "singbox-vs-clash-mihomo": {
+    title_zh: "Sing-Box vs Clash Mihomo：别再只比速度，现代网络编排的真正内核选型逻辑",
+    title_en: "Sing-Box vs Clash Mihomo: Stop Comparing Speed — The Real Core Selection Logic for Modern Network Orchestration",
+    summary_zh: "在网络代理与流量调度工具的圈子里，到底选 sing-box 还是 Mihomo？本文结合 AirLane 产品研发实践，完整拆解两大内核的核心差异，讲清为什么顶级网络编排产品都坚定选择 sing-box 作为底层数据面。",
+    summary_en: "sing-box or Mihomo? This article dissects the core differences between the two engines based on AirLane's R&D experience, explaining why top-tier network orchestration products firmly choose sing-box as the underlying data plane.",
+  },
+};
+
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} | AirLane 博客` },
-      { name: "description", content: "AirLane 博客文章" },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: canonical(`/blog/${params.slug}`) },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "canonical", href: canonical(`/blog/${params.slug}`) },
-      { rel: "alternate", hrefLang: "zh-CN", href: canonical(`/blog/${params.slug}`) },
-      { rel: "alternate", hrefLang: "en", href: canonical(`/en/blog/${params.slug}`) },
-      { rel: "alternate", hrefLang: "x-default", href: canonical(`/blog/${params.slug}`) },
-    ],
-  }),
+  head: ({ params }) => {
+    const meta = POST_META[params.slug];
+    const title = meta ? meta.title_zh : `${params.slug} | AirLane 博客`;
+    const desc = meta ? meta.summary_zh : "AirLane 博客文章";
+    return {
+      meta: [
+        { title: `${title} | AirLane 博客` },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: canonical(`/blog/${params.slug}`) },
+        { property: "og:site_name", content: "AirLane" },
+        { property: "og:locale", content: "zh_CN" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: desc },
+      ],
+      links: [
+        { rel: "canonical", href: canonical(`/blog/${params.slug}`) },
+        { rel: "alternate", hrefLang: "zh-CN", href: canonical(`/blog/${params.slug}`) },
+        { rel: "alternate", hrefLang: "en", href: canonical(`/en/blog/${params.slug}`) },
+        { rel: "alternate", hrefLang: "x-default", href: canonical(`/blog/${params.slug}`) },
+      ],
+    };
+  },
   component: BlogPostView,
 });
 
