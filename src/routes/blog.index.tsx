@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useMatches } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 
@@ -60,7 +60,8 @@ export const Route = createFileRoute("/blog/")({
 export function BlogIndex() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
-  const routeData = Route.useLoaderData();
+  const matches = useMatches();
+  const routeData = matches.length > 0 ? (matches[matches.length - 1].loaderData as { initialPosts?: Awaited<ReturnType<typeof fetchPosts>> } | undefined) : undefined;
   const posts = useQuery({
     ...blogQueries.posts(),
     initialData: routeData?.initialPosts,

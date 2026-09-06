@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useMatches } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 
@@ -59,7 +59,8 @@ export const Route = createFileRoute("/docs/")({
 export function DocsIndex() {
   const { locale } = useI18n();
   const lang = docLang(locale);
-  const routeData = Route.useLoaderData();
+  const matches = useMatches();
+  const routeData = matches.length > 0 ? (matches[matches.length - 1].loaderData as { initialSections?: Awaited<ReturnType<typeof fetchSections>>; initialPages?: Awaited<ReturnType<typeof fetchPages>> } | undefined) : undefined;
   const sections = useQuery({ ...docsQueries.sections(), initialData: routeData?.initialSections });
   const pages = useQuery({ ...docsQueries.pages(), initialData: routeData?.initialPages });
   const lp = useLocalePrefix();
