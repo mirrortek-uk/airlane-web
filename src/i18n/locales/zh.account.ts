@@ -23,6 +23,17 @@ const dict: Record<string, string> = {
   "auth.updatePassword": "更新密码",
   "auth.passwordUpdated": "密码已更新，请重新登录。",
   "auth.needRecovery": "请通过邮件中的重置链接打开本页面。",
+  "auth.method.password": "密码登录",
+  "auth.method.otp": "验证码登录",
+  "auth.emailRequired": "请输入邮箱地址",
+  "auth.otpSent": "验证码已发送到你的邮箱，请查收。",
+  "auth.otpEnterCode": "验证码已发送至",
+  "auth.otpRequired": "请输入邮箱和验证码",
+  "auth.verifyOtp": "验证并登录",
+  "auth.verifying": "验证中…",
+  "auth.sendOtp": "发送验证码",
+  "auth.sending": "发送中…",
+  "auth.otpResend": "重新发送验证码",
 
   // Account center
   "account.title": "账号中心",

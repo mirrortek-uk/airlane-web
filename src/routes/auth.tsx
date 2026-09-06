@@ -4,7 +4,6 @@ import { toast } from "sonner";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { useT } from "@/i18n";
 
 export const Route = createFileRoute("/auth")({
@@ -20,7 +19,7 @@ export const Route = createFileRoute("/auth")({
       { property: "og:title", content: "登录 AirLane 云端" },
       {
         property: "og:description",
-        content: "邮箱或 Google 登录 AirLane，启用云端同步与 Mesh 共享。",
+        content: "邮箱密码或邮箱验证码登录 AirLane，启用云端同步与 Mesh 共享。",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,15 +29,19 @@ export const Route = createFileRoute("/auth")({
 });
 
 type Mode = "signIn" | "signUp" | "reset";
+type AuthMethod = "password" | "otp";
 
 function AuthPage() {
   const t = useT();
   const navigate = useNavigate();
   const [mode, setMode] = useState<Mode>("signIn");
+  const [method, setMethod] = useState<AuthMethod>("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [otpCode, setOtpCode] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -46,18 +49,58 @@ function AuthPage() {
     });
   }, [navigate]);
 
-  async function handleGoogle() {
-    setBusy(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+  // Handle OAuth redirect callback (magic link / OTP verification)
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) navigate({ to: "/account", replace: true });
     });
-    if (result.error) {
-      setBusy(false);
-      toast.error(String(result.error));
+  }, [navigate]);
+
+  async function handleSendOtp(event: React.FormEvent) {
+    event.preventDefault();
+    if (!email) {
+      toast.error(t("auth.emailRequired"));
       return;
     }
-    if (result.redirected) return;
-    navigate({ to: "/account", replace: true });
+    setBusy(true);
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: window.location.origin,
+          shouldCreateUser: mode === "signUp",
+        },
+      });
+      if (error) throw error;
+      setOtpSent(true);
+      toast.success(t("auth.otpSent"));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleVerifyOtp(event: React.FormEvent) {
+    event.preventDefault();
+    if (!email || !otpCode) {
+      toast.error(t("auth.otpRequired"));
+      return;
+    }
+    setBusy(true);
+    try {
+      const { error } = await supabase.auth.verifyOtp({
+        email,
+        token: otpCode,
+        type: "email",
+      });
+      if (error) throw error;
+      navigate({ to: "/account", replace: true });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function handleSubmit(event: React.FormEvent) {
@@ -101,6 +144,7 @@ function AuthPage() {
   }
 
   const isReset = mode === "reset";
+  const isOtp = method === "otp" && !isReset;
 
   return (
     <main className="relative min-h-screen bg-background px-4 py-12">
@@ -136,7 +180,7 @@ function AuthPage() {
                   <button
                     key={item}
                     type="button"
-                    onClick={() => setMode(item)}
+                    onClick={() => { setMode(item); setOtpSent(false); }}
                     className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                       mode === item
                         ? "bg-primary text-primary-foreground"
@@ -148,63 +192,122 @@ function AuthPage() {
                 ))}
               </div>
 
-              <button
-                type="button"
-                disabled={busy}
-                onClick={handleGoogle}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-full border border-input bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent disabled:opacity-60"
-              >
-                {t("auth.google")}
-              </button>
-
-              <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
-                <span className="h-px flex-1 bg-border" />
-                {t("auth.or")}
-                <span className="h-px flex-1 bg-border" />
+              {/* Auth method toggle: password vs OTP */}
+              <div className="mt-4 grid grid-cols-2 gap-1 rounded-full bg-muted/50 p-1">
+                {(["password", "otp"] as const).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => { setMethod(m); setOtpSent(false); }}
+                    className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+                      method === m
+                        ? "bg-ink text-cream"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {t(m === "password" ? "auth.method.password" : "auth.method.otp")}
+                  </button>
+                ))}
               </div>
             </>
           )}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            {mode === "signUp" && (
+          {/* OTP method */}
+          {isOtp ? (
+            otpSent ? (
+              <form onSubmit={handleVerifyOtp} className="mt-5 flex flex-col gap-3">
+                <p className="text-sm text-muted-foreground">
+                  {t("auth.otpEnterCode")} <span className="font-medium text-foreground">{email}</span>
+                </p>
+                <input
+                  type="text"
+                  required
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  maxLength={6}
+                  value={otpCode}
+                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
+                  placeholder="123456"
+                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-center text-lg font-mono tracking-widest text-foreground outline-none focus:border-primary"
+                />
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="mt-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+                >
+                  {busy ? t("auth.verifying") : t("auth.verifyOtp")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOtpSent(false)}
+                  className="text-center text-sm text-muted-foreground hover:text-foreground"
+                >
+                  {t("auth.otpResend")}
+                </button>
+              </form>
+            ) : (
+              <form onSubmit={handleSendOtp} className="mt-5 flex flex-col gap-3">
+                <input
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
+                />
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="mt-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+                >
+                  {busy ? t("auth.sending") : t("auth.sendOtp")}
+                </button>
+              </form>
+            )
+          ) : (
+            /* Password method */
+            <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3">
+              {mode === "signUp" && (
+                <input
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder={t("auth.displayName")}
+                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
+                />
+              )}
               <input
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder={t("auth.displayName")}
-                className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
-              />
-            )}
-            <input
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
-            />
-            {!isReset && (
-              <input
-                type="password"
+                type="email"
                 required
-                minLength={8}
-                autoComplete={mode === "signUp" ? "new-password" : "current-password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
                 className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
               />
-            )}
-            <button
-              type="submit"
-              disabled={busy}
-              className="mt-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
-            >
-              {isReset
-                ? t("auth.resetSubmit")
-                : t(mode === "signUp" ? "auth.submit.signUp" : "auth.submit.signIn")}
-            </button>
-          </form>
+              {!isReset && (
+                <input
+                  type="password"
+                  required
+                  minLength={8}
+                  autoComplete={mode === "signUp" ? "new-password" : "current-password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
+                />
+              )}
+              <button
+                type="submit"
+                disabled={busy}
+                className="mt-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+              >
+                {isReset
+                  ? t("auth.resetSubmit")
+                  : t(mode === "signUp" ? "auth.submit.signUp" : "auth.submit.signIn")}
+              </button>
+            </form>
+          )}
 
           <div className="mt-4 text-center text-sm">
             {isReset ? (
