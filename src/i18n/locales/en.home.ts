@@ -1,11 +1,11 @@
 const dict: Record<string, string> = {
   "home.header.nav.migration": "Migrate from Clash",
 
-  "home.hero.badge": "Visual proxy client · powered by sing-box",
+  "home.hero.badge": "Visual proxy client · powered by sing-box · Clash-compatible",
   "home.hero.title1": "AirLane | Visual",
   "home.hero.title2": "Proxy",
   "home.hero.titleGradient": "Client",
-  "home.hero.subtitle": "Every flow automatically takes the best route. Import subscription links, manage app-based traffic splitting, policy rules, node resource pools, and automatic routing. Say goodbye to complex config files — visually control your network exits.",
+  "home.hero.subtitle": "A visual proxy client built on the sing-box core — a modern Clash / Mihomo alternative. Import subscription links, manage app-based traffic splitting, policy rules, node resource pools, and automatic routing. Say goodbye to complex YAML — visually control your network exits.",
   "home.hero.imageAlt": "AirLane network dashboard",
 
   "home.stats.protocols": "Protocols supported",
@@ -194,6 +194,22 @@ const dict: Record<string, string> = {
   "home.protocols.group.network.title": "Networking & DNS",
   "home.protocols.group.network.desc": "From TUN to Mesh, from DNS to subscription import",
   "home.protocols.note": "* Available protocols continue to expand with each client release and platform.",
+
+  "home.faq.eyebrow": "FAQ",
+  "home.faq.title": "Frequently Asked Questions",
+  "home.faq.subtitle": "Learn what AirLane is, how it compares to Clash / Mihomo, and which protocols and platforms it supports.",
+  "home.faq.q1": "What is AirLane?",
+  "home.faq.a1": "AirLane is a visual proxy client by MirrorTek, built on the sing-box core. It replaces complex YAML configuration with a graphical interface, supporting subscription import, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration. Think of it as a modern alternative to Clash / Mihomo.",
+  "home.faq.q2": "How does AirLane differ from Clash / Clash Verge / Mihomo?",
+  "home.faq.a2": "AirLane uses the sing-box core rather than the Clash core, natively supporting 38+ protocols (VLESS, VMess, Trojan, Hysteria2, TUIC, Shadowsocks, etc.). It provides a visual policy tree, decision tracing, exit resource pools, and Mesh networking without writing YAML. It also supports Clash / Mihomo subscription format for one-click migration.",
+  "home.faq.q3": "What protocols does AirLane support?",
+  "home.faq.a3": "It natively supports 38+ protocols including VLESS, VMess, Trojan, Hysteria2, TUIC v5, Shadowsocks, ShadowTLS, Reality, WireGuard, Trojan-Go, Naive, HTTP, and SOCKS, with Clash subscription format compatibility.",
+  "home.faq.q4": "What platforms does AirLane support?",
+  "home.faq.a4": "Windows, macOS, Linux, Android, and iOS. Cross-device Mesh networking enables shared exits and resource pools.",
+  "home.faq.q5": "Is AirLane free?",
+  "home.faq.a5": "The AirLane client is free to use. Subscription and service pricing depends on the node provider you connect to.",
+  "home.faq.q6": "Can I migrate from Clash / Mihomo to AirLane?",
+  "home.faq.a6": "Yes. AirLane supports importing Clash / Mihomo subscription links and local configs, auto-generating a migration report that converts Proxy Groups to policy trees and Rule Providers to rule sets — just fine-tune and go.",
 };
 
 export default dict;

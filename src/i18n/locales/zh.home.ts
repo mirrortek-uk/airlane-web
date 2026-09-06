@@ -1,11 +1,11 @@
 const dict: Record<string, string> = {
   "home.header.nav.migration": "从 Clash 迁移",
 
-  "home.hero.badge": "可视化代理客户端 · 基于 sing-box",
+  "home.hero.badge": "可视化代理客户端 · 基于 sing-box · 兼容 Clash 订阅",
   "home.hero.title1": "AirLane｜可视化",
   "home.hero.title2": "代理",
   "home.hero.titleGradient": "客户端",
-  "home.hero.subtitle": "让每一流量自动走最优线路。导入订阅链接，管理应用分流、策略规则、节点资源池与自动选路。告别复杂配置文件，直观控制你的网络出口。",
+  "home.hero.subtitle": "基于 sing-box 内核的可视化代理客户端，Clash / Mihomo 替代方案。导入订阅链接，管理应用分流、策略规则、节点资源池与自动选路。告别复杂 YAML 配置，直观控制你的网络出口。",
   "home.hero.imageAlt": "AirLane 网络仪表盘",
 
   "home.stats.protocols": "协议支持",
@@ -194,6 +194,22 @@ const dict: Record<string, string> = {
   "home.protocols.group.network.title": "组网与解析",
   "home.protocols.group.network.desc": "从 TUN 到 Mesh，从 DNS 到订阅导入",
   "home.protocols.note": "* 具体可用协议随客户端版本与平台能力持续更新。",
+
+  "home.faq.eyebrow": "常见问题",
+  "home.faq.title": "关于 AirLane 的常见问题",
+  "home.faq.subtitle": "了解 AirLane 是什么、和 Clash / Mihomo 的区别、支持的协议与平台。",
+  "home.faq.q1": "AirLane 是什么？",
+  "home.faq.a1": "AirLane 是由 MirrorTek 出品、基于 sing-box 内核的可视化代理客户端。它用图形界面替代复杂的 YAML 配置，支持订阅链接导入、应用分流、多出口策略管理、多终端 Mesh 组网与路由规则配置。可以理解为 Clash / Mihomo 的现代替代方案。",
+  "home.faq.q2": "AirLane 和 Clash / Clash Verge / Mihomo 有什么区别？",
+  "home.faq.a2": "AirLane 基于 sing-box 内核而非 Clash 内核，原生支持 38+ 协议（VLESS、VMess、Trojan、Hysteria2、TUIC、Shadowsocks 等）。它提供可视化策略树、决策追踪、出口资源池和 Mesh 组网，无需手写 YAML 即可编排流量。同时兼容 Clash / Mihomo 订阅格式，可一键导入迁移。",
+  "home.faq.q3": "AirLane 支持哪些协议？",
+  "home.faq.a3": "原生支持 38+ 协议，包括 VLESS、VMess、Trojan、Hysteria2、TUIC v5、Shadowsocks、ShadowTLS、Reality、WireGuard、Trojan-Go、Naive、HTTP、SOCKS 等，并兼容 Clash 订阅链接格式。",
+  "home.faq.q4": "AirLane 支持哪些平台？",
+  "home.faq.a4": "支持 Windows、macOS、Linux、Android 和 iOS。跨设备可通过 Mesh 组网功能实现共享出口和资源池。",
+  "home.faq.q5": "AirLane 是免费的吗？",
+  "home.faq.a5": "AirLane 客户端免费使用。具体订阅和服务价格取决于你接入的节点提供商。",
+  "home.faq.q6": "可以从 Clash / Mihomo 迁移到 AirLane 吗？",
+  "home.faq.a6": "可以。AirLane 支持导入 Clash / Mihomo 订阅链接和本地配置，自动生成迁移报告，将 Proxy Group 转换为策略树，Rule Provider 转换为规则集，微调即可启用。",
 };
 
 export default dict;

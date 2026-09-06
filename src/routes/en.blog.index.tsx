@@ -1,8 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BlogIndex } from "@/routes/blog.index";
+import { fetchPosts } from "@/lib/blog";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/en/blog/")({
+  loader: async () => {
+    try {
+      const posts = await fetchPosts();
+      return { initialPosts: posts };
+    } catch {
+      return { initialPosts: [] };
+    }
+  },
   head: () => ({
     meta: [
       { title: "AirLane Blog — Product Updates & Network Orchestration" },

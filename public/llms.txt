@@ -6,6 +6,8 @@
 
 - [AirLane Homepage](https://www.airlane.cloud/): Network orchestration platform overview
 - [Download AirLane](https://www.airlane.cloud/download): Cross-platform client for Windows, macOS, Linux, Android, and iOS
+- [Clash Alternative](https://www.airlane.cloud/clash-alternative): Why AirLane is a modern Clash alternative — comparison, migration, and feature differences
+- [Mihomo Alternative](https://www.airlane.cloud/mihomo-alternative): Why AirLane is a modern Mihomo (Clash Meta) alternative — comparison and migration
 - [Clash / Mihomo Migration](https://www.airlane.cloud/migration): Import existing subscriptions and configs
 - [Device Management](https://www.airlane.cloud/devices): Pair clients with cloud identity via pairing codes
 

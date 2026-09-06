@@ -13,11 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ClashAlternativeRouteImport } from './routes/clash-alternative'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as EnRouteImport } from './routes/en'
 import { Route as MigrationRouteImport } from './routes/migration'
+import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -27,9 +29,11 @@ import { Route as DocsSlugRouteImport } from './routes/docs.$slug'
 import { Route as DocsAdminRouteImport } from './routes/docs.admin'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnBlogRouteImport } from './routes/en.blog'
+import { Route as EnClashAlternativeRouteImport } from './routes/en.clash-alternative'
 import { Route as EnDocsRouteImport } from './routes/en.docs'
 import { Route as EnDownloadRouteImport } from './routes/en.download'
 import { Route as EnMigrationRouteImport } from './routes/en.migration'
+import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
@@ -57,6 +61,11 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClashAlternativeRoute = ClashAlternativeRouteImport.update({
+  id: '/clash-alternative',
+  path: '/clash-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DevicesRoute = DevicesRouteImport.update({
   id: '/devices',
   path: '/devices',
@@ -80,6 +89,11 @@ const EnRoute = EnRouteImport.update({
 const MigrationRoute = MigrationRouteImport.update({
   id: '/migration',
   path: '/migration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MihomoAlternativeRoute = MihomoAlternativeRouteImport.update({
+  id: '/mihomo-alternative',
+  path: '/mihomo-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -127,6 +141,11 @@ const EnBlogRoute = EnBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => EnRoute,
 } as any)
+const EnClashAlternativeRoute = EnClashAlternativeRouteImport.update({
+  id: '/clash-alternative',
+  path: '/clash-alternative',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnDocsRoute = EnDocsRouteImport.update({
   id: '/docs',
   path: '/docs',
@@ -140,6 +159,11 @@ const EnDownloadRoute = EnDownloadRouteImport.update({
 const EnMigrationRoute = EnMigrationRouteImport.update({
   id: '/migration',
   path: '/migration',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnMihomoAlternativeRoute = EnMihomoAlternativeRouteImport.update({
+  id: '/mihomo-alternative',
+  path: '/mihomo-alternative',
   getParentRoute: () => EnRoute,
 } as any)
 const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
@@ -178,20 +202,24 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
+  '/clash-alternative': typeof ClashAlternativeRoute
   '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
+  '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
   '/en/blog': typeof EnBlogRouteWithChildren
+  '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/docs': typeof EnDocsRouteWithChildren
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
+  '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -206,16 +234,20 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/clash-alternative': typeof ClashAlternativeRoute
   '/devices': typeof DevicesRoute
   '/download': typeof DownloadRoute
   '/migration': typeof MigrationRoute
+  '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
+  '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
+  '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
   '/en': typeof EnIndexRoute
@@ -232,20 +264,24 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
+  '/clash-alternative': typeof ClashAlternativeRoute
   '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
+  '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
   '/en/blog': typeof EnBlogRouteWithChildren
+  '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/docs': typeof EnDocsRouteWithChildren
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
+  '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -263,20 +299,24 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/blog'
+    | '/clash-alternative'
     | '/devices'
     | '/docs'
     | '/download'
     | '/en'
     | '/migration'
+    | '/mihomo-alternative'
     | '/reset-password'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
     | '/en/blog'
+    | '/en/clash-alternative'
     | '/en/docs'
     | '/en/download'
     | '/en/migration'
+    | '/en/mihomo-alternative'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -291,16 +331,20 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/auth'
+    | '/clash-alternative'
     | '/devices'
     | '/download'
     | '/migration'
+    | '/mihomo-alternative'
     | '/reset-password'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
+    | '/en/clash-alternative'
     | '/en/download'
     | '/en/migration'
+    | '/en/mihomo-alternative'
     | '/blog'
     | '/docs'
     | '/en'
@@ -316,20 +360,24 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/blog'
+    | '/clash-alternative'
     | '/devices'
     | '/docs'
     | '/download'
     | '/en'
     | '/migration'
+    | '/mihomo-alternative'
     | '/reset-password'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
     | '/en/blog'
+    | '/en/clash-alternative'
     | '/en/docs'
     | '/en/download'
     | '/en/migration'
+    | '/en/mihomo-alternative'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -346,11 +394,13 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRouteWithChildren
+  ClashAlternativeRoute: typeof ClashAlternativeRoute
   DevicesRoute: typeof DevicesRoute
   DocsRoute: typeof DocsRouteWithChildren
   DownloadRoute: typeof DownloadRoute
   EnRoute: typeof EnRouteWithChildren
   MigrationRoute: typeof MigrationRoute
+  MihomoAlternativeRoute: typeof MihomoAlternativeRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
   ApiPublicPairHeartbeatRoute: typeof ApiPublicPairHeartbeatRoute
@@ -386,6 +436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clash-alternative': {
+      id: '/clash-alternative'
+      path: '/clash-alternative'
+      fullPath: '/clash-alternative'
+      preLoaderRoute: typeof ClashAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/devices': {
       id: '/devices'
       path: '/devices'
@@ -419,6 +476,13 @@ declare module '@tanstack/react-router' {
       path: '/migration'
       fullPath: '/migration'
       preLoaderRoute: typeof MigrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mihomo-alternative': {
+      id: '/mihomo-alternative'
+      path: '/mihomo-alternative'
+      fullPath: '/mihomo-alternative'
+      preLoaderRoute: typeof MihomoAlternativeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -484,6 +548,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnBlogRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/clash-alternative': {
+      id: '/en/clash-alternative'
+      path: '/clash-alternative'
+      fullPath: '/en/clash-alternative'
+      preLoaderRoute: typeof EnClashAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/docs': {
       id: '/en/docs'
       path: '/docs'
@@ -503,6 +574,13 @@ declare module '@tanstack/react-router' {
       path: '/migration'
       fullPath: '/en/migration'
       preLoaderRoute: typeof EnMigrationRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/mihomo-alternative': {
+      id: '/en/mihomo-alternative'
+      path: '/mihomo-alternative'
+      fullPath: '/en/mihomo-alternative'
+      preLoaderRoute: typeof EnMihomoAlternativeRouteImport
       parentRoute: typeof EnRoute
     }
     '/en/blog/': {
@@ -606,17 +684,21 @@ const EnDocsRouteWithChildren =
 
 interface EnRouteChildren {
   EnBlogRoute: typeof EnBlogRouteWithChildren
+  EnClashAlternativeRoute: typeof EnClashAlternativeRoute
   EnDocsRoute: typeof EnDocsRouteWithChildren
   EnDownloadRoute: typeof EnDownloadRoute
   EnMigrationRoute: typeof EnMigrationRoute
+  EnMihomoAlternativeRoute: typeof EnMihomoAlternativeRoute
   EnIndexRoute: typeof EnIndexRoute
 }
 
 const EnRouteChildren: EnRouteChildren = {
   EnBlogRoute: EnBlogRouteWithChildren,
+  EnClashAlternativeRoute: EnClashAlternativeRoute,
   EnDocsRoute: EnDocsRouteWithChildren,
   EnDownloadRoute: EnDownloadRoute,
   EnMigrationRoute: EnMigrationRoute,
+  EnMihomoAlternativeRoute: EnMihomoAlternativeRoute,
   EnIndexRoute: EnIndexRoute,
 }
 
@@ -627,11 +709,13 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   BlogRoute: BlogRouteWithChildren,
+  ClashAlternativeRoute: ClashAlternativeRoute,
   DevicesRoute: DevicesRoute,
   DocsRoute: DocsRouteWithChildren,
   DownloadRoute: DownloadRoute,
   EnRoute: EnRouteWithChildren,
   MigrationRoute: MigrationRoute,
+  MihomoAlternativeRoute: MihomoAlternativeRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,
   ApiPublicPairHeartbeatRoute: ApiPublicPairHeartbeatRoute,

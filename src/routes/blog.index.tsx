@@ -3,12 +3,20 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 
 import { useI18n } from "@/i18n";
-import { blogQueries } from "@/lib/blog";
+import { blogQueries, fetchPosts } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/blog/")({
+  loader: async () => {
+    try {
+      const posts = await fetchPosts();
+      return { initialPosts: posts };
+    } catch {
+      return { initialPosts: [] };
+    }
+  },
   head: () => ({
     meta: [
       { title: "AirLane 博客 — 产品更新与网络编排实践" },
@@ -52,7 +60,11 @@ export const Route = createFileRoute("/blog/")({
 export function BlogIndex() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
-  const posts = useQuery(blogQueries.posts());
+  const routeData = Route.useLoaderData();
+  const posts = useQuery({
+    ...blogQueries.posts(),
+    initialData: routeData?.initialPosts,
+  });
   const lp = useLocalePrefix();
 
   return (

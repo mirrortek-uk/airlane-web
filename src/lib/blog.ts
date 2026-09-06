@@ -27,6 +27,20 @@ export async function fetchPosts(): Promise<BlogPost[]> {
   return (data ?? []) as BlogPost[];
 }
 
+export async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select(COLUMNS)
+    .eq("slug", slug)
+    .single();
+  if (error) return null;
+  return data as BlogPost;
+}
+
 export const blogQueries = {
   posts: () => ({ queryKey: ["blog_posts"], queryFn: fetchPosts }),
+  post: (slug: string) => ({
+    queryKey: ["blog_posts", slug],
+    queryFn: () => fetchPostBySlug(slug),
+  }),
 };

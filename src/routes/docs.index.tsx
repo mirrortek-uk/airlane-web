@@ -3,11 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 
 import { useI18n } from "@/i18n";
-import { docLang, docsQueries, pick } from "@/lib/docs";
+import { docLang, docsQueries, pick, fetchSections, fetchPages } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
 
 export const Route = createFileRoute("/docs/")({
+  loader: async () => {
+    try {
+      const [sections, pages] = await Promise.all([fetchSections(), fetchPages()]);
+      return { initialSections: sections, initialPages: pages };
+    } catch {
+      return { initialSections: [], initialPages: [] };
+    }
+  },
   head: () => ({
     meta: [
       { title: "AirLane 帮助中心 — 文档与使用指南" },
@@ -51,8 +59,9 @@ export const Route = createFileRoute("/docs/")({
 export function DocsIndex() {
   const { locale } = useI18n();
   const lang = docLang(locale);
-  const sections = useQuery(docsQueries.sections());
-  const pages = useQuery(docsQueries.pages());
+  const routeData = Route.useLoaderData();
+  const sections = useQuery({ ...docsQueries.sections(), initialData: routeData?.initialSections });
+  const pages = useQuery({ ...docsQueries.pages(), initialData: routeData?.initialPages });
   const lp = useLocalePrefix();
 
   return (

@@ -1,8 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DocsIndex } from "@/routes/docs.index";
+import { fetchSections, fetchPages } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/en/docs/")({
+  loader: async () => {
+    try {
+      const [sections, pages] = await Promise.all([fetchSections(), fetchPages()]);
+      return { initialSections: sections, initialPages: pages };
+    } catch {
+      return { initialSections: [], initialPages: [] };
+    }
+  },
   head: () => ({
     meta: [
       { title: "AirLane Help Center — Documentation & Guides" },

@@ -200,6 +200,9 @@ export function Index() {
           <ComparisonTable />
         </Reveal>
         <Reveal>
+          <FaqSection />
+        </Reveal>
+        <Reveal>
           <BlogTeaser />
         </Reveal>
         <Reveal>
@@ -208,6 +211,70 @@ export function Index() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+function FaqSection() {
+  const t = useT();
+  const { locale } = useI18n();
+  const lang = docLang(locale);
+  const lp = useLocalePrefix();
+  const [open, setOpen] = useState<number | null>(0);
+  const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({
+    q: t(`home.faq.q${n}`),
+    a: t(`home.faq.a${n}`),
+  }));
+
+  return (
+    <section className="max-w-3xl mx-auto px-6 py-20" id="faq">
+      <div className="text-center mb-12">
+        <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
+          {t("home.faq.eyebrow")}
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
+          {t("home.faq.title")}
+        </h2>
+        <p className="mt-4 text-muted-foreground">
+          {t("home.faq.subtitle")}
+        </p>
+      </div>
+      <div className="space-y-3">
+        {faqs.map((f, i) => (
+          <div
+            key={i}
+            className="rounded-2xl border border-border bg-card/60 overflow-hidden"
+          >
+            <button
+              onClick={() => setOpen(open === i ? null : i)}
+              className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+            >
+              <span className="font-medium text-foreground text-sm md:text-base">
+                {f.q}
+              </span>
+              <ChevronRight
+                className={`size-4 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                  open === i ? "rotate-90" : ""
+                }`}
+              />
+            </button>
+            {open === i && (
+              <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed">
+                {f.a}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 text-center">
+        <Link
+          to={`${lp}/docs`}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:underline"
+        >
+          {lang === "zh" ? "查看完整文档" : "View full documentation"}
+          <ArrowRight className="size-3.5" />
+        </Link>
+      </div>
+    </section>
   );
 }
 
@@ -1328,6 +1395,16 @@ function Footer() {
                 <li>
                   <Link to={`${lp}/docs`} className="hover:text-brand transition">
                     {lang === "zh" ? "文档" : "Docs"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/clash-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Clash 替代" : "Clash Alternative"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/mihomo-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Mihomo 替代" : "Mihomo Alternative"}
                   </Link>
                 </li>
                 <li>
