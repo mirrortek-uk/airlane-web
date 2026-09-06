@@ -13,30 +13,95 @@ export function canonical(path: string): string {
 }
 
 /** Organization schema entity, reused across all pages. */
-export function organizationSchema() {
+export function organizationSchema(locale: "zh-CN" | "en" = "zh-CN") {
+  const isZh = locale === "zh-CN";
   return {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: "AirLane by MirrorTek",
     url: SITE_URL,
     logo: SITE_LOGO,
-    description:
-      "AirLane is a modern network orchestration platform built on sing-box. Policy trees, decision tracing, exit pools, Mesh networking, and shared resource pools.",
+    description: isZh
+      ? "AirLane 是由 MirrorTek 出品、基于 sing-box 内核的可视化代理客户端。支持订阅链接导入、应用分流、多出口策略管理、多终端 Mesh 组网与路由规则配置。"
+      : "AirLane is a visual proxy client by MirrorTek, built on the sing-box core. Supports subscription import, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration.",
     sameAs: [
       "https://github.com/mirrortek-uk/airlane-web",
+      "https://x.com/airlanecloud",
+      "https://t.me/airlanecloud",
+      "https://www.youtube.com/@airlanecloud",
     ],
   };
 }
 
 /** WebSite schema entity. */
-export function websiteSchema() {
+export function websiteSchema(locale: "zh-CN" | "en" = "zh-CN") {
   return {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
     publisher: { "@id": `${SITE_URL}/#organization` },
-    inLanguage: "zh-CN",
+    inLanguage: locale,
+  };
+}
+
+/** FAQPage schema for GEO citability. */
+export function faqSchema(locale: "zh-CN" | "en" = "zh-CN") {
+  const isZh = locale === "zh-CN";
+  const faqs = isZh
+    ? [
+        {
+          q: "AirLane 是什么？",
+          a: "AirLane 是由 MirrorTek 出品、基于 sing-box 内核的可视化代理客户端。它用图形界面替代复杂的 YAML 配置，支持订阅链接导入、应用分流、多出口策略管理、多终端 Mesh 组网与路由规则配置。",
+        },
+        {
+          q: "AirLane 和 Clash / Clash Verge 有什么区别？",
+          a: "AirLane 基于 sing-box 内核而非 Clash 内核，原生支持 38+ 协议（包括 VLESS、VMess、Trojan、Hysteria2、TUIC、Shadowsocks 等）。它提供可视化策略树、决策追踪、出口资源池和 Mesh 组网，无需手写 YAML 即可编排流量。",
+        },
+        {
+          q: "AirLane 支持哪些协议？",
+          a: "原生支持 38+ 协议，包括 VLESS、VMess、Trojan、Hysteria2、TUIC v5、Shadowsocks、ShadowTLS、Reality、WireGuard、Trojan-Go、Naive、HTTP、SOCKS 等，并兼容 Clash 订阅链接格式。",
+        },
+        {
+          q: "AirLane 支持哪些平台？",
+          a: "支持 Windows、macOS、Linux、Android 和 iOS。跨设备可通过 Mesh 组网功能实现共享出口和资源池。",
+        },
+        {
+          q: "AirLane 是免费的吗？",
+          a: "AirLane 客户端免费使用。具体订阅和服务价格取决于你接入的节点提供商。",
+        },
+      ]
+    : [
+        {
+          q: "What is AirLane?",
+          a: "AirLane is a visual proxy client by MirrorTek, built on the sing-box core. It replaces complex YAML configuration with a graphical interface, supporting subscription import, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration.",
+        },
+        {
+          q: "How does AirLane differ from Clash / Clash Verge?",
+          a: "AirLane uses the sing-box core rather than the Clash core, natively supporting 38+ protocols (including VLESS, VMess, Trojan, Hysteria2, TUIC, Shadowsocks). It provides a visual policy tree, decision tracing, exit resource pools, and Mesh networking without writing YAML.",
+        },
+        {
+          q: "What protocols does AirLane support?",
+          a: "It natively supports 38+ protocols including VLESS, VMess, Trojan, Hysteria2, TUIC v5, Shadowsocks, ShadowTLS, Reality, WireGuard, Trojan-Go, Naive, HTTP, and SOCKS, with Clash subscription format compatibility.",
+        },
+        {
+          q: "What platforms does AirLane support?",
+          a: "Windows, macOS, Linux, Android, and iOS. Cross-device Mesh networking enables shared exits and resource pools.",
+        },
+        {
+          q: "Is AirLane free?",
+          a: "The AirLane client is free to use. Subscription and service pricing depends on the node provider you connect to.",
+        },
+      ];
+  return {
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/#faq`,
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   };
 }
 

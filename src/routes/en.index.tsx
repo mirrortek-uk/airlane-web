@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Index } from "@/routes/index";
-import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema, faqSchema, softwareApplicationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/en/")({
   head: () => ({
@@ -24,8 +24,12 @@ export const Route = createFileRoute("/en/")({
       { property: "og:url", content: canonical("/en/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: canonical("/brand/og-image.svg") },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AirLane | Visual Traffic Scheduling Client" },
+      { name: "twitter:image", content: canonical("/brand/og-image.svg") },
       {
         name: "twitter:description",
         content:
@@ -42,8 +46,10 @@ export const Route = createFileRoute("/en/")({
       {
         type: "application/ld+json",
         children: jsonLd([
-          { ...organizationSchema(), "@id": `${canonical("/en/")}/#organization` },
-          { ...websiteSchema(), "@id": `${canonical("/en/")}/#website`, inLanguage: "en" },
+          { ...organizationSchema("en"), "@id": `${canonical("/en/")}/#organization` },
+          { ...websiteSchema("en"), "@id": `${canonical("/en/")}/#website`, inLanguage: "en" },
+          { ...softwareApplicationSchema(), "@id": `${canonical("/en/")}/#software` },
+          { ...faqSchema("en"), "@id": `${canonical("/en/")}/#faq` },
           breadcrumbSchema([
             { name: "Home", url: canonical("/en/") },
           ]),

@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useMatches,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,7 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
-import { organizationSchema, websiteSchema, canonical, jsonLd } from "@/lib/seo";
+import { organizationSchema, websiteSchema, faqSchema, softwareApplicationSchema, canonical, jsonLd } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -103,6 +104,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: canonical("/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "zh_CN" },
+      { property: "og:image", content: canonical("/brand/og-image.svg") },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@airlanecloud" },
       { name: "twitter:title", content: "AirLane｜可视化流量调度客户端" },
@@ -111,6 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "支持订阅链接导入、应用分流、多出口策略管理、多终端Mesh组网与路由规则配置。告别复杂YAML配置，可视化编排你的网络流量。",
       },
+      { name: "twitter:image", content: canonical("/brand/og-image.svg") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -126,7 +131,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: jsonLd([organizationSchema(), websiteSchema()]),
+        children: jsonLd([
+          organizationSchema("zh-CN"),
+          websiteSchema("zh-CN"),
+          softwareApplicationSchema(),
+          faqSchema("zh-CN"),
+        ]),
       },
       {
         type: "text/javascript",
@@ -141,8 +151,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const matches = useMatches();
+  const isEnglish = matches.some((m) => m.pathname.startsWith("/en"));
   return (
-    <html lang="zh-CN">
+    <html lang={isEnglish ? "en" : "zh-CN"}>
       <head>
         <HeadContent />
       </head>

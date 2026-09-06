@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useI18n, useT } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
 import { docLang, pick } from "@/lib/docs";
-import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema } from "@/lib/seo";
+import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema, faqSchema, softwareApplicationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import {
@@ -141,8 +141,10 @@ export const Route = createFileRoute("/")({
       {
         type: "application/ld+json",
         children: jsonLd([
-          organizationSchema(),
-          websiteSchema(),
+          organizationSchema("zh-CN"),
+          websiteSchema("zh-CN"),
+          softwareApplicationSchema(),
+          faqSchema("zh-CN"),
           breadcrumbSchema([
             { name: "首页", url: canonical("/") },
           ]),

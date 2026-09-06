@@ -106,9 +106,14 @@ export function CountUp({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [value, setValue] = useState(0);
+  // Start at the target value so SSR and non-JS clients see the real number.
+  // The animation resets to 0 only on the client after hydration.
+  const [value, setValue] = useState(to);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    setValue(0);
     const el = ref.current;
     if (!el) return;
     let raf = 0;
