@@ -104,31 +104,31 @@ function AppScreenshotCarousel({ alt }: { alt: string }) {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AirLane — 让每一条流量，找到最优航线" },
+      { title: "AirLane｜可视化流量调度客户端" },
       {
         name: "description",
         content:
-          "AirLane 现代网络编排平台：可视化策略编排、网络决策追踪、Mesh 私有组网、共享网络资源池、从 Clash/Mihomo 一键迁移。",
+          "支持订阅链接导入、应用分流、多出口策略管理、多终端Mesh组网与路由规则配置。告别复杂YAML配置，可视化编排你的网络流量。",
       },
       {
         property: "og:title",
-        content: "AirLane — 让每一条流量，找到最优航线",
+        content: "AirLane｜可视化流量调度客户端",
       },
       {
         property: "og:description",
         content:
-          "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
+          "支持订阅链接导入、应用分流、多出口策略管理、多终端Mesh组网与路由规则配置。告别复杂YAML配置，可视化编排你的网络流量。",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "zh_CN" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AirLane — 让每一条流量，找到最优航线" },
+      { name: "twitter:title", content: "AirLane｜可视化流量调度客户端" },
       {
         name: "twitter:description",
         content:
-          "从复杂配置文件，到可视化网络编排。管理出口、策略、规则、Mesh 网络与共享资源。",
+          "支持订阅链接导入、应用分流、多出口策略管理、多终端Mesh组网与路由规则配置。告别复杂YAML配置，可视化编排你的网络流量。",
       },
     ],
     links: [

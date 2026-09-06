@@ -5,31 +5,31 @@ import { canonical, breadcrumbSchema, jsonLd, organizationSchema, websiteSchema 
 export const Route = createFileRoute("/en/")({
   head: () => ({
     meta: [
-      { title: "AirLane — Find the Optimal Route for Every Packet" },
+      { title: "AirLane | Visual Traffic Scheduling Client" },
       {
         name: "description",
         content:
-          "AirLane is a modern network orchestration platform: visual policy orchestration, decision tracing, Mesh private networking, shared resource pools, and one-click Clash/Mihomo migration.",
+          "Import subscription links, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration. Say goodbye to complex YAML — visually orchestrate your network traffic.",
       },
       {
         property: "og:title",
-        content: "AirLane — Find the Optimal Route for Every Packet",
+        content: "AirLane | Visual Traffic Scheduling Client",
       },
       {
         property: "og:description",
         content:
-          "From complex config files to visual network orchestration. Manage exits, policies, rules, Mesh networks and shared resources.",
+          "Import subscription links, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration. Say goodbye to complex YAML — visually orchestrate your network traffic.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/en/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AirLane — Find the Optimal Route for Every Packet" },
+      { name: "twitter:title", content: "AirLane | Visual Traffic Scheduling Client" },
       {
         name: "twitter:description",
         content:
-          "From complex config files to visual network orchestration. Manage exits, policies, rules, Mesh networks and shared resources.",
+          "Import subscription links, app-based traffic splitting, multi-exit policy management, cross-device Mesh networking, and routing rule configuration. Say goodbye to complex YAML — visually orchestrate your network traffic.",
       },
     ],
     links: [
