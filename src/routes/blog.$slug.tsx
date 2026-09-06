@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -63,7 +63,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 export function BlogPostView() {
-  const { slug } = Route.useParams();
+  const { slug } = useParams({ strict: false }) as { slug: string };
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const posts = useQuery(blogQueries.posts());
