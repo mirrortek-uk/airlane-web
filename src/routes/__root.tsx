@@ -82,6 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "baidu-site-verification", content: "codeva-x5V6tsl0Dl" },
       { name: "bytedance-verification-code", content: "gw3uc6nfyJGO5HiUvhhQ" },
+      { name: "sogou_site_verification", content: "eHWJE28q1q" },
       { title: "AirLane — 让每一条流量，找到最优航线" },
       {
         name: "description",
@@ -126,6 +127,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         type: "application/ld+json",
         children: jsonLd([organizationSchema(), websiteSchema()]),
+      },
+      {
+        type: "text/javascript",
+        children: `(function(){var el=document.createElement("script");el.src="https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?6e895f7e62d42eef227e6ff26cfd4125c89e58d9d9edada312b745660308be8d65e0a2ada1d5e86b11e7de7c1a83287d04743a02fd1ee8dd8558a8cad50e91cb354f8c6f3f78e5fd97613c481f678e6d";el.id="ttzz";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(el,s);})(window)`,
       },
     ],
   }),
