@@ -87,3 +87,21 @@ AirLane client is available for Windows, macOS, Linux, Android, and iOS. Based o
 ## Migration
 
 AirLane supports Clash, Mihomo, and sing-box subscription links and local configs. Import your existing subscription and AirLane generates a migration report with visual policy and rule editing.
+
+---
+
+## AirLane vs Clash: A Smarter Proxy Client for Modern Network Routing
+
+The core thesis: traditional proxy clients (Clash, Mihomo) solve "how do I configure a proxy?" but the real question has shifted to "how should my network operate?" AirLane upgrades the abstraction from Rule -> Proxy Group -> Proxy to Traffic -> Classification -> Policy Tree -> NodeFlow -> Resource Pool -> Health Evaluation -> Decision Engine -> sing-box -> Network.
+
+### Key differences from Clash
+
+- **Policy Tree**: Visual strategy tree replacing flat rule lists — combine app, domain, IP, geolocation, protocol, network environment, and resource state
+- **NodeFlow**: Nodes become resource pools, not static lists. Users select "I want a US exit," not "I want US-02"
+- **Node Health**: Multi-dimensional scoring (Latency + Packet Loss + Jitter + Throughput + Connection Stability + Handshake Success), not just ping
+- **Automatic Routing**: System auto-selects best node based on health, not manual switching
+- **Decision Trace**: Every routing decision is traceable — see exactly why traffic took a specific path
+- **Application Split Tunneling**: App-based routing as a policy tree dimension, not a standalone switch
+- **TUN Mode + sing-box**: System-level traffic capture with sing-box as data plane, AirLane as policy & orchestration plane
+- **Clash Compatibility**: Import existing Clash/Mihomo subscriptions, YAML, Rule Providers, GeoIP, GeoSite
+- **Mesh Network**: Cross-device resource sharing — sync policies, share node pools, interconnect exits

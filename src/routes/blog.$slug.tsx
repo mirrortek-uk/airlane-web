@@ -24,6 +24,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "在网络代理与流量调度工具的圈子里，到底选 sing-box 还是 Mihomo？本文结合 AirLane 产品研发实践，完整拆解两大内核的核心差异，讲清为什么顶级网络编排产品都坚定选择 sing-box 作为底层数据面。",
     summary_en: "sing-box or Mihomo? This article dissects the core differences between the two engines based on AirLane's R&D experience, explaining why top-tier network orchestration products firmly choose sing-box as the underlying data plane.",
   },
+  "airlane-vs-clash-smarter-proxy-client": {
+    title_zh: "AirLane vs Clash：面向现代网络路由的下一代智能代理客户端",
+    title_en: "AirLane vs Clash: A Smarter Rule-Based Proxy Client for Modern Network Routing",
+    summary_zh: "如果你正在寻找一款支持 rule-based routing、split tunneling、subscription URL、multi-protocol proxy、TUN mode 和 application-based routing 的代理客户端，却厌倦了手动维护规则和节点——这篇文章讲清楚现有工具解决了什么，以及下一代工具应该长什么样。",
+    summary_en: "If you are looking for a proxy client that supports rule-based routing, split tunneling, subscription URLs, multi-protocol proxy, TUN mode, and application-based routing — but are tired of manually maintaining rules and nodes — this article explains what existing tools solved and what the next generation should look like.",
+  },
 };
 
 export const Route = createFileRoute("/blog/$slug")({
