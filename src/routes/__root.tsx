@@ -81,6 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "baidu-site-verification", content: "codeva-x5V6tsl0Dl" },
+      { name: "bytedance-verification-code", content: "gw3uc6nfyJGO5HiUvhhQ" },
       { title: "AirLane — 让每一条流量，找到最优航线" },
       {
         name: "description",
