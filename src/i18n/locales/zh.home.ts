@@ -2,8 +2,8 @@ const dict: Record<string, string> = {
   "home.header.nav.migration": "从 Clash 迁移",
 
   "home.hero.badge": "可视化代理客户端 · 基于 sing-box · 兼容 Clash 订阅",
-  "home.hero.title1": "AirLane｜基于规则的智能可视化",
-  "home.hero.title2": "代理",
+  "home.hero.title1": "AirLane｜基于规则的",
+  "home.hero.title2": "智能可视化代理",
   "home.hero.titleGradient": "客户端",
   "home.hero.subtitle": "基于 sing-box 内核的可视化代理客户端，Clash / Mihomo 替代方案。导入订阅链接，管理应用分流、策略规则、节点资源池与自动选路。告别复杂 YAML 配置，直观控制你的网络出口。",
   "home.hero.imageAlt": "AirLane 网络仪表盘",
