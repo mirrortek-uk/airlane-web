@@ -166,10 +166,6 @@ export function Index() {
           <ProtocolMatrix />
         </Reveal>
         <Reveal>
-          <ModelComparison />
-        </Reveal>
-
-        <Reveal>
           <WhyAirLane />
         </Reveal>
         <Reveal>
@@ -651,50 +647,6 @@ function ProtocolMatrix() {
   );
 }
 
-
-function ModelComparison() {
-  const t = useT();
-  return (
-    <section className="max-w-6xl mx-auto px-6 py-16" id="model">
-      <p className="text-center font-display text-2xl md:text-3xl tracking-tight max-w-3xl mx-auto leading-snug text-foreground">
-        {t("home.model.headline")}
-      </p>
-      <div className="mt-10 grid md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
-        <div className="rounded-2xl border border-border bg-card/50 p-6 shadow-card hover-lift">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-            {t("home.model.traditional.label")}
-          </p>
-          <div className="space-y-2.5 font-mono text-sm text-muted-foreground">
-            <div>{t("home.model.traditional.step1")}</div>
-            <div className="text-center text-border">↓</div>
-            <div>{t("home.model.traditional.step2")}</div>
-            <div className="text-center text-border">↓</div>
-            <div>{t("home.model.traditional.step3")}</div>
-            <div className="text-center text-border">↓</div>
-            <div>{t("home.model.traditional.step4")}</div>
-          </div>
-        </div>
-        <div className="hidden md:flex justify-center">
-          <ArrowRight className="size-8 text-sunset" />
-        </div>
-        <div className="rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/10 to-sunset/10 p-6 shadow-card hover-lift">
-          <p className="font-mono text-xs uppercase tracking-widest text-brand mb-4">
-            {t("home.model.airlane.label")}
-          </p>
-          <div className="space-y-2.5 font-mono text-sm font-medium text-foreground">
-            <div>{t("home.model.airlane.step1")}</div>
-            <div className="text-center text-brand/50">↓</div>
-            <div>{t("home.model.airlane.step2")}</div>
-            <div className="text-center text-brand/50">↓</div>
-            <div>{t("home.model.airlane.step3")}</div>
-            <div className="text-center text-brand/50">↓</div>
-            <div className="text-sunset">{t("home.model.airlane.step4")}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function WhyAirLane() {
   const t = useT();
