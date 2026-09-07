@@ -10,7 +10,7 @@ const dict: Record<string, string> = {
 
   "home.stats.protocols": "协议支持",
   "home.stats.features": "核心功能",
-  "home.stats.memory": "更低内存占用",
+  "home.stats.memory": "更少内存",
   "home.stats.latency": "处理延迟",
 
   "home.model.headline": "AirLane 不只是帮你选择一个节点，而是帮助你管理整张网络。",

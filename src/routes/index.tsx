@@ -492,7 +492,7 @@ function StatsStrip() {
   const stats = [
     { value: 38, suffix: "+", label: t("home.stats.protocols"), decimals: 0, textOnly: false },
     { value: 50, suffix: "+", label: t("home.stats.features"), decimals: 0, textOnly: false },
-    { value: 0, suffix: "", label: t("home.stats.memory"), decimals: 0, textOnly: true },
+    { value: 20, suffix: "% 更少", label: t("home.stats.memory"), decimals: 0, textOnly: false },
     { value: 0.8, suffix: " ms", label: t("home.stats.latency"), decimals: 1, textOnly: false },
   ];
 
@@ -758,16 +758,14 @@ function CoreFeatures() {
   const t = useT();
   return (
     <section className="max-w-6xl mx-auto px-6 pb-20" id="features">
-      <div className="flex items-end justify-between mb-8">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
-            {t("home.features.eyebrow")}
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-            {t("home.features.title")}
-          </h2>
-        </div>
-        <p className="hidden md:block text-sm text-muted-foreground max-w-xs">
+      <div className="mb-10">
+        <p className="font-mono text-xs uppercase tracking-widest text-sunset mb-2">
+          {t("home.features.eyebrow")}
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
+          {t("home.features.title")}
+        </h2>
+        <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
           {t("home.features.subtitle")}
         </p>
       </div>
