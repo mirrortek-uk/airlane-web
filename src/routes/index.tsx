@@ -424,7 +424,7 @@ function Hero() {
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="mt-6 font-display text-5xl md:text-6xl leading-[1.03] tracking-tight text-foreground">
+            <h1 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
               {t("home.hero.title1")}
               <br />
               {t("home.hero.title2")}
@@ -490,10 +490,10 @@ function Hero() {
 function StatsStrip() {
   const t = useT();
   const stats = [
-    { value: 38, suffix: "+", label: t("home.stats.protocols"), decimals: 0 },
-    { value: 50, suffix: "+", label: t("home.stats.features"), decimals: 0 },
-    { value: 35, suffix: " MB", label: t("home.stats.memory"), decimals: 0 },
-    { value: 0.8, suffix: " ms", label: t("home.stats.latency"), decimals: 1 },
+    { value: 38, suffix: "+", label: t("home.stats.protocols"), decimals: 0, textOnly: false },
+    { value: 50, suffix: "+", label: t("home.stats.features"), decimals: 0, textOnly: false },
+    { value: 0, suffix: "", label: t("home.stats.memory"), decimals: 0, textOnly: true },
+    { value: 0.8, suffix: " ms", label: t("home.stats.latency"), decimals: 1, textOnly: false },
   ];
 
   return (
@@ -503,16 +503,24 @@ function StatsStrip() {
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 110}>
               <div className="text-center md:text-left">
-                <div className="font-display text-3xl md:text-4xl tracking-tight text-gradient animate-gradient">
-                  <CountUp
-                    to={s.value}
-                    decimals={s.decimals}
-                    suffix={s.suffix}
-                  />
-                </div>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-                  {s.label}
-                </p>
+                {s.textOnly ? (
+                  <div className="font-display text-2xl md:text-3xl tracking-tight text-gradient animate-gradient leading-tight">
+                    {s.label}
+                  </div>
+                ) : (
+                  <>
+                    <div className="font-display text-3xl md:text-4xl tracking-tight text-gradient animate-gradient">
+                      <CountUp
+                        to={s.value}
+                        decimals={s.decimals}
+                        suffix={s.suffix}
+                      />
+                    </div>
+                    <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                      {s.label}
+                    </p>
+                  </>
+                )}
               </div>
             </Reveal>
           ))}
@@ -1258,7 +1266,7 @@ function ComparisonTable() {
           {lang === "zh" ? "能力对照" : "Capability Comparison"}
         </p>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          {lang === "zh" ? "强大的代理能力，只是开始" : "Powerful Proxying Is Just the Beginning"}
+          {lang === "zh" ? "强大的基于规则/策略的代理能力，只是开始" : "Powerful Rule/Policy-Based Proxying Is Just the Beginning"}
         </h2>
         <p className="mt-4 text-muted-foreground">
           {lang === "zh"

@@ -2,7 +2,7 @@ const dict: Record<string, string> = {
   "home.header.nav.migration": "从 Clash 迁移",
 
   "home.hero.badge": "可视化代理客户端 · 基于 sing-box · 兼容 Clash 订阅",
-  "home.hero.title1": "AirLane｜可视化",
+  "home.hero.title1": "AirLane｜基于规则的智能可视化",
   "home.hero.title2": "代理",
   "home.hero.titleGradient": "客户端",
   "home.hero.subtitle": "基于 sing-box 内核的可视化代理客户端，Clash / Mihomo 替代方案。导入订阅链接，管理应用分流、策略规则、节点资源池与自动选路。告别复杂 YAML 配置，直观控制你的网络出口。",
@@ -10,7 +10,7 @@ const dict: Record<string, string> = {
 
   "home.stats.protocols": "协议支持",
   "home.stats.features": "核心功能",
-  "home.stats.memory": "内存占用",
+  "home.stats.memory": "更低内存占用",
   "home.stats.latency": "处理延迟",
 
   "home.model.headline": "AirLane 不只是帮你选择一个节点，而是帮助你管理整张网络。",
@@ -26,7 +26,7 @@ const dict: Record<string, string> = {
   "home.model.airlane.step4": "观测与诊断",
 
   "home.why.eyebrow": "为什么是 AirLane",
-  "home.why.title": "从流量代理，到网络编排",
+  "home.why.title": "让 AI、视频、游戏、国内网站，各走各的线路",
   "home.why.item1.title": "从配置文件到策略对象",
   "home.why.item1.desc": "传统代理以配置文件为核心，AirLane 将策略抽象为独立的网络对象：手动选择、自动测速、负载均衡、故障转移、策略嵌套，形成可视化策略树。",
   "home.why.item2.title": "让设备组成私有网络",
@@ -37,8 +37,8 @@ const dict: Record<string, string> = {
   "home.why.item4.desc": "实时流量洞察、DNS/WebRTC/IPv6 泄漏检测、链路追踪、解锁检测、故障自愈记录。网络出问题之前，就发现问题。",
 
   "home.features.eyebrow": "核心能力",
-  "home.features.title": "强大的代理能力，只是开始",
-  "home.features.subtitle": "建立在现代网络内核之上，补齐可视化编排、观测与共享资源管理。",
+  "home.features.title": "看得懂，也管得住每一条网络流量",
+  "home.features.subtitle": "从流量识别、线路选择到故障切换，AirLane 把原本复杂的代理配置变成清晰的策略，让你知道每一条流量为什么走这条线路。",
   "home.features.card1.title": "可视化策略编排",
   "home.features.card1.desc": "用策略组织出口，而不是管理一堆节点。支持策略嵌套与多层决策。",
   "home.features.card1.mock.default": "默认代理",
@@ -74,11 +74,11 @@ const dict: Record<string, string> = {
   "home.trace.highlighted": "已高亮",
 
   "home.health.eyebrow": "03 · 健康与自愈",
-  "home.health.title": "网络出现问题之前，就发现问题",
-  "home.health.desc": "不只是连接成功，而是持续保持最佳状态。当节点抖动、丢包或不可用时，AirLane 自动切换并记录自愈原因。",
-  "home.health.item1": "实时延迟、抖动、丢包与可用率监控",
-  "home.health.item2": "节点故障自动切换与自愈记录",
-  "home.health.item3": "历史趋势与网络健康评分",
+  "home.health.title": "线路有问题，AirLane 帮你发现并切换",
+  "home.health.desc": "AirLane 持续检查线路的可用性和延迟。当节点出现超时、连接失败或性能下降时，可以根据策略自动切换到其他可用线路。",
+  "home.health.item1": "实时线路状态：延迟、可用率、连接状态",
+  "home.health.item2": "异常自动切换：线路不可用时切换到备用线路",
+  "home.health.item3": "网络健康记录：查看线路状态变化和历史表现",
   "home.health.telemetry": "实时遥测",
   "home.health.autoRecoveryReady": "自动恢复就绪",
   "home.health.metric.latency": "延迟",
@@ -138,7 +138,7 @@ const dict: Record<string, string> = {
   "home.migration.cta": "查看迁移指南",
 
   "home.compare.eyebrow": "能力对照",
-  "home.compare.title": "强大的代理能力，只是开始",
+  "home.compare.title": "强大的基于规则/策略的代理能力，只是开始",
   "home.compare.desc": "传统 Clash / Mihomo 生态成熟强大；AirLane 在其之上补齐策略编排、网络观测与共享资源管理。",
   "home.compare.col.capability": "能力",
   "home.compare.col.traditional": "传统 Clash / Mihomo 生态",
