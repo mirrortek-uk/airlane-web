@@ -492,7 +492,7 @@ function StatsStrip() {
   const stats = [
     { value: 38, suffix: "+", label: t("home.stats.protocols"), decimals: 0, textOnly: false },
     { value: 50, suffix: "+", label: t("home.stats.features"), decimals: 0, textOnly: false },
-    { value: 20, suffix: "% 更少", label: t("home.stats.memory"), decimals: 0, textOnly: false },
+    { value: 20, suffix: "%", label: t("home.stats.memory"), decimals: 0, textOnly: false },
     { value: 0.8, suffix: " ms", label: t("home.stats.latency"), decimals: 1, textOnly: false },
   ];
 
