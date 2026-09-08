@@ -4,7 +4,7 @@ QUIC (Quick UDP Internet Connections) is a fast, secure modern transport protoco
 
 For proxy clients, QUIC is more than a technical term — it directly determines your experience in real-world scenarios like packet loss, high latency, and network switching. AirLane, built on the sing-box core, natively supports QUIC-based proxy protocols like Hysteria2 and TUIC v5. This article will walk you through how QUIC works, its core advantages, and its practical application in AirLane.
 
-![QUIC vs TCP+TLS handshake comparison](/blog-images/what-is-quic/cover.svg)
+![QUIC vs TCP+TLS handshake comparison](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/cover.svg)
 
 ---
 
@@ -27,7 +27,7 @@ QUIC's core design goals:
 
 Traditional TCP + TLS requires 3 RTTs (round-trip times) before the first data packet:
 
-![TCP + TLS handshake flow](/blog-images/what-is-quic/tcp-tls-handshake.svg)
+![TCP + TLS handshake flow](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/tcp-tls-handshake.svg)
 
 - TCP handshake: 1 RTT (SYN → SYN-ACK → ACK)
 - TLS 1.2 handshake: 2 RTT (ClientHello → ServerHello+Cert → KeyExchange+Finished → Finished)
@@ -35,7 +35,7 @@ Traditional TCP + TLS requires 3 RTTs (round-trip times) before the first data p
 
 QUIC merges the transport handshake and TLS 1.3 handshake into one step:
 
-![QUIC handshake flow](/blog-images/what-is-quic/quic-handshake.svg)
+![QUIC handshake flow](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/quic-handshake.svg)
 
 - First connection: 1 RTT (Initial → Handshake → Data)
 - Reconnection: 0-RTT (client caches previous handshake params, first packet carries data)
@@ -46,7 +46,7 @@ QUIC merges the transport handshake and TLS 1.3 handshake into one step:
 
 HTTP/2 supports multiplexing, but it still relies on TCP underneath. TCP must deliver bytes in order — one lost packet blocks all HTTP/2 streams.
 
-![Head-of-line blocking comparison](/blog-images/what-is-quic/head-of-line-blocking.svg)
+![Head-of-line blocking comparison](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/head-of-line-blocking.svg)
 
 QUIC implements independent streams at the protocol level:
 
@@ -60,7 +60,7 @@ QUIC implements independent streams at the protocol level:
 
 TCP connections are bound to a 4-tuple (source IP, source port, destination IP, destination port). When your phone switches from WiFi to 5G, the IP changes and the TCP connection breaks — your proxy tunnel breaks too.
 
-![QUIC connection migration](/blog-images/what-is-quic/connection-migration.svg)
+![QUIC connection migration](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/connection-migration.svg)
 
 QUIC uses Connection IDs (CID) instead of IP addresses to identify connections:
 
@@ -97,7 +97,7 @@ QUIC integrates TLS 1.3 as part of the protocol, rather than adding TLS on top l
 
 AirLane, built on the sing-box core, natively supports multiple QUIC-based proxy protocols:
 
-![QUIC protocols in AirLane](/blog-images/what-is-quic/airlane-quic-protocols.svg)
+![QUIC protocols in AirLane](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/airlane-quic-protocols.svg)
 
 ### Hysteria2
 

@@ -4,7 +4,7 @@ QUIC（Quick UDP Internet Connections）是一种快速、安全的现代传输�
 
 对于代理客户端来说，QUIC 不仅仅是一个技术名词 — 它直接决定了你在高丢包、高延迟、网络切换等真实场景下的体验。AirLane 基于 sing-box 内核，原生支持 Hysteria2 和 TUIC v5 等基于 QUIC 的代理协议。本文将带你全面了解 QUIC 的工作原理、核心优势，以及它在 AirLane 中的实际应用。
 
-![QUIC 与 TCP+TLS 握手对比](/blog-images/what-is-quic/cover.svg)
+![QUIC 与 TCP+TLS 握手对比](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/cover.svg)
 
 ---
 
@@ -27,7 +27,7 @@ QUIC 的核心设计目标：
 
 传统 TCP + TLS 建立连接需要 3 个 RTT（往返时间）才能发送第一个数据包：
 
-![TCP + TLS 握手流程](/blog-images/what-is-quic/tcp-tls-handshake.svg)
+![TCP + TLS 握手流程](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/tcp-tls-handshake.svg)
 
 - TCP 握手：1 RTT（SYN → SYN-ACK → ACK）
 - TLS 1.2 握手：2 RTT（ClientHello → ServerHello+Cert → KeyExchange+Finished → Finished）
@@ -35,7 +35,7 @@ QUIC 的核心设计目标：
 
 QUIC 将传输握手和 TLS 1.3 握手合并为一步：
 
-![QUIC 握手流程](/blog-images/what-is-quic/quic-handshake.svg)
+![QUIC 握手流程](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/quic-handshake.svg)
 
 - 首次连接：1 RTT（Initial → Handshake → Data）
 - 重连场景：0-RTT（客户端缓存了之前的握手参数，第一个包即可携带数据）
@@ -46,7 +46,7 @@ QUIC 将传输握手和 TLS 1.3 握手合并为一步：
 
 HTTP/2 虽然支持多路复用，但底层仍依赖 TCP。TCP 必须保证字节流按序交付 — 一个包丢失，所有 HTTP/2 流都要等待重传。
 
-![队头阻塞对比](/blog-images/what-is-quic/head-of-line-blocking.svg)
+![队头阻塞对比](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/head-of-line-blocking.svg)
 
 QUIC 在协议层面实现了独立流：
 
@@ -60,7 +60,7 @@ QUIC 在协议层面实现了独立流：
 
 TCP 连接绑定到四元组（源 IP、源端口、目标 IP、目标端口）。当你的手机从 WiFi 切到 5G，IP 地址变了，TCP 连接就断了 — 代理隧道也会断。
 
-![QUIC 连接迁移](/blog-images/what-is-quic/connection-migration.svg)
+![QUIC 连接迁移](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/connection-migration.svg)
 
 QUIC 使用连接标识符（CID）而非 IP 地址来标识连接：
 
@@ -97,7 +97,7 @@ QUIC 将 TLS 1.3 集成为协议的一部分，而不是像 TCP 那样在上层�
 
 AirLane 基于 sing-box 内核，原生支持多种基于 QUIC 的代理协议：
 
-![AirLane 中的 QUIC 协议](/blog-images/what-is-quic/airlane-quic-protocols.svg)
+![AirLane 中的 QUIC 协议](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/what-is-quic/airlane-quic-protocols.svg)
 
 ### Hysteria2
 
