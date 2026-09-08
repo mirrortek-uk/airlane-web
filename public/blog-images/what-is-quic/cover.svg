@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#1a1f3a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- TCP vs QUIC comparison -->
+  <g transform="translate(100, 120)">
+    <text x="0" y="0" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="600" fill="#94a3b8">TCP + TLS 1.2</text>
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="140" height="40" rx="6" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="70" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="#fca5a5">TCP Handshake</text>
+      <rect x="150" y="0" width="140" height="40" rx="6" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="220" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="#fca5a5">TLS Handshake</text>
+      <rect x="300" y="0" width="140" height="40" rx="6" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="370" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="#86efac">Data</text>
+    </g>
+    <text x="0" y="100" font-family="'JetBrains Mono', monospace" font-size="13" fill="#64748b">3 RTT before first byte</text>
+  </g>
+  <g transform="translate(100, 300)">
+    <text x="0" y="0" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="600" fill="url(#accent)">QUIC (UDP + TLS 1.3)</text>
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="200" height="40" rx="6" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="1.5"/>
+      <text x="100" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="#a5b4fc">Combined Handshake</text>
+      <rect x="210" y="0" width="140" height="40" rx="6" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="280" y="26" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="14" fill="#86efac">Data</text>
+    </g>
+    <text x="0" y="100" font-family="'JetBrains Mono', monospace" font-size="13" fill="#64748b">1 RTT (0-RTT on reconnect)</text>
+  </g>
+  <text x="100" y="540" font-family="'Space Grotesk', sans-serif" font-size="48" font-weight="700" fill="#f8fafc">什么是 QUIC？</text>
+  <text x="100" y="580" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#94a3b8">AirLane 博客 · 代理协议详解</text>
+</svg>

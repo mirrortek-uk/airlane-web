@@ -121,3 +121,25 @@ The core thesis: traditional proxy clients (Clash, Mihomo) solve "how do I confi
 - **TUN Mode + sing-box**: System-level traffic capture with sing-box as data plane, AirLane as policy & orchestration plane
 - **Clash Compatibility**: Import existing Clash/Mihomo subscriptions, YAML, Rule Providers, GeoIP, GeoSite
 - **Mesh Network**: Cross-device resource sharing — sync policies, share node pools, interconnect exits
+
+---
+
+## What is QUIC? Why AirLane Chooses QUIC-Based Proxy Protocols
+
+QUIC (Quick UDP Internet Connections) is a fast, secure modern transport protocol that powers HTTP/3. Originally developed by Google and standardized by the IETF (RFC 9000), QUIC runs on top of UDP but provides TCP-level reliability with dramatically lower latency.
+
+### Core advantages of QUIC over TCP
+
+- **1-RTT handshake (0-RTT on reconnect)**: QUIC merges the transport handshake and TLS 1.3 handshake into one step. TCP + TLS 1.2 requires 3 RTTs before the first data packet; QUIC requires only 1 RTT (or 0 RTT if the client has cached handshake parameters from a previous connection).
+- **No head-of-line blocking**: In TCP, all multiplexed streams share one connection — one lost packet blocks all streams. In QUIC, each stream has independent packet loss detection and retransmission, so a lost packet only affects that one stream.
+- **Connection migration**: TCP connections are bound to a 4-tuple (source IP, source port, destination IP, destination port). When your phone switches from WiFi to 5G, the IP changes and the TCP connection breaks. QUIC uses Connection IDs (CID) instead of IP addresses, so the connection survives network switches.
+- **Built-in TLS 1.3 encryption**: TLS 1.3 is integrated into the QUIC protocol itself, not added as a separate layer. All QUIC packets are encrypted by default.
+
+### QUIC-based proxy protocols in AirLane
+
+AirLane, built on the sing-box core, natively supports two QUIC-based proxy protocols:
+
+- **Hysteria2**: High-speed proxy with aggressive congestion control. Fully utilizes available bandwidth, resists packet loss, and supports port hopping for anti-censorship. Ideal for streaming and large file downloads.
+- **TUIC v5**: Low-latency proxy focused on speed. QUIC's 0-RTT reconnection makes it extremely fast for frequent connections. Ideal for browsing and instant messaging.
+
+AirLane's policy orchestration automatically selects the optimal protocol based on traffic type — streaming goes to Hysteria2 (high bandwidth), browsing goes to TUIC v5 (low latency). No manual switching required.

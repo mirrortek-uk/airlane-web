@@ -22,6 +22,7 @@
 - [AirLane 1.0: From Traffic Proxy to Network Orchestration](https://www.airlane.cloud/blog/hello-airlane): Why we rebuilt a client from scratch — policy trees, decision traces, exit pools, mesh networking, and a shared resource pool
 - [Sing-Box vs Clash Mihomo: Stop Comparing Speed](https://www.airlane.cloud/blog/singbox-vs-clash-mihomo): Why top-tier network orchestration products choose sing-box as the data plane — architecture, ecosystem compatibility, and the real selection logic
 - [AirLane vs Clash: A Smarter Proxy Client for Modern Network Routing](https://www.airlane.cloud/blog/airlane-vs-clash-smarter-proxy-client): From Proxy Group to Policy Tree + NodeFlow — automatic routing, decision trace, split tunneling, Mesh networking, and Clash compatibility
+- [What is QUIC? Why AirLane Chooses QUIC-Based Proxy Protocols](https://www.airlane.cloud/blog/what-is-quic): QUIC protocol explained — 1-RTT handshake, no head-of-line blocking, connection migration, built-in TLS 1.3, and how Hysteria2/TUIC v5 use QUIC in AirLane
 
 ## Key Concepts
 

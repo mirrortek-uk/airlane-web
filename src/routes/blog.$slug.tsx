@@ -30,6 +30,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "如果你正在寻找一款支持 rule-based routing、split tunneling、subscription URL、multi-protocol proxy、TUN mode 和 application-based routing 的代理客户端，却厌倦了手动维护规则和节点——这篇文章讲清楚现有工具解决了什么，以及下一代工具应该长什么样。",
     summary_en: "If you are looking for a proxy client that supports rule-based routing, split tunneling, subscription URLs, multi-protocol proxy, TUN mode, and application-based routing — but are tired of manually maintaining rules and nodes — this article explains what existing tools solved and what the next generation should look like.",
   },
+  "what-is-quic": {
+    title_zh: "什么是 QUIC？为什么 AirLane 选择基于 QUIC 的代理协议",
+    title_en: "What is QUIC? Why AirLane Chooses QUIC-Based Proxy Protocols",
+    summary_zh: "QUIC 是什么？为什么 AirLane 选择基于 QUIC 的代理协议？本文全面讲解 QUIC 的工作原理、核心优势（1-RTT 握手、无队头阻塞、连接迁移、内置加密），以及 Hysteria2 和 TUIC v5 在 AirLane 中的实际应用。",
+    summary_en: "What is QUIC? Why does AirLane choose QUIC-based proxy protocols? This article covers QUIC's working principles, core advantages (1-RTT handshake, no head-of-line blocking, connection migration, built-in encryption), and practical use of Hysteria2 and TUIC v5 in AirLane.",
+  },
 };
 
 export const Route = createFileRoute("/blog/$slug")({
