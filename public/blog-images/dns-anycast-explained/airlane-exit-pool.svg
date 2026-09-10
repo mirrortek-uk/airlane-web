@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="400" fill="url(#bg)" rx="16"/>
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="600" fill="#1e293b">AirLane 中的 Anycast 思想：出口池与最近节点选择</text>
+  <!-- AirLane architecture -->
+  <g transform="translate(50, 70)">
+    <!-- Client -->
+    <rect x="0" y="20" width="100" height="60" rx="10" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+    <text x="50" y="48" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="600" fill="#f8fafc">AirLane</text>
+    <text x="50" y="68" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">客户端</text>
+  </g>
+  <!-- Policy Tree -->
+  <g transform="translate(200, 60)">
+    <rect x="0" y="0" width="120" height="80" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+    <text x="60" y="30" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#4f46e5">策略树</text>
+    <text x="60" y="50" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#6366f1">Latency Aware</text>
+    <text x="60" y="68" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#6366f1">Health Aware</text>
+  </g>
+  <!-- Exit Pool -->
+  <g transform="translate(380, 40)">
+    <rect x="0" y="0" width="140" height="120" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="70" y="25" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#92400e">出口池</text>
+    <text x="70" y="45" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f59e0b">Exit Pool</text>
+    <!-- Pool members -->
+    <rect x="15" y="55" width="50" height="25" rx="6" fill="#fbbf24" opacity="0.3"/>
+    <text x="40" y="72" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#92400e">US-01</text>
+    <rect x="75" y="55" width="50" height="25" rx="6" fill="#fbbf24" opacity="0.3"/>
+    <text x="100" y="72" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#92400e">US-02</text>
+    <rect x="15" y="85" width="50" height="25" rx="6" fill="#22c55e" opacity="0.3"/>
+    <text x="40" y="102" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">JP-01 ✓</text>
+    <rect x="75" y="85" width="50" height="25" rx="6" fill="#fbbf24" opacity="0.3"/>
+    <text x="100" y="102" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#92400e">SG-01</text>
+  </g>
+  <!-- Arrows -->
+  <line x1="150" y1="110" x2="200" y2="100" stroke="#6366f1" stroke-width="2"/>
+  <line x1="320" y1="100" x2="380" y2="100" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Selected exit -->
+  <g transform="translate(560, 100)">
+    <rect x="0" y="0" width="100" height="50" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+    <text x="50" y="22" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#15803d">JP-01</text>
+    <text x="50" y="40" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">延迟最低 ✓</text>
+  </g>
+  <line x1="520" y1="100" x2="560" y2="125" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="540" y="115" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">选择</text>
+  <!-- Bottom comparison -->
+  <rect x="50" y="200" width="800" height="170" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="450" y="225" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="600" fill="#1e293b">Anycast DNS vs AirLane 出口池：理念对比</text>
+  <g transform="translate(70, 245)">
+    <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="11" fill="#6366f1">Anycast DNS:</text>
+    <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">同一 IP → BGP 路由 → 最近节点响应</text>
+    <text x="0" y="38" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">网络层自动选择，客户端无感知</text>
+    <text x="0" y="56" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">适用于：DNS、CDN、DDoS 防护</text>
+  </g>
+  <g transform="translate(470, 245)">
+    <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="11" fill="#f59e0b">AirLane 出口池:</text>
+    <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">出口池 → 健康评分 → 最优节点选择</text>
+    <text x="0" y="38" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">应用层智能选择，策略可定制</text>
+    <text x="0" y="56" font-family="'JetBrains Mono', monospace" font-size="10" fill="#475569">适用于：代理出口、流量调度、Mesh</text>
+  </g>
+  <text x="450" y="345" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" fill="#64748b">两者理念相通：都是"一个入口，多个后端，自动选最优"</text>
+</svg>

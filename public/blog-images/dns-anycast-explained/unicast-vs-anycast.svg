@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="500" fill="url(#bg)" rx="16"/>
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="600" fill="#1e293b">Unicast vs Anycast：DNS 查询路径对比</text>
+  <!-- Left: Unicast -->
+  <text x="225" y="75" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="600" fill="#ef4444">Unicast（传统方式）</text>
+  <g transform="translate(50, 90)">
+    <!-- Client -->
+    <rect x="60" y="0" width="80" height="50" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="100" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#dc2626">Client</text>
+    <text x="100" y="70" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">上海</text>
+    <!-- Server (only one, far away) -->
+    <rect x="60" y="280" width="80" height="50" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="100" y="310" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#dc2626">Server</text>
+    <text x="100" y="345" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">美国</text>
+    <!-- Long path -->
+    <path d="M 100 50 Q 100 165 100 280" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+    <text x="130" y="170" font-family="'JetBrains Mono', monospace" font-size="11" fill="#ef4444">~200ms</text>
+    <text x="130" y="185" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ef4444">高延迟</text>
+    <!-- Problem labels -->
+    <rect x="10" y="370" width="180" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+    <text x="100" y="392" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#92400e">单点故障风险</text>
+    <text x="100" y="408" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#92400e">无法负载均衡</text>
+  </g>
+  <!-- Divider -->
+  <line x1="450" y1="80" x2="450" y2="440" stroke="#cbd5e1" stroke-width="1.5"/>
+  <!-- Right: Anycast -->
+  <text x="675" y="75" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="600" fill="#6366f1">Anycast</text>
+  <g transform="translate(500, 90)">
+    <!-- Client -->
+    <rect x="60" y="0" width="80" height="50" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="100" y="30" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#4f46e5">Client</text>
+    <text x="100" y="70" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">上海</text>
+    <!-- Node A (near) -->
+    <rect x="10" y="120" width="70" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="45" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4f46e5">Node A</text>
+    <text x="45" y="175" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">上海</text>
+    <!-- Node B (far) -->
+    <rect x="100" y="120" width="70" height="40" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+    <text x="135" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#92400e">Node B</text>
+    <text x="135" y="175" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">美国</text>
+    <!-- Node C (far) -->
+    <rect x="190" y="120" width="70" height="40" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+    <text x="225" y="145" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#92400e">Node C</text>
+    <text x="225" y="175" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">欧洲</text>
+    <!-- Same IP label -->
+    <text x="135" y="200" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#6366f1">↑ 同一 Anycast IP ↑</text>
+    <!-- Short path to nearest -->
+    <path d="M 100 50 L 45 120" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+    <text x="55" y="90" font-family="'JetBrains Mono', monospace" font-size="11" fill="#22c55e">~5ms ✓</text>
+    <!-- Crossed out paths to far nodes -->
+    <path d="M 100 50 L 135 120" stroke="#94a3b8" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+    <path d="M 100 50 L 225 120" stroke="#94a3b8" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+    <!-- Advantage labels -->
+    <rect x="10" y="230" width="260" height="90" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1"/>
+    <text x="140" y="252" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">✓ 低延迟：自动选最近节点</text>
+    <text x="140" y="272" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">✓ 负载均衡：请求分散到多节点</text>
+    <text x="140" y="292" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">✓ 抗 DDoS：攻击流量被分散</text>
+    <text x="140" y="312" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">✓ 高可用：节点故障自动切换</text>
+  </g>
+</svg>

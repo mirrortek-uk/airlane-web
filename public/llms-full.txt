@@ -143,3 +143,25 @@ AirLane, built on the sing-box core, natively supports two QUIC-based proxy prot
 - **TUIC v5**: Low-latency proxy focused on speed. QUIC's 0-RTT reconnection makes it extremely fast for frequent connections. Ideal for browsing and instant messaging.
 
 AirLane's policy orchestration automatically selects the optimal protocol based on traffic type — streaming goes to Hysteria2 (high bandwidth), browsing goes to TUIC v5 (low latency). No manual switching required.
+
+---
+
+## Anycast in DNS Resolution: Principles and Advantages
+
+Anycast is a network routing technology that assigns a single IP address to multiple servers in different geographic locations. When a client initiates a DNS query, BGP routing automatically selects the nearest server with the lowest load.
+
+### Core advantages of Anycast
+
+- **Low latency**: Auto-selects the nearest node, reducing DNS resolution time from ~200ms (cross-continent) to ~5ms (local)
+- **Load balancing**: Requests distributed across multiple nodes without external load balancers or DNS round-robin
+- **DDoS mitigation**: Attack traffic is spread across Anycast nodes by routing protocol, preventing any single node from being overwhelmed
+- **High availability**: BGP auto-detects node failures and reroutes traffic — transparent to clients, no manual intervention
+
+### Anycast vs AirLane Exit Pool
+
+Both share the philosophy of "one entry point, multiple backends, auto-select best":
+
+- Anycast works at the network layer via BGP — transparent to clients, suited for DNS/CDN
+- AirLane Exit Pool works at the application layer via health scoring and policy selection — user-customizable, suited for proxy traffic
+
+AirLane's Exit Pool monitors latency, packet loss, jitter, and availability for each node, automatically selecting the best exit based on the configured strategy (Latency Aware, Health Aware, or Failover).

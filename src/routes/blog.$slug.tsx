@@ -36,6 +36,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "QUIC 是什么？为什么 AirLane 选择基于 QUIC 的代理协议？本文全面讲解 QUIC 的工作原理、核心优势（1-RTT 握手、无队头阻塞、连接迁移、内置加密），以及 Hysteria2 和 TUIC v5 在 AirLane 中的实际应用。",
     summary_en: "What is QUIC? Why does AirLane choose QUIC-based proxy protocols? This article covers QUIC's working principles, core advantages (1-RTT handshake, no head-of-line blocking, connection migration, built-in encryption), and practical use of Hysteria2 and TUIC v5 in AirLane.",
   },
+  "dns-anycast-explained": {
+    title_zh: "DNS 解析中的 Anycast 技术：原理与优势",
+    title_en: "Anycast in DNS Resolution: Principles and Advantages",
+    summary_zh: "Anycast 技术将一个 IP 地址分配给多个地理位置不同的服务器，通过 BGP 路由协议自动选择最近节点响应 DNS 查询。本文讲解 Anycast 的原理、四大优势（低延迟、负载均衡、抗 DDoS、高可用），以及它与 AirLane 出口池设计的相通理念。",
+    summary_en: "Anycast assigns one IP address to multiple servers in different locations, using BGP routing to automatically select the nearest node for DNS queries. This article explains Anycast principles, four key advantages, and its shared philosophy with AirLane's Exit Pool design.",
+  },
 };
 
 export const Route = createFileRoute("/blog/$slug")({

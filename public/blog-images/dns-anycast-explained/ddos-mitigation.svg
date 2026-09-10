@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="420" fill="url(#bg)" rx="16"/>
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="20" font-weight="600" fill="#1e293b">Anycast 如何缓解 DDoS 攻击</text>
+  <!-- Without Anycast -->
+  <text x="225" y="75" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="600" fill="#ef4444">无 Anycast：攻击集中</text>
+  <g transform="translate(50, 90)">
+    <!-- Attackers -->
+    <text x="10" y="15" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ef4444">攻击者</text>
+    <circle cx="30" cy="40" r="8" fill="#ef4444"/>
+    <circle cx="60" cy="30" r="8" fill="#ef4444"/>
+    <circle cx="90" cy="50" r="8" fill="#ef4444"/>
+    <circle cx="20" cy="70" r="8" fill="#ef4444"/>
+    <circle cx="70" cy="80" r="8" fill="#ef4444"/>
+    <circle cx="100" cy="65" r="8" fill="#ef4444"/>
+    <circle cx="45" cy="100" r="8" fill="#ef4444"/>
+    <!-- Arrows converging -->
+    <path d="M 30 48 L 130 180" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 60 38 L 135 180" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 90 58 L 140 180" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 20 78 L 130 185" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 70 88 L 138 185" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 100 73 L 142 185" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <path d="M 45 108 L 132 188" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <!-- Single server overwhelmed -->
+    <rect x="110" y="180" width="80" height="60" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+    <text x="150" y="205" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#dc2626">Server</text>
+    <text x="150" y="225" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#dc2626">💥 宕机</text>
+    <!-- Label -->
+    <text x="150" y="270" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ef4444">所有攻击流量</text>
+    <text x="150" y="285" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ef4444">集中到一台服务器</text>
+  </g>
+  <!-- Divider -->
+  <line x1="450" y1="80" x2="450" y2="380" stroke="#cbd5e1" stroke-width="1.5"/>
+  <!-- With Anycast -->
+  <text x="675" y="75" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="600" fill="#22c55e">有 Anycast：攻击分散</text>
+  <g transform="translate(500, 90)">
+    <!-- Attackers -->
+    <text x="10" y="15" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ef4444">攻击者</text>
+    <circle cx="30" cy="40" r="8" fill="#ef4444"/>
+    <circle cx="60" cy="30" r="8" fill="#ef4444"/>
+    <circle cx="90" cy="50" r="8" fill="#ef4444"/>
+    <circle cx="20" cy="70" r="8" fill="#ef4444"/>
+    <circle cx="70" cy="80" r="8" fill="#ef4444"/>
+    <circle cx="100" cy="65" r="8" fill="#ef4444"/>
+    <circle cx="45" cy="100" r="8" fill="#ef4444"/>
+    <!-- Arrows diverging to different nodes -->
+    <path d="M 30 48 L 40 170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 60 38 L 130 170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 90 58 L 220 170" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 20 78 L 40 175" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 70 88 L 130 175" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 100 73 L 220 175" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <path d="M 45 108 L 130 180" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+    <!-- Multiple nodes, each handling some -->
+    <rect x="10" y="170" width="60" height="45" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="40" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">Node A</text>
+    <text x="40" y="210" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">✓ 正常</text>
+    <rect x="100" y="170" width="60" height="45" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="130" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">Node B</text>
+    <text x="130" y="210" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">✓ 正常</text>
+    <rect x="190" y="170" width="60" height="45" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="220" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">Node C</text>
+    <text x="220" y="210" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#15803d">✓ 正常</text>
+    <!-- Same IP label -->
+    <text x="130" y="240" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#6366f1">同一 Anycast IP</text>
+    <!-- Label -->
+    <text x="130" y="270" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">攻击流量被路由协议</text>
+    <text x="130" y="285" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#15803d">分散到不同节点</text>
+  </g>
+</svg>
