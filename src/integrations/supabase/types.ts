@@ -74,6 +74,7 @@ export type Database = {
           created_at: string
           guest_session_id: string | null
           id: string
+          identity_id: string | null
           name: string
           owner_user_id: string | null
         }
@@ -82,6 +83,7 @@ export type Database = {
           created_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           name?: string
           owner_user_id?: string | null
         }
@@ -90,6 +92,7 @@ export type Database = {
           created_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           name?: string
           owner_user_id?: string | null
         }
@@ -99,6 +102,13 @@ export type Database = {
             columns: ["guest_session_id"]
             isOneToOne: false
             referencedRelation: "guest_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cloud_snapshots_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
             referencedColumns: ["id"]
           },
           {
@@ -114,34 +124,43 @@ export type Database = {
         Row: {
           client_version: string | null
           created_at: string
+          device_public_key: string | null
           guest_session_id: string | null
           id: string
+          identity_id: string | null
           last_seen_at: string
           name: string
           owner_user_id: string | null
           platform: string
+          revoked_at: string | null
           status: string
         }
         Insert: {
           client_version?: string | null
           created_at?: string
+          device_public_key?: string | null
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           last_seen_at?: string
           name?: string
           owner_user_id?: string | null
           platform?: string
+          revoked_at?: string | null
           status?: string
         }
         Update: {
           client_version?: string | null
           created_at?: string
+          device_public_key?: string | null
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           last_seen_at?: string
           name?: string
           owner_user_id?: string | null
           platform?: string
+          revoked_at?: string | null
           status?: string
         }
         Relationships: [
@@ -150,6 +169,13 @@ export type Database = {
             columns: ["guest_session_id"]
             isOneToOne: false
             referencedRelation: "guest_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "devices_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
             referencedColumns: ["id"]
           },
           {
@@ -285,12 +311,87 @@ export type Database = {
           },
         ]
       }
+      identities: {
+        Row: {
+          auth_user_id: string | null
+          created_at: string
+          display_label: string | null
+          id: string
+          kind: string
+          last_seen_at: string
+          status: string
+          upgraded_at: string | null
+        }
+        Insert: {
+          auth_user_id?: string | null
+          created_at?: string
+          display_label?: string | null
+          id?: string
+          kind: string
+          last_seen_at?: string
+          status?: string
+          upgraded_at?: string | null
+        }
+        Update: {
+          auth_user_id?: string | null
+          created_at?: string
+          display_label?: string | null
+          id?: string
+          kind?: string
+          last_seen_at?: string
+          status?: string
+          upgraded_at?: string | null
+        }
+        Relationships: []
+      }
+      identity_credentials: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          identity_id: string
+          kind: string
+          last_used_at: string | null
+          revoked_at: string | null
+          token_hash: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          identity_id: string
+          kind: string
+          last_used_at?: string | null
+          revoked_at?: string | null
+          token_hash: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          identity_id?: string
+          kind?: string
+          last_used_at?: string | null
+          revoked_at?: string | null
+          token_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "identity_credentials_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mesh_groups: {
         Row: {
           created_at: string
           id: string
           invite_code: string
           name: string
+          owner_identity_id: string | null
           owner_user_id: string
         }
         Insert: {
@@ -298,6 +399,7 @@ export type Database = {
           id?: string
           invite_code?: string
           name: string
+          owner_identity_id?: string | null
           owner_user_id: string
         }
         Update: {
@@ -305,9 +407,17 @@ export type Database = {
           id?: string
           invite_code?: string
           name?: string
+          owner_identity_id?: string | null
           owner_user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "mesh_groups_owner_identity_id_fkey"
+            columns: ["owner_identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "mesh_groups_owner_user_id_fkey"
             columns: ["owner_user_id"]
@@ -323,6 +433,7 @@ export type Database = {
           group_id: string
           guest_session_id: string | null
           id: string
+          identity_id: string | null
           member_role: string
           user_id: string | null
         }
@@ -331,6 +442,7 @@ export type Database = {
           group_id: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           member_role?: string
           user_id?: string | null
         }
@@ -339,6 +451,7 @@ export type Database = {
           group_id?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           member_role?: string
           user_id?: string | null
         }
@@ -358,6 +471,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "mesh_members_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "mesh_members_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
@@ -371,6 +491,7 @@ export type Database = {
           created_at: string
           guest_session_id: string | null
           id: string
+          identity_id: string | null
           label: string
           note: string | null
           owner_user_id: string | null
@@ -379,6 +500,7 @@ export type Database = {
           created_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           label: string
           note?: string | null
           owner_user_id?: string | null
@@ -387,6 +509,7 @@ export type Database = {
           created_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           label?: string
           note?: string | null
           owner_user_id?: string | null
@@ -397,6 +520,13 @@ export type Database = {
             columns: ["guest_session_id"]
             isOneToOne: false
             referencedRelation: "guest_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "node_favorites_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
             referencedColumns: ["id"]
           },
           {
@@ -417,6 +547,7 @@ export type Database = {
           expires_at: string
           guest_session_id: string | null
           id: string
+          identity_id: string | null
           owner_user_id: string | null
         }
         Insert: {
@@ -427,6 +558,7 @@ export type Database = {
           expires_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           owner_user_id?: string | null
         }
         Update: {
@@ -437,6 +569,7 @@ export type Database = {
           expires_at?: string
           guest_session_id?: string | null
           id?: string
+          identity_id?: string | null
           owner_user_id?: string | null
         }
         Relationships: [
@@ -452,6 +585,13 @@ export type Database = {
             columns: ["guest_session_id"]
             isOneToOne: false
             referencedRelation: "guest_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pairing_codes_identity_id_fkey"
+            columns: ["identity_id"]
+            isOneToOne: false
+            referencedRelation: "identities"
             referencedColumns: ["id"]
           },
           {

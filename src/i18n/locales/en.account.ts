@@ -37,6 +37,24 @@ const dict: Record<string, string> = {
   "auth.sending": "Sending…",
   "auth.otpResend": "Resend code",
 
+  // Anonymous identity entry
+  "auth.anon.title": "No email? Use an anonymous identity",
+  "auth.anon.desc":
+    "Generate a random cloud identity in one click — try cloud sync, device binding and Mesh sharing without signing up.",
+  "auth.anon.button": "Create anonymous identity",
+  "auth.anon.creating": "Creating…",
+  "auth.anon.note":
+    "The anonymous identity lives only in this browser. Save the recovery code before clearing data or switching browsers — otherwise it cannot be recovered.",
+  "auth.anon.recoveryTitle": "Your recovery code (shown once)",
+  "auth.anon.recoveryWarning":
+    "⚠️ Write it down now. This code is the only way to recover the anonymous identity — we store only its hash, so losing it means losing the identity.",
+  "auth.anon.recoveryConfirm": "I saved the code — continue",
+  "auth.anon.recoverLink": "Have a recovery code? Restore identity",
+  "auth.anon.recoverPlaceholder": "XXXX-XXXX-XXXX-XXXX",
+  "auth.anon.recoverButton": "Restore with code",
+  "auth.anon.recoverInvalid": "Invalid or revoked recovery code.",
+  "auth.anon.recoverOk": "Anonymous identity restored.",
+
   "account.title": "Account center",
   "account.subtitle": "AirLane has four identity states. Local capabilities are always complete.",
   "account.loading": "Loading account state…",
@@ -63,9 +81,10 @@ const dict: Record<string, string> = {
   "account.action.upgradeNow": "Sign in to migrate anonymous data",
 
   "account.guest.warning":
-    "⚠️ Reinstalling the client or clearing data destroys the anonymous identity and its data cannot be recovered. Upgrade to a full account to keep it permanently.",
-  "account.guest.idLabel": "Temporary identity UUID",
-  "account.guest.expires": "All cloud data is destroyed after 90 days of inactivity",
+    "⚠️ The anonymous identity is bound to this browser. After clearing data or switching devices you will need the recovery code; without it the identity is permanently lost. Upgrade to a full account anytime.",
+  "account.guest.idLabel": "Anonymous identity UUID",
+  "account.guest.expires":
+    "The access token expires after 90 days of inactivity — the recovery code can reactivate the identity anytime",
   "account.guest.allowed": "Allowed for anonymous accounts",
   "account.guest.blocked": "Anonymous restrictions",
   "account.guest.allow1": "Up to {n} cloud config snapshots",
@@ -77,7 +96,7 @@ const dict: Record<string, string> = {
   "account.guest.block2": "Cannot create Mesh groups — only join shared ones",
   "account.guest.block3": "No sub-accounts and no remote config push",
   "account.guest.block4": "Cannot purchase the Pro plan",
-  "account.guest.block5": "Identity is lost when data is cleared or the device changes",
+  "account.guest.block5": "Requires the recovery code after switching devices or clearing data",
   "account.guest.created": "Anonymous trial mode enabled.",
   "account.guest.ended": "Anonymous session ended. Local configuration is untouched.",
   "account.guest.upgraded": "Anonymous data migrated to your account.",
@@ -85,6 +104,11 @@ const dict: Record<string, string> = {
     "An anonymous identity exists on this device. Migrate its data to the current account?",
   "account.guest.migrate": "Migrate anonymous data",
   "account.guest.discard": "Ignore",
+  "account.guest.recoveryTitle": "Recovery code (shown once — save it now)",
+  "account.guest.recoveryHint":
+    "Enter this code to restore the identity and all data after switching browsers or clearing data.",
+  "account.guest.rotateRecovery": "Regenerate recovery code",
+  "account.guest.recoveryRotated": "New recovery code generated; the old one is revoked.",
 
   "account.usage.snapshots": "Cloud snapshots",
   "account.usage.devices": "Paired devices",

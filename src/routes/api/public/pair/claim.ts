@@ -6,6 +6,7 @@ const bodySchema = z.object({
   name: z.string().min(1).max(80).optional(),
   platform: z.string().min(1).max(40).optional(),
   client_version: z.string().max(40).optional(),
+  device_public_key: z.string().max(128).optional(),
 });
 
 function json(body: unknown, status = 200) {
@@ -18,6 +19,7 @@ function json(body: unknown, status = 200) {
 /**
  * Public endpoint used by the AirLane desktop/mobile client to redeem a pairing
  * code shown in the web console and register itself as a device.
+ * The pairing code may belong to a registered account or an anonymous identity.
  */
 export const Route = createFileRoute("/api/public/pair/claim")({
   server: {
@@ -35,7 +37,7 @@ export const Route = createFileRoute("/api/public/pair/claim")({
 
         const { data: pairing } = await supabaseAdmin
           .from("pairing_codes")
-          .select("id, owner_user_id, guest_session_id, expires_at, claimed_at")
+          .select("id, owner_user_id, guest_session_id, identity_id, expires_at, claimed_at")
           .eq("code", code)
           .maybeSingle();
 
@@ -45,13 +47,21 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           return json({ error: "code_expired" }, 410);
         }
 
-        // Anonymous (guest) identities may only bind 2 devices.
-        if (pairing.guest_session_id) {
-          const { count } = await supabaseAdmin
-            .from("devices")
-            .select("id", { count: "exact", head: true })
-            .eq("guest_session_id", pairing.guest_session_id);
-          if ((count ?? 0) >= 2) return json({ error: "guest_device_limit" }, 403);
+        // Anonymous identities may only bind a limited number of devices.
+        if (pairing.identity_id || pairing.guest_session_id) {
+          const deviceCount = async (column: "identity_id" | "guest_session_id", value: string) => {
+            const { count } = await supabaseAdmin
+              .from("devices")
+              .select("id", { count: "exact", head: true })
+              .eq(column, value);
+            return count ?? 0;
+          };
+          const count = pairing.identity_id
+            ? await deviceCount("identity_id", pairing.identity_id)
+            : pairing.guest_session_id
+              ? await deviceCount("guest_session_id", pairing.guest_session_id)
+              : 0;
+          if (count >= 2) return json({ error: "guest_device_limit" }, 403);
         }
 
         const { data: device, error } = await supabaseAdmin
@@ -59,6 +69,8 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           .insert({
             owner_user_id: pairing.owner_user_id,
             guest_session_id: pairing.guest_session_id,
+            identity_id: pairing.identity_id,
+            device_public_key: parsed.device_public_key ?? null,
             name: parsed.name ?? "AirLane Client",
             platform: parsed.platform ?? "unknown",
             client_version: parsed.client_version ?? null,

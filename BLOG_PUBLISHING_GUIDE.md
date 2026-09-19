@@ -131,6 +131,32 @@ New-Item -ItemType Directory -Path "public\blog-images\what-is-quic" -Force
 
 将所有图片放入 `public/blog-images/<slug>/` 目录。
 
+### 图片获取优先级
+
+按以下优先级获取图片：
+
+1. **优先下载原文图片**：如果参考的文章有图片，优先下载原图，保存到 `public/blog-images/<slug>/` 目录，再上传到 GitHub。下载方法：
+   ```powershell
+   # 下载原文图片
+   Invoke-WebRequest -Uri "https://example.com/image.png" -OutFile "public\blog-images\<slug>\image1.png"
+   ```
+   - 下载后检查图片是否清晰、是否有水印。如有水印需裁剪或重新制作。
+   - 注意版权：标注来源，或对图片进行二次加工（加标注、改配色）使其成为原创内容。
+
+2. **原文无图片时自制 SVG**：如果原文没有图片，根据文章内容创建 SVG 配图。
+
+3. **自制 SVG 图表**：用 SVG 绘制技术示意图、流程图、对比图等。
+
+### 图片语言要求
+
+- **中文文章**：SVG 图表中的文字使用中文
+- **英文文章**：SVG 图表中的文字使用英文
+- **如果同一张图需要中英两个版本**，创建两个文件：
+  - `diagram1.zh.svg` — 中文版（用于中文文章）
+  - `diagram1.en.svg` — 英文版（用于英文文章）
+- 在中文 Markdown 中引用 `.zh.svg`，在英文 Markdown 中引用 `.en.svg`
+- 如果图表中没有文字（纯图形），可以共用一个文件
+
 ### 图片格式建议
 
 - **图表/示意图**：使用 SVG（矢量、体积小、清晰度高）
@@ -143,6 +169,8 @@ New-Item -ItemType Directory -Path "public\blog-images\what-is-quic" -Force
 - 使用浅色背景（`#f8fafc` 或 `#f1f5f9`）
 - 使用项目配色：主色 `#6366f1`（靛蓝）、辅色 `#f59e0b`（琥珀）、绿色 `#22c55e`、红色 `#ef4444`
 - 文字字体：`'Space Grotesk', sans-serif`（标题）、`'JetBrains Mono', monospace`（代码/标签）
+- **中文版 SVG**：文字用中文，字体用 `'Space Grotesk', 'PingFang SC', 'Microsoft YaHei', sans-serif`
+- **英文版 SVG**：文字用英文，字体用 `'Space Grotesk', sans-serif`
 
 ### 在 Markdown 中引用图片（jsDelivr CDN URL）
 

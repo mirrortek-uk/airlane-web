@@ -14,6 +14,7 @@ import {
   getGuestSession,
   upgradeGuestSession,
 } from "@/lib/account.functions";
+import { rotateRecoveryCode } from "@/lib/identity.functions";
 
 export const Route = createFileRoute("/account")({
   ssr: false,
@@ -48,6 +49,7 @@ function AccountPage() {
   const [overview, setOverview] = useState<Overview | null>(null);
   const [guest, setGuest] = useState<GuestState | null>(null);
   const [pendingGuestToken, setPendingGuestToken] = useState<string | null>(null);
+  const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -89,8 +91,26 @@ function AccountPage() {
     try {
       const session = await createGuestSession();
       writeGuestToken(session.token);
+      setRecoveryCode(session.recoveryCode);
       toast.success(t("account.guest.created"));
       await refresh();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function rotateRecovery() {
+    const token = readGuestToken();
+    if (!token) return;
+    setBusy(true);
+    try {
+      const result = await rotateRecoveryCode({ data: { token } });
+      if (result.ok) {
+        setRecoveryCode(result.recoveryCode);
+        toast.success(t("account.guest.recoveryRotated"));
+      }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : String(error));
     } finally {
@@ -256,6 +276,20 @@ function AccountPage() {
               {t("account.guest.warning")}
             </p>
 
+            {recoveryCode && (
+              <div className="mt-4 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4">
+                <p className="text-xs font-medium uppercase tracking-wide text-amber-700">
+                  {t("account.guest.recoveryTitle")}
+                </p>
+                <p className="mt-2 text-center font-mono text-xl font-semibold tracking-[0.15em] text-foreground">
+                  {recoveryCode}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-amber-700">
+                  {t("account.guest.recoveryHint")}
+                </p>
+              </div>
+            )}
+
             <p className="mt-4 font-mono text-xs text-muted-foreground">
               {t("account.guest.idLabel")}: {guest.id}
             </p>
@@ -308,6 +342,13 @@ function AccountPage() {
               >
                 {t("account.action.upgrade")}
               </Link>
+              <button
+                onClick={rotateRecovery}
+                disabled={busy}
+                className="rounded-full border border-input px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent disabled:opacity-60"
+              >
+                {t("account.guest.rotateRecovery")}
+              </button>
               <button
                 onClick={exitGuest}
                 disabled={busy}
