@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Check, X, Cloud, CloudOff, ShieldCheck, User } from "lucide-react";
+import { Check, X, Cloud, ShieldCheck, User } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { supabase } from "@/integrations/supabase/client";
@@ -359,37 +359,53 @@ function AccountPage() {
             </div>
           </section>
         ) : (
-          <section className="rounded-3xl border border-border bg-card p-8 shadow-lg">
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-muted-foreground">
-                <CloudOff size={18} />
-              </span>
-              <div>
-                <h2 className="font-display text-xl font-semibold text-card-foreground">
-                  {t("account.state.local")}
-                </h2>
-                <p className="text-sm text-muted-foreground">{t("account.state.localDesc")}</p>
+          <section className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-border bg-card p-8 shadow-lg">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/15 text-amber-600">
+                  <Cloud size={18} />
+                </span>
+                <div>
+                  <h2 className="font-display text-xl font-semibold text-card-foreground">
+                    {t("account.local.guestTitle")}
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {t("account.local.guestDesc")}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
               <button
                 onClick={startGuest}
                 disabled={busy}
-                className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
+                className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
               >
                 {t("account.action.tryGuest")}
               </button>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-8 shadow-lg">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <ShieldCheck size={18} />
+                </span>
+                <div>
+                  <h2 className="font-display text-xl font-semibold text-card-foreground">
+                    {t("account.local.accountTitle")}
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {t("account.local.accountDesc")}
+                  </p>
+                </div>
+              </div>
               <Link
                 to="/auth"
-                className="rounded-full border border-input px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent"
+                className="mt-6 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 {t("account.action.signIn")}
               </Link>
             </div>
           </section>
         )}
-
-        <IdentityMatrix />
 
         <p className="rounded-2xl border border-border bg-muted/60 p-4 text-sm text-foreground">
           {t("account.rule")}
@@ -432,85 +448,5 @@ function List({ title, items, tone }: { title: string; items: string[]; tone: "o
         ))}
       </ul>
     </div>
-  );
-}
-
-function IdentityMatrix() {
-  const t = useT();
-  const rows: Array<[string, string, string, string, string]> = [
-    [
-      t("account.matrix.row.api"),
-      t("account.matrix.none"),
-      t("account.matrix.session"),
-      t("account.matrix.full"),
-      t("account.matrix.scoped"),
-    ],
-    [
-      t("account.matrix.row.localCaps"),
-      t("account.matrix.yes"),
-      t("account.matrix.yes"),
-      t("account.matrix.yes"),
-      t("account.matrix.yes"),
-    ],
-    [
-      t("account.matrix.row.cloud"),
-      t("account.matrix.no"),
-      t("account.matrix.limited"),
-      t("account.matrix.yes"),
-      t("account.matrix.scoped"),
-    ],
-    [
-      t("account.matrix.row.console"),
-      t("account.matrix.no"),
-      t("account.matrix.no"),
-      t("account.matrix.yes"),
-      t("account.matrix.yes"),
-    ],
-    [
-      t("account.matrix.row.register"),
-      t("account.matrix.notNeeded"),
-      t("account.matrix.autoId"),
-      t("account.matrix.needed"),
-      t("account.matrix.invited"),
-    ],
-    [
-      t("account.matrix.row.switch"),
-      t("account.matrix.stayLocal"),
-      t("account.matrix.lost"),
-      t("account.matrix.synced"),
-      t("account.matrix.synced"),
-    ],
-  ];
-
-  return (
-    <section className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
-      <h2 className="border-b border-border px-6 py-4 font-display text-lg font-semibold text-card-foreground">
-        {t("account.matrix.title")}
-      </h2>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[720px] text-left text-sm">
-          <thead className="bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
-            <tr>
-              <th className="px-6 py-3 font-medium">{t("account.matrix.col.item")}</th>
-              <th className="px-6 py-3 font-medium">{t("account.matrix.col.local")}</th>
-              <th className="px-6 py-3 font-medium">{t("account.matrix.col.guest")}</th>
-              <th className="px-6 py-3 font-medium">{t("account.matrix.col.owner")}</th>
-              <th className="px-6 py-3 font-medium">{t("account.matrix.col.member")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row[0]} className="border-t border-border">
-                <td className="px-6 py-3 font-medium text-card-foreground">{row[0]}</td>
-                <td className="px-6 py-3 text-muted-foreground">{row[1]}</td>
-                <td className="px-6 py-3 text-muted-foreground">{row[2]}</td>
-                <td className="px-6 py-3 text-muted-foreground">{row[3]}</td>
-                <td className="px-6 py-3 text-muted-foreground">{row[4]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
   );
 }

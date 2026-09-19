@@ -62,6 +62,12 @@ const dict: Record<string, string> = {
   "account.state.local": "Fully local mode (cloud not connected)",
   "account.state.localDesc":
     "Zero requests to the cloud. All proxying, policies, multi-exit and unlock detection run locally; no cloud sync, Mesh or web console.",
+  "account.local.guestTitle": "Anonymous identity (no sign-up)",
+  "account.local.guestDesc":
+    "Generate a random identity in one click — try cloud snapshots, device binding and Mesh sharing; keep the recovery code to restore anytime.",
+  "account.local.accountTitle": "Full account",
+  "account.local.accountDesc":
+    "Register or sign in with email to unlock everything: config snapshots, Mesh shared groups, device management and the web console.",
   "account.state.guest": "Anonymous trial mode",
   "account.state.guestDesc":
     "No email required — try limited cloud sync and Mesh sharing right away.",
@@ -127,32 +133,6 @@ const dict: Record<string, string> = {
   "account.rule":
     "Hard rule: in every identity state, local proxying, policies, multi-exit and unlock detection stay 100% available and are never locked.",
 
-  "account.matrix.title": "The four identities compared",
-  "account.matrix.col.item": "Item",
-  "account.matrix.col.local": "Not signed in (local only)",
-  "account.matrix.col.guest": "Anonymous (guest)",
-  "account.matrix.col.owner": "Full owner account",
-  "account.matrix.col.member": "Sub-account",
-  "account.matrix.row.api": "Calls cloud API",
-  "account.matrix.row.localCaps": "Local proxy / policy / unlock detection",
-  "account.matrix.row.cloud": "Cloud snapshots & Mesh",
-  "account.matrix.row.console": "Web console",
-  "account.matrix.row.register": "Registration required",
-  "account.matrix.row.switch": "After switching devices",
-  "account.matrix.yes": "✅ Full",
-  "account.matrix.no": "❌ No",
-  "account.matrix.limited": "✅ Limited quota",
-  "account.matrix.none": "Zero requests",
-  "account.matrix.session": "Temporary session",
-  "account.matrix.full": "Full access",
-  "account.matrix.scoped": "Scoped to assignment",
-  "account.matrix.notNeeded": "Not required",
-  "account.matrix.autoId": "Auto-generated temp ID",
-  "account.matrix.needed": "Email / OAuth",
-  "account.matrix.invited": "Invited by owner",
-  "account.matrix.stayLocal": "Config stays on the old device",
-  "account.matrix.lost": "Identity lost, unrecoverable",
-  "account.matrix.synced": "Restored from cloud sync",
 
   "devices.title": "Client pairing",
   "devices.subtitle":
