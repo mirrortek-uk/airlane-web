@@ -14,13 +14,14 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ClashAlternativeRouteImport } from './routes/clash-alternative'
-import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as EnRouteImport } from './routes/en'
 import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlogAdminRouteImport } from './routes/blog.admin'
@@ -34,6 +35,8 @@ import { Route as EnDocsRouteImport } from './routes/en.docs'
 import { Route as EnDownloadRouteImport } from './routes/en.download'
 import { Route as EnMigrationRouteImport } from './routes/en.migration'
 import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
+import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
+import { Route as EnTermsRouteImport } from './routes/en.terms'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
@@ -66,11 +69,6 @@ const ClashAlternativeRoute = ClashAlternativeRouteImport.update({
   path: '/clash-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DevicesRoute = DevicesRouteImport.update({
-  id: '/devices',
-  path: '/devices',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DocsRoute = DocsRouteImport.update({
   id: '/docs',
   path: '/docs',
@@ -96,9 +94,19 @@ const MihomoAlternativeRoute = MihomoAlternativeRouteImport.update({
   path: '/mihomo-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -166,6 +174,16 @@ const EnMihomoAlternativeRoute = EnMihomoAlternativeRouteImport.update({
   path: '/mihomo-alternative',
   getParentRoute: () => EnRoute,
 } as any)
+const EnPrivacyRoute = EnPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnTermsRoute = EnTermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -203,13 +221,14 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/clash-alternative': typeof ClashAlternativeRoute
-  '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -220,6 +239,8 @@ export interface FileRoutesByFullPath {
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/terms': typeof EnTermsRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -235,11 +256,12 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/clash-alternative': typeof ClashAlternativeRoute
-  '/devices': typeof DevicesRoute
   '/download': typeof DownloadRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -248,6 +270,8 @@ export interface FileRoutesByTo {
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/terms': typeof EnTermsRoute
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
   '/en': typeof EnIndexRoute
@@ -265,13 +289,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/clash-alternative': typeof ClashAlternativeRoute
-  '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -282,6 +307,8 @@ export interface FileRoutesById {
   '/en/download': typeof EnDownloadRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/privacy': typeof EnPrivacyRoute
+  '/en/terms': typeof EnTermsRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -300,13 +327,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/clash-alternative'
-    | '/devices'
     | '/docs'
     | '/download'
     | '/en'
     | '/migration'
     | '/mihomo-alternative'
+    | '/privacy'
     | '/reset-password'
+    | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -317,6 +345,8 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/privacy'
+    | '/en/terms'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -332,11 +362,12 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/clash-alternative'
-    | '/devices'
     | '/download'
     | '/migration'
     | '/mihomo-alternative'
+    | '/privacy'
     | '/reset-password'
+    | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -345,6 +376,8 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/privacy'
+    | '/en/terms'
     | '/blog'
     | '/docs'
     | '/en'
@@ -361,13 +394,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/clash-alternative'
-    | '/devices'
     | '/docs'
     | '/download'
     | '/en'
     | '/migration'
     | '/mihomo-alternative'
+    | '/privacy'
     | '/reset-password'
+    | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -378,6 +412,8 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/privacy'
+    | '/en/terms'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -395,13 +431,14 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRouteWithChildren
   ClashAlternativeRoute: typeof ClashAlternativeRoute
-  DevicesRoute: typeof DevicesRoute
   DocsRoute: typeof DocsRouteWithChildren
   DownloadRoute: typeof DownloadRoute
   EnRoute: typeof EnRouteWithChildren
   MigrationRoute: typeof MigrationRoute
   MihomoAlternativeRoute: typeof MihomoAlternativeRoute
+  PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  TermsRoute: typeof TermsRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
   ApiPublicPairHeartbeatRoute: typeof ApiPublicPairHeartbeatRoute
 }
@@ -443,13 +480,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClashAlternativeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/devices': {
-      id: '/devices'
-      path: '/devices'
-      fullPath: '/devices'
-      preLoaderRoute: typeof DevicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/docs': {
       id: '/docs'
       path: '/docs'
@@ -485,11 +515,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MihomoAlternativeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -581,6 +625,20 @@ declare module '@tanstack/react-router' {
       path: '/mihomo-alternative'
       fullPath: '/en/mihomo-alternative'
       preLoaderRoute: typeof EnMihomoAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/privacy': {
+      id: '/en/privacy'
+      path: '/privacy'
+      fullPath: '/en/privacy'
+      preLoaderRoute: typeof EnPrivacyRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/terms': {
+      id: '/en/terms'
+      path: '/terms'
+      fullPath: '/en/terms'
+      preLoaderRoute: typeof EnTermsRouteImport
       parentRoute: typeof EnRoute
     }
     '/en/blog/': {
@@ -689,6 +747,8 @@ interface EnRouteChildren {
   EnDownloadRoute: typeof EnDownloadRoute
   EnMigrationRoute: typeof EnMigrationRoute
   EnMihomoAlternativeRoute: typeof EnMihomoAlternativeRoute
+  EnPrivacyRoute: typeof EnPrivacyRoute
+  EnTermsRoute: typeof EnTermsRoute
   EnIndexRoute: typeof EnIndexRoute
 }
 
@@ -699,6 +759,8 @@ const EnRouteChildren: EnRouteChildren = {
   EnDownloadRoute: EnDownloadRoute,
   EnMigrationRoute: EnMigrationRoute,
   EnMihomoAlternativeRoute: EnMihomoAlternativeRoute,
+  EnPrivacyRoute: EnPrivacyRoute,
+  EnTermsRoute: EnTermsRoute,
   EnIndexRoute: EnIndexRoute,
 }
 
@@ -710,13 +772,14 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BlogRoute: BlogRouteWithChildren,
   ClashAlternativeRoute: ClashAlternativeRoute,
-  DevicesRoute: DevicesRoute,
   DocsRoute: DocsRouteWithChildren,
   DownloadRoute: DownloadRoute,
   EnRoute: EnRouteWithChildren,
   MigrationRoute: MigrationRoute,
   MihomoAlternativeRoute: MihomoAlternativeRoute,
+  PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  TermsRoute: TermsRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,
   ApiPublicPairHeartbeatRoute: ApiPublicPairHeartbeatRoute,
 }

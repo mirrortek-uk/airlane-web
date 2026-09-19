@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { toast } from "sonner";
-import { Check, X, Cloud, ShieldCheck, User, Server, Globe, XIcon } from "lucide-react";
+import { Check, X, Cloud, ShieldCheck, User, Server, Globe, XIcon, Laptop } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
@@ -10,10 +10,14 @@ import { useT } from "@/i18n";
 import { clearGuestToken, readGuestToken, writeGuestToken } from "@/lib/guest";
 import { recoverAnonymousIdentity } from "@/lib/identity.functions";
 import {
+  createAccountPairingCode,
   createGuestSession,
+  createPairingCode,
   endGuestSession,
   getAccountOverview,
   getGuestSession,
+  removeDevice,
+  removeGuestDevice,
   upgradeGuestSession,
 } from "@/lib/account.functions";
 import { rotateRecoveryCode } from "@/lib/identity.functions";
@@ -206,12 +210,6 @@ function AccountPage() {
           </Link>
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
-            <Link
-              to="/devices"
-              className="rounded-full border border-input px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
-            >
-              {t("account.action.manageDevices")}
-            </Link>
           </div>
         </header>
 
@@ -448,6 +446,19 @@ function AccountPage() {
           </section>
         )}
 
+        <DeviceManager
+          identity={profile ? "account" : guest?.valid ? "guest" : "none"}
+          devices={
+            profile
+              ? (overview?.devices ?? [])
+              : guest?.valid
+                ? (guest.devices as DeviceItem[])
+                : []
+          }
+          deviceLimit={guest?.valid ? guest.limits.devices : undefined}
+          onChanged={refresh}
+        />
+
         <SharedResources />
 
         <p className="rounded-2xl border border-border bg-muted/60 p-4 text-sm text-foreground">
@@ -562,6 +573,162 @@ function AccountPage() {
         </div>
       )}
     </main>
+  );
+}
+
+type DeviceItem = {
+  id: string;
+  name: string;
+  platform: string;
+  status: string;
+  last_seen_at: string | null;
+};
+
+function DeviceManager({
+  identity,
+  devices,
+  deviceLimit,
+  onChanged,
+}: {
+  identity: "account" | "guest" | "none";
+  devices: DeviceItem[];
+  deviceLimit?: number;
+  onChanged: () => Promise<void>;
+}) {
+  const t = useT();
+  const [code, setCode] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const canPair = identity !== "none";
+
+  async function generate() {
+    setBusy(true);
+    try {
+      if (identity === "account") {
+        const result = await createAccountPairingCode();
+        setCode(result.code);
+      } else {
+        const token = readGuestToken();
+        if (!token) {
+          toast.error(t("devices.needIdentity"));
+          return;
+        }
+        const result = await createPairingCode({ data: { guestToken: token } });
+        setCode(result.code);
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function unpair(id: string) {
+    setBusy(true);
+    try {
+      if (identity === "account") {
+        await removeDevice({ data: { id } });
+      } else {
+        const token = readGuestToken();
+        if (!token) return;
+        await removeGuestDevice({ data: { token, id } });
+      }
+      toast.success(t("devices.removed"));
+      await onChanged();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+      <h2 className="font-display text-lg font-semibold text-card-foreground">
+        {t("account.action.manageDevices")}
+      </h2>
+      <p className="mt-1 text-sm text-muted-foreground">{t("devices.subtitle")}</p>
+
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
+        <div>
+          {canPair ? (
+            <>
+              {code ? (
+                <p className="font-mono text-3xl font-semibold tracking-[0.2em] text-primary">
+                  {code}
+                </p>
+              ) : (
+                <p className="font-mono text-3xl font-semibold tracking-[0.2em] text-muted-foreground/40">
+                  ····-····
+                </p>
+              )}
+              <p className="mt-2 text-xs text-muted-foreground">{t("devices.codeHint")}</p>
+              <button
+                onClick={generate}
+                disabled={busy}
+                className="mt-4 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
+              >
+                {code ? t("devices.regenerate") : t("devices.generate")}
+              </button>
+              {identity === "guest" && deviceLimit !== undefined && (
+                <p className="mt-3 text-xs text-muted-foreground">
+                  {t("devices.guestLimit", { n: deviceLimit })}
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="text-sm text-muted-foreground">{t("devices.needIdentity")}</p>
+          )}
+
+          <ol className="mt-6 flex flex-col gap-1.5 border-t border-border pt-4 text-xs text-muted-foreground">
+            <li className="font-semibold text-card-foreground">{t("devices.steps")}</li>
+            <li>1. {t("devices.step1")}</li>
+            <li>2. {t("devices.step2")}</li>
+            <li>3. {t("devices.step3")}</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold text-card-foreground">{t("devices.list")}</h3>
+          {devices.length === 0 ? (
+            <p className="mt-3 rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">
+              {t("devices.empty")}
+            </p>
+          ) : (
+            <ul className="mt-3 flex flex-col gap-2">
+              {devices.map((device) => (
+                <li
+                  key={device.id}
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-background p-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <Laptop size={16} />
+                    </span>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{device.name}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {device.platform} ·{" "}
+                        {t(`devices.status.${device.status === "online" ? "online" : device.status === "idle" ? "idle" : "offline"}`)}
+                        {device.last_seen_at
+                          ? ` · ${t("devices.lastSeen")} ${new Date(device.last_seen_at).toLocaleString()}`
+                          : ""}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => unpair(device.id)}
+                    disabled={busy}
+                    className="rounded-full border border-input px-4 py-2 text-xs font-medium text-foreground hover:bg-accent disabled:opacity-60"
+                  >
+                    {t("devices.remove")}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
