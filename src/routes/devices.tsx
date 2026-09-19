@@ -246,18 +246,6 @@ function DevicesPage() {
             </ul>
           )}
         </section>
-
-        <section className="rounded-3xl border border-border bg-muted/50 p-8">
-          <h2 className="font-display text-lg font-semibold text-foreground">{t("devices.api")}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{t("devices.apiDesc")}</p>
-          <pre className="mt-4 overflow-x-auto rounded-2xl bg-foreground/90 p-4 font-mono text-xs leading-relaxed text-background">
-            {`POST /api/public/pair/claim
-{ "code": "ABCD-2345", "name": "MacBook Pro", "platform": "macos", "client_version": "1.4.2" }
-
-POST /api/public/pair/heartbeat
-{ "device_id": "<uuid>", "status": "online" }`}
-          </pre>
-        </section>
       </div>
     </main>
   );

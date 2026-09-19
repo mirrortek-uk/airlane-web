@@ -56,21 +56,17 @@ const dict: Record<string, string> = {
   "auth.anon.recoverOk": "Anonymous identity restored.",
 
   "account.title": "Account center",
-  "account.subtitle": "AirLane has four identity states. Local capabilities are always complete.",
   "account.loading": "Loading account state…",
 
   "account.state.local": "Fully local mode (cloud not connected)",
   "account.state.localDesc":
     "Zero requests to the cloud. All proxying, policies, multi-exit and unlock detection run locally; no cloud sync, Mesh or web console.",
-  "account.local.guestTitle": "Anonymous identity (no sign-up)",
-  "account.local.guestDesc":
-    "Generate a random identity in one click — try cloud snapshots, device binding and Mesh sharing; keep the recovery code to restore anytime.",
+  "account.local.guestTitle": "Anonymous account (no sign-up)",
+  "account.local.guestDesc": "Cloud features without email: device pairing, Mesh sharing, shared VPS and residential-IP quotas. Save the recovery code to restore anytime.",
   "account.local.accountTitle": "Full account",
-  "account.local.accountDesc":
-    "Register or sign in with email to unlock everything: config snapshots, Mesh shared groups, device management and the web console.",
-  "account.state.guest": "Anonymous trial mode",
-  "account.state.guestDesc":
-    "No email required — try limited cloud sync and Mesh sharing right away.",
+  "account.local.accountDesc": "Register or sign in with email to unlock all cloud features: config snapshots, Mesh groups, device management and the web console.",
+  "account.state.guest": "Anonymous account mode",
+  "account.state.guestDesc": "No email required — try device pairing, Mesh sharing and shared resource quotas.",
   "account.state.account": "Signed in with a full account",
   "account.state.accountDesc":
     "Full cloud capabilities: snapshots, Mesh shared groups, device management and web console.",
@@ -93,14 +89,14 @@ const dict: Record<string, string> = {
     "The access token expires after 90 days of inactivity — the recovery code can reactivate the identity anytime",
   "account.guest.allowed": "Allowed for anonymous accounts",
   "account.guest.blocked": "Anonymous restrictions",
-  "account.guest.allow1": "Up to {n} cloud config snapshots",
-  "account.guest.allow2": "Up to {n} devices joined to Mesh shared groups",
-  "account.guest.allow3": "Can accept Mesh shared-group invitations from others",
-  "account.guest.allow4": "Up to {n} cloud exit favorites",
-  "account.guest.allow5": "Device online status reporting",
+  "account.guest.allow1": "Bind devices to join shared Mesh groups, up to {n}",
+  "account.guest.allow2": "Accept Mesh group invitations shared by others",
+  "account.guest.allow3": "Shared VPS, up to {n}",
+  "account.guest.allow4": "Shared residential IPs, up to {n}",
+  "account.guest.allow5": "Device online-status reporting",
   "account.guest.block1": "Cannot sign in to the web console",
   "account.guest.block2": "Cannot create Mesh groups — only join shared ones",
-  "account.guest.block3": "No sub-accounts and no remote config push",
+  "account.guest.block3": "No cloud backup for configs",
   "account.guest.block4": "Cannot purchase the Pro plan",
   "account.guest.block5": "Requires the recovery code after switching devices or clearing data",
   "account.guest.created": "Anonymous trial mode enabled.",
@@ -152,11 +148,16 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Sign in or start an anonymous session before generating a pairing code.",
   "devices.guestLimit": "Anonymous identities can pair at most {n} devices.",
-  "devices.api": "Developer API",
-  "devices.apiDesc": "Clients can call these endpoints directly to pair and send heartbeats.",
   "devices.status.online": "Online",
   "devices.status.idle": "Idle",
   "devices.status.offline": "Offline",
+  "account.usage.sharedVps": "Shared VPS",
+  "account.usage.residentialIp": "Shared residential IPs",
+  "account.resources.title": "My shared resources",
+  "account.resources.none": "Nothing purchased yet",
+  "account.resources.browse": "Browse PoolVIP",
+  "account.resources.type.vps": "Shared VPS",
+  "account.resources.type.residential": "Shared residential IPs",
 };
 
 export default dict;

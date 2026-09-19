@@ -27,15 +27,13 @@ const dict: Record<string, string> = {
   "auth.needRecovery": "Apri questa pagina dal link di reimpostazione ricevuto via email.",
 
   "account.title": "Centro account",
-  "account.subtitle": "AirLane ha quattro stati di identità. Le funzionalità locali sono sempre complete.",
   "account.loading": "Caricamento dello stato dell'account…",
 
   "account.state.local": "Modalità completamente locale (cloud non connesso)",
   "account.state.localDesc":
     "Zero richieste al cloud. Proxy, policy, uscite multiple e rilevamento sblocco funzionano tutti localmente; nessuna sincronizzazione cloud, Mesh o console web.",
-  "account.state.guest": "Modalità di prova anonima",
-  "account.state.guestDesc":
-    "Nessuna email richiesta — prova subito la sincronizzazione cloud limitata e la condivisione Mesh.",
+  "account.state.guest": "Modalità account anonimo",
+  "account.state.guestDesc": "Senza email: prova l'associazione dei dispositivi, il Mesh e le risorse condivise.",
   "account.state.account": "Accesso con account completo",
   "account.state.accountDesc":
     "Funzionalità cloud complete: snapshot, gruppi condivisi Mesh, gestione dispositivi e console web.",
@@ -57,14 +55,14 @@ const dict: Record<string, string> = {
   "account.guest.expires": "Tutti i dati cloud vengono eliminati dopo 90 giorni di inattività",
   "account.guest.allowed": "Consentito per gli account anonimi",
   "account.guest.blocked": "Restrizioni per account anonimi",
-  "account.guest.allow1": "Fino a {n} snapshot di configurazione cloud",
-  "account.guest.allow2": "Fino a {n} dispositivi uniti a gruppi condivisi Mesh",
-  "account.guest.allow3": "Può accettare inviti a gruppi condivisi Mesh da altri",
-  "account.guest.allow4": "Fino a {n} uscite preferite nel cloud",
-  "account.guest.allow5": "Segnalazione dello stato online del dispositivo",
+  "account.guest.allow1": "Associare dispositivi a gruppi Mesh, max {n}",
+  "account.guest.allow2": "Accettare inviti a gruppi Mesh di altri",
+  "account.guest.allow3": "VPS condivisi, fino a {n}",
+  "account.guest.allow4": "IP residenziali condivisi, fino a {n}",
+  "account.guest.allow5": "Report dello stato online dei dispositivi",
   "account.guest.block1": "Non può accedere alla console web",
   "account.guest.block2": "Non può creare gruppi Mesh — solo unirsi a quelli condivisi",
-  "account.guest.block3": "Nessun sub-account e nessun push remoto della configurazione",
+  "account.guest.block3": "Nessun backup cloud delle configurazioni",
   "account.guest.block4": "Non può acquistare il piano Pro",
   "account.guest.block5": "L'identità viene persa cancellando i dati o cambiando dispositivo",
   "account.guest.created": "Modalità di prova anonima attivata.",
@@ -111,11 +109,20 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Accedi o avvia una sessione anonima prima di generare un codice di associazione.",
   "devices.guestLimit": "Le identità anonime possono associare al massimo {n} dispositivi.",
-  "devices.api": "API per sviluppatori",
-  "devices.apiDesc": "I client possono chiamare direttamente questi endpoint per associarsi e inviare heartbeat.",
   "devices.status.online": "Online",
   "devices.status.idle": "Inattivo",
   "devices.status.offline": "Offline",
+  "account.local.guestTitle": "Account anonimo (senza registrazione)",
+  "account.local.guestDesc": "Funzioni cloud senza email: associazione dispositivi, Mesh, VPS condivisi e IP residenziali. Conserva il codice di recupero.",
+  "account.local.accountTitle": "Account completo",
+  "account.local.accountDesc": "Registrati o accedi con email per tutte le funzioni: snapshot config, gruppi Mesh, gestione dispositivi e console web.",
+  "account.usage.sharedVps": "VPS condivisi",
+  "account.usage.residentialIp": "IP residenziali",
+  "account.resources.title": "Le mie risorse condivise",
+  "account.resources.none": "Nessuna risorsa acquistata",
+  "account.resources.browse": "Vedi PoolVIP",
+  "account.resources.type.vps": "VPS condivisi",
+  "account.resources.type.residential": "IP residenziali condivisi",
 };
 
 export default dict;

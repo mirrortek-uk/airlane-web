@@ -1,9 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { toast } from "sonner";
-import { Check, X, Cloud, ShieldCheck, User } from "lucide-react";
+import { Check, X, Cloud, ShieldCheck, User, Server, Globe } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/i18n";
 import { clearGuestToken, readGuestToken, writeGuestToken } from "@/lib/guest";
@@ -50,6 +51,7 @@ function AccountPage() {
   const [guest, setGuest] = useState<GuestState | null>(null);
   const [pendingGuestToken, setPendingGuestToken] = useState<string | null>(null);
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -89,7 +91,9 @@ function AccountPage() {
   async function startGuest() {
     setBusy(true);
     try {
-      const session = await createGuestSession();
+      const session = await createGuestSession({
+        data: { captchaToken: captchaToken ?? undefined },
+      });
       writeGuestToken(session.token);
       setRecoveryCode(session.recoveryCode);
       toast.success(t("account.guest.created"));
@@ -181,7 +185,6 @@ function AccountPage() {
           <h1 className="font-display text-3xl font-semibold text-foreground">
             {t("account.title")}
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">{t("account.subtitle")}</p>
         </div>
 
         {loading ? (
@@ -297,16 +300,16 @@ function AccountPage() {
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <Stat
-                label={t("account.usage.snapshots")}
-                value={`${guest.usage.snapshots} / ${guest.limits.snapshots}`}
-              />
-              <Stat
                 label={t("account.usage.devices")}
                 value={`${guest.usage.devices} / ${guest.limits.devices}`}
               />
               <Stat
-                label={t("account.usage.favorites")}
-                value={`${guest.usage.favorites} / ${guest.limits.favorites}`}
+                label={t("account.usage.sharedVps")}
+                value={`${guest.usage.sharedVps} / ${guest.limits.sharedVps}`}
+              />
+              <Stat
+                label={t("account.usage.residentialIp")}
+                value={`${guest.usage.residentialIp} / ${guest.limits.residentialIp}`}
               />
             </div>
 
@@ -315,10 +318,10 @@ function AccountPage() {
                 title={t("account.guest.allowed")}
                 tone="ok"
                 items={[
-                  t("account.guest.allow1", { n: guest.limits.snapshots }),
-                  t("account.guest.allow2", { n: guest.limits.devices }),
-                  t("account.guest.allow3"),
-                  t("account.guest.allow4", { n: guest.limits.favorites }),
+                  t("account.guest.allow1", { n: guest.limits.devices }),
+                  t("account.guest.allow2"),
+                  t("account.guest.allow3", { n: guest.limits.sharedVps }),
+                  t("account.guest.allow4", { n: guest.limits.residentialIp }),
                   t("account.guest.allow5"),
                 ]}
               />
@@ -374,9 +377,10 @@ function AccountPage() {
                   </p>
                 </div>
               </div>
+              <Turnstile onVerify={setCaptchaToken} />
               <button
                 onClick={startGuest}
-                disabled={busy}
+                disabled={busy || (TURNSTILE_ENABLED && !captchaToken)}
                 className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
               >
                 {t("account.action.tryGuest")}
@@ -407,11 +411,112 @@ function AccountPage() {
           </section>
         )}
 
+        <SharedResources />
+
         <p className="rounded-2xl border border-border bg-muted/60 p-4 text-sm text-foreground">
           {t("account.rule")}
         </p>
       </div>
     </main>
+  );
+}
+
+type SharedResource = {
+  id: string;
+  kind: "vps" | "residential";
+  title: string;
+  status: string;
+  detail?: string;
+};
+
+function ResourceColumn({
+  icon,
+  title,
+  items,
+}: {
+  icon: ReactNode;
+  title: string;
+  items: SharedResource[];
+}) {
+  const t = useT();
+  return (
+    <div className="rounded-2xl border border-border bg-background p-4">
+      <div className="flex items-center gap-2">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary">
+          {icon}
+        </span>
+        <p className="text-sm font-semibold text-card-foreground">{title}</p>
+        <span className="ml-auto text-xs text-muted-foreground">{items.length}</span>
+      </div>
+      {items.length === 0 ? (
+        <p className="mt-3 rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">
+          {t("account.resources.none")}
+        </p>
+      ) : (
+        <ul className="mt-3 flex flex-col gap-2">
+          {items.map((r) => (
+            <li
+              key={r.id}
+              className="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-3"
+            >
+              <span
+                className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                  r.status === "active"
+                    ? "bg-emerald-500/10 text-emerald-600"
+                    : "bg-amber-500/15 text-amber-600"
+                }`}
+              >
+                {r.status}
+              </span>
+              <span className="text-sm text-card-foreground">{r.title}</span>
+              {r.detail && (
+                <span className="ml-auto font-mono text-[11px] text-muted-foreground">
+                  {r.detail}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function SharedResources() {
+  const t = useT();
+  // TODO(poolvip): pull purchased shared-VPS / residential-IP resources from
+  // poolvip.airlane.cloud once resource tables are wired to identity_id.
+  const resources: SharedResource[] = [];
+  const vps = resources.filter((r) => r.kind === "vps");
+  const residential = resources.filter((r) => r.kind === "residential");
+  return (
+    <section className="rounded-3xl border border-border bg-card p-8 shadow-sm">
+      <div className="flex flex-wrap items-center gap-3">
+        <h2 className="font-display text-lg font-semibold text-card-foreground">
+          {t("account.resources.title")}
+        </h2>
+        <a
+          href="https://poolvip.airlane.cloud"
+          target="_blank"
+          rel="noreferrer"
+          className="ml-auto rounded-full border border-input px-4 py-1.5 text-xs font-medium text-foreground hover:bg-accent"
+        >
+          {t("account.resources.browse")}
+        </a>
+      </div>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <ResourceColumn
+          icon={<Server size={14} />}
+          title={t("account.resources.type.vps")}
+          items={vps}
+        />
+        <ResourceColumn
+          icon={<Globe size={14} />}
+          title={t("account.resources.type.residential")}
+          items={residential}
+        />
+      </div>
+    </section>
   );
 }
 

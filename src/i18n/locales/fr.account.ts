@@ -27,15 +27,13 @@ const dict: Record<string, string> = {
   "auth.needRecovery": "Ouvrez cette page depuis le lien de réinitialisation reçu par e-mail.",
 
   "account.title": "Centre de compte",
-  "account.subtitle": "AirLane possède quatre états d'identité. Les capacités locales sont toujours complètes.",
   "account.loading": "Chargement de l'état du compte…",
 
   "account.state.local": "Mode entièrement local (cloud non connecté)",
   "account.state.localDesc":
     "Aucune requête vers le cloud. Tout le proxy, les politiques, le multi-sortie et la détection de déblocage fonctionnent localement ; pas de synchronisation cloud, de Mesh ni de console web.",
-  "account.state.guest": "Mode d'essai anonyme",
-  "account.state.guestDesc":
-    "Aucun e-mail requis — essayez immédiatement la synchronisation cloud limitée et le partage Mesh.",
+  "account.state.guest": "Mode compte anonyme",
+  "account.state.guestDesc": "Sans e-mail : essayez l'appairage d'appareils, le Mesh et les ressources partagées.",
   "account.state.account": "Connecté avec un compte complet",
   "account.state.accountDesc":
     "Capacités cloud complètes : instantanés, groupes partagés Mesh, gestion des appareils et console web.",
@@ -57,14 +55,14 @@ const dict: Record<string, string> = {
   "account.guest.expires": "Toutes les données cloud sont détruites après 90 jours d'inactivité",
   "account.guest.allowed": "Autorisé pour les comptes anonymes",
   "account.guest.blocked": "Restrictions anonymes",
-  "account.guest.allow1": "Jusqu'à {n} instantanés de configuration cloud",
-  "account.guest.allow2": "Jusqu'à {n} appareils rejoignant des groupes partagés Mesh",
-  "account.guest.allow3": "Peut accepter les invitations à des groupes partagés Mesh d'autres utilisateurs",
-  "account.guest.allow4": "Jusqu'à {n} sorties favorites dans le cloud",
-  "account.guest.allow5": "Signalement du statut en ligne des appareils",
+  "account.guest.allow1": "Associer des appareils à des groupes Mesh, max {n}",
+  "account.guest.allow2": "Accepter les invitations à des groupes Mesh",
+  "account.guest.allow3": "VPS partagés, jusqu'à {n}",
+  "account.guest.allow4": "IP résidentielles partagées, jusqu'à {n}",
+  "account.guest.allow5": "Rapport d'état en ligne des appareils",
   "account.guest.block1": "Impossible de se connecter à la console web",
   "account.guest.block2": "Impossible de créer des groupes Mesh — uniquement de rejoindre des groupes partagés",
-  "account.guest.block3": "Pas de sous-comptes ni de push de configuration à distance",
+  "account.guest.block3": "Pas de sauvegarde cloud des configurations",
   "account.guest.block4": "Impossible d'acheter le plan Pro",
   "account.guest.block5": "L'identité est perdue en cas d'effacement des données ou de changement d'appareil",
   "account.guest.created": "Mode d'essai anonyme activé.",
@@ -111,11 +109,20 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Connectez-vous ou démarrez une session anonyme avant de générer un code d'appairage.",
   "devices.guestLimit": "Les identités anonymes peuvent appairer au maximum {n} appareils.",
-  "devices.api": "API pour développeurs",
-  "devices.apiDesc": "Les clients peuvent appeler directement ces points de terminaison pour s'appairer et envoyer des signaux de vie.",
   "devices.status.online": "En ligne",
   "devices.status.idle": "Inactif",
   "devices.status.offline": "Hors ligne",
+  "account.local.guestTitle": "Compte anonyme (sans inscription)",
+  "account.local.guestDesc": "Fonctions cloud sans e-mail : appairage d'appareils, Mesh, VPS partagés et IP résidentielles. Conservez le code de récupération.",
+  "account.local.accountTitle": "Compte complet",
+  "account.local.accountDesc": "Inscrivez-vous ou connectez-vous par e-mail pour toutes les fonctions : snapshots, groupes Mesh, gestion des appareils et console web.",
+  "account.usage.sharedVps": "VPS partagés",
+  "account.usage.residentialIp": "IP résidentielles",
+  "account.resources.title": "Mes ressources partagées",
+  "account.resources.none": "Rien d'acheté pour l'instant",
+  "account.resources.browse": "Voir PoolVIP",
+  "account.resources.type.vps": "VPS partagés",
+  "account.resources.type.residential": "IP résidentielles partagées",
 };
 
 export default dict;

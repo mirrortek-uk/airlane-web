@@ -19,13 +19,31 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
  */
 
 export const ANONYMOUS_LIMITS = {
-  snapshots: 2,
   devices: 2,
-  favorites: 10,
+  sharedVps: 2,
+  residentialIp: 2,
   meshGroups: 2,
 } as const;
 
 const ACCESS_TOKEN_TTL_MS = 90 * 24 * 60 * 60 * 1000;
+
+/**
+ * Cloudflare Turnstile verification for anonymous-identity creation.
+ * When TURNSTILE_SECRET_KEY is unset the check is skipped (dev mode);
+ * VITE_TURNSTILE_SITE_KEY controls whether the widget renders client-side.
+ */
+async function verifyTurnstile(captchaToken?: string) {
+  const secret = process.env["TURNSTILE_SECRET_KEY"];
+  if (!secret) return;
+  if (!captchaToken) throw new Error("captcha_required");
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ secret, response: captchaToken }),
+  });
+  const json = (await res.json()) as { success?: boolean };
+  if (!json.success) throw new Error("captcha_failed");
+}
 
 async function sha256(value: string) {
   const bytes = new TextEncoder().encode(value);
@@ -144,7 +162,8 @@ export async function resolveIdentityByUserId(userId: string): Promise<IdentityR
 }
 
 /** Insert a new anonymous identity + access token + recovery code. */
-export async function issueAnonymousIdentity() {
+export async function issueAnonymousIdentity(captchaToken?: string) {
+  await verifyTurnstile(captchaToken);
   const db = await admin();
   const { data: identity, error } = await db
     .from("identities")
@@ -240,44 +259,47 @@ export async function attachAnonymousToUser(token: string, uid: string) {
 const tokenSchema = z.object({ token: z.string().min(10).max(200) });
 
 /** Create a brand-new anonymous identity with an access token + recovery code. */
-export const createAnonymousIdentity = createServerFn({ method: "POST" }).handler(async () => {
-  return issueAnonymousIdentity();
-});
+export const createAnonymousIdentity = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) =>
+    z.object({ captchaToken: z.string().max(2048).optional() }).parse(data ?? {}),
+  )
+  .handler(async ({ data }) => {
+    return issueAnonymousIdentity(data.captchaToken);
+  });
+
+/**
+ * Describe an anonymous identity: usage + quota + device list.
+ * Shared by getAnonymousIdentity and the legacy getGuestSession wrapper.
+ */
+export async function describeAnonymousIdentity(token: string) {
+  const identity = await resolveAnonymousByToken(token);
+  if (!identity) return { valid: false as const };
+  const db = await admin();
+  const devices = await db
+    .from("devices")
+    .select("id, name, platform, status, last_seen_at")
+    .eq("identity_id", identity.id)
+    .order("created_at", { ascending: false });
+  return {
+    valid: true as const,
+    id: identity.id,
+    createdAt: identity.created_at,
+    usage: {
+      devices: devices.data?.length ?? 0,
+      // PoolVIP resource tables land later; quotas are displayed as 0/n.
+      sharedVps: 0,
+      residentialIp: 0,
+    },
+    limits: ANONYMOUS_LIMITS,
+    devices: devices.data ?? [],
+  };
+}
 
 /** Read the state + quota usage of an anonymous identity. */
 export const getAnonymousIdentity = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => tokenSchema.parse(data))
   .handler(async ({ data }) => {
-    const identity = await resolveAnonymousByToken(data.token);
-    if (!identity) return { valid: false as const };
-    const db = await admin();
-    const [snapshots, devices, favorites] = await Promise.all([
-      db
-        .from("cloud_snapshots")
-        .select("id", { count: "exact", head: true })
-        .eq("identity_id", identity.id),
-      db
-        .from("devices")
-        .select("id, name, platform, status, last_seen_at")
-        .eq("identity_id", identity.id)
-        .order("created_at", { ascending: false }),
-      db
-        .from("node_favorites")
-        .select("id", { count: "exact", head: true })
-        .eq("identity_id", identity.id),
-    ]);
-    return {
-      valid: true as const,
-      id: identity.id,
-      createdAt: identity.created_at,
-      usage: {
-        snapshots: snapshots.count ?? 0,
-        devices: devices.data?.length ?? 0,
-        favorites: favorites.count ?? 0,
-      },
-      limits: ANONYMOUS_LIMITS,
-      devices: devices.data ?? [],
-    };
+    return describeAnonymousIdentity(data.token);
   });
 
 /**

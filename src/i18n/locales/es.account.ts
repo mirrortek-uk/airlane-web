@@ -27,15 +27,13 @@ const dict: Record<string, string> = {
   "auth.needRecovery": "Abre esta página desde el enlace de restablecimiento en tu correo.",
 
   "account.title": "Centro de cuenta",
-  "account.subtitle": "AirLane tiene cuatro estados de identidad. Las capacidades locales siempre son completas.",
   "account.loading": "Cargando el estado de la cuenta…",
 
   "account.state.local": "Modo totalmente local (nube no conectada)",
   "account.state.localDesc":
     "Cero solicitudes a la nube. Todo el proxy, políticas, múltiples salidas y detección de desbloqueo funcionan localmente; sin sincronización en la nube, Mesh ni consola web.",
-  "account.state.guest": "Modo de prueba anónima",
-  "account.state.guestDesc":
-    "No requiere correo electrónico — prueba de inmediato la sincronización en la nube limitada y el uso compartido de Mesh.",
+  "account.state.guest": "Modo de cuenta anónima",
+  "account.state.guestDesc": "Sin correo: prueba la vinculación de dispositivos, Mesh y recursos compartidos.",
   "account.state.account": "Sesión iniciada con una cuenta completa",
   "account.state.accountDesc":
     "Capacidades completas en la nube: instantáneas, grupos compartidos Mesh, gestión de dispositivos y consola web.",
@@ -57,14 +55,14 @@ const dict: Record<string, string> = {
   "account.guest.expires": "Todos los datos en la nube se destruyen tras 90 días de inactividad",
   "account.guest.allowed": "Permitido para cuentas anónimas",
   "account.guest.blocked": "Restricciones anónimas",
-  "account.guest.allow1": "Hasta {n} instantáneas de configuración en la nube",
-  "account.guest.allow2": "Hasta {n} dispositivos unidos a grupos compartidos Mesh",
-  "account.guest.allow3": "Puede aceptar invitaciones a grupos compartidos Mesh de otros",
-  "account.guest.allow4": "Hasta {n} salidas favoritas en la nube",
-  "account.guest.allow5": "Reporte del estado en línea del dispositivo",
+  "account.guest.allow1": "Vincular dispositivos a grupos Mesh, máx. {n}",
+  "account.guest.allow2": "Aceptar invitaciones a grupos Mesh de otros",
+  "account.guest.allow3": "VPS compartidos, hasta {n}",
+  "account.guest.allow4": "IPs residenciales compartidas, hasta {n}",
+  "account.guest.allow5": "Reporte de estado en línea de dispositivos",
   "account.guest.block1": "No puede iniciar sesión en la consola web",
   "account.guest.block2": "No puede crear grupos Mesh — solo unirse a los compartidos",
-  "account.guest.block3": "Sin subcuentas ni envío remoto de configuración",
+  "account.guest.block3": "Sin copia en la nube de configuraciones",
   "account.guest.block4": "No puede comprar el plan Pro",
   "account.guest.block5": "La identidad se pierde al borrar los datos o cambiar de dispositivo",
   "account.guest.created": "Modo de prueba anónima activado.",
@@ -111,11 +109,20 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Inicia sesión o comienza una sesión anónima antes de generar un código de emparejamiento.",
   "devices.guestLimit": "Las identidades anónimas pueden emparejar como máximo {n} dispositivos.",
-  "devices.api": "API para desarrolladores",
-  "devices.apiDesc": "Los clientes pueden llamar directamente a estos endpoints para emparejar y enviar latidos.",
   "devices.status.online": "En línea",
   "devices.status.idle": "Inactivo",
   "devices.status.offline": "Desconectado",
+  "account.local.guestTitle": "Cuenta anónima (sin registro)",
+  "account.local.guestDesc": "Funciones en la nube sin correo: vinculación de dispositivos, Mesh, VPS compartidos e IPs residenciales. Guarda el código de recuperación.",
+  "account.local.accountTitle": "Cuenta completa",
+  "account.local.accountDesc": "Regístrate o inicia sesión con correo para todas las funciones: snapshots, grupos Mesh, gestión de dispositivos y consola web.",
+  "account.usage.sharedVps": "VPS compartidos",
+  "account.usage.residentialIp": "IPs residenciales",
+  "account.resources.title": "Mis recursos compartidos",
+  "account.resources.none": "Aún sin recursos",
+  "account.resources.browse": "Ver PoolVIP",
+  "account.resources.type.vps": "VPS compartidos",
+  "account.resources.type.residential": "IPs residenciales compartidas",
 };
 
 export default dict;

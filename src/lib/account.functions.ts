@@ -5,6 +5,7 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import {
   ANONYMOUS_LIMITS,
   attachAnonymousToUser,
+  describeAnonymousIdentity,
   issueAnonymousIdentity,
   resolveAnonymousByToken,
   resolveIdentityByUserId,
@@ -44,44 +45,19 @@ function pairingCode() {
 const tokenSchema = z.object({ token: z.string().min(10).max(200) });
 
 /** Create a new anonymous identity. Returns token + one-time recovery code. */
-export const createGuestSession = createServerFn({ method: "POST" }).handler(async () => {
-  return issueAnonymousIdentity();
-});
+export const createGuestSession = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) =>
+    z.object({ captchaToken: z.string().max(2048).optional() }).parse(data ?? {}),
+  )
+  .handler(async ({ data }) => {
+    return issueAnonymousIdentity(data.captchaToken);
+  });
 
 /** Read the state + quota usage of an anonymous identity. */
 export const getGuestSession = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => tokenSchema.parse(data))
   .handler(async ({ data }) => {
-    const identity = await resolveAnonymousByToken(data.token);
-    if (!identity) return { valid: false as const };
-    const db = await admin();
-    const [snapshots, devices, favorites] = await Promise.all([
-      db
-        .from("cloud_snapshots")
-        .select("id", { count: "exact", head: true })
-        .eq("identity_id", identity.id),
-      db
-        .from("devices")
-        .select("id, name, platform, status, last_seen_at")
-        .eq("identity_id", identity.id)
-        .order("created_at", { ascending: false }),
-      db
-        .from("node_favorites")
-        .select("id", { count: "exact", head: true })
-        .eq("identity_id", identity.id),
-    ]);
-    return {
-      valid: true as const,
-      id: identity.id,
-      createdAt: identity.created_at,
-      usage: {
-        snapshots: snapshots.count ?? 0,
-        devices: devices.data?.length ?? 0,
-        favorites: favorites.count ?? 0,
-      },
-      limits: ANONYMOUS_LIMITS,
-      devices: devices.data ?? [],
-    };
+    return describeAnonymousIdentity(data.token);
   });
 
 /** End an anonymous identity: revoke it and cascade-delete its cloud data. */

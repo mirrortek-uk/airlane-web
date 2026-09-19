@@ -27,15 +27,13 @@ const dict: Record<string, string> = {
   "auth.needRecovery": "Öffne diese Seite über den Reset-Link in deiner E-Mail.",
 
   "account.title": "Kontozentrum",
-  "account.subtitle": "AirLane hat vier Identitätsstufen. Lokale Funktionen sind immer vollständig verfügbar.",
   "account.loading": "Kontostatus wird geladen…",
 
   "account.state.local": "Vollständig lokaler Modus (nicht mit der Cloud verbunden)",
   "account.state.localDesc":
     "Keinerlei Anfragen an die Cloud. Alles Proxying, Policies, Multi-Exit und Entsperrungs-Erkennung laufen lokal; keine Cloud-Synchronisierung, kein Mesh oder Web-Konsole.",
-  "account.state.guest": "Anonymer Testmodus",
-  "account.state.guestDesc":
-    "Keine E-Mail erforderlich — teste sofort eingeschränkte Cloud-Synchronisierung und Mesh-Sharing.",
+  "account.state.guest": "Anonymer Kontomodus",
+  "account.state.guestDesc": "Ohne E-Mail – Gerätebindung, Mesh-Sharing und geteilte Ressourcen testen.",
   "account.state.account": "Angemeldet mit einem vollständigen Konto",
   "account.state.accountDesc":
     "Vollständige Cloud-Funktionen: Snapshots, geteilte Mesh-Gruppen, Geräteverwaltung und Web-Konsole.",
@@ -57,14 +55,14 @@ const dict: Record<string, string> = {
   "account.guest.expires": "Alle Cloud-Daten werden nach 90 Tagen Inaktivität gelöscht",
   "account.guest.allowed": "Für anonyme Konten erlaubt",
   "account.guest.blocked": "Anonyme Einschränkungen",
-  "account.guest.allow1": "Bis zu {n} Cloud-Konfigurations-Snapshots",
-  "account.guest.allow2": "Bis zu {n} Geräte in geteilten Mesh-Gruppen",
-  "account.guest.allow3": "Kann Einladungen zu geteilten Mesh-Gruppen von anderen annehmen",
-  "account.guest.allow4": "Bis zu {n} Cloud-Exit-Favoriten",
-  "account.guest.allow5": "Melden des Geräteonlinestatus",
+  "account.guest.allow1": "Geräte zu Mesh-Gruppen hinzufügen, max. {n}",
+  "account.guest.allow2": "Mesh-Gruppeneinladungen anderer annehmen",
+  "account.guest.allow3": "Geteilte VPS, bis zu {n}",
+  "account.guest.allow4": "Geteilte Residential-IPs, bis zu {n}",
+  "account.guest.allow5": "Online-Status der Geräte melden",
   "account.guest.block1": "Keine Anmeldung an der Web-Konsole möglich",
   "account.guest.block2": "Kann keine Mesh-Gruppen erstellen — kann nur geteilten beitreten",
-  "account.guest.block3": "Keine Unterkonten und kein Remote-Konfigurations-Push",
+  "account.guest.block3": "Kein Cloud-Backup für Konfigurationen",
   "account.guest.block4": "Kann den Pro-Plan nicht kaufen",
   "account.guest.block5": "Identität geht beim Löschen der Daten oder Gerätewechsel verloren",
   "account.guest.created": "Anonymer Testmodus aktiviert.",
@@ -111,11 +109,20 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Melde dich an oder starte eine anonyme Sitzung, bevor du einen Kopplungscode generierst.",
   "devices.guestLimit": "Anonyme Identitäten können höchstens {n} Geräte koppeln.",
-  "devices.api": "Entwickler-API",
-  "devices.apiDesc": "Clients können diese Endpunkte direkt aufrufen, um sich zu koppeln und Heartbeats zu senden.",
   "devices.status.online": "Online",
   "devices.status.idle": "Inaktiv",
   "devices.status.offline": "Offline",
+  "account.local.guestTitle": "Anonymes Konto (ohne Registrierung)",
+  "account.local.guestDesc": "Cloud-Funktionen ohne E-Mail: Gerätebindung, Mesh-Sharing, geteilte VPS- und Residential-IP-Kontingente. Wiederherstellungscode sichern.",
+  "account.local.accountTitle": "Vollwertiges Konto",
+  "account.local.accountDesc": "Mit E-Mail registrieren oder anmelden für alle Cloud-Funktionen: Config-Snapshots, Mesh-Gruppen, Geräteverwaltung und Web-Konsole.",
+  "account.usage.sharedVps": "Geteilte VPS",
+  "account.usage.residentialIp": "Residential-IPs",
+  "account.resources.title": "Meine geteilten Ressourcen",
+  "account.resources.none": "Noch nichts gekauft",
+  "account.resources.browse": "PoolVIP ansehen",
+  "account.resources.type.vps": "Geteilte VPS",
+  "account.resources.type.residential": "Geteilte Residential-IPs",
 };
 
 export default dict;

@@ -264,11 +264,15 @@ create policy devices_identity_select on public.devices for select to authentica
 ## 6. Anti-Abuse 限额
 
 ```ts
-ANONYMOUS_LIMITS  = { devices: 2, snapshots: 2, favorites: 10, meshGroups: 2 }
+ANONYMOUS_LIMITS  = { devices: 2, sharedVps: 2, residentialIp: 2, meshGroups: 2 }
 REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 }
 ```
 
 限额常量集中在 `src/lib/identity.functions.ts`，检查走 `checkLimit(identityId, resource)`。
+
+> 产品决策（2026-09）：匿名账号不提供云端快照与节点收藏；共享 VPS /
+> 住宅 IP 各给 2 个额度（资源表待 PoolVIP 打通后落地，当前展示 0/n）。
+> 匿名账号不能做云端备份配置。
 
 ---
 
@@ -280,6 +284,10 @@ REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 
 4. 匿名 token 丢失且无 recovery_code = 永久孤儿（产品层接受并明示）
 5. `supabaseAdmin` 只在 serverFn/服务端使用，禁入客户端 bundle
 6. 匿名写路径依赖 Supabase 侧限速；找回接口加频次限制（同一 IP/identity 连续失败冷却）
+7. **匿名身份创建必须过人机验证**：前端渲染 Cloudflare Turnstile
+   （`VITE_TURNSTILE_SITE_KEY`），服务端 `verifyTurnstile` 用
+   `TURNSTILE_SECRET_KEY` 调 siteverify 校验。未配置密钥时跳过校验
+   （仅本地开发用）；生产环境必须配齐两个变量并加入 Vercel env。
 
 ---
 
@@ -287,7 +295,7 @@ REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 
 
 | serverFn | 说明 |
 |---|---|
-| `createAnonymousIdentity()` | 建匿名身份，返回 `{token, recoveryCode, id, expiresAt}` |
+| `createAnonymousIdentity({captchaToken?})` | 建匿名身份（Turnstile 人机验证），返回 `{token, recoveryCode, id, expiresAt}` |
 | `getAnonymousIdentity({token})` | 查状态 + 用量 + 设备 |
 | `endAnonymousIdentity({token})` | 吊销身份（级联删数据） |
 | `recoverAnonymousIdentity({recoveryCode})` | 恢复码换新 token |

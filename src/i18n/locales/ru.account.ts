@@ -27,15 +27,13 @@ const dict: Record<string, string> = {
   "auth.needRecovery": "Откройте эту страницу по ссылке для сброса из письма.",
 
   "account.title": "Центр аккаунта",
-  "account.subtitle": "У AirLane четыре состояния идентификации. Локальные возможности всегда полны.",
   "account.loading": "Загрузка состояния аккаунта…",
 
   "account.state.local": "Полностью локальный режим (облако не подключено)",
   "account.state.localDesc":
     "Ноль запросов к облаку. Весь прокси, политики, множественные выходы и определение разблокировки работают локально; без облачной синхронизации, Mesh или веб-консоли.",
-  "account.state.guest": "Анонимный пробный режим",
-  "account.state.guestDesc":
-    "Email не нужен — попробуйте ограниченную облачную синхронизацию и Mesh-шаринг прямо сейчас.",
+  "account.state.guest": "Анонимный аккаунт",
+  "account.state.guestDesc": "Без почты — привязка устройств, Mesh и общие ресурсы.",
   "account.state.account": "Вход с полноценным аккаунтом",
   "account.state.accountDesc":
     "Полные облачные возможности: снапшоты, общие Mesh-группы, управление устройствами и веб-консоль.",
@@ -57,14 +55,14 @@ const dict: Record<string, string> = {
   "account.guest.expires": "Все облачные данные удаляются после 90 дней неактивности",
   "account.guest.allowed": "Разрешено для анонимных аккаунтов",
   "account.guest.blocked": "Ограничения анонимного режима",
-  "account.guest.allow1": "До {n} облачных снапшотов конфигурации",
-  "account.guest.allow2": "До {n} устройств в общих Mesh-группах",
-  "account.guest.allow3": "Можно принимать приглашения в Mesh-группы от других",
-  "account.guest.allow4": "До {n} избранных облачных выходов",
-  "account.guest.allow5": "Отчёт о статусе устройства в сети",
+  "account.guest.allow1": "Привязка устройств к Mesh-группам, до {n}",
+  "account.guest.allow2": "Приём приглашений в чужие Mesh-группы",
+  "account.guest.allow3": "Общие VPS, до {n}",
+  "account.guest.allow4": "Общие резидентские IP, до {n}",
+  "account.guest.allow5": "Отчёт об онлайн-статусе устройств",
   "account.guest.block1": "Нельзя войти в веб-консоль",
   "account.guest.block2": "Нельзя создавать Mesh-группы — только присоединяться к общим",
-  "account.guest.block3": "Нет субаккаунтов и удалённой отправки конфигурации",
+  "account.guest.block3": "Нет облачного бэкапа конфигураций",
   "account.guest.block4": "Нельзя приобрести тариф Pro",
   "account.guest.block5": "Идентификация теряется при очистке данных или смене устройства",
   "account.guest.created": "Анонимный пробный режим включён.",
@@ -111,11 +109,20 @@ const dict: Record<string, string> = {
   "devices.needIdentity":
     "Войдите или начните анонимную сессию, прежде чем создавать код привязки.",
   "devices.guestLimit": "Анонимные идентификации могут привязать не более {n} устройств.",
-  "devices.api": "API для разработчиков",
-  "devices.apiDesc": "Клиенты могут напрямую обращаться к этим эндпоинтам для привязки и отправки heartbeat-сигналов.",
   "devices.status.online": "В сети",
   "devices.status.idle": "Неактивен",
   "devices.status.offline": "Не в сети",
+  "account.local.guestTitle": "Анонимный аккаунт (без регистрации)",
+  "account.local.guestDesc": "Облачные функции без почты: привязка устройств, Mesh, общие VPS и резидентские IP. Сохраните код восстановления.",
+  "account.local.accountTitle": "Полный аккаунт",
+  "account.local.accountDesc": "Регистрация или вход по почте открывает все функции: снапшоты конфигов, Mesh-группы, управление устройствами и веб-консоль.",
+  "account.usage.sharedVps": "Общие VPS",
+  "account.usage.residentialIp": "Резидентские IP",
+  "account.resources.title": "Мои общие ресурсы",
+  "account.resources.none": "Пока ничего нет",
+  "account.resources.browse": "К PoolVIP",
+  "account.resources.type.vps": "Общие VPS",
+  "account.resources.type.residential": "Общие резидентские IP",
 };
 
 export default dict;

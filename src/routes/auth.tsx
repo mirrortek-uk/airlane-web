@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/i18n";
 import { writeGuestToken } from "@/lib/guest";
@@ -48,6 +49,7 @@ function AuthPage() {
   const [anonRecovery, setAnonRecovery] = useState<string | null>(null);
   const [showRecover, setShowRecover] = useState(false);
   const [recoveryInput, setRecoveryInput] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -65,7 +67,9 @@ function AuthPage() {
   async function startAnonymous() {
     setBusy(true);
     try {
-      const session = await createGuestSession();
+      const session = await createGuestSession({
+        data: { captchaToken: captchaToken ?? undefined },
+      });
       writeGuestToken(session.token);
       setAnonRecovery(session.recoveryCode);
     } catch (error) {
@@ -399,10 +403,11 @@ function AuthPage() {
             </div>
           ) : (
             <>
+              <Turnstile onVerify={setCaptchaToken} />
               <button
                 type="button"
                 onClick={startAnonymous}
-                disabled={busy}
+                disabled={busy || (TURNSTILE_ENABLED && !captchaToken)}
                 className="mt-4 w-full rounded-full border border-input bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent disabled:opacity-60"
               >
                 {busy ? t("auth.anon.creating") : t("auth.anon.button")}
