@@ -41,8 +41,8 @@ const dict: Record<string, string> = {
   "account.state.memberDesc":
     "Права назначены владельцем аккаунта {parent}; вы видите только ресурсы, к которым вам предоставлен доступ.",
 
-  "account.action.tryGuest": "Попробовать облако анонимно",
-  "account.action.signIn": "Войти / создать аккаунт",
+  "account.action.tryGuest": "Анонимный аккаунт: вход / регистрация",
+  "account.action.signIn": "Полный аккаунт: вход / регистрация",
   "account.action.upgrade": "Перейти на полноценный аккаунт",
   "account.action.exitGuest": "Завершить анонимную сессию (вернуться к локальному режиму)",
   "account.action.signOut": "Выйти",
@@ -123,6 +123,13 @@ const dict: Record<string, string> = {
   "account.resources.browse": "К PoolVIP",
   "account.resources.type.vps": "Общие VPS",
   "account.resources.type.residential": "Общие резидентские IP",
+  "account.anon.title": "Анонимный аккаунт",
+  "account.anon.desc": "Облачная личность без почты; создание требует проверки на человека.",
+  "account.anon.tabLogin": "Вход",
+  "account.anon.tabCreate": "Регистрация",
+  "account.anon.loginDesc": "Уже есть анонимный аккаунт? Восстановите его кодом восстановления.",
+  "account.anon.createDesc": "Нет анонимного аккаунта? Создайте случайную личность одним кликом.",
+  "account.anon.close": "Закрыть",
 };
 
 export default dict;

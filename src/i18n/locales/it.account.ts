@@ -41,8 +41,8 @@ const dict: Record<string, string> = {
   "account.state.memberDesc":
     "Permessi assegnati dall'account proprietario {parent}; vedi solo le risorse condivise con te.",
 
-  "account.action.tryGuest": "Prova il cloud in modo anonimo",
-  "account.action.signIn": "Accedi / crea account",
+  "account.action.tryGuest": "Account anonimo: accedi / registrati",
+  "account.action.signIn": "Account completo: accedi / registrati",
   "account.action.upgrade": "Passa a un account completo",
   "account.action.exitGuest": "Termina la sessione anonima (torna solo locale)",
   "account.action.signOut": "Esci",
@@ -123,6 +123,13 @@ const dict: Record<string, string> = {
   "account.resources.browse": "Vedi PoolVIP",
   "account.resources.type.vps": "VPS condivisi",
   "account.resources.type.residential": "IP residenziali condivisi",
+  "account.anon.title": "Account anonimo",
+  "account.anon.desc": "Identità cloud senza email; la creazione richiede una verifica anti-bot.",
+  "account.anon.tabLogin": "Accedi",
+  "account.anon.tabCreate": "Registrati",
+  "account.anon.loginDesc": "Hai già un account anonimo? Ripristinalo con il codice di recupero.",
+  "account.anon.createDesc": "Nessun account anonimo? Genera un'identità casuale con un clic.",
+  "account.anon.close": "Chiudi",
 };
 
 export default dict;

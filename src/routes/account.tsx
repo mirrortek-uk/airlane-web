@@ -1,13 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { toast } from "sonner";
-import { Check, X, Cloud, ShieldCheck, User, Server, Globe } from "lucide-react";
+import { Check, X, Cloud, ShieldCheck, User, Server, Globe, XIcon } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/i18n";
 import { clearGuestToken, readGuestToken, writeGuestToken } from "@/lib/guest";
+import { recoverAnonymousIdentity } from "@/lib/identity.functions";
 import {
   createGuestSession,
   endGuestSession,
@@ -52,6 +53,10 @@ function AccountPage() {
   const [pendingGuestToken, setPendingGuestToken] = useState<string | null>(null);
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [anonOpen, setAnonOpen] = useState(false);
+  const [anonMode, setAnonMode] = useState<"login" | "create">("login");
+  const [anonRecoveryInput, setAnonRecoveryInput] = useState("");
+  const [createdRecovery, setCreatedRecovery] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -96,13 +101,42 @@ function AccountPage() {
       });
       writeGuestToken(session.token);
       setRecoveryCode(session.recoveryCode);
+      setCreatedRecovery(session.recoveryCode);
       toast.success(t("account.guest.created"));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function recoverAnon(event: FormEvent) {
+    event.preventDefault();
+    if (!anonRecoveryInput.trim()) return;
+    setBusy(true);
+    try {
+      const result = await recoverAnonymousIdentity({
+        data: { recoveryCode: anonRecoveryInput },
+      });
+      if (!result.ok) {
+        toast.error(t("auth.anon.recoverInvalid"));
+        return;
+      }
+      writeGuestToken(result.token);
+      toast.success(t("auth.anon.recoverOk"));
+      setAnonOpen(false);
       await refresh();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : String(error));
     } finally {
       setBusy(false);
     }
+  }
+
+  async function confirmAnonRecovery() {
+    setAnonOpen(false);
+    setCreatedRecovery(null);
+    await refresh();
   }
 
   async function rotateRecovery() {
@@ -377,10 +411,13 @@ function AccountPage() {
                   </p>
                 </div>
               </div>
-              <Turnstile onVerify={setCaptchaToken} />
               <button
-                onClick={startGuest}
-                disabled={busy || (TURNSTILE_ENABLED && !captchaToken)}
+                onClick={() => {
+                  setAnonMode("login");
+                  setCreatedRecovery(null);
+                  setAnonRecoveryInput("");
+                  setAnonOpen(true);
+                }}
                 className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
               >
                 {t("account.action.tryGuest")}
@@ -417,6 +454,113 @@ function AccountPage() {
           {t("account.rule")}
         </p>
       </div>
+
+      {anonOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 px-4"
+          onClick={() => setAnonOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              aria-label={t("account.anon.close")}
+              onClick={() => setAnonOpen(false)}
+              className="absolute right-5 top-5 text-muted-foreground hover:text-foreground"
+            >
+              <XIcon size={18} />
+            </button>
+
+            <h2 className="font-display text-2xl font-semibold text-card-foreground">
+              {t("account.anon.title")}
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">{t("account.anon.desc")}</p>
+
+            {createdRecovery ? (
+              <div className="mt-5">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  {t("auth.anon.recoveryTitle")}
+                </p>
+                <p className="mt-2 rounded-2xl bg-muted px-4 py-3 text-center font-mono text-xl font-semibold tracking-[0.15em] text-foreground">
+                  {createdRecovery}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-amber-600">
+                  {t("auth.anon.recoveryWarning")}
+                </p>
+                <button
+                  type="button"
+                  onClick={confirmAnonRecovery}
+                  className="mt-3 w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                >
+                  {t("auth.anon.recoveryConfirm")}
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="mt-6 grid grid-cols-2 gap-1 rounded-full bg-muted p-1">
+                  {(["login", "create"] as const).map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => setAnonMode(item)}
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                        anonMode === item
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {t(item === "login" ? "account.anon.tabLogin" : "account.anon.tabCreate")}
+                    </button>
+                  ))}
+                </div>
+
+                {anonMode === "login" ? (
+                  <form onSubmit={recoverAnon} className="mt-5 flex flex-col gap-3">
+                    <p className="text-sm text-muted-foreground">
+                      {t("account.anon.loginDesc")}
+                    </p>
+                    <input
+                      type="text"
+                      required
+                      value={anonRecoveryInput}
+                      onChange={(e) => setAnonRecoveryInput(e.target.value)}
+                      placeholder={t("auth.anon.recoverPlaceholder")}
+                      className="w-full rounded-xl border border-input bg-background px-4 py-3 text-center font-mono text-sm tracking-widest text-foreground outline-none focus:border-primary"
+                    />
+                    <button
+                      type="submit"
+                      disabled={busy}
+                      className="w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
+                    >
+                      {t("auth.anon.recoverButton")}
+                    </button>
+                  </form>
+                ) : (
+                  <div className="mt-5">
+                    <p className="text-sm text-muted-foreground">
+                      {t("account.anon.createDesc")}
+                    </p>
+                    <Turnstile onVerify={setCaptchaToken} />
+                    <button
+                      type="button"
+                      onClick={startGuest}
+                      disabled={busy || (TURNSTILE_ENABLED && !captchaToken)}
+                      className="mt-3 w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-60"
+                    >
+                      {busy ? t("auth.anon.creating") : t("auth.anon.button")}
+                    </button>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {t("auth.anon.note")}
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
