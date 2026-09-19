@@ -93,7 +93,7 @@ const dict: Record<string, string> = {
   "devices.steps": "對接步驟",
   "devices.step1": "開啟 AirLane 客戶端 → 設定 → 帳號 → 綁定雲端。",
   "devices.step2": "輸入本頁產生的配對碼並確認。",
-  "devices.step3": "客戶端完成綁定後，會定期回報上線狀態。",
+  "devices.step3": "啟用 Mesh 後，用戶端才會定期回報上線狀態。",
   "devices.list": "已綁定裝置",
   "devices.empty": "還沒有裝置綁定到目前身份。",
   "devices.lastSeen": "最後上線",

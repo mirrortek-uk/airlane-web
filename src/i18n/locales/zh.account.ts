@@ -127,7 +127,7 @@ const dict: Record<string, string> = {
   "devices.steps": "对接步骤",
   "devices.step1": "打开 AirLane 客户端 → 设置 → 账号 → 绑定云端。",
   "devices.step2": "输入本页生成的配对码并确认。",
-  "devices.step3": "客户端完成绑定后，会周期性上报在线状态。",
+  "devices.step3": "启用 Mesh 后，客户端才会周期性上报在线状态。",
   "devices.list": "已绑定设备",
   "devices.empty": "还没有设备绑定到当前身份。",
   "devices.lastSeen": "最后在线",

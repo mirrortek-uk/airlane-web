@@ -100,7 +100,7 @@ const dict: Record<string, string> = {
   "devices.steps": "Come associare",
   "devices.step1": "Apri il client AirLane → Impostazioni → Account → Connetti al cloud.",
   "devices.step2": "Inserisci il codice di associazione generato in questa pagina.",
-  "devices.step3": "Una volta associato, il client segnala periodicamente il suo stato online.",
+  "devices.step3": "Il client segnala il proprio stato online solo quando Mesh è attivo.",
   "devices.list": "Dispositivi associati",
   "devices.empty": "Nessun dispositivo è ancora associato a questa identità.",
   "devices.lastSeen": "Ultimo accesso",

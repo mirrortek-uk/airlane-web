@@ -139,7 +139,7 @@ const dict: Record<string, string> = {
   "devices.steps": "How to pair",
   "devices.step1": "Open the AirLane client → Settings → Account → Connect cloud.",
   "devices.step2": "Enter the pairing code generated on this page.",
-  "devices.step3": "Once paired, the client reports its online status periodically.",
+  "devices.step3": "The client reports its online status only while Mesh is enabled.",
   "devices.list": "Paired devices",
   "devices.empty": "No devices are paired with this identity yet.",
   "devices.lastSeen": "Last seen",

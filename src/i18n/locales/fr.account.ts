@@ -100,7 +100,7 @@ const dict: Record<string, string> = {
   "devices.steps": "Comment appairer",
   "devices.step1": "Ouvrez le client AirLane → Paramètres → Compte → Connecter le cloud.",
   "devices.step2": "Entrez le code d'appairage généré sur cette page.",
-  "devices.step3": "Une fois appairé, le client signale périodiquement son statut en ligne.",
+  "devices.step3": "Le client signale son statut en ligne uniquement lorsque Mesh est activé.",
   "devices.list": "Appareils appairés",
   "devices.empty": "Aucun appareil n'est encore appairé avec cette identité.",
   "devices.lastSeen": "Dernière activité",

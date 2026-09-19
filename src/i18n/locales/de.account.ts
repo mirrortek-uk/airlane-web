@@ -100,7 +100,7 @@ const dict: Record<string, string> = {
   "devices.steps": "So funktioniert die Kopplung",
   "devices.step1": "Öffne den AirLane-Client → Einstellungen → Konto → Cloud verbinden.",
   "devices.step2": "Gib den auf dieser Seite generierten Kopplungscode ein.",
-  "devices.step3": "Nach der Kopplung meldet der Client regelmäßig seinen Onlinestatus.",
+  "devices.step3": "Der Client meldet seinen Onlinestatus nur, wenn Mesh aktiviert ist.",
   "devices.list": "Gekoppelte Geräte",
   "devices.empty": "Mit dieser Identität sind noch keine Geräte gekoppelt.",
   "devices.lastSeen": "Zuletzt gesehen",

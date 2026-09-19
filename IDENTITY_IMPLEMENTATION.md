@@ -306,6 +306,17 @@ REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 
 
 `account.functions.ts` 的旧导出名（`createGuestSession` 等）保留为兼容包装，内部走新模型。
 
+### 客户端公开接口
+
+| HTTP 接口 | 说明 |
+|---|---|
+| `POST /api/public/pair/claim` | 客户端兑换配对码注册设备；body `{code, name?, platform?, client_version?, device_public_key?}`，返回 `{device_id, name, platform, identity}` |
+| `POST /api/public/pair/heartbeat` | 客户端心跳；body `{device_id, status?, client_version?}` |
+
+**心跳规则：只有启用 Mesh 功能的设备才上报心跳。** 未启用 Mesh 的设备
+绑定后不应调用 heartbeat —— 云端只为需要组网/调度的设备追踪活性，
+避免无谓的请求开销。
+
 ---
 
 ## 9. Phase 映射

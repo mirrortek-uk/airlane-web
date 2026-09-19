@@ -100,7 +100,7 @@ const dict: Record<string, string> = {
   "devices.steps": "Cómo emparejar",
   "devices.step1": "Abre el cliente de AirLane → Configuración → Cuenta → Conectar a la nube.",
   "devices.step2": "Ingresa el código de emparejamiento generado en esta página.",
-  "devices.step3": "Una vez emparejado, el cliente reporta su estado en línea periódicamente.",
+  "devices.step3": "El cliente solo informa su estado en línea cuando Mesh está activado.",
   "devices.list": "Dispositivos emparejados",
   "devices.empty": "Aún no hay dispositivos emparejados con esta identidad.",
   "devices.lastSeen": "Última conexión",
