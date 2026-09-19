@@ -70,6 +70,7 @@ POST /api/public/pair/claim  →  返回 device_id（持久化保存）
 | 409 | `code_already_used` | 配对码已被兑换 | 提示"配对码已使用，请回账号页重新生成" |
 | 410 | `code_expired` | 配对码超过 10 分钟有效期 | 提示"配对码已过期，请重新生成" |
 | 403 | `guest_device_limit` | 匿名账号设备数已达上限（2 台） | 提示"该匿名账号设备已满，请解绑旧设备或升级正式账号" |
+| 403 | `device_limit_reached` | 正式账号设备数已达上限（免费版 2 台 / Pro 10 台） | 提示"设备数量已达上限，请解绑旧设备或升级套餐" |
 | 500 | `pairing_failed` | 服务端写入失败 | 提示稍后重试 |
 
 ### 示例
@@ -149,11 +150,14 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 
 ## 6. 匿名账号 vs 正式账号
 
-| | 匿名账号 (`identity: "guest"`) | 正式账号 (`identity: "account"`) |
-|---|---|---|
-| 设备上限 | 2 台 | 10 台 |
-| 超出时 claim 返回 | `guest_device_limit` (403) | 目前不限制在 claim 层拦截 |
-| 用户侧表现 | 账号页"设备 x/2" | 账号页显示设备数 |
+| | 匿名账号 (`identity: "guest"`) | 正式账号·免费版 | 正式账号·Pro |
+|---|---|---|---|
+| 设备上限 | 2 台 | 2 台 | 10 台 |
+| 配置模板/节点文件 | 不可用 | 2 个 | 15 个 |
+| 超出时 claim 返回 | `guest_device_limit` (403) | `device_limit_reached` (403) | `device_limit_reached` (403) |
+
+配置模板/节点文件存 `cloud_snapshots` 表；上传接口落地前客户端
+无需处理，服务端会按套餐档位强制限额。
 
 客户端不需要按 identity 区分逻辑 —— 正常处理错误码即可。
 

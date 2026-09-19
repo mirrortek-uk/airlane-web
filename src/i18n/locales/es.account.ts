@@ -73,7 +73,7 @@ const dict: Record<string, string> = {
   "account.guest.migrate": "Migrar datos anónimos",
   "account.guest.discard": "Ignorar",
 
-  "account.usage.snapshots": "Instantáneas en la nube",
+  "account.usage.snapshots": "Plantillas y archivos de nodos",
   "account.usage.devices": "Dispositivos emparejados",
   "account.usage.favorites": "Salidas favoritas",
   "account.usage.groups": "Grupos Mesh",

@@ -8,7 +8,7 @@ import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/i18n";
 import { clearGuestToken, readGuestToken, writeGuestToken } from "@/lib/guest";
-import { recoverAnonymousIdentity } from "@/lib/identity.functions";
+import { ACCOUNT_LIMITS, recoverAnonymousIdentity } from "@/lib/identity.functions";
 import {
   createAccountPairingCode,
   createGuestSession,
@@ -257,8 +257,14 @@ function AccountPage() {
             </dl>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-4">
-              <Stat label={t("account.usage.snapshots")} value={overview?.counts.snapshots ?? 0} />
-              <Stat label={t("account.usage.devices")} value={overview?.devices.length ?? 0} />
+              <Stat
+                label={t("account.usage.snapshots")}
+                value={`${overview?.counts.snapshots ?? 0} / ${ACCOUNT_LIMITS[profile.plan === "pro" ? "pro" : "free"].configTemplates}`}
+              />
+              <Stat
+                label={t("account.usage.devices")}
+                value={`${overview?.devices.length ?? 0} / ${ACCOUNT_LIMITS[profile.plan === "pro" ? "pro" : "free"].devices}`}
+              />
               <Stat label={t("account.usage.favorites")} value={overview?.counts.favorites ?? 0} />
               <Stat label={t("account.usage.groups")} value={overview?.counts.groups ?? 0} />
             </div>

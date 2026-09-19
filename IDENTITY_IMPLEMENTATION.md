@@ -264,15 +264,25 @@ create policy devices_identity_select on public.devices for select to authentica
 ## 6. Anti-Abuse 限额
 
 ```ts
-ANONYMOUS_LIMITS  = { devices: 2, sharedVps: 2, residentialIp: 2, meshGroups: 2 }
-REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 }
+ANONYMOUS_LIMITS = { devices: 2, sharedVps: 2, residentialIp: 2, meshGroups: 2 }
+ACCOUNT_LIMITS   = {
+  free: { devices: 2,  configTemplates: 2 },
+  pro:  { devices: 10, configTemplates: 15 },
+}
 ```
 
 限额常量集中在 `src/lib/identity.functions.ts`，检查走 `checkLimit(identityId, resource)`。
+设备绑定限额在 `POST /api/public/pair/claim` 强制：正式账号按
+`profiles.plan` 分档（free 2 台 / pro 10 台，超限返回
+`device_limit_reached`）；匿名身份固定 2 台（`guest_device_limit`）。
+配置模板与节点文件配额挂 `cloud_snapshots` 表，上传接口落地时按
+`configTemplates` 档位强制。
 
 > 产品决策（2026-09）：匿名账号不提供云端快照与节点收藏；共享 VPS /
 > 住宅 IP 各给 2 个额度（资源表待 PoolVIP 打通后落地，当前展示 0/n）。
 > 匿名账号不能做云端备份配置。
+> 免费版：绑定 2 台终端 + 2 个配置模板/节点文件；付费版：10 台终端 +
+> 15 个配置模板/节点文件。
 
 ---
 

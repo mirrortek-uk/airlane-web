@@ -67,7 +67,7 @@ const dict: Record<string, string> = {
   "account.guest.migrate": "遷移匿名資料",
   "account.guest.discard": "忽略",
 
-  "account.usage.snapshots": "雲端快照",
+  "account.usage.snapshots": "配置範本與節點檔案",
   "account.usage.devices": "已綁定裝置",
   "account.usage.favorites": "節點收藏",
   "account.usage.groups": "Mesh 共享組",

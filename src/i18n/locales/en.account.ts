@@ -112,7 +112,7 @@ const dict: Record<string, string> = {
   "account.guest.rotateRecovery": "Regenerate recovery code",
   "account.guest.recoveryRotated": "New recovery code generated; the old one is revoked.",
 
-  "account.usage.snapshots": "Cloud snapshots",
+  "account.usage.snapshots": "Config templates & node files",
   "account.usage.devices": "Paired devices",
   "account.usage.favorites": "Exit favorites",
   "account.usage.groups": "Mesh groups",

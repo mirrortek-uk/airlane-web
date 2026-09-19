@@ -25,6 +25,12 @@ export const ANONYMOUS_LIMITS = {
   meshGroups: 2,
 } as const;
 
+/** Registered-account quotas, keyed by profiles.plan. */
+export const ACCOUNT_LIMITS = {
+  free: { devices: 2, configTemplates: 2 },
+  pro: { devices: 10, configTemplates: 15 },
+} as const;
+
 const ACCESS_TOKEN_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 
 /**

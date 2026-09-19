@@ -101,7 +101,7 @@ const dict: Record<string, string> = {
   "account.guest.rotateRecovery": "重新生成恢复码",
   "account.guest.recoveryRotated": "已生成新恢复码，旧码已失效。",
 
-  "account.usage.snapshots": "云端快照",
+  "account.usage.snapshots": "配置模板与节点文件",
   "account.usage.devices": "已绑定设备",
   "account.usage.favorites": "节点收藏",
   "account.usage.groups": "Mesh 共享组",

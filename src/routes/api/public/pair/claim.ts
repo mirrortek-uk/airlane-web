@@ -47,8 +47,23 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           return json({ error: "code_expired" }, 410);
         }
 
-        // Anonymous identities may only bind a limited number of devices.
-        if (pairing.identity_id || pairing.guest_session_id) {
+        // Device quotas: registered accounts are limited by plan
+        // (free 2 / pro 10); anonymous identities are capped at 2.
+        const { ACCOUNT_LIMITS } = await import("@/lib/identity.functions");
+        if (pairing.owner_user_id) {
+          const { data: prof } = await supabaseAdmin
+            .from("profiles")
+            .select("plan")
+            .eq("id", pairing.owner_user_id)
+            .maybeSingle();
+          const limit =
+            prof?.plan === "pro" ? ACCOUNT_LIMITS.pro.devices : ACCOUNT_LIMITS.free.devices;
+          const { count } = await supabaseAdmin
+            .from("devices")
+            .select("id", { count: "exact", head: true })
+            .eq("owner_user_id", pairing.owner_user_id);
+          if ((count ?? 0) >= limit) return json({ error: "device_limit_reached" }, 403);
+        } else if (pairing.identity_id || pairing.guest_session_id) {
           const deviceCount = async (column: "identity_id" | "guest_session_id", value: string) => {
             const { count } = await supabaseAdmin
               .from("devices")
