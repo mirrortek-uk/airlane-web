@@ -41,7 +41,7 @@ const dict: Record<string, string> = {
   "account.state.memberDesc":
     "Berechtigungen vom Hauptkonto {parent} zugewiesen; du siehst nur mit dir geteilte Ressourcen.",
 
-  "account.action.tryGuest": "Anonymes Konto anmelden/registrieren",
+  "account.action.tryGuest": "Anonymes Konto anmelden/erstellen",
   "account.action.signIn": "Vollwertiges Konto anmelden/registrieren",
   "account.action.upgrade": "Auf vollständiges Konto upgraden",
   "account.action.exitGuest": "Anonyme Sitzung beenden (zurück zu nur lokal)",
@@ -126,7 +126,7 @@ const dict: Record<string, string> = {
   "account.anon.title": "Anonymes Konto",
   "account.anon.desc": "Cloud-Identität ohne E-Mail; Erstellung erfordert eine Bot-Prüfung.",
   "account.anon.tabLogin": "Anmelden",
-  "account.anon.tabCreate": "Registrieren",
+  "account.anon.tabCreate": "Erstellen",
   "account.anon.loginDesc": "Bereits ein anonymes Konto? Mit Wiederherstellungscode wiederherstellen.",
   "account.anon.createDesc": "Noch kein anonymes Konto? Zufällige Cloud-Identität mit einem Klick erstellen.",
   "account.anon.close": "Schließen",

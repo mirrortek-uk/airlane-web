@@ -41,7 +41,7 @@ const dict: Record<string, string> = {
   "account.state.memberDesc":
     "Permessi assegnati dall'account proprietario {parent}; vedi solo le risorse condivise con te.",
 
-  "account.action.tryGuest": "Account anonimo: accedi / registrati",
+  "account.action.tryGuest": "Account anonimo: accedi / genera",
   "account.action.signIn": "Account completo: accedi / registrati",
   "account.action.upgrade": "Passa a un account completo",
   "account.action.exitGuest": "Termina la sessione anonima (torna solo locale)",
@@ -126,7 +126,7 @@ const dict: Record<string, string> = {
   "account.anon.title": "Account anonimo",
   "account.anon.desc": "Identità cloud senza email; la creazione richiede una verifica anti-bot.",
   "account.anon.tabLogin": "Accedi",
-  "account.anon.tabCreate": "Registrati",
+  "account.anon.tabCreate": "Genera",
   "account.anon.loginDesc": "Hai già un account anonimo? Ripristinalo con il codice di recupero.",
   "account.anon.createDesc": "Nessun account anonimo? Genera un'identità casuale con un clic.",
   "account.anon.close": "Chiudi",

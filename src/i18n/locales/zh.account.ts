@@ -67,7 +67,7 @@ const dict: Record<string, string> = {
   "account.state.member": "已登录子账号",
   "account.state.memberDesc": "由主账号 {parent} 分配权限，仅可访问分配给你的共享资源。",
 
-  "account.action.tryGuest": "匿名账号登录/注册",
+  "account.action.tryGuest": "匿名账号登录/生成",
   "account.action.signIn": "正式账号登录/注册",
   "account.action.upgrade": "升级为正式账号",
   "account.action.exitGuest": "退出匿名会话（回到纯本地模式）",
@@ -148,7 +148,7 @@ const dict: Record<string, string> = {
   "account.anon.title": "匿名账号",
   "account.anon.desc": "无需邮箱的云端身份；创建需通过人机验证。",
   "account.anon.tabLogin": "登录",
-  "account.anon.tabCreate": "注册",
+  "account.anon.tabCreate": "生成",
   "account.anon.loginDesc": "已有匿名账号？输入恢复码找回你的身份。",
   "account.anon.createDesc": "还没有匿名账号？一键生成随机云端身份。",
   "account.anon.close": "关闭",

@@ -41,7 +41,7 @@ const dict: Record<string, string> = {
   "account.state.memberDesc":
     "Права назначены владельцем аккаунта {parent}; вы видите только ресурсы, к которым вам предоставлен доступ.",
 
-  "account.action.tryGuest": "Анонимный аккаунт: вход / регистрация",
+  "account.action.tryGuest": "Анонимный аккаунт: вход / создать",
   "account.action.signIn": "Полный аккаунт: вход / регистрация",
   "account.action.upgrade": "Перейти на полноценный аккаунт",
   "account.action.exitGuest": "Завершить анонимную сессию (вернуться к локальному режиму)",
@@ -126,7 +126,7 @@ const dict: Record<string, string> = {
   "account.anon.title": "Анонимный аккаунт",
   "account.anon.desc": "Облачная личность без почты; создание требует проверки на человека.",
   "account.anon.tabLogin": "Вход",
-  "account.anon.tabCreate": "Регистрация",
+  "account.anon.tabCreate": "Создать",
   "account.anon.loginDesc": "Уже есть анонимный аккаунт? Восстановите его кодом восстановления.",
   "account.anon.createDesc": "Нет анонимного аккаунта? Создайте случайную личность одним кликом.",
   "account.anon.close": "Закрыть",

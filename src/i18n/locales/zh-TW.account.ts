@@ -37,7 +37,7 @@ const dict: Record<string, string> = {
   "account.state.member": "已登入子帳號",
   "account.state.memberDesc": "由主帳號 {parent} 分配權限，僅可存取分配給你的共享資源。",
 
-  "account.action.tryGuest": "匿名帳號登入/註冊",
+  "account.action.tryGuest": "匿名帳號登入/生成",
   "account.action.signIn": "正式帳號登入/註冊",
   "account.action.upgrade": "升級為正式帳號",
   "account.action.exitGuest": "退出匿名工作階段（回到純本機模式）",
@@ -118,7 +118,7 @@ const dict: Record<string, string> = {
   "account.anon.title": "匿名帳號",
   "account.anon.desc": "無需信箱的雲端身份；建立需通過人機驗證。",
   "account.anon.tabLogin": "登入",
-  "account.anon.tabCreate": "註冊",
+  "account.anon.tabCreate": "生成",
   "account.anon.loginDesc": "已有匿名帳號？輸入恢復碼找回你的身份。",
   "account.anon.createDesc": "還沒有匿名帳號？一鍵生成隨機雲端身份。",
   "account.anon.close": "關閉",
