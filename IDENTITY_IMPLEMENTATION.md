@@ -310,12 +310,10 @@ REGISTERED_LIMITS = { devices: 10, snapshots: 20, favorites: 100, meshGroups: 5 
 
 | HTTP 接口 | 说明 |
 |---|---|
-| `POST /api/public/pair/claim` | 客户端兑换配对码注册设备；body `{code, name?, platform?, client_version?, device_public_key?}`，返回 `{device_id, name, platform, identity}` |
-| `POST /api/public/pair/heartbeat` | 客户端心跳；body `{device_id, status?, client_version?}` |
+| `POST /api/public/pair/claim` | 客户端兑换配对码注册设备 |
+| `POST /api/public/pair/heartbeat` | 客户端心跳（仅 Mesh 设备开启） |
 
-**心跳规则：只有启用 Mesh 功能的设备才上报心跳。** 未启用 Mesh 的设备
-绑定后不应调用 heartbeat —— 云端只为需要组网/调度的设备追踪活性，
-避免无谓的请求开销。
+完整字段、错误码与安全约定见 [CLIENT_API.md](CLIENT_API.md)。
 
 ---
 
