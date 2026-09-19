@@ -1424,6 +1424,14 @@ function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <span>© 2025 AirLane · airlane.cloud</span>
+          <div className="flex items-center gap-4 text-xs">
+            <Link to={`${lp}/privacy`} className="hover:text-brand transition">
+              {lang === "zh" ? "隐私政策" : "Privacy"}
+            </Link>
+            <Link to={`${lp}/terms`} className="hover:text-brand transition">
+              {lang === "zh" ? "服务条款" : "Terms"}
+            </Link>
+          </div>
           <span className="font-mono text-xs">
             {lang === "zh" ? "让每一条流量，找到最优航线" : "Find the optimal route for every packet"}
           </span>
