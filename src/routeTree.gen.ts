@@ -41,6 +41,7 @@ import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
 import { Route as EnDocsSlugRouteImport } from './routes/en.docs.$slug'
+import { Route as ApiPublicDevicesStatusRouteImport } from './routes/api/public/devices/status'
 import { Route as ApiPublicPairClaimRouteImport } from './routes/api/public/pair/claim'
 import { Route as ApiPublicPairHeartbeatRouteImport } from './routes/api/public/pair/heartbeat'
 
@@ -204,6 +205,11 @@ const EnDocsSlugRoute = EnDocsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => EnDocsRoute,
 } as any)
+const ApiPublicDevicesStatusRoute = ApiPublicDevicesStatusRouteImport.update({
+  id: '/api/public/devices/status',
+  path: '/api/public/devices/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicPairClaimRoute = ApiPublicPairClaimRouteImport.update({
   id: '/api/public/pair/claim',
   path: '/api/public/pair/claim',
@@ -248,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
   '/en/docs/': typeof EnDocsIndexRoute
+  '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -279,6 +286,7 @@ export interface FileRoutesByTo {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog': typeof EnBlogIndexRoute
   '/en/docs': typeof EnDocsIndexRoute
+  '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -316,6 +324,7 @@ export interface FileRoutesById {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
   '/en/docs/': typeof EnDocsIndexRoute
+  '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
 }
@@ -354,6 +363,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog/'
     | '/en/docs/'
+    | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   fileRoutesByTo: FileRoutesByTo
@@ -385,6 +395,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog'
     | '/en/docs'
+    | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   id:
@@ -421,6 +432,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog/'
     | '/en/docs/'
+    | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
   fileRoutesById: FileRoutesById
@@ -439,6 +451,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   TermsRoute: typeof TermsRoute
+  ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
   ApiPublicPairHeartbeatRoute: typeof ApiPublicPairHeartbeatRoute
 }
@@ -669,6 +682,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnDocsSlugRouteImport
       parentRoute: typeof EnDocsRoute
     }
+    '/api/public/devices/status': {
+      id: '/api/public/devices/status'
+      path: '/api/public/devices/status'
+      fullPath: '/api/public/devices/status'
+      preLoaderRoute: typeof ApiPublicDevicesStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/pair/claim': {
       id: '/api/public/pair/claim'
       path: '/api/public/pair/claim'
@@ -780,6 +800,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   TermsRoute: TermsRoute,
+  ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,
   ApiPublicPairHeartbeatRoute: ApiPublicPairHeartbeatRoute,
 }

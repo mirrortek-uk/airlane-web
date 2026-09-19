@@ -18,11 +18,17 @@ Base URL：`https://www.airlane.cloud`
         ▼
 客户端引导用户输入配对码
         ▼
-POST /api/public/pair/claim  →  返回 device_id（持久化保存）
+POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
         ▼
-若启用 Mesh：周期性 POST /api/public/pair/heartbeat
+每次 App 启动：POST /api/public/devices/status → 刷新本地 plan
+        ▼
+若启用 Mesh：周期性 POST /api/public/pair/heartbeat（也回带 plan）
 若未启用 Mesh：不发心跳（见 §4）
 ```
+
+**plan 同步是双通道的**：`devices/status` 是主通道（所有设备、低频），
+`heartbeat` 顺带回带（仅 Mesh 设备、高频）。未启用 Mesh 的付费用户
+升级套餐后，靠 status 接口在下一次启动时拿到新 plan。
 
 配对码同时适用于正式账号与匿名账号，客户端无需区分 —— `claim`
 响应里的 `identity` 字段会告诉你绑定到了哪种身份。
@@ -111,9 +117,42 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 { "ok": true, "plan": "pro" }
 ```
 
-`plan` 为 `"free"` / `"pro"` / `null`（匿名账号）。**每次心跳都会回带
-最新套餐** —— 用户在网页端升级付费后，客户端下一次心跳即可感知，
-应更新本地缓存的 plan 并刷新限额提示；无需重新配对。
+`plan` 为 `"free"` / `"pro"` / `null`（匿名账号）。Mesh 设备每次心跳
+都会顺带拿到最新套餐；未启用 Mesh 的设备请通过 §3.5 的 status
+接口同步 —— 两种途径拿到的 plan 都应写回本地缓存。
+
+---
+
+## 3.5 `POST /api/public/devices/status` — 状态拉取（plan 同步主通道）
+
+低频接口，解决"Mesh 没开就不发心跳、就感知不到套餐变化"的问题。
+
+**何时调用**：App 启动时一次即可；也可在进入"账号/配置"相关界面时
+补一次。不要高频轮询。
+
+### 请求体
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| `device_id` | uuid | ✅ | `claim` 返回的 device_id |
+
+### 响应 `200`
+
+```json
+{ "ok": true, "identity": "account", "plan": "pro" }
+```
+
+| 字段 | 说明 |
+|---|---|
+| `identity` | `"account"` / `"guest"` |
+| `plan` | `"free"` / `"pro"`；匿名账号为 `null`。客户端只需要知道这个档位来做本地能力/提示区分，配额数字由服务端在写入时强制 |
+
+### 错误
+
+| HTTP | error | 处理 |
+|---|---|---|
+| 400 | `invalid_request` | 检查请求体 |
+| 404 | `device_not_found` | 设备已被解绑 → 清除本地 `device_id` |
 
 | HTTP | error | 客户端建议处理 |
 |---|---|---|
@@ -150,7 +189,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 | 数据 | 存储位置 | 说明 |
 |---|---|---|
 | `device_id` | 系统安全存储（Keychain / DPAPI / Keystore） | 设备凭证，勿写日志、勿明文落盘到可被其他进程读取的位置 |
-| `plan` | 本地配置/内存缓存 | 每次心跳刷新；`null` 视为匿名账号档位 |
+| `plan` | 本地配置/内存缓存 | 由 `devices/status`（启动时）和 `heartbeat`（Mesh 开启时）刷新；`null` 视为匿名账号档位 |
 | 设备名 / 平台 | 本地配置 | 自己生成的，可自由存 |
 | WireGuard 私钥 | 系统安全存储 | **永不上行**，只有公钥通过 `device_public_key` 上报 |
 
@@ -196,6 +235,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 - [ ] 输入错误配对码 → 收到 `code_not_found`，UI 提示友好
 - [ ] 输入正确配对码 → 拿到 `device_id` 并持久化
 - [ ] 同一个码二次提交 → 收到 `code_already_used`
-- [ ] 绑定后（Mesh 开启）心跳返回 `{"ok": true}`，网页端设备显示"在线"
-- [ ] 网页端解绑后 → 下一次心跳收到 `device_not_found`，客户端清除本地凭证
-- [ ] Mesh 关闭状态下不产生任何 heartbeat 请求
+- [ ] 绑定后（Mesh 开启）心跳返回 `{"ok": true, "plan": ...}`，网页端设备显示"在线"
+- [ ] 网页端解绑后 → 下一次心跳/status 收到 `device_not_found`，客户端清除本地凭证
+- [ ] Mesh 关闭状态下不产生任何 heartbeat 请求，但启动时仍会调 status 同步 plan
+- [ ] 免费版账号网页端升级 Pro 后 → 客户端下一次 status/心跳拿到 `"plan": "pro"` 并刷新本地档位
