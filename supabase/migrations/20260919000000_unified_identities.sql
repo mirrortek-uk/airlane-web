@@ -20,8 +20,9 @@ CREATE TABLE IF NOT EXISTS public.identities (
   legacy_guest_id uuid
 );
 
+-- A plain UNIQUE index already allows multiple NULLs (anonymous rows).
 CREATE UNIQUE INDEX IF NOT EXISTS identities_auth_user_uidx
-  ON public.identities(auth_user_id) WHERE auth_user_id IS NOT NULL;
+  ON public.identities(auth_user_id);
 CREATE INDEX IF NOT EXISTS identities_legacy_guest_idx
   ON public.identities(legacy_guest_id) WHERE legacy_guest_id IS NOT NULL;
 

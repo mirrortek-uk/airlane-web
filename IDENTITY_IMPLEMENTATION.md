@@ -57,9 +57,9 @@ create table public.identities (
     upgraded_at   timestamptz
 );
 
--- 一个 auth user 最多一个 identity
+-- 一个 auth user 最多一个 identity（普通唯一索引即可：Postgres 中多个 NULL 不冲突）
 create unique index identities_auth_user_uidx
-    on public.identities(auth_user_id) where auth_user_id is not null;
+    on public.identities(auth_user_id);
 ```
 
 ### 2.2 `identity_credentials` —— 凭证表（匿名 token + 恢复码）
