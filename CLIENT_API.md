@@ -50,7 +50,8 @@ POST /api/public/pair/claim  →  返回 device_id（持久化保存）
   "device_id": "b5910d29-5d8f-470b-9916-6f49a1d22222",
   "name": "MacBook Pro",
   "platform": "macos",
-  "identity": "account"
+  "identity": "account",
+  "plan": "free"
 }
 ```
 
@@ -58,6 +59,7 @@ POST /api/public/pair/claim  →  返回 device_id（持久化保存）
 |---|---|
 | `device_id` | 设备 UUID。**客户端必须持久化保存**（安全存储），它是之后心跳和将来配置下发的唯一凭证 |
 | `identity` | `"account"` = 绑到正式账号；`"guest"` = 绑到匿名账号 |
+| `plan` | 账号套餐：`"free"` / `"pro"`；匿名账号为 `null`。用于本地限额提示（免费版 2 台设备 + 2 个配置模板，Pro 10 台 + 15 个） |
 
 ### 错误响应
 
@@ -103,7 +105,15 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 
 ### 响应
 
-成功 `200`：`{"ok": true}`
+成功 `200`：
+
+```json
+{ "ok": true, "plan": "pro" }
+```
+
+`plan` 为 `"free"` / `"pro"` / `null`（匿名账号）。**每次心跳都会回带
+最新套餐** —— 用户在网页端升级付费后，客户端下一次心跳即可感知，
+应更新本地缓存的 plan 并刷新限额提示；无需重新配对。
 
 | HTTP | error | 客户端建议处理 |
 |---|---|---|
@@ -140,6 +150,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 | 数据 | 存储位置 | 说明 |
 |---|---|---|
 | `device_id` | 系统安全存储（Keychain / DPAPI / Keystore） | 设备凭证，勿写日志、勿明文落盘到可被其他进程读取的位置 |
+| `plan` | 本地配置/内存缓存 | 每次心跳刷新；`null` 视为匿名账号档位 |
 | 设备名 / 平台 | 本地配置 | 自己生成的，可自由存 |
 | WireGuard 私钥 | 系统安全存储 | **永不上行**，只有公钥通过 `device_public_key` 上报 |
 

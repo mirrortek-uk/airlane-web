@@ -50,14 +50,15 @@ export const Route = createFileRoute("/api/public/pair/claim")({
         // Device quotas: registered accounts are limited by plan
         // (free 2 / pro 10); anonymous identities are capped at 2.
         const { ACCOUNT_LIMITS } = await import("@/lib/identity.functions");
+        let plan: "free" | "pro" | null = null;
         if (pairing.owner_user_id) {
           const { data: prof } = await supabaseAdmin
             .from("profiles")
             .select("plan")
             .eq("id", pairing.owner_user_id)
             .maybeSingle();
-          const limit =
-            prof?.plan === "pro" ? ACCOUNT_LIMITS.pro.devices : ACCOUNT_LIMITS.free.devices;
+          plan = prof?.plan === "pro" ? "pro" : "free";
+          const limit = ACCOUNT_LIMITS[plan].devices;
           const { count } = await supabaseAdmin
             .from("devices")
             .select("id", { count: "exact", head: true })
@@ -106,6 +107,7 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           name: device.name,
           platform: device.platform,
           identity: pairing.owner_user_id ? "account" : "guest",
+          plan,
         });
       },
     },

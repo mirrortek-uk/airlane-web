@@ -35,12 +35,24 @@ export const Route = createFileRoute("/api/public/pair/heartbeat")({
             last_seen_at: new Date().toISOString(),
           })
           .eq("id", parsed.device_id)
-          .select("id")
+          .select("id, owner_user_id")
           .maybeSingle();
 
         if (error) return json({ error: "heartbeat_failed" }, 500);
         if (!data) return json({ error: "device_not_found" }, 404);
-        return json({ ok: true });
+
+        // Echo the account plan back so the client picks up upgrades
+        // (e.g. free -> pro) without re-pairing.
+        let plan: "free" | "pro" | null = null;
+        if (data.owner_user_id) {
+          const { data: prof } = await supabaseAdmin
+            .from("profiles")
+            .select("plan")
+            .eq("id", data.owner_user_id)
+            .maybeSingle();
+          plan = prof?.plan === "pro" ? "pro" : "free";
+        }
+        return json({ ok: true, plan });
       },
     },
   },
