@@ -113,7 +113,7 @@ const dict: Record<string, string> = {
   "devices.status.idle": "Неактивен",
   "devices.status.offline": "Не в сети",
   "account.local.guestTitle": "Анонимный аккаунт (без регистрации)",
-  "account.local.guestDesc": "Облачные функции без почты: привязка устройств, Mesh, общие VPS и резидентские IP. Сохраните код восстановления.",
+  "account.local.guestDesc": "Облачные функции без почты: привязка устройств, Mesh, общие VPS и резидентские IP. Сохраните код входа.",
   "account.local.accountTitle": "Полный аккаунт",
   "account.local.accountDesc": "Регистрация или вход по почте открывает все функции: снапшоты конфигов, Mesh-группы, управление устройствами и веб-консоль.",
   "account.usage.sharedVps": "Общие VPS",
@@ -127,7 +127,7 @@ const dict: Record<string, string> = {
   "account.anon.desc": "Облачная личность без почты; создание требует проверки на человека.",
   "account.anon.tabLogin": "Вход",
   "account.anon.tabCreate": "Создать",
-  "account.anon.loginDesc": "Уже есть анонимный аккаунт? Восстановите его кодом восстановления.",
+  "account.anon.loginDesc": "Уже есть анонимный аккаунт? Войдите с кодом входа.",
   "account.anon.createDesc": "Нет анонимного аккаунта? Создайте случайную личность одним кликом.",
   "account.anon.close": "Закрыть",
 };

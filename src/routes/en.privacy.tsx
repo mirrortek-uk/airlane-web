@@ -47,7 +47,7 @@ const SECTIONS: Array<{ h: string; body: string[] }> = [
   {
     h: "2. Data we collect",
     body: [
-      "Anonymous identity: creating an anonymous account generates a random identity ID and stores SHA-256 hashes of the access token and recovery code — never plaintext. No email required.",
+      "Anonymous identity: creating an anonymous account generates a random identity ID and stores SHA-256 hashes of the access token and login code — never plaintext. No email required.",
       "Full account: your email address (for sign-in and account notifications). When signing in via Google or other providers, we receive the email and basic profile they return.",
       "Device info: when pairing a client device we store its name, platform, client version and last-seen time.",
       "Cloud data: features you enable (Mesh group memberships, config snapshots) are stored at your direction.",
@@ -83,13 +83,13 @@ const SECTIONS: Array<{ h: string; body: string[] }> = [
     body: [
       "You can view your identity ID, device list and quota usage in the account center.",
       "You can end an anonymous session at any time (deleting the cloud identity and its data) or contact us to delete a full account.",
-      "Anonymous recovery codes are held only by you; we cannot recover a lost code.",
+      "Anonymous login codes are held only by you; we cannot recover a lost code.",
     ],
   },
   {
     h: "7. Data retention",
     body: [
-      "Anonymous access tokens may expire after 90 days of inactivity; the recovery code can reactivate the identity at any time.",
+      "Anonymous access tokens may expire after 90 days of inactivity; the login code can reactivate the identity at any time.",
       "Full account data is kept while the account is active; associated data is removed within a reasonable period after deletion.",
     ],
   },

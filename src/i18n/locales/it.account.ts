@@ -113,7 +113,7 @@ const dict: Record<string, string> = {
   "devices.status.idle": "Inattivo",
   "devices.status.offline": "Offline",
   "account.local.guestTitle": "Account anonimo (senza registrazione)",
-  "account.local.guestDesc": "Funzioni cloud senza email: associazione dispositivi, Mesh, VPS condivisi e IP residenziali. Conserva il codice di recupero.",
+  "account.local.guestDesc": "Funzioni cloud senza email: associazione dispositivi, Mesh, VPS condivisi e IP residenziali. Conserva il codice di accesso.",
   "account.local.accountTitle": "Account completo",
   "account.local.accountDesc": "Registrati o accedi con email per tutte le funzioni: snapshot config, gruppi Mesh, gestione dispositivi e console web.",
   "account.usage.sharedVps": "VPS condivisi",
@@ -127,7 +127,7 @@ const dict: Record<string, string> = {
   "account.anon.desc": "Identità cloud senza email; la creazione richiede una verifica anti-bot.",
   "account.anon.tabLogin": "Accedi",
   "account.anon.tabCreate": "Genera",
-  "account.anon.loginDesc": "Hai già un account anonimo? Ripristinalo con il codice di recupero.",
+  "account.anon.loginDesc": "Hai già un account anonimo? Accedi con il codice di accesso.",
   "account.anon.createDesc": "Nessun account anonimo? Genera un'identità casuale con un clic.",
   "account.anon.close": "Chiudi",
 };

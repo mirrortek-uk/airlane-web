@@ -47,9 +47,9 @@ const SECTIONS: Array<{ h: string; body: string[] }> = [
   {
     h: "2. Account types",
     body: [
-      "Anonymous account: created without email, relying on an access token and recovery code. If the code is lost and the token expires, the identity cannot be recovered.",
+      "Anonymous account: created without email, relying on an access token and login code. If the code is lost and the token expires, the identity cannot be recovered.",
       "Full account: registered via email or a third-party provider (e.g. Google) with complete cloud capabilities.",
-      "You are responsible for all activity under your account; keep your recovery code and credentials safe.",
+      "You are responsible for all activity under your account; keep your login code and credentials safe.",
     ],
   },
   {

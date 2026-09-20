@@ -44,16 +44,16 @@ const dict: Record<string, string> = {
   "auth.anon.button": "Create anonymous identity",
   "auth.anon.creating": "Creating…",
   "auth.anon.note":
-    "The anonymous identity lives only in this browser. Save the recovery code before clearing data or switching browsers — otherwise it cannot be recovered.",
-  "auth.anon.recoveryTitle": "Your recovery code (shown once)",
+    "The anonymous identity lives only in this browser. Save the login code before clearing data or switching browsers — otherwise it cannot be signed back in.",
+  "auth.anon.recoveryTitle": "Your login code (shown once)",
   "auth.anon.recoveryWarning":
-    "⚠️ Write it down now. This code is the only way to recover the anonymous identity — we store only its hash, so losing it means losing the identity.",
+    "⚠️ Write it down now. This code is the only way to sign back in to the anonymous identity — we store only its hash, so losing it means losing the identity.",
   "auth.anon.recoveryConfirm": "I saved the code — continue",
-  "auth.anon.recoverLink": "Have a recovery code? Restore identity",
+  "auth.anon.recoverLink": "Have a login code? Sign in",
   "auth.anon.recoverPlaceholder": "XXXX-XXXX-XXXX-XXXX",
-  "auth.anon.recoverButton": "Restore with code",
-  "auth.anon.recoverInvalid": "Invalid or revoked recovery code.",
-  "auth.anon.recoverOk": "Anonymous identity restored.",
+  "auth.anon.recoverButton": "Sign in with code",
+  "auth.anon.recoverInvalid": "Invalid or revoked login code.",
+  "auth.anon.recoverOk": "Anonymous identity signed in.",
 
   "account.title": "Account center",
   "account.loading": "Loading account state…",
@@ -62,7 +62,7 @@ const dict: Record<string, string> = {
   "account.state.localDesc":
     "Zero requests to the cloud. All proxying, policies, multi-exit and unlock detection run locally; no cloud sync, Mesh or web console.",
   "account.local.guestTitle": "Anonymous account (no sign-up)",
-  "account.local.guestDesc": "Cloud features without email: device pairing, Mesh sharing, shared VPS and residential-IP quotas. Save the recovery code to restore anytime.",
+  "account.local.guestDesc": "Cloud features without email: device pairing, Mesh sharing, shared VPS and residential-IP quotas. Save the login code to restore anytime.",
   "account.local.accountTitle": "Full account",
   "account.local.accountDesc": "Register or sign in with email to unlock all cloud features: config snapshots, Mesh groups, device management and the web console.",
   "account.state.guest": "Anonymous account mode",
@@ -83,10 +83,10 @@ const dict: Record<string, string> = {
   "account.action.upgradeNow": "Sign in to migrate anonymous data",
 
   "account.guest.warning":
-    "⚠️ The anonymous identity is bound to this browser. After clearing data or switching devices you will need the recovery code; without it the identity is permanently lost. Upgrade to a full account anytime.",
+    "⚠️ The anonymous identity is bound to this browser. After clearing data or switching devices you will need the login code; without it the identity is permanently lost. Upgrade to a full account anytime.",
   "account.guest.idLabel": "Anonymous identity UUID",
   "account.guest.expires":
-    "The access token expires after 90 days of inactivity — the recovery code can reactivate the identity anytime",
+    "The access token expires after 90 days of inactivity — the login code can reactivate the identity anytime",
   "account.guest.allowed": "Allowed for anonymous accounts",
   "account.guest.blocked": "Anonymous restrictions",
   "account.guest.allow1": "Bind devices to join shared Mesh groups, up to {n}",
@@ -98,7 +98,7 @@ const dict: Record<string, string> = {
   "account.guest.block2": "Cannot create Mesh groups — only join shared ones",
   "account.guest.block3": "No cloud backup for configs",
   "account.guest.block4": "Cannot purchase the Pro plan",
-  "account.guest.block5": "Requires the recovery code after switching devices or clearing data",
+  "account.guest.block5": "Requires the login code after switching devices or clearing data",
   "account.guest.created": "Anonymous trial mode enabled.",
   "account.guest.ended": "Anonymous session ended. Local configuration is untouched.",
   "account.guest.upgraded": "Anonymous data migrated to your account.",
@@ -106,11 +106,11 @@ const dict: Record<string, string> = {
     "An anonymous identity exists on this device. Migrate its data to the current account?",
   "account.guest.migrate": "Migrate anonymous data",
   "account.guest.discard": "Ignore",
-  "account.guest.recoveryTitle": "Recovery code (shown once — save it now)",
+  "account.guest.recoveryTitle": "Login code (shown once — save it now)",
   "account.guest.recoveryHint":
     "Enter this code to restore the identity and all data after switching browsers or clearing data.",
-  "account.guest.rotateRecovery": "Regenerate recovery code",
-  "account.guest.recoveryRotated": "New recovery code generated; the old one is revoked.",
+  "account.guest.rotateRecovery": "Regenerate login code",
+  "account.guest.recoveryRotated": "New login code generated; the old one is revoked.",
 
   "account.usage.snapshots": "Config templates & node files",
   "account.usage.devices": "Paired devices",
@@ -162,7 +162,7 @@ const dict: Record<string, string> = {
   "account.anon.desc": "A cloud identity with no email; creation requires a human check.",
   "account.anon.tabLogin": "Sign in",
   "account.anon.tabCreate": "Generate",
-  "account.anon.loginDesc": "Already have an anonymous account? Restore it with your recovery code.",
+  "account.anon.loginDesc": "Already have an anonymous account? Restore it with your login code.",
   "account.anon.createDesc": "No anonymous account yet? Generate a random cloud identity in one click.",
   "account.anon.close": "Close",
 };

@@ -105,7 +105,7 @@ const dict: Record<string, string> = {
   "devices.status.idle": "閒置",
   "devices.status.offline": "離線",
   "account.local.guestTitle": "匿名帳號（免註冊）",
-  "account.local.guestDesc": "無需信箱即可使用雲端能力：裝置綁定、Mesh 共享、共享 VPS 與住宅 IP 額度；保存恢復碼可隨時找回。",
+  "account.local.guestDesc": "無需信箱即可使用雲端能力：裝置綁定、Mesh 共享、共享 VPS 與住宅 IP 額度；保存登入碼可隨時登入。",
   "account.local.accountTitle": "正式帳號",
   "account.local.accountDesc": "信箱註冊或登入，解鎖全部雲端能力：設定快照、Mesh 共享組、裝置管理與 Web 控制台。",
   "account.usage.sharedVps": "共享 VPS",
@@ -119,7 +119,7 @@ const dict: Record<string, string> = {
   "account.anon.desc": "無需信箱的雲端身份；建立需通過人機驗證。",
   "account.anon.tabLogin": "登入",
   "account.anon.tabCreate": "生成",
-  "account.anon.loginDesc": "已有匿名帳號？輸入恢復碼找回你的身份。",
+  "account.anon.loginDesc": "已有匿名帳號？輸入登入碼登入你的身份。",
   "account.anon.createDesc": "還沒有匿名帳號？一鍵生成隨機雲端身份。",
   "account.anon.close": "關閉",
 };

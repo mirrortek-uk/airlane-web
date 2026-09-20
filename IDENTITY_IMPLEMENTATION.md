@@ -62,7 +62,7 @@ create unique index identities_auth_user_uidx
     on public.identities(auth_user_id);
 ```
 
-### 2.2 `identity_credentials` —— 凭证表（匿名 token + 恢复码）
+### 2.2 `identity_credentials` —— 凭证表（匿名 token + 登录码）
 
 ```sql
 create table public.identity_credentials (
@@ -154,7 +154,7 @@ resolveAnonymous(token):
 用户换了浏览器/清了缓存 → 手里只剩之前抄下的 recovery_code
         │
         ▼
-/auth 页"找回匿名身份"输入恢复码
+/auth 页"找回匿名身份"输入登录码
         │
         ▼
 recoverAnonymousIdentity(recoveryCode):
@@ -209,7 +209,7 @@ identity_id 不变，名下数据原封不动
 Supabase 的 `signInAnonymously()` 能给匿名用户发真 JWT，但：
 
 - 现有代码已是"自定义 token + service role"模式且工作正常；
-- recovery code 用自定义凭证实现最直接（不用服务端铸造 session）；
+- 登录码（recovery code）用自定义凭证实现最直接（不用服务端铸造 session）；
 - 匿名读也走 serverFn，正好避免给 anon key 开业务表行权限。
 
 代价是匿名用户读数据必须过 serverFn —— VPS/SSR 反正要承担这类活，可接受。
@@ -308,8 +308,8 @@ ACCOUNT_LIMITS   = {
 | `createAnonymousIdentity({captchaToken?})` | 建匿名身份（Turnstile 人机验证），返回 `{token, recoveryCode, id, expiresAt}` |
 | `getAnonymousIdentity({token})` | 查状态 + 用量 + 设备 |
 | `endAnonymousIdentity({token})` | 吊销身份（级联删数据） |
-| `recoverAnonymousIdentity({recoveryCode})` | 恢复码换新 token |
-| `rotateRecoveryCode({token})` | 重新生成恢复码（旧码吊销） |
+| `recoverAnonymousIdentity({recoveryCode})` | 登录码换新 token |
+| `rotateRecoveryCode({token})` | 重新生成登录码（旧码吊销） |
 | `upgradeAnonymousIdentity({token})` | 匿名转注册（需登录 JWT） |
 | `resolveAnonymousByToken(token)` | 内部 helper，非 RPC |
 | `resolveIdentityByUserId(userId)` | 内部 helper，非 RPC |
@@ -335,7 +335,7 @@ ACCOUNT_LIMITS   = {
 | P1.2 | identity.functions.ts | 本次 |
 | P1.3 | account.functions.ts 改造 | 本次 |
 | P1.4 | /auth 匿名入口 + 找回 + recovery 展示 | 本次 |
-| P1.5 | /account 匿名面板恢复码管理 | 本次 |
+| P1.5 | /account 匿名面板登录码管理 | 本次 |
 | P1.6 | types.ts 更新 + build | 本次 |
 | P1.7 | M3 清旧列 | 观察期后 |
 | P2 | mesh_nodes + mesh_invitations + Headscale | 后续 |
