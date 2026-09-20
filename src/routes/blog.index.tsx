@@ -1,9 +1,16 @@
-import { createFileRoute, Link, useMatches } from "@tanstack/react-router";
+import { createFileRoute, Link, useMatches, useSearch } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 
 import { useI18n } from "@/i18n";
 import { blogQueries, fetchPosts } from "@/lib/blog";
+import {
+  BLOG_SECTIONS,
+  BLOG_TOPICS,
+  displayTags,
+  filterPosts,
+  taxonLabel,
+} from "@/lib/blog-taxonomy";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
@@ -67,6 +74,17 @@ export function BlogIndex() {
     initialData: routeData?.initialPosts,
   });
   const lp = useLocalePrefix();
+  const search = useSearch({ strict: false }) as {
+    topic?: string;
+    section?: string;
+    tag?: string;
+  };
+  const filtered = filterPosts(posts.data ?? [], search);
+  const activeTaxon =
+    [...BLOG_TOPICS, ...BLOG_SECTIONS].find(
+      (x) => x.slug === search.topic || x.slug === search.section,
+    ) ?? null;
+  const activeLabel = search.tag ?? (activeTaxon ? taxonLabel(activeTaxon, lang) : null);
 
   return (
     <div>
@@ -79,12 +97,27 @@ export function BlogIndex() {
           : "Product updates, protocol notes, and how we think about network orchestration."}
       </p>
 
+      {activeLabel && (
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-sm text-brand">
+          <span>
+            {lang === "zh" ? "正在浏览" : "Browsing"}：{activeLabel}
+          </span>
+          <Link
+            to={`${lp}/blog`}
+            aria-label={lang === "zh" ? "清除筛选" : "Clear filter"}
+            className="rounded-full p-0.5 hover:bg-brand/20"
+          >
+            <X className="size-3.5" />
+          </Link>
+        </div>
+      )}
+
       {posts.isLoading ? (
         <p className="mt-10 text-muted-foreground">{t("common.loading")}</p>
       ) : null}
 
       <div className="mt-10 space-y-5">
-        {(posts.data ?? []).map((post) => (
+        {filtered.map((post) => (
           <Link
             key={post.id}
             to={`${lp}/blog/$slug`}
@@ -93,7 +126,7 @@ export function BlogIndex() {
           >
             <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground">
               <span>{new Date(post.published_at).toLocaleDateString()}</span>
-              {(post.tags ?? []).map((tag) => (
+              {displayTags(post).map((tag) => (
                 <span
                   key={tag}
                   className="rounded-full bg-brand/10 text-brand px-2.5 py-0.5 not-italic"
@@ -117,9 +150,15 @@ export function BlogIndex() {
             </span>
           </Link>
         ))}
-        {posts.data && posts.data.length === 0 ? (
+        {posts.data && filtered.length === 0 ? (
           <p className="text-muted-foreground text-sm">
-            {lang === "zh" ? "还没有文章。" : "No posts yet."}
+            {activeLabel
+              ? lang === "zh"
+                ? "这个分类下还没有文章。"
+                : "No posts in this category yet."
+              : lang === "zh"
+                ? "还没有文章。"
+                : "No posts yet."}
           </p>
         ) : null}
       </div>

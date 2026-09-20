@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 
 import { useI18n } from "@/i18n";
 import { blogQueries } from "@/lib/blog";
+import { displayTags } from "@/lib/blog-taxonomy";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, blogPostSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
@@ -131,7 +132,7 @@ export function BlogPostView() {
 
       <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground">
         <span>{new Date(post.published_at).toLocaleDateString()}</span>
-        {(post.tags ?? []).map((tag) => (
+        {displayTags(post).map((tag) => (
           <span key={tag} className="rounded-full bg-brand/10 text-brand px-2.5 py-0.5">
             {tag}
           </span>

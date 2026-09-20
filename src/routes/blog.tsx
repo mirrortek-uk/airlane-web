@@ -1,9 +1,11 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { PenLine } from "lucide-react";
 
+import { BlogSidebar } from "@/components/blog-sidebar";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/i18n";
+import { blogQueries } from "@/lib/blog";
 import { docLang, docsQueries } from "@/lib/docs";
 import { useLocalePrefix } from "@/lib/locale-link";
 
@@ -15,7 +17,10 @@ export function BlogLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const admin = useQuery(docsQueries.admin());
+  const posts = useQuery(blogQueries.posts());
   const lp = useLocalePrefix();
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const isAdmin = pathname.endsWith("/admin");
 
   return (
     <div className="min-h-screen bg-cream text-foreground">
@@ -50,8 +55,17 @@ export function BlogLayout() {
         </div>
       </header>
 
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <Outlet />
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        {isAdmin ? (
+          <Outlet />
+        ) : (
+          <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
+            <BlogSidebar posts={posts.data ?? []} />
+            <div className="min-w-0">
+              <Outlet />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
