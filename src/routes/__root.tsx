@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import { canonical } from "@/lib/seo";
+import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
@@ -159,6 +160,34 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  // Email confirmation / magic links can land on any page (older emails point
+  // at the site root). The Supabase client is lazy, so unless something touches
+  // it the #access_token fragment is never consumed and the session is lost.
+  // Detect auth fragments here, wake the client, and route into /account.
+  useEffect(() => {
+    const url = window.location.href;
+    const isRecovery = /type=recovery/.test(url);
+    const hasAuthParams =
+      url.includes("access_token") ||
+      /[?&]code=/.test(url) ||
+      /type=(signup|magiclink|invite|email)/.test(url);
+    if (!hasAuthParams && !isRecovery) return;
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) return;
+      if (isRecovery) {
+        if (!window.location.pathname.startsWith("/reset-password")) {
+          window.location.replace("/reset-password");
+        }
+      } else {
+        window.location.replace("/account");
+      }
+    });
+    // Instantiating the client triggers detectSessionInUrl processing.
+    void supabase.auth.getSession();
+    return () => sub.subscription.unsubscribe();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
