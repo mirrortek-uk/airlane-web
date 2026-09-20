@@ -14,6 +14,7 @@ const dict: Record<string, string> = {
   "auth.submit.signUp": "Create account",
   "auth.forgot": "Forgot password?",
   "auth.checkEmail": "We sent a confirmation email — check your inbox to finish signing up.",
+  "auth.emailTaken": "This email is already registered — please sign in.",
   "auth.resetSent": "Reset email sent. Check your inbox.",
   "auth.resetTitle": "Reset password",
   "auth.resetSubtitle": "Enter your account email and we'll send a reset link.",

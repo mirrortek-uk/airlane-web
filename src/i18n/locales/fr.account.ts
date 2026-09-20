@@ -14,6 +14,7 @@ const dict: Record<string, string> = {
   "auth.submit.signUp": "Créer le compte",
   "auth.forgot": "Mot de passe oublié ?",
   "auth.checkEmail": "Nous avons envoyé un e-mail de confirmation — vérifiez votre boîte de réception pour finaliser l'inscription.",
+  "auth.emailTaken": "Cet e-mail est déjà enregistré — connectez-vous.",
   "auth.resetSent": "E-mail de réinitialisation envoyé. Vérifiez votre boîte de réception.",
   "auth.resetTitle": "Réinitialiser le mot de passe",
   "auth.resetSubtitle": "Entrez l'e-mail de votre compte et nous vous enverrons un lien de réinitialisation.",

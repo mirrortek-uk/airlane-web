@@ -113,7 +113,7 @@ function AuthPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: window.location.origin,
+          emailRedirectTo: `${window.location.origin}/auth`,
           // Always create the user on first OTP login — no separate signup step
           // for the email-code flow. Supabase sends the OTP login email only.
           shouldCreateUser: true,
@@ -169,11 +169,19 @@ function AuthPage() {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: `${window.location.origin}/auth`,
             data: { display_name: displayName || email.split("@")[0] },
           },
         });
         if (error) throw error;
+        // Supabase returns an obfuscated user with empty identities when the
+        // email is already registered — no confirmation email is sent in that
+        // case, so tell the user to sign in instead of waiting for a mail.
+        if (!data.session && (data.user?.identities?.length ?? 0) === 0) {
+          toast.error(t("auth.emailTaken"));
+          setMode("signIn");
+          return;
+        }
         if (!data.session) {
           toast.success(t("auth.checkEmail"));
           return;
@@ -192,7 +200,7 @@ function AuthPage() {
   }
 
   const isReset = mode === "reset";
-  const isOtp = method === "otp" && !isReset;
+  const isOtp = method === "otp" && mode === "signIn" && !isReset;
 
   async function handleGoogle() {
     setBusy(true);
@@ -258,7 +266,11 @@ function AuthPage() {
                   <button
                     key={item}
                     type="button"
-                    onClick={() => { setMode(item); setOtpSent(false); }}
+                    onClick={() => {
+                      setMode(item);
+                      setOtpSent(false);
+                      if (item === "signUp") setMethod("password");
+                    }}
                     className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                       mode === item
                         ? "bg-primary text-primary-foreground"
@@ -270,23 +282,26 @@ function AuthPage() {
                 ))}
               </div>
 
-              {/* Auth method toggle: password vs OTP */}
-              <div className="mt-4 grid grid-cols-2 gap-1 rounded-full bg-muted/50 p-1">
-                {(["password", "otp"] as const).map((m) => (
-                  <button
-                    key={m}
-                    type="button"
-                    onClick={() => { setMethod(m); setOtpSent(false); }}
-                    className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
-                      method === m
-                        ? "bg-ink text-cream"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {t(m === "password" ? "auth.method.password" : "auth.method.otp")}
-                  </button>
-                ))}
-              </div>
+              {/* Auth method toggle: password vs OTP — sign-in only,
+                  sign-up is password-only (OTP auto-creates on sign-in) */}
+              {mode === "signIn" && (
+                <div className="mt-4 grid grid-cols-2 gap-1 rounded-full bg-muted/50 p-1">
+                  {(["password", "otp"] as const).map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => { setMethod(m); setOtpSent(false); }}
+                      className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+                        method === m
+                          ? "bg-ink text-cream"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {t(m === "password" ? "auth.method.password" : "auth.method.otp")}
+                    </button>
+                  ))}
+                </div>
+              )}
             </>
           )}
 

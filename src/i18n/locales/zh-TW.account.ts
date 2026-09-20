@@ -13,6 +13,7 @@ const dict: Record<string, string> = {
   "auth.submit.signUp": "註冊",
   "auth.forgot": "忘記密碼？",
   "auth.checkEmail": "我們已寄送確認郵件，請查收信箱完成註冊。",
+  "auth.emailTaken": "此信箱已註冊，請直接登入。",
   "auth.resetSent": "重設郵件已寄送，請查收信箱。",
   "auth.resetTitle": "重設密碼",
   "auth.resetSubtitle": "輸入註冊信箱，我們會寄送重設連結。",
