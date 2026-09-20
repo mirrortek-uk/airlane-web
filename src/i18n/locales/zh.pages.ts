@@ -48,8 +48,8 @@ const dict: Record<string, string> = {
   "pages.download.channel.ghproxy": "下载一 · GHProxy 镜像",
   "pages.download.channel.github": "下载二 · GitHub 直链",
   "pages.download.channel.r2": "下载三 · Cloudflare R2",
-  "pages.download.channel.vercel": "下载四 · 官网镜像（兜底）",
-  "pages.download.mirrorHint": "四个下载渠道任选：GHProxy/GitHub/Cloudflare R2 失败时可用官网镜像兜底。",
+  "pages.download.channel.vercel": "下载四 · 官网镜像",
+  "pages.download.mirrorHint": "四个下载渠道任选其一，任意一个失效可换其他渠道。",
 };
 
 export default dict;

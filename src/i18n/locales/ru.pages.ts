@@ -48,8 +48,8 @@ const dict: Record<string, string> = {
   "pages.download.channel.ghproxy": "Зеркало 1 · GHProxy",
   "pages.download.channel.github": "Зеркало 2 · GitHub напрямую",
   "pages.download.channel.r2": "Зеркало 3 · Cloudflare R2",
-  "pages.download.channel.vercel": "Зеркало 4 · Зеркало сайта (резерв)",
-  "pages.download.mirrorHint": "Четыре канала загрузки: если GHProxy/GitHub/R2 не работают, используйте зеркало сайта.",
+  "pages.download.channel.vercel": "Зеркало 4 · Зеркало AirLane",
+  "pages.download.mirrorHint": "Четыре канала загрузки — выберите любой, при сбое переключитесь на другой.",
 };
 
 export default dict;

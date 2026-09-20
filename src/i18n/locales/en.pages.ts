@@ -48,8 +48,8 @@ const dict: Record<string, string> = {
   "pages.download.channel.ghproxy": "Mirror 1 · GHProxy",
   "pages.download.channel.github": "Mirror 2 · GitHub direct",
   "pages.download.channel.r2": "Mirror 3 · Cloudflare R2",
-  "pages.download.channel.vercel": "Mirror 4 · Site mirror (fallback)",
-  "pages.download.mirrorHint": "Four download channels — if GHProxy/GitHub/R2 fail, use the site mirror as fallback.",
+  "pages.download.channel.vercel": "Mirror 4 · AirLane mirror",
+  "pages.download.mirrorHint": "Four download channels — pick any; switch if one fails.",
 };
 
 export default dict;
