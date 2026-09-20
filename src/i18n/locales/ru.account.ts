@@ -131,6 +131,17 @@ const dict: Record<string, string> = {
   "account.anon.loginDesc": "Уже есть анонимный аккаунт? Войдите с кодом входа.",
   "account.anon.createDesc": "Нет анонимного аккаунта? Создайте случайную личность одним кликом.",
   "account.anon.close": "Закрыть",
+  "account.backups.title": "Облачные резервные копии",
+  "account.backups.empty": "Облачных копий пока нет. Снимки, загруженные клиентом, появятся здесь.",
+  "account.backups.view": "Открыть",
+  "account.backups.delete": "Удалить",
+  "account.backups.deleteConfirm": "Удалить копию «{name}»? Действие необратимо.",
+  "account.backups.deleted": "Копия удалена",
+  "account.backups.decryptFailed": "Не удалось расшифровать: копия повреждена или принадлежит другому аккаунту.",
+  "account.backups.reveal": "Показать конфиденциальные поля",
+  "account.backups.hide": "Скрыть конфиденциальные поля",
+  "account.backups.close": "Закрыть",
+  "account.backups.loading": "Расшифровка…",
 };
 
 export default dict;

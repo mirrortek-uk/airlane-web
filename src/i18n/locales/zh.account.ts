@@ -153,6 +153,17 @@ const dict: Record<string, string> = {
   "account.anon.loginDesc": "已有匿名账号？输入登录码找回你的身份。",
   "account.anon.createDesc": "还没有匿名账号？一键生成随机云端身份。",
   "account.anon.close": "关闭",
+  "account.backups.title": "云端配置备份",
+  "account.backups.empty": "暂无云端备份。客户端上传的配置快照会显示在这里。",
+  "account.backups.view": "查看",
+  "account.backups.delete": "删除",
+  "account.backups.deleteConfirm": "确定删除备份“{name}”？删除后不可恢复，客户端下次拉取列表时会同步移除。",
+  "account.backups.deleted": "备份已删除",
+  "account.backups.decryptFailed": "解密失败：备份可能已损坏或不属于当前账号。",
+  "account.backups.reveal": "显示敏感字段",
+  "account.backups.hide": "隐藏敏感字段",
+  "account.backups.close": "关闭",
+  "account.backups.loading": "解密中…",
 };
 
 export default dict;

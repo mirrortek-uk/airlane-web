@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from
 import { toast } from "sonner";
 import { Check, X, Cloud, ShieldCheck, User, Server, Globe, XIcon, Laptop } from "lucide-react";
 
+import { BackupManager } from "@/components/backup-manager";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
@@ -465,6 +466,8 @@ function AccountPage() {
           deviceLimit={guest?.valid ? guest.limits.devices : overview?.limits.devices}
           onChanged={refresh}
         />
+
+        {profile && <BackupManager userId={profile.id} />}
 
         <SharedResources />
 

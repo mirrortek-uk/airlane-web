@@ -131,6 +131,17 @@ const dict: Record<string, string> = {
   "account.anon.loginDesc": "Hai già un account anonimo? Accedi con il codice di accesso.",
   "account.anon.createDesc": "Nessun account anonimo? Genera un'identità casuale con un clic.",
   "account.anon.close": "Chiudi",
+  "account.backups.title": "Backup cloud della configurazione",
+  "account.backups.empty": "Nessun backup cloud. Gli snapshot caricati dal client appariranno qui.",
+  "account.backups.view": "Vedi",
+  "account.backups.delete": "Elimina",
+  "account.backups.deleteConfirm": "Eliminare il backup \"{name}\"? L’azione è irreversibile.",
+  "account.backups.deleted": "Backup eliminato",
+  "account.backups.decryptFailed": "Decrittografia non riuscita: il backup potrebbe essere danneggiato o appartenere a un altro account.",
+  "account.backups.reveal": "Mostra campi sensibili",
+  "account.backups.hide": "Nascondi campi sensibili",
+  "account.backups.close": "Chiudi",
+  "account.backups.loading": "Decrittografia…",
 };
 
 export default dict;

@@ -123,6 +123,17 @@ const dict: Record<string, string> = {
   "account.anon.loginDesc": "已有匿名帳號？輸入登入碼登入你的身份。",
   "account.anon.createDesc": "還沒有匿名帳號？一鍵生成隨機雲端身份。",
   "account.anon.close": "關閉",
+  "account.backups.title": "雲端設定備份",
+  "account.backups.empty": "尚無雲端備份。客戶端上傳的設定快照會顯示在這裡。",
+  "account.backups.view": "檢視",
+  "account.backups.delete": "刪除",
+  "account.backups.deleteConfirm": "確定刪除備份「{name}」？刪除後無法復原，客戶端下次同步時會移除。",
+  "account.backups.deleted": "備份已刪除",
+  "account.backups.decryptFailed": "解密失敗：備份可能已損毀或不屬於目前帳號。",
+  "account.backups.reveal": "顯示敏感欄位",
+  "account.backups.hide": "隱藏敏感欄位",
+  "account.backups.close": "關閉",
+  "account.backups.loading": "解密中…",
 };
 
 export default dict;

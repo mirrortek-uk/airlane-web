@@ -166,6 +166,17 @@ const dict: Record<string, string> = {
   "account.anon.loginDesc": "Already have an anonymous account? Restore it with your login code.",
   "account.anon.createDesc": "No anonymous account yet? Generate a random cloud identity in one click.",
   "account.anon.close": "Close",
+  "account.backups.title": "Cloud config backups",
+  "account.backups.empty": "No cloud backups yet. Snapshots uploaded by the client will appear here.",
+  "account.backups.view": "View",
+  "account.backups.delete": "Delete",
+  "account.backups.deleteConfirm": "Delete backup \"{name}\"? This cannot be undone; the client will drop it on its next sync.",
+  "account.backups.deleted": "Backup deleted",
+  "account.backups.decryptFailed": "Decryption failed: the backup may be corrupted or belong to a different account.",
+  "account.backups.reveal": "Reveal sensitive fields",
+  "account.backups.hide": "Hide sensitive fields",
+  "account.backups.close": "Close",
+  "account.backups.loading": "Decrypting…",
 };
 
 export default dict;
