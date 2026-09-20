@@ -38,7 +38,17 @@ export const Route = createFileRoute("/api/public/devices/status")({
           .maybeSingle();
 
         if (!device) return json({ error: "device_not_found" }, 404);
-        if (!device.owner_user_id) return json({ ok: true, identity: "guest", plan: null });
+
+        const { getPlanLimits } = await import("@/lib/identity.functions");
+
+        if (!device.owner_user_id) {
+          return json({
+            ok: true,
+            identity: "guest",
+            plan: null,
+            limits: await getPlanLimits("anonymous"),
+          });
+        }
 
         const { data: prof } = await supabaseAdmin
           .from("profiles")
@@ -46,10 +56,12 @@ export const Route = createFileRoute("/api/public/devices/status")({
           .eq("id", device.owner_user_id)
           .maybeSingle();
 
+        const plan = prof?.plan === "pro" ? "pro" : "free";
         return json({
           ok: true,
           identity: "account",
-          plan: prof?.plan === "pro" ? "pro" : "free",
+          plan,
+          limits: await getPlanLimits(plan),
         });
       },
     },

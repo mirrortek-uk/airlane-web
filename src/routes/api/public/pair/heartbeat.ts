@@ -41,8 +41,9 @@ export const Route = createFileRoute("/api/public/pair/heartbeat")({
         if (error) return json({ error: "heartbeat_failed" }, 500);
         if (!data) return json({ error: "device_not_found" }, 404);
 
-        // Echo the account plan back so the client picks up upgrades
-        // (e.g. free -> pro) without re-pairing.
+        // Echo the account plan + quota bundle back so the client picks up
+        // upgrades and limit changes (e.g. free -> pro) without re-pairing.
+        const { getPlanLimits } = await import("@/lib/identity.functions");
         let plan: "free" | "pro" | null = null;
         if (data.owner_user_id) {
           const { data: prof } = await supabaseAdmin
@@ -52,7 +53,8 @@ export const Route = createFileRoute("/api/public/pair/heartbeat")({
             .maybeSingle();
           plan = prof?.plan === "pro" ? "pro" : "free";
         }
-        return json({ ok: true, plan });
+        const limits = await getPlanLimits(plan ?? "anonymous");
+        return json({ ok: true, plan, limits });
       },
     },
   },

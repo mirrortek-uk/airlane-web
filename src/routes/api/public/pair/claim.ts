@@ -47,10 +47,12 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           return json({ error: "code_expired" }, 410);
         }
 
-        // Device quotas: registered accounts are limited by plan
-        // (free 2 / pro 10); anonymous identities are capped at 2.
-        const { ACCOUNT_LIMITS } = await import("@/lib/identity.functions");
+        // Device quotas: registered accounts are limited by plan, anonymous
+        // identities by the "anonymous" row — all read from plan_limits so
+        // quotas can be tuned in the database without a deploy.
+        const { getPlanLimits } = await import("@/lib/identity.functions");
         let plan: "free" | "pro" | null = null;
+        let limits = await getPlanLimits("anonymous");
         if (pairing.owner_user_id) {
           const { data: prof } = await supabaseAdmin
             .from("profiles")
@@ -58,12 +60,14 @@ export const Route = createFileRoute("/api/public/pair/claim")({
             .eq("id", pairing.owner_user_id)
             .maybeSingle();
           plan = prof?.plan === "pro" ? "pro" : "free";
-          const limit = ACCOUNT_LIMITS[plan].devices;
+          limits = await getPlanLimits(plan);
           const { count } = await supabaseAdmin
             .from("devices")
             .select("id", { count: "exact", head: true })
             .eq("owner_user_id", pairing.owner_user_id);
-          if ((count ?? 0) >= limit) return json({ error: "device_limit_reached" }, 403);
+          if ((count ?? 0) >= limits.devices) {
+            return json({ error: "device_limit_reached" }, 403);
+          }
         } else if (pairing.identity_id || pairing.guest_session_id) {
           const deviceCount = async (column: "identity_id" | "guest_session_id", value: string) => {
             const { count } = await supabaseAdmin
@@ -77,7 +81,7 @@ export const Route = createFileRoute("/api/public/pair/claim")({
             : pairing.guest_session_id
               ? await deviceCount("guest_session_id", pairing.guest_session_id)
               : 0;
-          if (count >= 2) return json({ error: "guest_device_limit" }, 403);
+          if (count >= limits.devices) return json({ error: "guest_device_limit" }, 403);
         }
 
         const { data: device, error } = await supabaseAdmin
@@ -108,6 +112,7 @@ export const Route = createFileRoute("/api/public/pair/claim")({
           platform: device.platform,
           identity: pairing.owner_user_id ? "account" : "guest",
           plan,
+          limits,
         });
       },
     },

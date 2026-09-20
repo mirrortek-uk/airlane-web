@@ -117,6 +117,10 @@ export const getAccountOverview = createServerFn({ method: "GET" })
         : sb.from("mesh_groups").select("id, name, invite_code, created_at"),
     ]);
 
+    const { getPlanLimits } = await import("@/lib/identity.functions");
+    const plan = profile?.plan === "pro" ? "pro" : "free";
+    const limits = await getPlanLimits(plan);
+
     let parentEmail: string | null = null;
     if (profile?.parent_account_id) {
       const db = await admin();
@@ -138,6 +142,7 @@ export const getAccountOverview = createServerFn({ method: "GET" })
         favorites: favorites.count ?? 0,
         groups: groups.data?.length ?? 0,
       },
+      limits,
       groups: groups.data ?? [],
     };
   });

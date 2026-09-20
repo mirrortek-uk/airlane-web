@@ -31,6 +31,52 @@ export const ACCOUNT_LIMITS = {
   pro: { devices: 10, configTemplates: 15 },
 } as const;
 
+export type PlanName = "anonymous" | "free" | "pro";
+
+/** Client-facing quota bundle returned by the public device APIs. */
+export type PlanLimits = {
+  devices: number;
+  configTemplates: number;
+  sharedVps: number;
+  residentialIp: number;
+  meshGroups: number;
+};
+
+/** Hardcoded fallbacks used when the plan_limits table is unavailable. */
+const FALLBACK_LIMITS: Record<PlanName, PlanLimits> = {
+  anonymous: { ...ANONYMOUS_LIMITS, configTemplates: 0 },
+  free: { ...ACCOUNT_LIMITS.free, sharedVps: 0, residentialIp: 0, meshGroups: 0 },
+  pro: { ...ACCOUNT_LIMITS.pro, sharedVps: 0, residentialIp: 0, meshGroups: 0 },
+};
+
+/**
+ * Source of truth for quotas: the plan_limits table. Falls back to the
+ * constants above so a missing table never breaks the public APIs.
+ */
+export async function getPlanLimits(plan: PlanName): Promise<PlanLimits> {
+  const fallback = FALLBACK_LIMITS[plan];
+  try {
+    const db = await admin();
+    const { data } = await db
+      .from("plan_limits")
+      .select(
+        "device_limit, config_template_limit, shared_vps_limit, residential_ip_limit, mesh_group_limit",
+      )
+      .eq("plan", plan)
+      .maybeSingle();
+    if (!data) return fallback;
+    return {
+      devices: data.device_limit,
+      configTemplates: data.config_template_limit,
+      sharedVps: data.shared_vps_limit,
+      residentialIp: data.residential_ip_limit,
+      meshGroups: data.mesh_group_limit,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
 const ACCESS_TOKEN_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 
 /**

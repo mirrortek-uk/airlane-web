@@ -57,7 +57,14 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
   "name": "MacBook Pro",
   "platform": "macos",
   "identity": "account",
-  "plan": "free"
+  "plan": "free",
+  "limits": {
+    "devices": 2,
+    "configTemplates": 2,
+    "sharedVps": 0,
+    "residentialIp": 0,
+    "meshGroups": 0
+  }
 }
 ```
 
@@ -65,7 +72,8 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
 |---|---|
 | `device_id` | 设备 UUID。**客户端必须持久化保存**（安全存储），它是之后心跳和将来配置下发的唯一凭证 |
 | `identity` | `"account"` = 绑到正式账号；`"guest"` = 绑到匿名账号 |
-| `plan` | 账号套餐：`"free"` / `"pro"`；匿名账号为 `null`。用于本地限额提示（免费版 2 台设备 + 2 个配置模板，Pro 10 台 + 15 个） |
+| `plan` | 账号套餐：`"free"` / `"pro"`；匿名账号为 `null` |
+| `limits` | 该套餐的配额明细，见下方「limits 字段」 |
 
 ### 错误响应
 
@@ -77,9 +85,25 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
 | 404 | `code_not_found` | 配对码不存在 | 提示"配对码无效，请核对后重试" |
 | 409 | `code_already_used` | 配对码已被兑换 | 提示"配对码已使用，请回账号页重新生成" |
 | 410 | `code_expired` | 配对码超过 10 分钟有效期 | 提示"配对码已过期，请重新生成" |
-| 403 | `guest_device_limit` | 匿名账号设备数已达上限（2 台） | 提示"该匿名账号设备已满，请解绑旧设备或升级正式账号" |
-| 403 | `device_limit_reached` | 正式账号设备数已达上限（免费版 2 台 / Pro 10 台） | 提示"设备数量已达上限，请解绑旧设备或升级套餐" |
+| 403 | `guest_device_limit` | 匿名账号设备数已达上限 | 提示"该匿名账号设备已满，请解绑旧设备或升级正式账号" |
+| 403 | `device_limit_reached` | 正式账号设备数已达套餐上限 | 提示"设备数量已达上限，请解绑旧设备或升级套餐" |
 | 500 | `pairing_failed` | 服务端写入失败 | 提示稍后重试 |
+
+### limits 字段
+
+`limits` 对象由数据库 `plan_limits` 表驱动 —— 服务端每次响应都读最新值，
+调整配额不需要客户端发版。字段固定为：
+
+| 字段 | 含义 |
+|---|---|
+| `devices` | 可绑定设备数 |
+| `configTemplates` | 可云端存储的配置模板/节点文件数 |
+| `sharedVps` | 可用共享 VPS 资源数 |
+| `residentialIp` | 可用住宅 IP 资源数 |
+| `meshGroups` | 可创建的 Mesh 组数 |
+
+`0` 表示该套餐不可用此能力。当前档位：anonymous `{2,0,2,2,2}`、
+free `{2,2,0,0,0}`、pro `{10,15,0,0,0}` —— **以响应里的实际值为准**。
 
 ### 示例
 
@@ -114,12 +138,13 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 成功 `200`：
 
 ```json
-{ "ok": true, "plan": "pro" }
+{ "ok": true, "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0 } }
 ```
 
-`plan` 为 `"free"` / `"pro"` / `null`（匿名账号）。Mesh 设备每次心跳
-都会顺带拿到最新套餐；未启用 Mesh 的设备请通过 §3.5 的 status
-接口同步 —— 两种途径拿到的 plan 都应写回本地缓存。
+`plan` 为 `"free"` / `"pro"` / `null`（匿名账号），`limits` 为该套餐
+的最新配额明细。Mesh 设备每次心跳都会顺带拿到最新套餐与配额；
+未启用 Mesh 的设备请通过 §3.5 的 status 接口同步 —— 两种途径
+拿到的 plan 和 limits 都应写回本地缓存。
 
 ---
 
@@ -139,13 +164,14 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 ### 响应 `200`
 
 ```json
-{ "ok": true, "identity": "account", "plan": "pro" }
+{ "ok": true, "identity": "account", "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0 } }
 ```
 
 | 字段 | 说明 |
 |---|---|
 | `identity` | `"account"` / `"guest"` |
-| `plan` | `"free"` / `"pro"`；匿名账号为 `null`。客户端只需要知道这个档位来做本地能力/提示区分，配额数字由服务端在写入时强制 |
+| `plan` | `"free"` / `"pro"`；匿名账号为 `null` |
+| `limits` | 该套餐的配额明细（字段定义见 §2「limits 字段」）。每次调用都返回数据库最新值，客户端直接覆盖本地缓存即可 |
 
 ### 错误
 
@@ -190,6 +216,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 |---|---|---|
 | `device_id` | 系统安全存储（Keychain / DPAPI / Keystore） | 设备凭证，勿写日志、勿明文落盘到可被其他进程读取的位置 |
 | `plan` | 本地配置/内存缓存 | 由 `devices/status`（启动时）和 `heartbeat`（Mesh 开启时）刷新；`null` 视为匿名账号档位 |
+| `limits` | 本地配置/内存缓存 | 与 `plan` 同源刷新；每次响应都带数据库最新值，直接整体覆盖本地缓存，不要自行累加或写死 |
 | 设备名 / 平台 | 本地配置 | 自己生成的，可自由存 |
 | WireGuard 私钥 | 系统安全存储 | **永不上行**，只有公钥通过 `device_public_key` 上报 |
 
@@ -204,10 +231,13 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 |---|---|---|---|
 | 设备上限 | 2 台 | 2 台 | 10 台 |
 | 配置模板/节点文件 | 不可用 | 2 个 | 15 个 |
+| 共享 VPS / 住宅 IP | 各 2 个 | 0（由 `plan_limits` 控制） | 0（由 `plan_limits` 控制） |
 | 超出时 claim 返回 | `guest_device_limit` (403) | `device_limit_reached` (403) | `device_limit_reached` (403) |
 
-配置模板/节点文件存 `cloud_snapshots` 表；上传接口落地前客户端
-无需处理，服务端会按套餐档位强制限额。
+配额数字只是**当前默认值**——真源是数据库 `plan_limits` 表，
+客户端应以 `limits` 响应字段为准。配置模板/节点文件存
+`cloud_snapshots` 表；上传接口落地前客户端无需处理，服务端
+会按套餐档位强制限额。
 
 客户端不需要按 identity 区分逻辑 —— 正常处理错误码即可。
 
