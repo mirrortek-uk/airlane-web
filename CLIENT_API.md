@@ -274,3 +274,29 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 - [ ] 网页端解绑后 → 下一次心跳/status 收到 `device_not_found`，客户端清除本地凭证
 - [ ] Mesh 关闭状态下不产生任何 heartbeat 请求，但启动时仍会调 status 同步 plan
 - [ ] 免费版账号网页端升级 Pro 后 → 客户端下一次 status/心跳拿到 `"plan": "pro"` 并刷新本地档位
+
+---
+
+## 9. 版本更新检查与安装包镜像
+
+发布事实源是公开仓库 `mirrortek-uk/AirLane-releases` 的 Releases。
+官网提供两个免鉴权接口，客户端把 `update.rs` 里的 `RELEASES_API`
+常量换成 §9.1 即可切换更新源（响应与 GitHub API 同构）。
+
+### 9.1 `GET /api/releases/latest` — 最新版本
+
+与 `api.github.com/.../releases/latest` 同构：`tag_name` / `name` /
+`published_at` / `html_url` / `body` / `assets[]`。唯一差别是每个
+asset 的 `browser_download_url` 被改写为官网镜像地址
+`https://www.airlane.cloud/api/releases/download/<文件名>`；
+原 GitHub 地址保留在 `assets[].github_url` 字段作备选。
+
+服务端缓存 10 分钟 + Vercel 边缘缓存 5 分钟，新 Release 最迟
+15 分钟内可见，无需改动官网代码。
+
+### 9.2 `GET /api/releases/download/{filename}` — 安装包镜像
+
+流式转发 GitHub Release 资产（跟随 302 到对象存储），带
+`Content-Disposition: attachment`。只允许最新 Release 中已发布的
+文件名，非开放代理。错误：`404 asset_not_found` /
+`502 upstream_failed`。

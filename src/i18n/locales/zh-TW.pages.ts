@@ -42,6 +42,10 @@ const dict: Record<string, string> = {
   "pages.migration.cta.title": "準備好遷移了嗎？",
   "pages.migration.cta.desc": "下載 AirLane 客戶端，在「訂閱」頁面選擇「從 Clash / Mihomo 匯入」即可開始。",
   "pages.migration.cta.button": "前往下載",
+  "pages.download.version": "最新版本 {v}",
+  "pages.download.mirrorHint": "透過 airlane.cloud 鏡像加速下載，國內可達；GitHub 直連作為備選。",
+  "pages.download.githubFallback": "GitHub 直連",
+  "pages.download.releaseNotes": "更新日誌",
 };
 
 export default dict;

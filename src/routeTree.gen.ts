@@ -40,6 +40,7 @@ import { Route as EnMigrationRouteImport } from './routes/en.migration'
 import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
 import { Route as EnTermsRouteImport } from './routes/en.terms'
+import { Route as ApiReleasesLatestRouteImport } from './routes/api/releases/latest'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
@@ -47,6 +48,7 @@ import { Route as EnDocsSlugRouteImport } from './routes/en.docs.$slug'
 import { Route as ApiPublicDevicesStatusRouteImport } from './routes/api/public/devices/status'
 import { Route as ApiPublicPairClaimRouteImport } from './routes/api/public/pair/claim'
 import { Route as ApiPublicPairHeartbeatRouteImport } from './routes/api/public/pair/heartbeat'
+import { Route as ApiReleasesDownloadFilenameRouteImport } from './routes/api/releases/download.$filename'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -203,6 +205,11 @@ const EnTermsRoute = EnTermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => EnRoute,
 } as any)
+const ApiReleasesLatestRoute = ApiReleasesLatestRouteImport.update({
+  id: '/api/releases/latest',
+  path: '/api/releases/latest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -238,6 +245,12 @@ const ApiPublicPairHeartbeatRoute = ApiPublicPairHeartbeatRouteImport.update({
   path: '/api/public/pair/heartbeat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiReleasesDownloadFilenameRoute =
+  ApiReleasesDownloadFilenameRouteImport.update({
+    id: '/api/releases/download/$filename',
+    path: '/api/releases/download/$filename',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -271,6 +284,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
+  '/api/releases/latest': typeof ApiReleasesLatestRoute
   '/en/blog/$slug': typeof EnBlogSlugRoute
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
@@ -278,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
+  '/api/releases/download/$filename': typeof ApiReleasesDownloadFilenameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -306,6 +321,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
   '/en': typeof EnIndexRoute
+  '/api/releases/latest': typeof ApiReleasesLatestRoute
   '/en/blog/$slug': typeof EnBlogSlugRoute
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog': typeof EnBlogIndexRoute
@@ -313,6 +329,7 @@ export interface FileRoutesByTo {
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
+  '/api/releases/download/$filename': typeof ApiReleasesDownloadFilenameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -347,6 +364,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
+  '/api/releases/latest': typeof ApiReleasesLatestRoute
   '/en/blog/$slug': typeof EnBlogSlugRoute
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
@@ -354,6 +372,7 @@ export interface FileRoutesById {
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
+  '/api/releases/download/$filename': typeof ApiReleasesDownloadFilenameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -389,6 +408,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/docs/'
     | '/en/'
+    | '/api/releases/latest'
     | '/en/blog/$slug'
     | '/en/docs/$slug'
     | '/en/blog/'
@@ -396,6 +416,7 @@ export interface FileRouteTypes {
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
+    | '/api/releases/download/$filename'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -424,6 +445,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/docs'
     | '/en'
+    | '/api/releases/latest'
     | '/en/blog/$slug'
     | '/en/docs/$slug'
     | '/en/blog'
@@ -431,6 +453,7 @@ export interface FileRouteTypes {
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
+    | '/api/releases/download/$filename'
   id:
     | '__root__'
     | '/'
@@ -464,6 +487,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/docs/'
     | '/en/'
+    | '/api/releases/latest'
     | '/en/blog/$slug'
     | '/en/docs/$slug'
     | '/en/blog/'
@@ -471,6 +495,7 @@ export interface FileRouteTypes {
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
+    | '/api/releases/download/$filename'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -490,9 +515,11 @@ export interface RootRouteChildren {
   SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
   SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
   TermsRoute: typeof TermsRoute
+  ApiReleasesLatestRoute: typeof ApiReleasesLatestRoute
   ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
   ApiPublicPairHeartbeatRoute: typeof ApiPublicPairHeartbeatRoute
+  ApiReleasesDownloadFilenameRoute: typeof ApiReleasesDownloadFilenameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -714,6 +741,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnTermsRouteImport
       parentRoute: typeof EnRoute
     }
+    '/api/releases/latest': {
+      id: '/api/releases/latest'
+      path: '/api/releases/latest'
+      fullPath: '/api/releases/latest'
+      preLoaderRoute: typeof ApiReleasesLatestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/blog/': {
       id: '/en/blog/'
       path: '/'
@@ -761,6 +795,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/pair/heartbeat'
       fullPath: '/api/public/pair/heartbeat'
       preLoaderRoute: typeof ApiPublicPairHeartbeatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/releases/download/$filename': {
+      id: '/api/releases/download/$filename'
+      path: '/api/releases/download/$filename'
+      fullPath: '/api/releases/download/$filename'
+      preLoaderRoute: typeof ApiReleasesDownloadFilenameRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -863,9 +904,11 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
   SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
   TermsRoute: TermsRoute,
+  ApiReleasesLatestRoute: ApiReleasesLatestRoute,
   ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,
   ApiPublicPairHeartbeatRoute: ApiPublicPairHeartbeatRoute,
+  ApiReleasesDownloadFilenameRoute: ApiReleasesDownloadFilenameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

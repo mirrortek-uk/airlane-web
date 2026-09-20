@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DownloadPage } from "@/routes/download";
 import { canonical, softwareApplicationSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
+import { getLatestReleaseFn } from "@/lib/releases.functions";
 
 export const Route = createFileRoute("/en/download")({
+  loader: () => getLatestReleaseFn(),
   head: () => ({
     meta: [
       { title: "Download AirLane — Cross-Platform Network Orchestration Client" },

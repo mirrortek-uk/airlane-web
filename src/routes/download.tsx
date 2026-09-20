@@ -1,12 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { ArrowLeft, Download, Github, Monitor, Smartphone } from "lucide-react";
 
 import { useT } from "@/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { canonical, softwareApplicationSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
+import { getLatestReleaseFn } from "@/lib/releases.functions";
+import type { ReleaseInfo } from "@/lib/releases";
 
 export const Route = createFileRoute("/download")({
+  loader: () => getLatestReleaseFn(),
   head: () => ({
     meta: [
       { title: "下载 AirLane — 跨平台网络编排客户端" },
@@ -52,9 +55,15 @@ export const Route = createFileRoute("/download")({
   component: DownloadPage,
 });
 
+function formatSize(bytes: number) {
+  return `${(bytes / 1048576).toFixed(1)} MB`;
+}
+
 export function DownloadPage() {
   const t = useT();
   const lp = useLocalePrefix();
+  const release = useLoaderData({ strict: false }) as ReleaseInfo | undefined;
+  const windowsAssets = release?.assets.filter((a) => /\.(exe|msi)$/i.test(a.name)) ?? [];
 
   const platforms = [
     {
@@ -116,38 +125,89 @@ export function DownloadPage() {
           </p>
         </div>
 
+        {release && (
+          <p className="text-center text-xs font-mono text-muted-foreground mb-6">
+            {t("pages.download.version", { v: release.tag_name })}
+            {" · "}
+            {new Date(release.published_at).toLocaleDateString()}
+          </p>
+        )}
+
         <div className="space-y-4">
-          {platforms.map((p) => (
-            <div
-              key={p.name}
-              className="rounded-2xl border border-border bg-card/60 p-5 shadow-card flex items-center justify-between"
-            >
-              <div className="flex items-center gap-4">
-                <div className="size-11 rounded-2xl bg-brand/15 grid place-items-center text-brand">
-                  <p.icon className="size-5" />
+          {platforms.map((p) => {
+            const assets = p.name === "Windows" ? windowsAssets : [];
+            return (
+              <div
+                key={p.name}
+                className="rounded-2xl border border-border bg-card/60 p-5 shadow-card"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="size-11 rounded-2xl bg-brand/15 grid place-items-center text-brand">
+                      <p.icon className="size-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg text-foreground">{p.name}</h3>
+                      <p className="text-sm text-muted-foreground">{p.arch}</p>
+                    </div>
+                  </div>
+                  {assets.length === 0 && (
+                    <span className="block text-xs font-mono text-muted-foreground">
+                      {p.status}
+                    </span>
+                  )}
                 </div>
-                <div>
-                  <h3 className="font-display text-lg text-foreground">{p.name}</h3>
-                  <p className="text-sm text-muted-foreground">{p.arch}</p>
-                </div>
+                {assets.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    {assets.map((a) => (
+                      <div
+                        key={a.name}
+                        className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background/60 px-4 py-3"
+                      >
+                        <div className="min-w-0">
+                          <p className="truncate font-mono text-sm text-foreground">{a.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {formatSize(a.size)}
+                            {" · "}
+                            <a
+                              href={a.github_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline underline-offset-2 hover:text-foreground"
+                            >
+                              {t("pages.download.githubFallback")}
+                            </a>
+                          </p>
+                        </div>
+                        <a
+                          href={a.browser_download_url}
+                          className="shrink-0 rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2"
+                        >
+                          <Download className="size-4" />
+                          {t("pages.download.action.download")}
+                        </a>
+                      </div>
+                    ))}
+                    <p className="text-xs text-muted-foreground">
+                      {t("pages.download.mirrorHint")}
+                    </p>
+                  </div>
+                )}
               </div>
-              <div className="text-right">
-                <span className="block text-xs font-mono text-muted-foreground mb-1.5">
-                  {p.status}
-                </span>
-                <a
-                  href="https://github.com/mirrortek-uk/airlane-web/releases"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2"
-                >
-                  <Download className="size-4" />
-                  {t("pages.download.action.download")}
-                </a>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        {release?.body && (
+          <div className="mt-8 rounded-2xl border border-border bg-muted/30 p-6">
+            <h3 className="font-display text-lg text-foreground mb-2">
+              {t("pages.download.releaseNotes")}
+            </h3>
+            <pre className="whitespace-pre-wrap font-sans text-sm text-muted-foreground">
+              {release.body}
+            </pre>
+          </div>
+        )}
 
         <div className="mt-12 rounded-2xl border border-border bg-muted/30 p-6">
           <h3 className="font-display text-lg text-foreground mb-2">{t("pages.download.notes.title")}</h3>
@@ -160,7 +220,7 @@ export function DownloadPage() {
 
         <div className="mt-8 text-center">
           <a
-            href="https://github.com/mirrortek-uk/airlane-web"
+            href="https://github.com/mirrortek-uk/AirLane-releases"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"

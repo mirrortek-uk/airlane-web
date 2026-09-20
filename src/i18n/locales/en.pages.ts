@@ -42,6 +42,10 @@ const dict: Record<string, string> = {
   "pages.migration.cta.title": "Ready to migrate?",
   "pages.migration.cta.desc": "Download the AirLane client and choose \"Import from Clash / Mihomo\" on the Subscriptions page to get started.",
   "pages.migration.cta.button": "Go to Download",
+  "pages.download.version": "Latest {v}",
+  "pages.download.mirrorHint": "Served via the airlane.cloud mirror for better reachability; GitHub direct link available as fallback.",
+  "pages.download.githubFallback": "GitHub direct",
+  "pages.download.releaseNotes": "Release notes",
 };
 
 export default dict;
