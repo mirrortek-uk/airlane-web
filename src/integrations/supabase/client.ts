@@ -2,6 +2,7 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 import { brokeredPreviewStorage } from './previewAuthStorage';
+import { airlaneCookieStorage, isAirlaneHost, migrateLocalSessionToCookie } from '@/lib/auth-storage';
 
 function isNewSupabaseApiKey(value: string): boolean {
   return value.startsWith('sb_publishable_') || value.startsWith('sb_secret_');
@@ -44,12 +45,19 @@ function createSupabaseClient() {
     throw new Error(message);
   }
 
+  // On *.airlane.cloud hosts, share the session via a parent-domain cookie so
+  // poolvip/mesh subdomains see the same login. Elsewhere (localhost, Lovable
+  // previews) keep the brokered/localStorage behavior.
+  const onAirlane = typeof window !== 'undefined' && isAirlaneHost(window.location.hostname);
+  const storageKey = `sb-${new URL(SUPABASE_URL).hostname.split('.')[0]}-auth-token`;
+  if (onAirlane) migrateLocalSessionToCookie(storageKey);
+
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
     global: {
       fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
     },
     auth: {
-      storage: brokeredPreviewStorage(),
+      storage: onAirlane ? airlaneCookieStorage : brokeredPreviewStorage(),
       persistSession: true,
       autoRefreshToken: true,
     }
