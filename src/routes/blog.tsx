@@ -1,11 +1,9 @@
-import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { PenLine } from "lucide-react";
 
-import { BlogSidebar } from "@/components/blog-sidebar";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/i18n";
-import { blogQueries } from "@/lib/blog";
 import { docLang, docsQueries } from "@/lib/docs";
 import { useLocalePrefix } from "@/lib/locale-link";
 
@@ -17,10 +15,7 @@ export function BlogLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
   const admin = useQuery(docsQueries.admin());
-  const posts = useQuery(blogQueries.posts());
   const lp = useLocalePrefix();
-  const pathname = useLocation({ select: (l) => l.pathname });
-  const isAdmin = pathname.endsWith("/admin");
 
   return (
     <div className="min-h-screen bg-cream text-foreground">
@@ -33,6 +28,9 @@ export function BlogLayout() {
             <Link to={`${lp}/blog`} className="hidden sm:inline text-sm font-mono text-muted-foreground">
               {lang === "zh" ? "博客" : "Blog"}
             </Link>
+            <span className="hidden border-l border-ink/10 pl-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+              Field Notes
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -55,18 +53,24 @@ export function BlogLayout() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        {isAdmin ? (
-          <Outlet />
-        ) : (
-          <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
-            <BlogSidebar posts={posts.data ?? []} />
-            <div className="min-w-0">
-              <Outlet />
-            </div>
-          </div>
-        )}
+      <div className="max-w-7xl mx-auto px-5 py-10 lg:px-8">
+        <Outlet />
       </div>
+
+      <footer className="border-t border-ink/10 bg-white/50">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
+          <div className="flex items-center gap-2">
+            <span className="font-medium text-foreground">AirLane</span>
+            <span>— {lang === "zh" ? "网络工程，逐篇记录。" : "Network engineering, documented."}</span>
+          </div>
+          <div className="flex items-center gap-5 font-mono text-xs">
+            <Link to={`${lp}/docs`} className="hover:text-foreground transition">
+              {lang === "zh" ? "帮助中心" : "Docs"}
+            </Link>
+            <span>© {new Date().getFullYear()}</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

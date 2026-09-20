@@ -550,3 +550,16 @@
   border: 0;
   border-top: 1px solid color-mix(in oklab, currentColor 12%, transparent);
 }
+
+@keyframes route-flow {
+  to { stroke-dashoffset: -32; }
+}
+
+@utility route-line {
+  stroke-dasharray: 5 5;
+  animation: route-flow 2.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-line { animation: none; }
+}
