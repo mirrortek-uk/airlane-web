@@ -43,9 +43,13 @@ const dict: Record<string, string> = {
   "pages.migration.cta.desc": "Téléchargez le client AirLane et choisissez « Importer depuis Clash / Mihomo » sur la page Abonnements pour commencer.",
   "pages.migration.cta.button": "Aller au téléchargement",
   "pages.download.version": "Dernière {v}",
-  "pages.download.mirrorHint": "Téléchargement via le miroir airlane.cloud ; lien direct GitHub en secours.",
   "pages.download.githubFallback": "Lien direct GitHub",
   "pages.download.releaseNotes": "Notes de version",
+  "pages.download.channel.ghproxy": "Miroir 1 · GHProxy",
+  "pages.download.channel.github": "Miroir 2 · GitHub direct",
+  "pages.download.channel.r2": "Miroir 3 · Cloudflare R2",
+  "pages.download.channel.vercel": "Miroir 4 · Miroir du site (secours)",
+  "pages.download.mirrorHint": "Quatre canaux de téléchargement — si GHProxy/GitHub/R2 échouent, utilisez le miroir du site.",
 };
 
 export default dict;

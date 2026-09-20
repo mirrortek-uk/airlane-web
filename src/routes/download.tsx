@@ -168,19 +168,23 @@ export function DownloadPage() {
                           <p className="truncate font-mono text-sm text-foreground">{a.name}</p>
                           <p className="text-xs text-muted-foreground">
                             {formatSize(a.size)}
-                            {" · "}
-                            <a
-                              href={a.github_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="underline underline-offset-2 hover:text-foreground"
-                            >
-                              {t("pages.download.githubFallback")}
-                            </a>
                           </p>
+                          <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1">
+                            {a.mirrors.map((m) => (
+                              <a
+                                key={m.id}
+                                href={m.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs underline underline-offset-2 text-muted-foreground hover:text-foreground"
+                              >
+                                {t(`pages.download.channel.${m.id}`)}
+                              </a>
+                            ))}
+                          </div>
                         </div>
                         <a
-                          href={a.browser_download_url}
+                          href={a.mirrors[0]?.url ?? a.browser_download_url}
                           className="shrink-0 rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2"
                         >
                           <Download className="size-4" />

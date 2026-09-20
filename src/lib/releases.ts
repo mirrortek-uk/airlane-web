@@ -12,6 +12,11 @@ export const MIRROR_PATH = "/api/releases/download/";
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 
+export type MirrorChannel = {
+  id: "ghproxy" | "github" | "r2" | "vercel";
+  url: string;
+};
+
 export type ReleaseAsset = {
   name: string;
   size: number;
@@ -19,7 +24,26 @@ export type ReleaseAsset = {
   browser_download_url: string;
   /** Original GitHub URL, kept as a fallback link. */
   github_url: string;
+  /** Download channels in preference order: GHProxy → GitHub → R2 → Vercel. */
+  mirrors: MirrorChannel[];
 };
+
+const GHPROXY_BASE = process.env.GHPROXY_BASE ?? "https://gh-proxy.com/";
+// Set R2_MIRROR_BASE (e.g. https://pub-xxx.r2.dev) once the R2 bucket
+// exists; the r2 channel is only advertised while configured.
+const R2_MIRROR_BASE = process.env.R2_MIRROR_BASE ?? "";
+
+function buildMirrors(name: string, githubUrl: string): MirrorChannel[] {
+  const mirrors: MirrorChannel[] = [
+    { id: "ghproxy", url: `${GHPROXY_BASE}${githubUrl}` },
+    { id: "github", url: githubUrl },
+  ];
+  if (R2_MIRROR_BASE) {
+    mirrors.push({ id: "r2", url: `${R2_MIRROR_BASE.replace(/\/$/, "")}/${name}` });
+  }
+  mirrors.push({ id: "vercel", url: `${MIRROR_BASE}${MIRROR_PATH}${name}` });
+  return mirrors;
+}
 
 export type ReleaseInfo = {
   tag_name: string;
@@ -44,12 +68,20 @@ const FALLBACK: ReleaseInfo = {
       size: 26 * 1024 * 1024,
       browser_download_url: `${MIRROR_BASE}${MIRROR_PATH}Airlane_1.0.3_x64-setup.exe`,
       github_url: `${RELEASES_REPO}/releases/download/v1.0.3/Airlane_1.0.3_x64-setup.exe`,
+      mirrors: buildMirrors(
+        "Airlane_1.0.3_x64-setup.exe",
+        `${RELEASES_REPO}/releases/download/v1.0.3/Airlane_1.0.3_x64-setup.exe`,
+      ),
     },
     {
       name: "Airlane_1.0.3_x64_en-US.msi",
       size: 36 * 1024 * 1024,
       browser_download_url: `${MIRROR_BASE}${MIRROR_PATH}Airlane_1.0.3_x64_en-US.msi`,
       github_url: `${RELEASES_REPO}/releases/download/v1.0.3/Airlane_1.0.3_x64_en-US.msi`,
+      mirrors: buildMirrors(
+        "Airlane_1.0.3_x64_en-US.msi",
+        `${RELEASES_REPO}/releases/download/v1.0.3/Airlane_1.0.3_x64_en-US.msi`,
+      ),
     },
   ],
 };
@@ -84,6 +116,7 @@ async function fetchUpstream(): Promise<ReleaseInfo> {
       size: a.size,
       browser_download_url: `${MIRROR_BASE}${MIRROR_PATH}${a.name}`,
       github_url: a.browser_download_url,
+      mirrors: buildMirrors(a.name, a.browser_download_url),
     })),
   };
 }

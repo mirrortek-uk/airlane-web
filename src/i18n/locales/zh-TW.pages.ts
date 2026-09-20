@@ -43,9 +43,13 @@ const dict: Record<string, string> = {
   "pages.migration.cta.desc": "下載 AirLane 客戶端，在「訂閱」頁面選擇「從 Clash / Mihomo 匯入」即可開始。",
   "pages.migration.cta.button": "前往下載",
   "pages.download.version": "最新版本 {v}",
-  "pages.download.mirrorHint": "透過 airlane.cloud 鏡像加速下載，國內可達；GitHub 直連作為備選。",
   "pages.download.githubFallback": "GitHub 直連",
   "pages.download.releaseNotes": "更新日誌",
+  "pages.download.channel.ghproxy": "下載一 · GHProxy 鏡像",
+  "pages.download.channel.github": "下載二 · GitHub 直連",
+  "pages.download.channel.r2": "下載三 · Cloudflare R2",
+  "pages.download.channel.vercel": "下載四 · 官網鏡像（兜底）",
+  "pages.download.mirrorHint": "四個下載渠道任選：GHProxy/GitHub/Cloudflare R2 失敗時可用官網鏡像兜底。",
 };
 
 export default dict;

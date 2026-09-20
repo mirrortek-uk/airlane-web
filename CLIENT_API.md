@@ -291,6 +291,12 @@ asset 的 `browser_download_url` 被改写为官网镜像地址
 `https://www.airlane.cloud/api/releases/download/<文件名>`；
 原 GitHub 地址保留在 `assets[].github_url` 字段作备选。
 
+每个 asset 另带 `mirrors[]` 下载渠道数组（按优先级排序）：
+`ghproxy`（第三方 GitHub 代理）、`github`（官方直链）、
+`r2`（Cloudflare R2 镜像，仅在服务端配置 `R2_MIRROR_BASE` 后出现）、
+`vercel`（官网流式代理，兜底）。客户端/下载页可按需选用，
+建议默认取 `mirrors[0]`。
+
 服务端缓存 10 分钟 + Vercel 边缘缓存 5 分钟，新 Release 最迟
 15 分钟内可见，无需改动官网代码。
 
