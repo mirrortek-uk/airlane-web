@@ -26,6 +26,7 @@ export const Route = createFileRoute("/account")({
   ssr: false,
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "账号中心 | AirLane 云端身份" },
       {
         name: "description",

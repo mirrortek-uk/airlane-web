@@ -2,6 +2,8 @@
 
 > AirLane is a modern network orchestration platform built on sing-box. It transforms traffic proxying into visual policy trees, decision tracing, exit pools, Mesh networking, and shared resource pools. Supports 38+ protocols including REALITY, Hysteria2, TUIC v5, AnyTLS, Snell v4, and WireGuard. Compatible with Clash/Mihomo ecosystem.
 
+Last updated: 2026-09-20. Full-text version: [llms-full.txt](https://www.airlane.cloud/llms-full.txt)
+
 ## Core Pages
 
 - [AirLane Homepage](https://www.airlane.cloud/): Network orchestration platform overview
@@ -9,16 +11,18 @@
 - [Clash Alternative](https://www.airlane.cloud/clash-alternative): Why AirLane is a modern Clash alternative — comparison, migration, and feature differences
 - [Mihomo Alternative](https://www.airlane.cloud/mihomo-alternative): Why AirLane is a modern Mihomo (Clash Meta) alternative — comparison and migration
 - [Clash / Mihomo Migration](https://www.airlane.cloud/migration): Import existing subscriptions and configs
-- [Device Management](https://www.airlane.cloud/devices): Pair clients with cloud identity via pairing codes
+- [Account Center](https://www.airlane.cloud/account): Anonymous or registered identity, device pairing via pairing codes, plan quotas
 
 ## Documentation
 
 - [AirLane Help Center](https://www.airlane.cloud/docs): Installation, protocols, policy orchestration, Mesh networking
 - [Welcome to AirLane](https://www.airlane.cloud/docs/welcome): Platform introduction and install guide
 - [Quick Start](https://www.airlane.cloud/docs/quick-start): Add egress, create policies, verify with Decision Trace
+- [Account Center](https://www.airlane.cloud/docs/account-center): Anonymous identities, login codes, device pairing, plan quotas
 
 ## Blog
 
+- [AirLane Blog Index](https://www.airlane.cloud/blog): All articles organized by sections, topics, and tags
 - [AirLane 1.0: From Traffic Proxy to Network Orchestration](https://www.airlane.cloud/blog/hello-airlane): Why we rebuilt a client from scratch — policy trees, decision traces, exit pools, mesh networking, and a shared resource pool
 - [Sing-Box vs Clash Mihomo: Stop Comparing Speed](https://www.airlane.cloud/blog/singbox-vs-clash-mihomo): Why top-tier network orchestration products choose sing-box as the data plane — architecture, ecosystem compatibility, and the real selection logic
 - [AirLane vs Clash: A Smarter Proxy Client for Modern Network Routing](https://www.airlane.cloud/blog/airlane-vs-clash-smarter-proxy-client): From Proxy Group to Policy Tree + NodeFlow — automatic routing, decision trace, split tunneling, Mesh networking, and Clash compatibility
@@ -34,3 +38,9 @@
 - **Exit Health**: Multi-dimensional health scoring (Reachability, Latency, Reliability, Transport Quality, Throughput, Service Capability)
 - **Mesh**: Link multiple devices into a private network fabric
 - **NodeFlow IR**: Intermediate representation connecting AirLane policy engine to sing-box runtime
+
+## Optional
+
+- [Privacy Policy](https://www.airlane.cloud/privacy): Data collection, anonymous identity, login codes
+- [Terms of Service](https://www.airlane.cloud/terms): Usage terms and service scope
+- [English Site](https://www.airlane.cloud/en/): Full English version of the site

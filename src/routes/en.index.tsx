@@ -24,12 +24,12 @@ export const Route = createFileRoute("/en/")({
       { property: "og:url", content: canonical("/en/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "en_US" },
-      { property: "og:image", content: canonical("/brand/og-image.svg") },
+      { property: "og:image", content: canonical("/brand/og-image.png") },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AirLane | Visual Traffic Scheduling Client" },
-      { name: "twitter:image", content: canonical("/brand/og-image.svg") },
+      { name: "twitter:image", content: canonical("/brand/og-image.png") },
       {
         name: "twitter:description",
         content:

@@ -1,14 +1,34 @@
-import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatches } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { Search, PenLine } from "lucide-react";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/i18n";
-import { docLang, docsQueries, pick } from "@/lib/docs";
+import {
+  docLang,
+  docsQueries,
+  fetchPages,
+  fetchSections,
+  pick,
+  type DocPage,
+  type DocSection,
+} from "@/lib/docs";
 import { useLocalePrefix } from "@/lib/locale-link";
 
+export type DocsLoaderData = { sections: DocSection[]; pages: DocPage[] };
+
+export async function loadDocsNav(): Promise<DocsLoaderData> {
+  try {
+    const [sections, pages] = await Promise.all([fetchSections(), fetchPages()]);
+    return { sections, pages };
+  } catch {
+    return { sections: [], pages: [] };
+  }
+}
+
 export const Route = createFileRoute("/docs")({
+  loader: () => loadDocsNav(),
   component: DocsLayout,
 });
 
@@ -17,14 +37,21 @@ export function DocsLayout() {
   const lang = docLang(locale);
   const [query, setQuery] = useState("");
   const lp = useLocalePrefix();
+  const matches = useMatches();
+  const loaderNav = matches.find((m) => {
+    const d = m.loaderData as DocsLoaderData | undefined;
+    return d && Array.isArray(d.sections) && Array.isArray(d.pages);
+  })?.loaderData as DocsLoaderData | undefined;
 
   const sections = useQuery(docsQueries.sections());
   const pages = useQuery(docsQueries.pages());
   const admin = useQuery(docsQueries.admin());
+  const sectionList = sections.data ?? loaderNav?.sections ?? [];
+  const pageList = pages.data ?? loaderNav?.pages ?? [];
 
   const tree = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const list = (pages.data ?? []).filter((p) => {
+    const list = pageList.filter((p) => {
       if (!q) return true;
       return (
         pick(p, "title", lang).toLowerCase().includes(q) ||
@@ -32,11 +59,11 @@ export function DocsLayout() {
         pick(p, "body", lang).toLowerCase().includes(q)
       );
     });
-    return (sections.data ?? []).map((section) => ({
+    return sectionList.map((section) => ({
       section,
       pages: list.filter((p) => p.section_id === section.id),
     }));
-  }, [sections.data, pages.data, lang, query]);
+  }, [sectionList, pageList, lang, query]);
 
   return (
     <div className="min-h-screen bg-cream text-foreground">
@@ -109,7 +136,7 @@ export function DocsLayout() {
                 </div>
               ),
             )}
-            {sections.isLoading ? (
+            {sections.isLoading && sectionList.length === 0 ? (
               <p className="text-sm text-muted-foreground">{t("common.loading")}</p>
             ) : null}
           </nav>

@@ -253,11 +253,13 @@ function FaqSection() {
                 }`}
               />
             </button>
-            {open === i && (
-              <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed">
-                {f.a}
-              </div>
-            )}
+            <div
+              className={`px-5 pb-4 text-sm text-muted-foreground leading-relaxed ${
+                open === i ? "" : "hidden"
+              }`}
+            >
+              {f.a}
+            </div>
           </div>
         ))}
       </div>
@@ -1431,6 +1433,9 @@ function Footer() {
             <Link to={`${lp}/terms`} className="hover:text-brand transition">
               {lang === "zh" ? "服务条款" : "Terms"}
             </Link>
+            <a href="mailto:airlane@googlegroups.com" className="hover:text-brand transition">
+              {lang === "zh" ? "联系我们" : "Contact"}
+            </a>
           </div>
           <span className="font-mono text-xs">
             {lang === "zh" ? "让每一条流量，找到最优航线" : "Find the optimal route for every packet"}

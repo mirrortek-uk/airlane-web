@@ -135,10 +135,15 @@ export function DownloadPage() {
                 <span className="block text-xs font-mono text-muted-foreground mb-1.5">
                   {p.status}
                 </span>
-                <button className="rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2">
+                <a
+                  href="https://github.com/mirrortek-uk/airlane-web/releases"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2"
+                >
                   <Download className="size-4" />
                   {t("pages.download.action.download")}
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -155,7 +160,7 @@ export function DownloadPage() {
 
         <div className="mt-8 text-center">
           <a
-            href="https://github.com/airlane"
+            href="https://github.com/mirrortek-uk/airlane-web"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"

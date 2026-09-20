@@ -4,6 +4,10 @@ Allow: /
 # Sitemaps
 Sitemap: https://www.airlane.cloud/sitemap-index.xml
 
+# LLM discovery
+# llms.txt: https://www.airlane.cloud/llms.txt
+# llms-full.txt: https://www.airlane.cloud/llms-full.txt
+
 # AI Citations Permitted
 User-agent: GPTBot
 Allow: /

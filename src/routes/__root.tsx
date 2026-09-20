@@ -14,7 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
-import { organizationSchema, websiteSchema, faqSchema, softwareApplicationSchema, canonical, jsonLd } from "@/lib/seo";
+import { canonical } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -104,7 +104,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: canonical("/") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "zh_CN" },
-      { property: "og:image", content: canonical("/brand/og-image.svg") },
+      { property: "og:image", content: canonical("/brand/og-image.png") },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -115,12 +116,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "支持订阅链接导入、应用分流、多出口策略管理、多终端Mesh组网与路由规则配置。告别复杂YAML配置，可视化编排你的网络流量。",
       },
-      { name: "twitter:image", content: canonical("/brand/og-image.svg") },
+      { name: "twitter:image", content: canonical("/brand/og-image.png") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "canonical", href: canonical("/") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -129,15 +129,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: jsonLd([
-          organizationSchema("zh-CN"),
-          websiteSchema("zh-CN"),
-          softwareApplicationSchema(),
-          faqSchema("zh-CN"),
-        ]),
-      },
       {
         type: "text/javascript",
         children: `(function(){var el=document.createElement("script");el.src="https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?6e895f7e62d42eef227e6ff26cfd4125c89e58d9d9edada312b745660308be8d65e0a2ada1d5e86b11e7de7c1a83287d04743a02fd1ee8dd8558a8cad50e91cb354f8c6f3f78e5fd97613c481f678e6d";el.id="ttzz";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(el,s);})(window)`,

@@ -1,17 +1,17 @@
-import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, useMatches, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ChevronLeft } from "lucide-react";
 
 import { useI18n } from "@/i18n";
-import { blogQueries } from "@/lib/blog";
+import { blogQueries, fetchPostBySlug, type BlogPost } from "@/lib/blog";
 import { displayTags } from "@/lib/blog-taxonomy";
 import { docLang, pick } from "@/lib/docs";
 import { canonical, blogPostSchema, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 import { useLocalePrefix } from "@/lib/locale-link";
 
-// Static metadata for known blog posts (used by SSR head before client data loads)
+// Static metadata for known blog posts (fallback when the loader has no data)
 export const POST_META: Record<string, { title_zh: string; title_en: string; summary_zh: string; summary_en: string }> = {
   "hello-airlane": {
     title_zh: "AirLane 1.0：从流量代理到网络编排",
@@ -45,11 +45,24 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
   },
 };
 
+export type BlogSlugLoaderData = { post: BlogPost | null };
+
+async function loadPost(slug: string): Promise<BlogSlugLoaderData> {
+  try {
+    return { post: await fetchPostBySlug(slug) };
+  } catch {
+    return { post: null };
+  }
+}
+
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => {
+  loader: ({ params }) => loadPost(params.slug),
+  head: ({ params, loaderData }) => {
+    const post = (loaderData as BlogSlugLoaderData | undefined)?.post;
     const meta = POST_META[params.slug];
-    const title = meta ? meta.title_zh : `${params.slug} | AirLane 博客`;
-    const desc = meta ? meta.summary_zh : "AirLane 博客文章";
+    const title = post?.title_zh || meta?.title_zh || params.slug;
+    const desc = post?.summary_zh || meta?.summary_zh || "AirLane 博客文章";
+    const postUrl = canonical(`/blog/${params.slug}`);
     return {
       meta: [
         { title: `${title} | AirLane 博客` },
@@ -57,19 +70,50 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: canonical(`/blog/${params.slug}`) },
+        { property: "og:url", content: postUrl },
         { property: "og:site_name", content: "AirLane" },
         { property: "og:locale", content: "zh_CN" },
+        ...(post
+          ? [
+              { property: "article:published_time", content: post.published_at },
+              ...(post.cover_url
+                ? [{ property: "og:image", content: canonical(post.cover_url) }]
+                : []),
+            ]
+          : []),
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: desc },
       ],
       links: [
-        { rel: "canonical", href: canonical(`/blog/${params.slug}`) },
+        { rel: "canonical", href: postUrl },
         { rel: "alternate", hrefLang: "zh-CN", href: canonical(`/blog/${params.slug}`) },
         { rel: "alternate", hrefLang: "en", href: canonical(`/en/blog/${params.slug}`) },
         { rel: "alternate", hrefLang: "x-default", href: canonical(`/blog/${params.slug}`) },
       ],
+      scripts: post
+        ? [
+            {
+              type: "application/ld+json",
+              children: jsonLd([
+                organizationSchema("zh-CN"),
+                blogPostSchema({
+                  slug: params.slug,
+                  title: post.title_zh,
+                  description: post.summary_zh,
+                  datePublished: post.published_at,
+                  tags: post.tags,
+                  locale: "zh-CN",
+                }),
+                breadcrumbSchema([
+                  { name: "首页", url: canonical("/") },
+                  { name: "博客", url: canonical("/blog") },
+                  { name: post.title_zh, url: postUrl },
+                ]),
+              ]),
+            },
+          ]
+        : [],
     };
   },
   component: BlogPostView,
@@ -79,11 +123,16 @@ export function BlogPostView() {
   const { slug } = useParams({ strict: false }) as { slug: string };
   const { locale, t } = useI18n();
   const lang = docLang(locale);
+  const matches = useMatches();
+  const loaderPost =
+    (matches[matches.length - 1]?.loaderData as BlogSlugLoaderData | undefined)?.post ?? null;
   const posts = useQuery(blogQueries.posts());
-  const post = (posts.data ?? []).find((p) => p.slug === slug);
+  const post = loaderPost ?? (posts.data ?? []).find((p) => p.slug === slug) ?? null;
   const lp = useLocalePrefix();
 
-  if (posts.isLoading) return <p className="text-muted-foreground">{t("common.loading")}</p>;
+  if (posts.isLoading && !loaderPost) {
+    return <p className="text-muted-foreground">{t("common.loading")}</p>;
+  }
 
   if (!post) {
     return (
@@ -98,30 +147,8 @@ export function BlogPostView() {
     );
   }
 
-  const postUrl = canonical(`/blog/${slug}`);
-
   return (
     <article className="max-w-3xl">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd([
-            organizationSchema(),
-            blogPostSchema({
-              slug,
-              title: pick(post, "title", lang),
-              description: pick(post, "summary", lang),
-              datePublished: post.published_at,
-              tags: post.tags,
-            }),
-            breadcrumbSchema([
-              { name: "首页", url: canonical("/") },
-              { name: "博客", url: canonical("/blog") },
-              { name: pick(post, "title", lang), url: postUrl },
-            ]),
-          ]),
-        }}
-      />
       <Link
         to={`${lp}/blog`}
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
@@ -131,7 +158,9 @@ export function BlogPostView() {
       </Link>
 
       <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground">
-        <span>{new Date(post.published_at).toLocaleDateString()}</span>
+        <time dateTime={post.published_at}>
+          {new Date(post.published_at).toLocaleDateString()}
+        </time>
         {displayTags(post).map((tag) => (
           <span key={tag} className="rounded-full bg-brand/10 text-brand px-2.5 py-0.5">
             {tag}

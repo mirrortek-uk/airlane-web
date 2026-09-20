@@ -4,6 +4,7 @@ import { docLang } from "@/lib/docs";
 import { useLocalePrefix } from "@/lib/locale-link";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema, softwareApplicationSchema, faqSchema } from "@/lib/seo";
 import { ArrowRight, Download, FileText, Zap, Shield, Network, Workflow, Radio } from "lucide-react";
+import { LandingFaq, LandingFooter } from "@/components/landing-extras";
 
 export const Route = createFileRoute("/clash-alternative")({
   head: () => ({
@@ -27,10 +28,10 @@ export const Route = createFileRoute("/clash-alternative")({
       { property: "og:url", content: canonical("/clash-alternative") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "zh_CN" },
-      { property: "og:image", content: canonical("/brand/og-image.svg") },
+      { property: "og:image", content: canonical("/brand/og-image.png") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AirLane — 现代化的 Clash 替代方案" },
-      { name: "twitter:image", content: canonical("/brand/og-image.svg") },
+      { name: "twitter:image", content: canonical("/brand/og-image.png") },
     ],
     links: [
       { rel: "canonical", href: canonical("/clash-alternative") },
@@ -181,28 +182,36 @@ export function ClashAlternativePage() {
                 AirLane vs Clash 全面对比
               </h2>
             </div>
-            <div className="rounded-3xl border border-border bg-card/60 shadow-card overflow-hidden">
-              <div className="grid grid-cols-3 border-b border-border bg-muted/50">
-                <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  能力
-                </div>
-                <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  Clash / Mihomo
-                </div>
-                <div className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-brand">
-                  AirLane
-                </div>
-              </div>
-              {comparison.map((row) => (
-                <div key={row.capability} className="grid grid-cols-3 border-b border-border last:border-b-0">
-                  <div className="px-5 py-3.5 text-sm text-muted-foreground">{row.capability}</div>
-                  <div className="px-5 py-3.5 text-sm text-foreground">{row.clash}</div>
-                  <div className="px-5 py-3.5 text-sm font-medium text-brand">{row.airlane}</div>
-                </div>
-              ))}
+            <div className="rounded-3xl border border-border bg-card/60 shadow-card overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-border bg-muted/50">
+                    <th className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                      能力
+                    </th>
+                    <th className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                      Clash / Mihomo
+                    </th>
+                    <th className="px-5 py-3 font-mono text-xs uppercase tracking-widest text-brand">
+                      AirLane
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparison.map((row) => (
+                    <tr key={row.capability} className="border-b border-border last:border-b-0">
+                      <td className="px-5 py-3.5 text-sm text-muted-foreground">{row.capability}</td>
+                      <td className="px-5 py-3.5 text-sm text-foreground">{row.clash}</td>
+                      <td className="px-5 py-3.5 text-sm font-medium text-brand">{row.airlane}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
+
+        <LandingFaq />
 
         <section className="max-w-6xl mx-auto px-6 py-20">
           <div className="rounded-3xl bg-gradient-to-r from-ink to-neutral-900 text-cream px-8 py-10 shadow-sun flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -224,6 +233,7 @@ export function ClashAlternativePage() {
           </div>
         </section>
       </main>
+      <LandingFooter />
     </div>
   );
 }

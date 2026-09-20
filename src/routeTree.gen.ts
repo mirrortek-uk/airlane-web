@@ -14,6 +14,7 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ClashAlternativeRouteImport } from './routes/clash-alternative'
+import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as EnRouteImport } from './routes/en'
@@ -21,6 +22,8 @@ import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
+import { Route as SitemapDocsDotxmlRouteImport } from './routes/sitemap-docs[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -70,6 +73,11 @@ const ClashAlternativeRoute = ClashAlternativeRouteImport.update({
   path: '/clash-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsRoute = DocsRouteImport.update({
   id: '/docs',
   path: '/docs',
@@ -103,6 +111,16 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapBlogDotxmlRoute = SitemapBlogDotxmlRouteImport.update({
+  id: '/sitemap-blog.xml',
+  path: '/sitemap-blog.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDocsDotxmlRoute = SitemapDocsDotxmlRouteImport.update({
+  id: '/sitemap-docs.xml',
+  path: '/sitemap-docs.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -227,6 +245,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/clash-alternative': typeof ClashAlternativeRoute
+  '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
@@ -234,6 +253,8 @@ export interface FileRoutesByFullPath {
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
@@ -263,11 +284,14 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/clash-alternative': typeof ClashAlternativeRoute
+  '/devices': typeof DevicesRoute
   '/download': typeof DownloadRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
@@ -297,6 +321,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/blog': typeof BlogRouteWithChildren
   '/clash-alternative': typeof ClashAlternativeRoute
+  '/devices': typeof DevicesRoute
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
@@ -304,6 +329,8 @@ export interface FileRoutesById {
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
+  '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
@@ -336,6 +363,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/clash-alternative'
+    | '/devices'
     | '/docs'
     | '/download'
     | '/en'
@@ -343,6 +371,8 @@ export interface FileRouteTypes {
     | '/mihomo-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sitemap-blog.xml'
+    | '/sitemap-docs.xml'
     | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
@@ -372,11 +402,14 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/clash-alternative'
+    | '/devices'
     | '/download'
     | '/migration'
     | '/mihomo-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sitemap-blog.xml'
+    | '/sitemap-docs.xml'
     | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
@@ -405,6 +438,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/blog'
     | '/clash-alternative'
+    | '/devices'
     | '/docs'
     | '/download'
     | '/en'
@@ -412,6 +446,8 @@ export interface FileRouteTypes {
     | '/mihomo-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sitemap-blog.xml'
+    | '/sitemap-docs.xml'
     | '/terms'
     | '/blog/$slug'
     | '/blog/admin'
@@ -443,6 +479,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BlogRoute: typeof BlogRouteWithChildren
   ClashAlternativeRoute: typeof ClashAlternativeRoute
+  DevicesRoute: typeof DevicesRoute
   DocsRoute: typeof DocsRouteWithChildren
   DownloadRoute: typeof DownloadRoute
   EnRoute: typeof EnRouteWithChildren
@@ -450,6 +487,8 @@ export interface RootRouteChildren {
   MihomoAlternativeRoute: typeof MihomoAlternativeRoute
   PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
+  SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
@@ -491,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/clash-alternative'
       fullPath: '/clash-alternative'
       preLoaderRoute: typeof ClashAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs': {
@@ -540,6 +586,20 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-blog.xml': {
+      id: '/sitemap-blog.xml'
+      path: '/sitemap-blog.xml'
+      fullPath: '/sitemap-blog.xml'
+      preLoaderRoute: typeof SitemapBlogDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-docs.xml': {
+      id: '/sitemap-docs.xml'
+      path: '/sitemap-docs.xml'
+      fullPath: '/sitemap-docs.xml'
+      preLoaderRoute: typeof SitemapDocsDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -792,6 +852,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BlogRoute: BlogRouteWithChildren,
   ClashAlternativeRoute: ClashAlternativeRoute,
+  DevicesRoute: DevicesRoute,
   DocsRoute: DocsRouteWithChildren,
   DownloadRoute: DownloadRoute,
   EnRoute: EnRouteWithChildren,
@@ -799,6 +860,8 @@ const rootRouteChildren: RootRouteChildren = {
   MihomoAlternativeRoute: MihomoAlternativeRoute,
   PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
+  SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,

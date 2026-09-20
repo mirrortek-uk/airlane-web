@@ -10,6 +10,7 @@ export const Route = createFileRoute("/reset-password")({
   ssr: false,
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex, nofollow" },
       { title: "重置 AirLane 密码 | AirLane" },
       { name: "description", content: "为你的 AirLane 云端账号设置新密码。" },
       { property: "og:title", content: "重置 AirLane 密码" },
