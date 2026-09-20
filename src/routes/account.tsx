@@ -260,7 +260,7 @@ function AccountPage() {
             <div className="mt-6 grid gap-3 sm:grid-cols-4">
               <Stat
                 label={t("account.usage.snapshots")}
-                value={`${overview?.counts.snapshots ?? 0} / ${overview?.limits.configTemplates ?? ACCOUNT_LIMITS[profile.plan === "pro" ? "pro" : "free"].configTemplates}`}
+                value={`${overview?.counts.snapshots ?? 0} / ${overview?.limits.cloudBackups ?? (profile.plan === "pro" ? 10 : 2)}`}
               />
               <Stat
                 label={t("account.usage.devices")}
@@ -462,7 +462,7 @@ function AccountPage() {
                 ? (guest.devices as DeviceItem[])
                 : []
           }
-          deviceLimit={guest?.valid ? guest.limits.devices : undefined}
+          deviceLimit={guest?.valid ? guest.limits.devices : overview?.limits.devices}
           onChanged={refresh}
         />
 

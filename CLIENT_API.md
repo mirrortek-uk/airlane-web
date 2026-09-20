@@ -8,6 +8,9 @@ Base URL：`https://www.airlane.cloud`
 所有接口均为 `application/json` POST，无需鉴权 header —— 配对码和
 `device_id` 本身就是凭证。
 
+> 接口契约以客户端仓库的 `AirLane/docs/CLIENT_API.md` 为准；
+> 本文档是服务端实现侧的对照说明，若两处不一致以客户端文档为准。
+
 ---
 
 ## 1. 接入流程总览
@@ -63,7 +66,8 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
     "configTemplates": 2,
     "sharedVps": 0,
     "residentialIp": 0,
-    "meshGroups": 0
+    "meshGroups": 0,
+    "cloudBackups": 2
   }
 }
 ```
@@ -101,9 +105,10 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
 | `sharedVps` | 可用共享 VPS 资源数 |
 | `residentialIp` | 可用住宅 IP 资源数 |
 | `meshGroups` | 可创建的 Mesh 组数 |
+| `cloudBackups` | `cloud_snapshots` 云端备份条数（RLS 在插入时强制） |
 
-`0` 表示该套餐不可用此能力。当前档位：anonymous `{2,0,2,2,2}`、
-free `{2,2,0,0,0}`、pro `{10,15,0,0,0}` —— **以响应里的实际值为准**。
+`0` 表示该套餐不可用此能力。当前档位：anonymous `{2,0,2,2,2,0}`、
+free `{2,2,0,0,0,2}`、pro `{10,15,0,0,0,10}` —— **以响应里的实际值为准**。
 
 ### 示例
 
@@ -138,7 +143,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 成功 `200`：
 
 ```json
-{ "ok": true, "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0 } }
+{ "ok": true, "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0, "cloudBackups": 10 } }
 ```
 
 `plan` 为 `"free"` / `"pro"` / `null`（匿名账号），`limits` 为该套餐
@@ -164,7 +169,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/claim \
 ### 响应 `200`
 
 ```json
-{ "ok": true, "identity": "account", "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0 } }
+{ "ok": true, "identity": "account", "plan": "pro", "limits": { "devices": 10, "configTemplates": 15, "sharedVps": 0, "residentialIp": 0, "meshGroups": 0, "cloudBackups": 10 } }
 ```
 
 | 字段 | 说明 |

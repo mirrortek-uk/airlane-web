@@ -40,13 +40,14 @@ export type PlanLimits = {
   sharedVps: number;
   residentialIp: number;
   meshGroups: number;
+  cloudBackups: number;
 };
 
 /** Hardcoded fallbacks used when the plan_limits table is unavailable. */
 const FALLBACK_LIMITS: Record<PlanName, PlanLimits> = {
-  anonymous: { ...ANONYMOUS_LIMITS, configTemplates: 0 },
-  free: { ...ACCOUNT_LIMITS.free, sharedVps: 0, residentialIp: 0, meshGroups: 0 },
-  pro: { ...ACCOUNT_LIMITS.pro, sharedVps: 0, residentialIp: 0, meshGroups: 0 },
+  anonymous: { ...ANONYMOUS_LIMITS, configTemplates: 0, cloudBackups: 0 },
+  free: { ...ACCOUNT_LIMITS.free, sharedVps: 0, residentialIp: 0, meshGroups: 0, cloudBackups: 2 },
+  pro: { ...ACCOUNT_LIMITS.pro, sharedVps: 0, residentialIp: 0, meshGroups: 0, cloudBackups: 10 },
 };
 
 /**
@@ -60,7 +61,7 @@ export async function getPlanLimits(plan: PlanName): Promise<PlanLimits> {
     const { data } = await db
       .from("plan_limits")
       .select(
-        "device_limit, config_template_limit, shared_vps_limit, residential_ip_limit, mesh_group_limit",
+        "device_limit, config_template_limit, shared_vps_limit, residential_ip_limit, mesh_group_limit, cloud_backup_limit",
       )
       .eq("plan", plan)
       .maybeSingle();
@@ -71,6 +72,7 @@ export async function getPlanLimits(plan: PlanName): Promise<PlanLimits> {
       sharedVps: data.shared_vps_limit,
       residentialIp: data.residential_ip_limit,
       meshGroups: data.mesh_group_limit,
+      cloudBackups: data.cloud_backup_limit,
     };
   } catch {
     return fallback;

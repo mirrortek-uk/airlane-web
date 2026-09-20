@@ -603,6 +603,39 @@ export type Database = {
           },
         ]
       }
+      plan_limits: {
+        Row: {
+          plan: string
+          device_limit: number
+          config_template_limit: number
+          shared_vps_limit: number
+          residential_ip_limit: number
+          mesh_group_limit: number
+          cloud_backup_limit: number
+          updated_at: string
+        }
+        Insert: {
+          plan: string
+          device_limit: number
+          config_template_limit?: number
+          shared_vps_limit?: number
+          residential_ip_limit?: number
+          mesh_group_limit?: number
+          cloud_backup_limit?: number
+          updated_at?: string
+        }
+        Update: {
+          plan?: string
+          device_limit?: number
+          config_template_limit?: number
+          shared_vps_limit?: number
+          residential_ip_limit?: number
+          mesh_group_limit?: number
+          cloud_backup_limit?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           account_role: string
