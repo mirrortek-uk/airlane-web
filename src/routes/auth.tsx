@@ -114,7 +114,9 @@ function AuthPage() {
         email,
         options: {
           emailRedirectTo: window.location.origin,
-          shouldCreateUser: mode === "signUp",
+          // Always create the user on first OTP login — no separate signup step
+          // for the email-code flow. Supabase sends the OTP login email only.
+          shouldCreateUser: true,
         },
       });
       if (error) throw error;
