@@ -29,9 +29,11 @@ export type ReleaseAsset = {
 };
 
 const GHPROXY_BASE = process.env.GHPROXY_BASE ?? "https://gh-proxy.com/";
-// Set R2_MIRROR_BASE (e.g. https://pub-xxx.r2.dev) once the R2 bucket
-// exists; the r2 channel is only advertised while configured.
-const R2_MIRROR_BASE = process.env.R2_MIRROR_BASE ?? "";
+// Public R2 bucket URL (airlane-releases). Override via env if the
+// bucket URL changes; the r2 channel is only advertised while set.
+const R2_MIRROR_BASE =
+  process.env.R2_MIRROR_BASE ??
+  "https://pub-3e3ada99d7284002a3dcc5c7a30e1ef9.r2.dev";
 
 function buildMirrors(name: string, githubUrl: string): MirrorChannel[] {
   const mirrors: MirrorChannel[] = [
