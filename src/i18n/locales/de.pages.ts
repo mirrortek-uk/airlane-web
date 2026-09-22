@@ -50,6 +50,7 @@ const dict: Record<string, string> = {
   "pages.download.channel.r2": "Spiegel 3 · Cloudflare R2",
   "pages.download.channel.vercel": "Spiegel 4 · AirLane-Mirror",
   "pages.download.mirrorHint": "Vier Download-Kanäle — bei einem Ausfall einfach einen anderen wählen.",
+  "pages.download.channelLabel": "Download {n}",
 };
 
 export default dict;

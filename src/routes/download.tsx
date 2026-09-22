@@ -170,7 +170,7 @@ export function DownloadPage() {
                             {formatSize(a.size)}
                           </p>
                           <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1">
-                            {a.mirrors.map((m) => (
+                            {a.mirrors.map((m, i) => (
                               <a
                                 key={m.id}
                                 href={m.url}
@@ -178,7 +178,7 @@ export function DownloadPage() {
                                 rel="noopener noreferrer"
                                 className="text-xs underline underline-offset-2 text-muted-foreground hover:text-foreground"
                               >
-                                {t(`pages.download.channel.${m.id}`)}
+                                {t("pages.download.channelLabel", { n: i + 1 })}
                               </a>
                             ))}
                           </div>
@@ -202,25 +202,7 @@ export function DownloadPage() {
           })}
         </div>
 
-        {release?.body && (
-          <div className="mt-8 rounded-2xl border border-border bg-muted/30 p-6">
-            <h3 className="font-display text-lg text-foreground mb-2">
-              {t("pages.download.releaseNotes")}
-            </h3>
-            <pre className="whitespace-pre-wrap font-sans text-sm text-muted-foreground">
-              {release.body}
-            </pre>
-          </div>
-        )}
 
-        <div className="mt-12 rounded-2xl border border-border bg-muted/30 p-6">
-          <h3 className="font-display text-lg text-foreground mb-2">{t("pages.download.notes.title")}</h3>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>{t("pages.download.notes.item1")}</li>
-            <li>{t("pages.download.notes.item2")}</li>
-            <li>{t("pages.download.notes.item3")}</li>
-          </ul>
-        </div>
 
         <div className="mt-8 text-center">
           <a

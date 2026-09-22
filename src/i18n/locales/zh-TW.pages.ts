@@ -50,6 +50,7 @@ const dict: Record<string, string> = {
   "pages.download.channel.r2": "下載三 · Cloudflare R2",
   "pages.download.channel.vercel": "下載四 · 官網鏡像",
   "pages.download.mirrorHint": "四個下載渠道任選其一，任意一個失效可換其他渠道。",
+  "pages.download.channelLabel": "下載 {n}",
 };
 
 export default dict;
