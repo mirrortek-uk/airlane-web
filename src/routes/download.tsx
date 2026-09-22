@@ -62,7 +62,11 @@ function formatSize(bytes: number) {
 export function DownloadPage() {
   const t = useT();
   const lp = useLocalePrefix();
-  const release = useLoaderData({ strict: false }) as ReleaseInfo | undefined;
+  const loaderData = useLoaderData({ strict: false }) as
+    | { release: ReleaseInfo; primaryId: string }
+    | undefined;
+  const release = loaderData?.release;
+  const primaryId = loaderData?.primaryId ?? "github";
   const windowsAssets = release?.assets.filter((a) => /\.(exe|msi)$/i.test(a.name)) ?? [];
 
   const platforms = [
@@ -184,7 +188,10 @@ export function DownloadPage() {
                           </div>
                         </div>
                         <a
-                          href={a.mirrors[0]?.url ?? a.browser_download_url}
+                          href={
+                            a.mirrors.find((m) => m.id === primaryId)?.url ??
+                            a.browser_download_url
+                          }
                           className="shrink-0 rounded-full bg-gradient-brand text-cream text-sm font-semibold px-5 py-2 hover:brightness-105 transition inline-flex items-center gap-2"
                         >
                           <Download className="size-4" />
