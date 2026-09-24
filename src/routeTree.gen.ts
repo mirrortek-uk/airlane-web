@@ -45,6 +45,7 @@ import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 import { Route as EnDocsIndexRouteImport } from './routes/en.docs.index'
 import { Route as EnDocsSlugRouteImport } from './routes/en.docs.$slug'
+import { Route as ApiPublicDevicesResourcesRouteImport } from './routes/api/public/devices/resources'
 import { Route as ApiPublicDevicesStatusRouteImport } from './routes/api/public/devices/status'
 import { Route as ApiPublicPairClaimRouteImport } from './routes/api/public/pair/claim'
 import { Route as ApiPublicPairHeartbeatRouteImport } from './routes/api/public/pair/heartbeat'
@@ -230,6 +231,12 @@ const EnDocsSlugRoute = EnDocsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => EnDocsRoute,
 } as any)
+const ApiPublicDevicesResourcesRoute =
+  ApiPublicDevicesResourcesRouteImport.update({
+    id: '/api/public/devices/resources',
+    path: '/api/public/devices/resources',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicDevicesStatusRoute = ApiPublicDevicesStatusRouteImport.update({
   id: '/api/public/devices/status',
   path: '/api/public/devices/status',
@@ -289,6 +296,7 @@ export interface FileRoutesByFullPath {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
   '/en/docs/': typeof EnDocsIndexRoute
+  '/api/public/devices/resources': typeof ApiPublicDevicesResourcesRoute
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
@@ -326,6 +334,7 @@ export interface FileRoutesByTo {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog': typeof EnBlogIndexRoute
   '/en/docs': typeof EnDocsIndexRoute
+  '/api/public/devices/resources': typeof ApiPublicDevicesResourcesRoute
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
@@ -369,6 +378,7 @@ export interface FileRoutesById {
   '/en/docs/$slug': typeof EnDocsSlugRoute
   '/en/blog/': typeof EnBlogIndexRoute
   '/en/docs/': typeof EnDocsIndexRoute
+  '/api/public/devices/resources': typeof ApiPublicDevicesResourcesRoute
   '/api/public/devices/status': typeof ApiPublicDevicesStatusRoute
   '/api/public/pair/claim': typeof ApiPublicPairClaimRoute
   '/api/public/pair/heartbeat': typeof ApiPublicPairHeartbeatRoute
@@ -413,6 +423,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog/'
     | '/en/docs/'
+    | '/api/public/devices/resources'
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
@@ -450,6 +461,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog'
     | '/en/docs'
+    | '/api/public/devices/resources'
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
@@ -492,6 +504,7 @@ export interface FileRouteTypes {
     | '/en/docs/$slug'
     | '/en/blog/'
     | '/en/docs/'
+    | '/api/public/devices/resources'
     | '/api/public/devices/status'
     | '/api/public/pair/claim'
     | '/api/public/pair/heartbeat'
@@ -516,6 +529,7 @@ export interface RootRouteChildren {
   SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiReleasesLatestRoute: typeof ApiReleasesLatestRoute
+  ApiPublicDevicesResourcesRoute: typeof ApiPublicDevicesResourcesRoute
   ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
   ApiPublicPairClaimRoute: typeof ApiPublicPairClaimRoute
   ApiPublicPairHeartbeatRoute: typeof ApiPublicPairHeartbeatRoute
@@ -776,6 +790,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnDocsSlugRouteImport
       parentRoute: typeof EnDocsRoute
     }
+    '/api/public/devices/resources': {
+      id: '/api/public/devices/resources'
+      path: '/api/public/devices/resources'
+      fullPath: '/api/public/devices/resources'
+      preLoaderRoute: typeof ApiPublicDevicesResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/devices/status': {
       id: '/api/public/devices/status'
       path: '/api/public/devices/status'
@@ -905,6 +926,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiReleasesLatestRoute: ApiReleasesLatestRoute,
+  ApiPublicDevicesResourcesRoute: ApiPublicDevicesResourcesRoute,
   ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,
   ApiPublicPairClaimRoute: ApiPublicPairClaimRoute,
   ApiPublicPairHeartbeatRoute: ApiPublicPairHeartbeatRoute,

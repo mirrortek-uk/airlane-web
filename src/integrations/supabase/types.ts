@@ -636,6 +636,57 @@ export type Database = {
         }
         Relationships: []
       }
+      poolvip_orders: {
+        Row: {
+          auto_renew: boolean
+          created_at: string
+          current_period_end: string | null
+          id: string
+          identity_id: string
+          pool_id: string | null
+          product_id: string | null
+          snapshot: Json | null
+          status: string
+          stripe_subscription_id: string | null
+          traffic_plan_gb: number
+          type: string
+          used_gb: number
+          vpn_link: string | null
+        }
+        Insert: {
+          auto_renew?: boolean
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          identity_id: string
+          pool_id?: string | null
+          product_id?: string | null
+          snapshot?: Json | null
+          status?: string
+          stripe_subscription_id?: string | null
+          traffic_plan_gb?: number
+          type: string
+          used_gb?: number
+          vpn_link?: string | null
+        }
+        Update: {
+          auto_renew?: boolean
+          created_at?: string
+          current_period_end?: string | null
+          id?: string
+          identity_id?: string
+          pool_id?: string | null
+          product_id?: string | null
+          snapshot?: Json | null
+          status?: string
+          stripe_subscription_id?: string | null
+          traffic_plan_gb?: number
+          type?: string
+          used_gb?: number
+          vpn_link?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           account_role: string

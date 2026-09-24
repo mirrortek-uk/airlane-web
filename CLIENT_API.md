@@ -25,6 +25,8 @@ POST /api/public/pair/claim  →  返回 device_id + plan（持久化保存）
         ▼
 每次 App 启动：POST /api/public/devices/status → 刷新本地 plan
         ▼
+POST /api/public/devices/resources → 拉取已购代理/节点凭据（§3.6）
+        ▼
 若启用 Mesh：周期性 POST /api/public/pair/heartbeat（也回带 plan）
 若未启用 Mesh：不发心跳（见 §4）
 ```
@@ -201,6 +203,81 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 
 ---
 
+## 3.6 `POST /api/public/devices/resources` — 已购资源拉取
+
+返回当前身份下所有 `status=active` 的 PoolVIP 订单及其交付凭据，
+供客户端把住宅 IP / VPS 节点直接导入本地节点列表，替代网页端
+手动复制 `vpn_link`。
+
+**何时调用**：配对成功后一次；进入"已购资源/节点"界面时；用户手动
+下拉刷新时。不要高频轮询（建议间隔 ≥ 60 秒，本地缓存结果）。
+
+### 请求体
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| `device_id` | uuid | ✅ | `claim` 返回的 device_id |
+
+### 响应 `200`
+
+```json
+{
+  "ok": true,
+  "resources": [
+    {
+      "order_id": "af1ea36d-…",
+      "type": "direct",
+      "title": { "zh": "ISP 企业代理 · 美国 · 7天", "en": "ISP Enterprise Proxy · US · 7d" },
+      "provider": { "zh": "LinkStatic", "en": "LinkStatic" },
+      "kind": "proxy",
+      "ready": true,
+      "expired": false,
+      "credential": {
+        "protocol": null,
+        "host": "64.32.180.14",
+        "port": 443,
+        "username": "u…",
+        "password": "p…"
+      },
+      "protocols": ["http", "socks5"],
+      "vpn_link": "64.32.180.14:443:u…:p…",
+      "expires_at": "2026-10-01T00:00:00Z",
+      "traffic": { "plan_gb": 0, "used_gb": 0 }
+    }
+  ]
+}
+```
+
+| 字段 | 说明 |
+|---|---|
+| `type` | `"direct"` 直购 / `"pool"` 拼团席位 |
+| `title` / `provider` | 下单时的快照（`{zh, en}`），可能为 `null` |
+| `kind` | `"proxy"` = 裸代理（`host:port:user:pass`）；`"link"` = URI 型链接或不可解析文本；`"pending"` = 已付款未交付（`vpn_link` 为 `pending://` 占位） |
+| `ready` | `false` 时不要建节点，UI 显示"交付中" |
+| `expired` | `current_period_end` 已过 → 服务端停供，UI 置灰 |
+| `credential` | 结构化凭据；`kind=proxy` 时 `protocol=null`（上游同时支持 HTTP/SOCKS5，见 `protocols`）；`kind=link` 且 URI 可解析时 `protocol` 为 scheme（`trojan`/`ss`/`vless`/`http`/`socks5`…） |
+| `protocols` | 客户端可尝试的协议列表；空数组 = 未知 |
+| `vpn_link` | 原始交付串，调试用；客户端应优先用 `credential` |
+| `traffic` | `plan_gb=0` 表示不限量 |
+
+### 错误
+
+| HTTP | error | 处理 |
+|---|---|---|
+| 400 | `invalid_request` | 检查请求体 |
+| 404 | `device_not_found` | 设备已解绑 → 清 `device_id`，回到未绑定状态 |
+| 500 | `resources_failed` | 指数退避重试 |
+
+### 示例
+
+```bash
+curl -X POST https://www.airlane.cloud/api/public/devices/resources \
+  -H 'content-type: application/json' \
+  -d '{"device_id": "b5910d29-5d8f-470b-9916-6f49a1d22222"}'
+```
+
+---
+
 ## 4. 心跳规则：仅 Mesh 设备开启
 
 **只有启用 Mesh 功能的设备才上报心跳。** 未启用 Mesh 的设备在绑定
@@ -257,9 +334,9 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
    计划在 claim 响应中增加 `device_token`，心跳改为
    `Authorization: Bearer <device_token>`。接入时预留读取响应中
    可选 `device_token` 字段的兼容逻辑。
-2. **配置下发**：`GET /api/public/devices/{id}/config`（规划中）——
-   拉取 Mesh peer 列表、WireGuard 配置、分配的共享 VPS /
-   住宅 IP 出口。届时 `device_public_key` 会成为必填。
+2. **配置下发**：住宅 IP / 已购订单凭据已由 `POST /api/public/devices/resources`
+   （§3.6）覆盖。仍规划中的部分：Mesh peer 列表、WireGuard 配置、
+   共享 VPS 出口分配 —— 届时 `device_public_key` 会成为必填。
 3. **解绑回调**：客户端主动解绑接口（`DELETE /api/public/devices/{id}`）
    规划中；目前解绑只能在网页端操作。
 
