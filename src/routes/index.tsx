@@ -1341,7 +1341,7 @@ function Footer() {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
                 {lang === "zh" ? "产品" : "Product"}
@@ -1409,22 +1409,6 @@ function Footer() {
                 <li>
                   <a href="mailto:airlane@googlegroups.com" className="hover:text-brand transition">
                     {lang === "zh" ? "联系我们" : "Contact"}
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                {lang === "zh" ? "状态" : "Status"}
-              </h4>
-              <ul className="space-y-2 text-sm text-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="size-1.5 rounded-full bg-brand animate-pulse" />
-                  {lang === "zh" ? "开发迭代中" : "In Active Development"}
-                </li>
-                <li>
-                  <a href="#roadmap" className="hover:text-brand transition">
-                    Roadmap
                   </a>
                 </li>
               </ul>
