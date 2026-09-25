@@ -163,4 +163,112 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://www.airlane.cloud/sing-box-gui</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/sing-box-gui"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/sing-box-gui"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/sing-box-gui"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/sing-box-gui</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/sing-box-gui"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/sing-box-gui"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/sing-box-gui"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/v2rayn-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/v2rayn-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/v2rayn-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/v2rayn-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/v2rayn-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/v2rayn-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/v2rayn-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/v2rayn-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/nekobox-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/nekobox-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/nekobox-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/nekobox-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/nekobox-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/nekobox-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/nekobox-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/nekobox-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/hiddify-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/hiddify-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/hiddify-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/hiddify-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/hiddify-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/hiddify-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/hiddify-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/hiddify-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/hysteria2-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/hysteria2-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/hysteria2-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/hysteria2-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/hysteria2-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/hysteria2-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/hysteria2-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/hysteria2-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/vless-reality-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/vless-reality-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/vless-reality-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/vless-reality-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/vless-reality-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/vless-reality-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/vless-reality-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/vless-reality-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

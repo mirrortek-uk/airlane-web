@@ -18,13 +18,19 @@ import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as EnRouteImport } from './routes/en'
+import { Route as HiddifyAlternativeRouteImport } from './routes/hiddify-alternative'
+import { Route as Hysteria2ClientRouteImport } from './routes/hysteria2-client'
 import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
+import { Route as NekoboxAlternativeRouteImport } from './routes/nekobox-alternative'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SingBoxGuiRouteImport } from './routes/sing-box-gui'
 import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
 import { Route as SitemapDocsDotxmlRouteImport } from './routes/sitemap-docs[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as V2raynAlternativeRouteImport } from './routes/v2rayn-alternative'
+import { Route as VlessRealityClientRouteImport } from './routes/vless-reality-client'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlogAdminRouteImport } from './routes/blog.admin'
@@ -36,10 +42,16 @@ import { Route as EnBlogRouteImport } from './routes/en.blog'
 import { Route as EnClashAlternativeRouteImport } from './routes/en.clash-alternative'
 import { Route as EnDocsRouteImport } from './routes/en.docs'
 import { Route as EnDownloadRouteImport } from './routes/en.download'
+import { Route as EnHiddifyAlternativeRouteImport } from './routes/en.hiddify-alternative'
+import { Route as EnHysteria2ClientRouteImport } from './routes/en.hysteria2-client'
 import { Route as EnMigrationRouteImport } from './routes/en.migration'
 import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
+import { Route as EnNekoboxAlternativeRouteImport } from './routes/en.nekobox-alternative'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
+import { Route as EnSingBoxGuiRouteImport } from './routes/en.sing-box-gui'
 import { Route as EnTermsRouteImport } from './routes/en.terms'
+import { Route as EnV2raynAlternativeRouteImport } from './routes/en.v2rayn-alternative'
+import { Route as EnVlessRealityClientRouteImport } from './routes/en.vless-reality-client'
 import { Route as ApiReleasesLatestRouteImport } from './routes/api/releases/latest'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
@@ -96,6 +108,16 @@ const EnRoute = EnRouteImport.update({
   path: '/en',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HiddifyAlternativeRoute = HiddifyAlternativeRouteImport.update({
+  id: '/hiddify-alternative',
+  path: '/hiddify-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Hysteria2ClientRoute = Hysteria2ClientRouteImport.update({
+  id: '/hysteria2-client',
+  path: '/hysteria2-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MigrationRoute = MigrationRouteImport.update({
   id: '/migration',
   path: '/migration',
@@ -106,6 +128,11 @@ const MihomoAlternativeRoute = MihomoAlternativeRouteImport.update({
   path: '/mihomo-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NekoboxAlternativeRoute = NekoboxAlternativeRouteImport.update({
+  id: '/nekobox-alternative',
+  path: '/nekobox-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -114,6 +141,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SingBoxGuiRoute = SingBoxGuiRouteImport.update({
+  id: '/sing-box-gui',
+  path: '/sing-box-gui',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapBlogDotxmlRoute = SitemapBlogDotxmlRouteImport.update({
@@ -129,6 +161,16 @@ const SitemapDocsDotxmlRoute = SitemapDocsDotxmlRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V2raynAlternativeRoute = V2raynAlternativeRouteImport.update({
+  id: '/v2rayn-alternative',
+  path: '/v2rayn-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VlessRealityClientRoute = VlessRealityClientRouteImport.update({
+  id: '/vless-reality-client',
+  path: '/vless-reality-client',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -186,6 +228,16 @@ const EnDownloadRoute = EnDownloadRouteImport.update({
   path: '/download',
   getParentRoute: () => EnRoute,
 } as any)
+const EnHiddifyAlternativeRoute = EnHiddifyAlternativeRouteImport.update({
+  id: '/hiddify-alternative',
+  path: '/hiddify-alternative',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnHysteria2ClientRoute = EnHysteria2ClientRouteImport.update({
+  id: '/hysteria2-client',
+  path: '/hysteria2-client',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnMigrationRoute = EnMigrationRouteImport.update({
   id: '/migration',
   path: '/migration',
@@ -196,14 +248,34 @@ const EnMihomoAlternativeRoute = EnMihomoAlternativeRouteImport.update({
   path: '/mihomo-alternative',
   getParentRoute: () => EnRoute,
 } as any)
+const EnNekoboxAlternativeRoute = EnNekoboxAlternativeRouteImport.update({
+  id: '/nekobox-alternative',
+  path: '/nekobox-alternative',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnPrivacyRoute = EnPrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
   getParentRoute: () => EnRoute,
 } as any)
+const EnSingBoxGuiRoute = EnSingBoxGuiRouteImport.update({
+  id: '/sing-box-gui',
+  path: '/sing-box-gui',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnTermsRoute = EnTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnV2raynAlternativeRoute = EnV2raynAlternativeRouteImport.update({
+  id: '/v2rayn-alternative',
+  path: '/v2rayn-alternative',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnVlessRealityClientRoute = EnVlessRealityClientRouteImport.update({
+  id: '/vless-reality-client',
+  path: '/vless-reality-client',
   getParentRoute: () => EnRoute,
 } as any)
 const ApiReleasesLatestRoute = ApiReleasesLatestRouteImport.update({
@@ -269,13 +341,19 @@ export interface FileRoutesByFullPath {
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
+  '/hiddify-alternative': typeof HiddifyAlternativeRoute
+  '/hysteria2-client': typeof Hysteria2ClientRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/v2rayn-alternative': typeof V2raynAlternativeRoute
+  '/vless-reality-client': typeof VlessRealityClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -284,10 +362,16 @@ export interface FileRoutesByFullPath {
   '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/docs': typeof EnDocsRouteWithChildren
   '/en/download': typeof EnDownloadRoute
+  '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
+  '/en/hysteria2-client': typeof EnHysteria2ClientRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
+  '/en/vless-reality-client': typeof EnVlessRealityClientRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -309,23 +393,35 @@ export interface FileRoutesByTo {
   '/clash-alternative': typeof ClashAlternativeRoute
   '/devices': typeof DevicesRoute
   '/download': typeof DownloadRoute
+  '/hiddify-alternative': typeof HiddifyAlternativeRoute
+  '/hysteria2-client': typeof Hysteria2ClientRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/v2rayn-alternative': typeof V2raynAlternativeRoute
+  '/vless-reality-client': typeof VlessRealityClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
   '/docs/admin': typeof DocsAdminRoute
   '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/download': typeof EnDownloadRoute
+  '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
+  '/en/hysteria2-client': typeof EnHysteria2ClientRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
+  '/en/vless-reality-client': typeof EnVlessRealityClientRoute
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
   '/en': typeof EnIndexRoute
@@ -351,13 +447,19 @@ export interface FileRoutesById {
   '/docs': typeof DocsRouteWithChildren
   '/download': typeof DownloadRoute
   '/en': typeof EnRouteWithChildren
+  '/hiddify-alternative': typeof HiddifyAlternativeRoute
+  '/hysteria2-client': typeof Hysteria2ClientRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
+  '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/v2rayn-alternative': typeof V2raynAlternativeRoute
+  '/vless-reality-client': typeof VlessRealityClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -366,10 +468,16 @@ export interface FileRoutesById {
   '/en/clash-alternative': typeof EnClashAlternativeRoute
   '/en/docs': typeof EnDocsRouteWithChildren
   '/en/download': typeof EnDownloadRoute
+  '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
+  '/en/hysteria2-client': typeof EnHysteria2ClientRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
+  '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
+  '/en/vless-reality-client': typeof EnVlessRealityClientRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -396,13 +504,19 @@ export interface FileRouteTypes {
     | '/docs'
     | '/download'
     | '/en'
+    | '/hiddify-alternative'
+    | '/hysteria2-client'
     | '/migration'
     | '/mihomo-alternative'
+    | '/nekobox-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/v2rayn-alternative'
+    | '/vless-reality-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -411,10 +525,16 @@ export interface FileRouteTypes {
     | '/en/clash-alternative'
     | '/en/docs'
     | '/en/download'
+    | '/en/hiddify-alternative'
+    | '/en/hysteria2-client'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/v2rayn-alternative'
+    | '/en/vless-reality-client'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -436,23 +556,35 @@ export interface FileRouteTypes {
     | '/clash-alternative'
     | '/devices'
     | '/download'
+    | '/hiddify-alternative'
+    | '/hysteria2-client'
     | '/migration'
     | '/mihomo-alternative'
+    | '/nekobox-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/v2rayn-alternative'
+    | '/vless-reality-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
     | '/docs/admin'
     | '/en/clash-alternative'
     | '/en/download'
+    | '/en/hiddify-alternative'
+    | '/en/hysteria2-client'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/v2rayn-alternative'
+    | '/en/vless-reality-client'
     | '/blog'
     | '/docs'
     | '/en'
@@ -477,13 +609,19 @@ export interface FileRouteTypes {
     | '/docs'
     | '/download'
     | '/en'
+    | '/hiddify-alternative'
+    | '/hysteria2-client'
     | '/migration'
     | '/mihomo-alternative'
+    | '/nekobox-alternative'
     | '/privacy'
     | '/reset-password'
+    | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/v2rayn-alternative'
+    | '/vless-reality-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -492,10 +630,16 @@ export interface FileRouteTypes {
     | '/en/clash-alternative'
     | '/en/docs'
     | '/en/download'
+    | '/en/hiddify-alternative'
+    | '/en/hysteria2-client'
     | '/en/migration'
     | '/en/mihomo-alternative'
+    | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/v2rayn-alternative'
+    | '/en/vless-reality-client'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -521,13 +665,19 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRouteWithChildren
   DownloadRoute: typeof DownloadRoute
   EnRoute: typeof EnRouteWithChildren
+  HiddifyAlternativeRoute: typeof HiddifyAlternativeRoute
+  Hysteria2ClientRoute: typeof Hysteria2ClientRoute
   MigrationRoute: typeof MigrationRoute
   MihomoAlternativeRoute: typeof MihomoAlternativeRoute
+  NekoboxAlternativeRoute: typeof NekoboxAlternativeRoute
   PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SingBoxGuiRoute: typeof SingBoxGuiRoute
   SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
   SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
   TermsRoute: typeof TermsRoute
+  V2raynAlternativeRoute: typeof V2raynAlternativeRoute
+  VlessRealityClientRoute: typeof VlessRealityClientRoute
   ApiReleasesLatestRoute: typeof ApiReleasesLatestRoute
   ApiPublicDevicesResourcesRoute: typeof ApiPublicDevicesResourcesRoute
   ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
@@ -601,6 +751,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hiddify-alternative': {
+      id: '/hiddify-alternative'
+      path: '/hiddify-alternative'
+      fullPath: '/hiddify-alternative'
+      preLoaderRoute: typeof HiddifyAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hysteria2-client': {
+      id: '/hysteria2-client'
+      path: '/hysteria2-client'
+      fullPath: '/hysteria2-client'
+      preLoaderRoute: typeof Hysteria2ClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/migration': {
       id: '/migration'
       path: '/migration'
@@ -615,6 +779,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MihomoAlternativeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nekobox-alternative': {
+      id: '/nekobox-alternative'
+      path: '/nekobox-alternative'
+      fullPath: '/nekobox-alternative'
+      preLoaderRoute: typeof NekoboxAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -627,6 +798,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sing-box-gui': {
+      id: '/sing-box-gui'
+      path: '/sing-box-gui'
+      fullPath: '/sing-box-gui'
+      preLoaderRoute: typeof SingBoxGuiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap-blog.xml': {
@@ -648,6 +826,20 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v2rayn-alternative': {
+      id: '/v2rayn-alternative'
+      path: '/v2rayn-alternative'
+      fullPath: '/v2rayn-alternative'
+      preLoaderRoute: typeof V2raynAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vless-reality-client': {
+      id: '/vless-reality-client'
+      path: '/vless-reality-client'
+      fullPath: '/vless-reality-client'
+      preLoaderRoute: typeof VlessRealityClientRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -727,6 +919,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnDownloadRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/hiddify-alternative': {
+      id: '/en/hiddify-alternative'
+      path: '/hiddify-alternative'
+      fullPath: '/en/hiddify-alternative'
+      preLoaderRoute: typeof EnHiddifyAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/hysteria2-client': {
+      id: '/en/hysteria2-client'
+      path: '/hysteria2-client'
+      fullPath: '/en/hysteria2-client'
+      preLoaderRoute: typeof EnHysteria2ClientRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/migration': {
       id: '/en/migration'
       path: '/migration'
@@ -741,6 +947,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnMihomoAlternativeRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/nekobox-alternative': {
+      id: '/en/nekobox-alternative'
+      path: '/nekobox-alternative'
+      fullPath: '/en/nekobox-alternative'
+      preLoaderRoute: typeof EnNekoboxAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/privacy': {
       id: '/en/privacy'
       path: '/privacy'
@@ -748,11 +961,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnPrivacyRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/sing-box-gui': {
+      id: '/en/sing-box-gui'
+      path: '/sing-box-gui'
+      fullPath: '/en/sing-box-gui'
+      preLoaderRoute: typeof EnSingBoxGuiRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/terms': {
       id: '/en/terms'
       path: '/terms'
       fullPath: '/en/terms'
       preLoaderRoute: typeof EnTermsRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/v2rayn-alternative': {
+      id: '/en/v2rayn-alternative'
+      path: '/v2rayn-alternative'
+      fullPath: '/en/v2rayn-alternative'
+      preLoaderRoute: typeof EnV2raynAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/vless-reality-client': {
+      id: '/en/vless-reality-client'
+      path: '/vless-reality-client'
+      fullPath: '/en/vless-reality-client'
+      preLoaderRoute: typeof EnVlessRealityClientRouteImport
       parentRoute: typeof EnRoute
     }
     '/api/releases/latest': {
@@ -887,10 +1121,16 @@ interface EnRouteChildren {
   EnClashAlternativeRoute: typeof EnClashAlternativeRoute
   EnDocsRoute: typeof EnDocsRouteWithChildren
   EnDownloadRoute: typeof EnDownloadRoute
+  EnHiddifyAlternativeRoute: typeof EnHiddifyAlternativeRoute
+  EnHysteria2ClientRoute: typeof EnHysteria2ClientRoute
   EnMigrationRoute: typeof EnMigrationRoute
   EnMihomoAlternativeRoute: typeof EnMihomoAlternativeRoute
+  EnNekoboxAlternativeRoute: typeof EnNekoboxAlternativeRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
+  EnSingBoxGuiRoute: typeof EnSingBoxGuiRoute
   EnTermsRoute: typeof EnTermsRoute
+  EnV2raynAlternativeRoute: typeof EnV2raynAlternativeRoute
+  EnVlessRealityClientRoute: typeof EnVlessRealityClientRoute
   EnIndexRoute: typeof EnIndexRoute
 }
 
@@ -899,10 +1139,16 @@ const EnRouteChildren: EnRouteChildren = {
   EnClashAlternativeRoute: EnClashAlternativeRoute,
   EnDocsRoute: EnDocsRouteWithChildren,
   EnDownloadRoute: EnDownloadRoute,
+  EnHiddifyAlternativeRoute: EnHiddifyAlternativeRoute,
+  EnHysteria2ClientRoute: EnHysteria2ClientRoute,
   EnMigrationRoute: EnMigrationRoute,
   EnMihomoAlternativeRoute: EnMihomoAlternativeRoute,
+  EnNekoboxAlternativeRoute: EnNekoboxAlternativeRoute,
   EnPrivacyRoute: EnPrivacyRoute,
+  EnSingBoxGuiRoute: EnSingBoxGuiRoute,
   EnTermsRoute: EnTermsRoute,
+  EnV2raynAlternativeRoute: EnV2raynAlternativeRoute,
+  EnVlessRealityClientRoute: EnVlessRealityClientRoute,
   EnIndexRoute: EnIndexRoute,
 }
 
@@ -918,13 +1164,19 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRouteWithChildren,
   DownloadRoute: DownloadRoute,
   EnRoute: EnRouteWithChildren,
+  HiddifyAlternativeRoute: HiddifyAlternativeRoute,
+  Hysteria2ClientRoute: Hysteria2ClientRoute,
   MigrationRoute: MigrationRoute,
   MihomoAlternativeRoute: MihomoAlternativeRoute,
+  NekoboxAlternativeRoute: NekoboxAlternativeRoute,
   PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SingBoxGuiRoute: SingBoxGuiRoute,
   SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
   SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
   TermsRoute: TermsRoute,
+  V2raynAlternativeRoute: V2raynAlternativeRoute,
+  VlessRealityClientRoute: VlessRealityClientRoute,
   ApiReleasesLatestRoute: ApiReleasesLatestRoute,
   ApiPublicDevicesResourcesRoute: ApiPublicDevicesResourcesRoute,
   ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,
