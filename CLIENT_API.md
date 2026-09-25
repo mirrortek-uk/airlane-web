@@ -257,7 +257,7 @@ curl -X POST https://www.airlane.cloud/api/public/pair/heartbeat \
 | `expired` | `current_period_end` 已过 → 服务端停供，UI 置灰 |
 | `credential` | 结构化凭据；`kind=proxy` 时 `protocol=null`（上游同时支持 HTTP/SOCKS5，见 `protocols`）；`kind=link` 且 URI 可解析时 `protocol` 为 scheme（`trojan`/`ss`/`vless`/`http`/`socks5`…） |
 | `protocols` | 客户端可尝试的协议列表；空数组 = 未知 |
-| `vpn_link` | 原始交付串，调试用；客户端应优先用 `credential` |
+| `vpn_link` | 该资源的原始分享链接（单行）。一个订单可能有多条协议链路（如 VLESS+Reality 与 Hysteria2 并存）→ 响应里会出现**多条相同 `order_id` 的资源**，每条一个节点，全部导入即可 |
 | `traffic` | `plan_gb=0` 表示不限量 |
 
 ### 错误

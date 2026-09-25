@@ -136,28 +136,57 @@ export const Route = createFileRoute("/api/public/devices/resources")({
         if (error) return json({ error: "resources_failed" }, 500);
 
         const now = Date.now();
-        const resources = (orders ?? []).map((order) => {
-          const link = parseLink(order.vpn_link);
+        type Resource = {
+          order_id: string;
+          type: string;
+          title: { zh?: string; en?: string } | null;
+          provider: { zh?: string; en?: string } | null;
+          kind: string;
+          ready: boolean;
+          expired: boolean;
+          credential: Credential | null;
+          protocols: string[];
+          vpn_link: string | null;
+          expires_at: string | null;
+          traffic: { plan_gb: number; used_gb: number };
+        };
+        // vpn_link may carry several protocols, one share-link per line —
+        // emit one resource per line so the client gets one node each.
+        const resources = (orders ?? []).flatMap((order): Resource[] => {
           const snapshot = (order.snapshot ?? null) as {
             title?: { zh?: string; en?: string };
             provider?: { zh?: string; en?: string };
             period?: string;
           } | null;
           const expiresAt = order.current_period_end;
-          return {
+          const expired = expiresAt ? new Date(expiresAt).getTime() < now : false;
+          const lines = (order.vpn_link ?? "")
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean);
+          const base = {
             order_id: order.id,
             type: order.type,
             title: snapshot?.title ?? null,
             provider: snapshot?.provider ?? null,
-            kind: link.kind,
-            ready: link.ready,
-            expired: expiresAt ? new Date(expiresAt).getTime() < now : false,
-            credential: link.credential,
-            protocols: link.protocols,
-            vpn_link: order.vpn_link,
+            expired,
             expires_at: expiresAt,
             traffic: { plan_gb: order.traffic_plan_gb, used_gb: order.used_gb },
           };
+          if (lines.length === 0) {
+            return [{ ...base, kind: "pending" as const, ready: false, credential: null, protocols: [] as string[], vpn_link: null }];
+          }
+          return lines.map((line) => {
+            const link = parseLink(line);
+            return {
+              ...base,
+              kind: link.kind,
+              ready: link.ready,
+              credential: link.credential,
+              protocols: link.protocols,
+              vpn_link: line,
+            };
+          });
         });
 
         return json({ ok: true, resources });
