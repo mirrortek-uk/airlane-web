@@ -1341,7 +1341,7 @@ function Footer() {
               </a>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
                 {lang === "zh" ? "产品" : "Product"}
@@ -1355,81 +1355,6 @@ function Footer() {
                 <li>
                   <Link to={`${lp}/docs`} className="hover:text-brand transition">
                     {lang === "zh" ? "文档" : "Docs"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/clash-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Clash 替代" : "Clash Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/mihomo-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Mihomo 替代" : "Mihomo Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/sing-box-gui`} className="hover:text-brand transition">
-                    Sing-box GUI
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/v2rayn-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "V2RayN 替代" : "V2RayN Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/nekobox-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "NekoBox 替代" : "NekoBox Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/hiddify-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Hiddify 替代" : "Hiddify Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/hysteria2-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Hysteria2 客户端" : "Hysteria2 Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/vless-reality-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "VLESS Reality 客户端" : "VLESS Reality Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/qv2ray-alternative`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Qv2ray 替代" : "Qv2ray Alternative"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/tuic-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "TUIC 客户端" : "TUIC Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/trojan-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Trojan 客户端" : "Trojan Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/shadowsocks-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "Shadowsocks 客户端" : "Shadowsocks Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/vmess-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "VMess 客户端" : "VMess Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/wireguard-client`} className="hover:text-brand transition">
-                    {lang === "zh" ? "WireGuard 客户端" : "WireGuard Client"}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={`${lp}/migration`} className="hover:text-brand transition">
-                    {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
                   </Link>
                 </li>
               </ul>
@@ -1468,6 +1393,28 @@ function Footer() {
             </div>
             <div>
               <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
+                {lang === "zh" ? "法律" : "Legal"}
+              </h4>
+              <ul className="space-y-2 text-sm text-foreground">
+                <li>
+                  <Link to={`${lp}/privacy`} className="hover:text-brand transition">
+                    {lang === "zh" ? "隐私政策" : "Privacy"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/terms`} className="hover:text-brand transition">
+                    {lang === "zh" ? "服务条款" : "Terms"}
+                  </Link>
+                </li>
+                <li>
+                  <a href="mailto:airlane@googlegroups.com" className="hover:text-brand transition">
+                    {lang === "zh" ? "联系我们" : "Contact"}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
                 {lang === "zh" ? "状态" : "Status"}
               </h4>
               <ul className="space-y-2 text-sm text-foreground">
@@ -1484,19 +1431,60 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-10 pt-8 border-t border-border">
+          <nav
+            aria-label={lang === "zh" ? "替代方案与协议客户端" : "Alternatives and protocol clients"}
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground"
+          >
+            <Link to={`${lp}/clash-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "Clash 替代" : "Clash Alternative"}
+            </Link>
+            <Link to={`${lp}/mihomo-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "Mihomo 替代" : "Mihomo Alternative"}
+            </Link>
+            <Link to={`${lp}/sing-box-gui`} className="hover:text-brand transition">
+              Sing-box GUI
+            </Link>
+            <Link to={`${lp}/v2rayn-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "V2RayN 替代" : "V2RayN Alternative"}
+            </Link>
+            <Link to={`${lp}/nekobox-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "NekoBox 替代" : "NekoBox Alternative"}
+            </Link>
+            <Link to={`${lp}/hiddify-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "Hiddify 替代" : "Hiddify Alternative"}
+            </Link>
+            <Link to={`${lp}/hysteria2-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "Hysteria2 客户端" : "Hysteria2 Client"}
+            </Link>
+            <Link to={`${lp}/vless-reality-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "VLESS Reality 客户端" : "VLESS Reality Client"}
+            </Link>
+            <Link to={`${lp}/qv2ray-alternative`} className="hover:text-brand transition">
+              {lang === "zh" ? "Qv2ray 替代" : "Qv2ray Alternative"}
+            </Link>
+            <Link to={`${lp}/tuic-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "TUIC 客户端" : "TUIC Client"}
+            </Link>
+            <Link to={`${lp}/trojan-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "Trojan 客户端" : "Trojan Client"}
+            </Link>
+            <Link to={`${lp}/shadowsocks-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "Shadowsocks 客户端" : "Shadowsocks Client"}
+            </Link>
+            <Link to={`${lp}/vmess-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "VMess 客户端" : "VMess Client"}
+            </Link>
+            <Link to={`${lp}/wireguard-client`} className="hover:text-brand transition">
+              {lang === "zh" ? "WireGuard 客户端" : "WireGuard Client"}
+            </Link>
+            <Link to={`${lp}/migration`} className="hover:text-brand transition">
+              {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
+            </Link>
+          </nav>
+        </div>
+        <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <span>© 2025 AirLane · airlane.cloud</span>
-          <div className="flex items-center gap-4 text-xs">
-            <Link to={`${lp}/privacy`} className="hover:text-brand transition">
-              {lang === "zh" ? "隐私政策" : "Privacy"}
-            </Link>
-            <Link to={`${lp}/terms`} className="hover:text-brand transition">
-              {lang === "zh" ? "服务条款" : "Terms"}
-            </Link>
-            <a href="mailto:airlane@googlegroups.com" className="hover:text-brand transition">
-              {lang === "zh" ? "联系我们" : "Contact"}
-            </a>
-          </div>
           <span className="font-mono text-xs">
             {lang === "zh" ? "让每一条流量，找到最优航线" : "Find the optimal route for every packet"}
           </span>
