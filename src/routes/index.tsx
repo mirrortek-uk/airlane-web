@@ -1467,12 +1467,6 @@ function Footer() {
             </Link>
           </nav>
         </div>
-        <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <span>© 2025 AirLane · airlane.cloud</span>
-          <span className="font-mono text-xs">
-            {lang === "zh" ? "让每一条流量，找到最优航线" : "Find the optimal route for every packet"}
-          </span>
-        </div>
       </div>
     </footer>
   );
