@@ -24,6 +24,9 @@ export type AltLandingConfig = {
   /** "Why switch" section heading + optional lead-in. */
   featuresTitle: string;
   featuresSub?: string;
+  /** Optional "How to configure" steps — catches how-to long-tail queries. */
+  stepsTitle?: string;
+  steps?: { title: string; desc: string }[];
   /** Comparison table. `rival` is the third-party column header. */
   compareTitle: string;
   rivalName: string;
@@ -146,7 +149,37 @@ export function AltLandingPage({ cfg, slug }: { cfg: AltLandingConfig; slug: str
           </div>
         </section>
 
-        <section className="bg-muted/30 py-20">
+        {cfg.steps && cfg.steps.length > 0 && (
+          <section className="bg-muted/30 py-20">
+            <div className="max-w-3xl mx-auto px-6">
+              <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground text-center mb-12">
+                {cfg.stepsTitle}
+              </h2>
+              <ol className="space-y-4">
+                {cfg.steps.map((s, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-5 rounded-2xl border border-border bg-card/60 p-5 shadow-card"
+                  >
+                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-brand/15 font-mono text-sm font-bold text-brand">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-lg tracking-tight text-foreground">
+                        {s.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        {s.desc}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+        )}
+
+        <section className={cfg.steps?.length ? "py-20" : "bg-muted/30 py-20"}>
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">

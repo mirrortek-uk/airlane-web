@@ -28,6 +28,11 @@ Looking for a specific use case? These pages go deeper:
 | Hiddify alternative | [airlane.cloud/hiddify-alternative](https://www.airlane.cloud/hiddify-alternative) |
 | Hysteria2 client / GUI | [airlane.cloud/hysteria2-client](https://www.airlane.cloud/hysteria2-client) |
 | VLESS Reality client / desktop | [airlane.cloud/vless-reality-client](https://www.airlane.cloud/vless-reality-client) |
+| TUIC client / GUI | [airlane.cloud/tuic-client](https://www.airlane.cloud/tuic-client) |
+| Trojan client / GUI | [airlane.cloud/trojan-client](https://www.airlane.cloud/trojan-client) |
+| Shadowsocks client / manager | [airlane.cloud/shadowsocks-client](https://www.airlane.cloud/shadowsocks-client) |
+| VMess client / GUI | [airlane.cloud/vmess-client](https://www.airlane.cloud/vmess-client) |
+| WireGuard client / manager | [airlane.cloud/wireguard-client](https://www.airlane.cloud/wireguard-client) |
 
 ## Development
 

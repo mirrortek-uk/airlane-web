@@ -78,6 +78,11 @@ export function LandingFooter() {
     { slug: "hysteria2-client", zh: "Hysteria2 客户端", en: "Hysteria2 Client" },
     { slug: "vless-reality-client", zh: "VLESS Reality 客户端", en: "VLESS Reality Client" },
     { slug: "qv2ray-alternative", zh: "Qv2ray 替代", en: "Qv2ray Alternative" },
+    { slug: "tuic-client", zh: "TUIC 客户端", en: "TUIC Client" },
+    { slug: "trojan-client", zh: "Trojan 客户端", en: "Trojan Client" },
+    { slug: "shadowsocks-client", zh: "Shadowsocks 客户端", en: "Shadowsocks Client" },
+    { slug: "vmess-client", zh: "VMess 客户端", en: "VMess Client" },
+    { slug: "wireguard-client", zh: "WireGuard 客户端", en: "WireGuard Client" },
   ];
 
   return (

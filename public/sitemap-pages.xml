@@ -289,4 +289,94 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.airlane.cloud/tuic-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/tuic-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/tuic-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/tuic-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/tuic-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/tuic-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/tuic-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/tuic-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/trojan-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/trojan-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/trojan-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/trojan-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/trojan-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/trojan-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/trojan-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/trojan-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/shadowsocks-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/shadowsocks-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/shadowsocks-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/shadowsocks-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/shadowsocks-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/shadowsocks-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/shadowsocks-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/shadowsocks-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/vmess-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/vmess-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/vmess-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/vmess-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/vmess-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/vmess-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/vmess-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/vmess-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/wireguard-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/wireguard-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/wireguard-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/wireguard-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/wireguard-client</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/wireguard-client"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/wireguard-client"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/wireguard-client"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

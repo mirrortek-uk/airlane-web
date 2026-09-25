@@ -26,12 +26,17 @@ import { Route as NekoboxAlternativeRouteImport } from './routes/nekobox-alterna
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as Qv2rayAlternativeRouteImport } from './routes/qv2ray-alternative'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ShadowsocksClientRouteImport } from './routes/shadowsocks-client'
 import { Route as SingBoxGuiRouteImport } from './routes/sing-box-gui'
 import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
 import { Route as SitemapDocsDotxmlRouteImport } from './routes/sitemap-docs[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TrojanClientRouteImport } from './routes/trojan-client'
+import { Route as TuicClientRouteImport } from './routes/tuic-client'
 import { Route as V2raynAlternativeRouteImport } from './routes/v2rayn-alternative'
 import { Route as VlessRealityClientRouteImport } from './routes/vless-reality-client'
+import { Route as VmessClientRouteImport } from './routes/vmess-client'
+import { Route as WireguardClientRouteImport } from './routes/wireguard-client'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BlogAdminRouteImport } from './routes/blog.admin'
@@ -50,10 +55,15 @@ import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alte
 import { Route as EnNekoboxAlternativeRouteImport } from './routes/en.nekobox-alternative'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
 import { Route as EnQv2rayAlternativeRouteImport } from './routes/en.qv2ray-alternative'
+import { Route as EnShadowsocksClientRouteImport } from './routes/en.shadowsocks-client'
 import { Route as EnSingBoxGuiRouteImport } from './routes/en.sing-box-gui'
 import { Route as EnTermsRouteImport } from './routes/en.terms'
+import { Route as EnTrojanClientRouteImport } from './routes/en.trojan-client'
+import { Route as EnTuicClientRouteImport } from './routes/en.tuic-client'
 import { Route as EnV2raynAlternativeRouteImport } from './routes/en.v2rayn-alternative'
 import { Route as EnVlessRealityClientRouteImport } from './routes/en.vless-reality-client'
+import { Route as EnVmessClientRouteImport } from './routes/en.vmess-client'
+import { Route as EnWireguardClientRouteImport } from './routes/en.wireguard-client'
 import { Route as ApiReleasesLatestRouteImport } from './routes/api/releases/latest'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
 import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
@@ -150,6 +160,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShadowsocksClientRoute = ShadowsocksClientRouteImport.update({
+  id: '/shadowsocks-client',
+  path: '/shadowsocks-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SingBoxGuiRoute = SingBoxGuiRouteImport.update({
   id: '/sing-box-gui',
   path: '/sing-box-gui',
@@ -170,6 +185,16 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrojanClientRoute = TrojanClientRouteImport.update({
+  id: '/trojan-client',
+  path: '/trojan-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TuicClientRoute = TuicClientRouteImport.update({
+  id: '/tuic-client',
+  path: '/tuic-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const V2raynAlternativeRoute = V2raynAlternativeRouteImport.update({
   id: '/v2rayn-alternative',
   path: '/v2rayn-alternative',
@@ -178,6 +203,16 @@ const V2raynAlternativeRoute = V2raynAlternativeRouteImport.update({
 const VlessRealityClientRoute = VlessRealityClientRouteImport.update({
   id: '/vless-reality-client',
   path: '/vless-reality-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VmessClientRoute = VmessClientRouteImport.update({
+  id: '/vmess-client',
+  path: '/vmess-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WireguardClientRoute = WireguardClientRouteImport.update({
+  id: '/wireguard-client',
+  path: '/wireguard-client',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -270,6 +305,11 @@ const EnQv2rayAlternativeRoute = EnQv2rayAlternativeRouteImport.update({
   path: '/qv2ray-alternative',
   getParentRoute: () => EnRoute,
 } as any)
+const EnShadowsocksClientRoute = EnShadowsocksClientRouteImport.update({
+  id: '/shadowsocks-client',
+  path: '/shadowsocks-client',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnSingBoxGuiRoute = EnSingBoxGuiRouteImport.update({
   id: '/sing-box-gui',
   path: '/sing-box-gui',
@@ -280,6 +320,16 @@ const EnTermsRoute = EnTermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => EnRoute,
 } as any)
+const EnTrojanClientRoute = EnTrojanClientRouteImport.update({
+  id: '/trojan-client',
+  path: '/trojan-client',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnTuicClientRoute = EnTuicClientRouteImport.update({
+  id: '/tuic-client',
+  path: '/tuic-client',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnV2raynAlternativeRoute = EnV2raynAlternativeRouteImport.update({
   id: '/v2rayn-alternative',
   path: '/v2rayn-alternative',
@@ -288,6 +338,16 @@ const EnV2raynAlternativeRoute = EnV2raynAlternativeRouteImport.update({
 const EnVlessRealityClientRoute = EnVlessRealityClientRouteImport.update({
   id: '/vless-reality-client',
   path: '/vless-reality-client',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnVmessClientRoute = EnVmessClientRouteImport.update({
+  id: '/vmess-client',
+  path: '/vmess-client',
+  getParentRoute: () => EnRoute,
+} as any)
+const EnWireguardClientRoute = EnWireguardClientRouteImport.update({
+  id: '/wireguard-client',
+  path: '/wireguard-client',
   getParentRoute: () => EnRoute,
 } as any)
 const ApiReleasesLatestRoute = ApiReleasesLatestRouteImport.update({
@@ -361,12 +421,17 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shadowsocks-client': typeof ShadowsocksClientRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/trojan-client': typeof TrojanClientRoute
+  '/tuic-client': typeof TuicClientRoute
   '/v2rayn-alternative': typeof V2raynAlternativeRoute
   '/vless-reality-client': typeof VlessRealityClientRoute
+  '/vmess-client': typeof VmessClientRoute
+  '/wireguard-client': typeof WireguardClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -382,10 +447,15 @@ export interface FileRoutesByFullPath {
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
+  '/en/shadowsocks-client': typeof EnShadowsocksClientRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/trojan-client': typeof EnTrojanClientRoute
+  '/en/tuic-client': typeof EnTuicClientRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
   '/en/vless-reality-client': typeof EnVlessRealityClientRoute
+  '/en/vmess-client': typeof EnVmessClientRoute
+  '/en/wireguard-client': typeof EnWireguardClientRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -415,12 +485,17 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shadowsocks-client': typeof ShadowsocksClientRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/trojan-client': typeof TrojanClientRoute
+  '/tuic-client': typeof TuicClientRoute
   '/v2rayn-alternative': typeof V2raynAlternativeRoute
   '/vless-reality-client': typeof VlessRealityClientRoute
+  '/vmess-client': typeof VmessClientRoute
+  '/wireguard-client': typeof WireguardClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -434,10 +509,15 @@ export interface FileRoutesByTo {
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
+  '/en/shadowsocks-client': typeof EnShadowsocksClientRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/trojan-client': typeof EnTrojanClientRoute
+  '/en/tuic-client': typeof EnTuicClientRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
   '/en/vless-reality-client': typeof EnVlessRealityClientRoute
+  '/en/vmess-client': typeof EnVmessClientRoute
+  '/en/wireguard-client': typeof EnWireguardClientRoute
   '/blog': typeof BlogIndexRoute
   '/docs': typeof DocsIndexRoute
   '/en': typeof EnIndexRoute
@@ -471,12 +551,17 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/shadowsocks-client': typeof ShadowsocksClientRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
   '/terms': typeof TermsRoute
+  '/trojan-client': typeof TrojanClientRoute
+  '/tuic-client': typeof TuicClientRoute
   '/v2rayn-alternative': typeof V2raynAlternativeRoute
   '/vless-reality-client': typeof VlessRealityClientRoute
+  '/vmess-client': typeof VmessClientRoute
+  '/wireguard-client': typeof WireguardClientRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/admin': typeof BlogAdminRoute
   '/docs/$slug': typeof DocsSlugRoute
@@ -492,10 +577,15 @@ export interface FileRoutesById {
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
+  '/en/shadowsocks-client': typeof EnShadowsocksClientRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
+  '/en/trojan-client': typeof EnTrojanClientRoute
+  '/en/tuic-client': typeof EnTuicClientRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
   '/en/vless-reality-client': typeof EnVlessRealityClientRoute
+  '/en/vmess-client': typeof EnVmessClientRoute
+  '/en/wireguard-client': typeof EnWireguardClientRoute
   '/blog/': typeof BlogIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/en/': typeof EnIndexRoute
@@ -530,12 +620,17 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/qv2ray-alternative'
     | '/reset-password'
+    | '/shadowsocks-client'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/trojan-client'
+    | '/tuic-client'
     | '/v2rayn-alternative'
     | '/vless-reality-client'
+    | '/vmess-client'
+    | '/wireguard-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -551,10 +646,15 @@ export interface FileRouteTypes {
     | '/en/nekobox-alternative'
     | '/en/privacy'
     | '/en/qv2ray-alternative'
+    | '/en/shadowsocks-client'
     | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/trojan-client'
+    | '/en/tuic-client'
     | '/en/v2rayn-alternative'
     | '/en/vless-reality-client'
+    | '/en/vmess-client'
+    | '/en/wireguard-client'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -584,12 +684,17 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/qv2ray-alternative'
     | '/reset-password'
+    | '/shadowsocks-client'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/trojan-client'
+    | '/tuic-client'
     | '/v2rayn-alternative'
     | '/vless-reality-client'
+    | '/vmess-client'
+    | '/wireguard-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -603,10 +708,15 @@ export interface FileRouteTypes {
     | '/en/nekobox-alternative'
     | '/en/privacy'
     | '/en/qv2ray-alternative'
+    | '/en/shadowsocks-client'
     | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/trojan-client'
+    | '/en/tuic-client'
     | '/en/v2rayn-alternative'
     | '/en/vless-reality-client'
+    | '/en/vmess-client'
+    | '/en/wireguard-client'
     | '/blog'
     | '/docs'
     | '/en'
@@ -639,12 +749,17 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/qv2ray-alternative'
     | '/reset-password'
+    | '/shadowsocks-client'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
     | '/terms'
+    | '/trojan-client'
+    | '/tuic-client'
     | '/v2rayn-alternative'
     | '/vless-reality-client'
+    | '/vmess-client'
+    | '/wireguard-client'
     | '/blog/$slug'
     | '/blog/admin'
     | '/docs/$slug'
@@ -660,10 +775,15 @@ export interface FileRouteTypes {
     | '/en/nekobox-alternative'
     | '/en/privacy'
     | '/en/qv2ray-alternative'
+    | '/en/shadowsocks-client'
     | '/en/sing-box-gui'
     | '/en/terms'
+    | '/en/trojan-client'
+    | '/en/tuic-client'
     | '/en/v2rayn-alternative'
     | '/en/vless-reality-client'
+    | '/en/vmess-client'
+    | '/en/wireguard-client'
     | '/blog/'
     | '/docs/'
     | '/en/'
@@ -697,12 +817,17 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   Qv2rayAlternativeRoute: typeof Qv2rayAlternativeRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ShadowsocksClientRoute: typeof ShadowsocksClientRoute
   SingBoxGuiRoute: typeof SingBoxGuiRoute
   SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
   SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
   TermsRoute: typeof TermsRoute
+  TrojanClientRoute: typeof TrojanClientRoute
+  TuicClientRoute: typeof TuicClientRoute
   V2raynAlternativeRoute: typeof V2raynAlternativeRoute
   VlessRealityClientRoute: typeof VlessRealityClientRoute
+  VmessClientRoute: typeof VmessClientRoute
+  WireguardClientRoute: typeof WireguardClientRoute
   ApiReleasesLatestRoute: typeof ApiReleasesLatestRoute
   ApiPublicDevicesResourcesRoute: typeof ApiPublicDevicesResourcesRoute
   ApiPublicDevicesStatusRoute: typeof ApiPublicDevicesStatusRoute
@@ -832,6 +957,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shadowsocks-client': {
+      id: '/shadowsocks-client'
+      path: '/shadowsocks-client'
+      fullPath: '/shadowsocks-client'
+      preLoaderRoute: typeof ShadowsocksClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sing-box-gui': {
       id: '/sing-box-gui'
       path: '/sing-box-gui'
@@ -860,6 +992,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trojan-client': {
+      id: '/trojan-client'
+      path: '/trojan-client'
+      fullPath: '/trojan-client'
+      preLoaderRoute: typeof TrojanClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tuic-client': {
+      id: '/tuic-client'
+      path: '/tuic-client'
+      fullPath: '/tuic-client'
+      preLoaderRoute: typeof TuicClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/v2rayn-alternative': {
       id: '/v2rayn-alternative'
       path: '/v2rayn-alternative'
@@ -872,6 +1018,20 @@ declare module '@tanstack/react-router' {
       path: '/vless-reality-client'
       fullPath: '/vless-reality-client'
       preLoaderRoute: typeof VlessRealityClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vmess-client': {
+      id: '/vmess-client'
+      path: '/vmess-client'
+      fullPath: '/vmess-client'
+      preLoaderRoute: typeof VmessClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wireguard-client': {
+      id: '/wireguard-client'
+      path: '/wireguard-client'
+      fullPath: '/wireguard-client'
+      preLoaderRoute: typeof WireguardClientRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -1000,6 +1160,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnQv2rayAlternativeRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/shadowsocks-client': {
+      id: '/en/shadowsocks-client'
+      path: '/shadowsocks-client'
+      fullPath: '/en/shadowsocks-client'
+      preLoaderRoute: typeof EnShadowsocksClientRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/sing-box-gui': {
       id: '/en/sing-box-gui'
       path: '/sing-box-gui'
@@ -1014,6 +1181,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnTermsRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/trojan-client': {
+      id: '/en/trojan-client'
+      path: '/trojan-client'
+      fullPath: '/en/trojan-client'
+      preLoaderRoute: typeof EnTrojanClientRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/tuic-client': {
+      id: '/en/tuic-client'
+      path: '/tuic-client'
+      fullPath: '/en/tuic-client'
+      preLoaderRoute: typeof EnTuicClientRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/v2rayn-alternative': {
       id: '/en/v2rayn-alternative'
       path: '/v2rayn-alternative'
@@ -1026,6 +1207,20 @@ declare module '@tanstack/react-router' {
       path: '/vless-reality-client'
       fullPath: '/en/vless-reality-client'
       preLoaderRoute: typeof EnVlessRealityClientRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/vmess-client': {
+      id: '/en/vmess-client'
+      path: '/vmess-client'
+      fullPath: '/en/vmess-client'
+      preLoaderRoute: typeof EnVmessClientRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/wireguard-client': {
+      id: '/en/wireguard-client'
+      path: '/wireguard-client'
+      fullPath: '/en/wireguard-client'
+      preLoaderRoute: typeof EnWireguardClientRouteImport
       parentRoute: typeof EnRoute
     }
     '/api/releases/latest': {
@@ -1167,10 +1362,15 @@ interface EnRouteChildren {
   EnNekoboxAlternativeRoute: typeof EnNekoboxAlternativeRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
   EnQv2rayAlternativeRoute: typeof EnQv2rayAlternativeRoute
+  EnShadowsocksClientRoute: typeof EnShadowsocksClientRoute
   EnSingBoxGuiRoute: typeof EnSingBoxGuiRoute
   EnTermsRoute: typeof EnTermsRoute
+  EnTrojanClientRoute: typeof EnTrojanClientRoute
+  EnTuicClientRoute: typeof EnTuicClientRoute
   EnV2raynAlternativeRoute: typeof EnV2raynAlternativeRoute
   EnVlessRealityClientRoute: typeof EnVlessRealityClientRoute
+  EnVmessClientRoute: typeof EnVmessClientRoute
+  EnWireguardClientRoute: typeof EnWireguardClientRoute
   EnIndexRoute: typeof EnIndexRoute
 }
 
@@ -1186,10 +1386,15 @@ const EnRouteChildren: EnRouteChildren = {
   EnNekoboxAlternativeRoute: EnNekoboxAlternativeRoute,
   EnPrivacyRoute: EnPrivacyRoute,
   EnQv2rayAlternativeRoute: EnQv2rayAlternativeRoute,
+  EnShadowsocksClientRoute: EnShadowsocksClientRoute,
   EnSingBoxGuiRoute: EnSingBoxGuiRoute,
   EnTermsRoute: EnTermsRoute,
+  EnTrojanClientRoute: EnTrojanClientRoute,
+  EnTuicClientRoute: EnTuicClientRoute,
   EnV2raynAlternativeRoute: EnV2raynAlternativeRoute,
   EnVlessRealityClientRoute: EnVlessRealityClientRoute,
+  EnVmessClientRoute: EnVmessClientRoute,
+  EnWireguardClientRoute: EnWireguardClientRoute,
   EnIndexRoute: EnIndexRoute,
 }
 
@@ -1213,12 +1418,17 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   Qv2rayAlternativeRoute: Qv2rayAlternativeRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ShadowsocksClientRoute: ShadowsocksClientRoute,
   SingBoxGuiRoute: SingBoxGuiRoute,
   SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
   SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
   TermsRoute: TermsRoute,
+  TrojanClientRoute: TrojanClientRoute,
+  TuicClientRoute: TuicClientRoute,
   V2raynAlternativeRoute: V2raynAlternativeRoute,
   VlessRealityClientRoute: VlessRealityClientRoute,
+  VmessClientRoute: VmessClientRoute,
+  WireguardClientRoute: WireguardClientRoute,
   ApiReleasesLatestRoute: ApiReleasesLatestRoute,
   ApiPublicDevicesResourcesRoute: ApiPublicDevicesResourcesRoute,
   ApiPublicDevicesStatusRoute: ApiPublicDevicesStatusRoute,

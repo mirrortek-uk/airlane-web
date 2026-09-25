@@ -1403,6 +1403,31 @@ function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to={`${lp}/tuic-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "TUIC 客户端" : "TUIC Client"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/trojan-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Trojan 客户端" : "Trojan Client"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/shadowsocks-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Shadowsocks 客户端" : "Shadowsocks Client"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/vmess-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "VMess 客户端" : "VMess Client"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/wireguard-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "WireGuard 客户端" : "WireGuard Client"}
+                  </Link>
+                </li>
+                <li>
                   <Link to={`${lp}/migration`} className="hover:text-brand transition">
                     {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
                   </Link>
