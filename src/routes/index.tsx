@@ -1368,6 +1368,36 @@ function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to={`${lp}/sing-box-gui`} className="hover:text-brand transition">
+                    Sing-box GUI
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/v2rayn-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "V2RayN 替代" : "V2RayN Alternative"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/nekobox-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "NekoBox 替代" : "NekoBox Alternative"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/hiddify-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Hiddify 替代" : "Hiddify Alternative"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/hysteria2-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Hysteria2 客户端" : "Hysteria2 Client"}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`${lp}/vless-reality-client`} className="hover:text-brand transition">
+                    {lang === "zh" ? "VLESS Reality 客户端" : "VLESS Reality Client"}
+                  </Link>
+                </li>
+                <li>
                   <Link to={`${lp}/migration`} className="hover:text-brand transition">
                     {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
                   </Link>

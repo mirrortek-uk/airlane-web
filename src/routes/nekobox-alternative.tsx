@@ -20,5 +20,5 @@ export const Route = createFileRoute("/nekobox-alternative")({
 });
 
 function Page() {
-  return <AltLandingPage cfg={page.cfg} />;
+  return <AltLandingPage cfg={page.cfg} slug="nekobox-alternative" />;
 }

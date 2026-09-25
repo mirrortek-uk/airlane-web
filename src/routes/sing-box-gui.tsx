@@ -20,5 +20,5 @@ export const Route = createFileRoute("/sing-box-gui")({
 });
 
 function Page() {
-  return <AltLandingPage cfg={page.cfg} />;
+  return <AltLandingPage cfg={page.cfg} slug="sing-box-gui" />;
 }

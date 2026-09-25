@@ -35,7 +35,24 @@ export type AltLandingConfig = {
   ctaTo: string;
 };
 
-export function AltLandingPage({ cfg }: { cfg: AltLandingConfig }) {
+/**
+ * zh ↔ en switcher for landing pages. `slug` is the zh path, e.g.
+ * "sing-box-gui"; the en variant lives at /en/<slug> (same as hreflang).
+ */
+export function LandingLangSwitch({ slug }: { slug: string }) {
+  const { locale } = useI18n();
+  const isZh = locale.startsWith("zh");
+  return (
+    <Link
+      to={isZh ? `/en/${slug}` : `/${slug}`}
+      className="rounded-full border border-ink/15 bg-white/50 px-3.5 py-1.5 text-xs font-semibold text-muted-foreground transition hover:bg-white/80 hover:text-foreground"
+    >
+      {isZh ? "EN" : "中文"}
+    </Link>
+  );
+}
+
+export function AltLandingPage({ cfg, slug }: { cfg: AltLandingConfig; slug: string }) {
   const t = useT();
   const { locale } = useI18n();
   const lp = useLocalePrefix();
@@ -49,12 +66,15 @@ export function AltLandingPage({ cfg }: { cfg: AltLandingConfig }) {
           <Link to={lp || (isZh ? "/" : "/en/")} className="flex items-center gap-2.5">
             <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
-          <Link
-            to={`${lp}/download`}
-            className="rounded-full bg-ink text-cream text-sm font-semibold px-5 py-2.5 shadow-card hover:bg-ink/90 transition"
-          >
-            {t("nav.download")}
-          </Link>
+          <div className="flex items-center gap-3">
+            <LandingLangSwitch slug={slug} />
+            <Link
+              to={`${lp}/download`}
+              className="rounded-full bg-ink text-cream text-sm font-semibold px-5 py-2.5 shadow-card hover:bg-ink/90 transition"
+            >
+              {t("nav.download")}
+            </Link>
+          </div>
         </div>
       </header>
 

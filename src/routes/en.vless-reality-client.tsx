@@ -20,5 +20,5 @@ export const Route = createFileRoute("/en/vless-reality-client")({
 });
 
 function Page() {
-  return <AltLandingPage cfg={page.cfg} />;
+  return <AltLandingPage cfg={page.cfg} slug="vless-reality-client" />;
 }

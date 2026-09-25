@@ -4,6 +4,7 @@ import { useLocalePrefix } from "@/lib/locale-link";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema, softwareApplicationSchema, faqSchema } from "@/lib/seo";
 import { ArrowRight, Download, FileText, Zap, Shield, Network, Workflow, Radio } from "lucide-react";
 import { LandingFaq, LandingFooter } from "@/components/landing-extras";
+import { LandingLangSwitch } from "@/components/alt-landing";
 
 export const Route = createFileRoute("/en/mihomo-alternative")({
   head: () => ({
@@ -90,6 +91,7 @@ function EnMihomoAlternativePage() {
             <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-3">
+            <LandingLangSwitch slug="mihomo-alternative" />
             <Link
               to={`${lp}/download`}
               className="rounded-full bg-ink text-cream text-sm font-semibold px-5 py-2.5 shadow-card hover:bg-ink/90 transition"

@@ -66,21 +66,47 @@ export function LandingFooter() {
     { label: lang === "zh" ? "下载" : "Download", to: `${lp}/download` },
   ];
 
+  // Internal links between landing pages — crawlers and users both get
+  // onward paths instead of orphan pages.
+  const altLinks = [
+    { slug: "clash-alternative", zh: "Clash 替代", en: "Clash Alternative" },
+    { slug: "mihomo-alternative", zh: "Mihomo 替代", en: "Mihomo Alternative" },
+    { slug: "sing-box-gui", zh: "Sing-box GUI", en: "Sing-box GUI" },
+    { slug: "v2rayn-alternative", zh: "V2RayN 替代", en: "V2RayN Alternative" },
+    { slug: "nekobox-alternative", zh: "NekoBox 替代", en: "NekoBox Alternative" },
+    { slug: "hiddify-alternative", zh: "Hiddify 替代", en: "Hiddify Alternative" },
+    { slug: "hysteria2-client", zh: "Hysteria2 客户端", en: "Hysteria2 Client" },
+    { slug: "vless-reality-client", zh: "VLESS Reality 客户端", en: "VLESS Reality Client" },
+  ];
+
   return (
     <footer className="border-t border-border py-10">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">© 2025 AirLane</p>
-        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          {links.map((l) => (
+      <div className="max-w-6xl mx-auto px-6 space-y-6">
+        <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {altLinks.map((l) => (
             <Link
-              key={l.to}
-              to={l.to}
-              className="text-sm text-muted-foreground hover:text-foreground transition"
+              key={l.slug}
+              to={`${lp}/${l.slug}`}
+              className="text-xs text-muted-foreground hover:text-brand transition"
             >
-              {l.label}
+              {lang === "zh" ? l.zh : l.en}
             </Link>
           ))}
         </nav>
+        <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">© 2025 AirLane</p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="text-sm text-muted-foreground hover:text-foreground transition"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
     </footer>
   );

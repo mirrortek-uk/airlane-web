@@ -20,5 +20,5 @@ export const Route = createFileRoute("/en/v2rayn-alternative")({
 });
 
 function Page() {
-  return <AltLandingPage cfg={page.cfg} />;
+  return <AltLandingPage cfg={page.cfg} slug="v2rayn-alternative" />;
 }

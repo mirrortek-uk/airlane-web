@@ -20,5 +20,5 @@ export const Route = createFileRoute("/en/hysteria2-client")({
 });
 
 function Page() {
-  return <AltLandingPage cfg={page.cfg} />;
+  return <AltLandingPage cfg={page.cfg} slug="hysteria2-client" />;
 }
