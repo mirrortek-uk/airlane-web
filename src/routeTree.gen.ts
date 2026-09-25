@@ -20,6 +20,7 @@ import { Route as DownloadRouteImport } from './routes/download'
 import { Route as EnRouteImport } from './routes/en'
 import { Route as HiddifyAlternativeRouteImport } from './routes/hiddify-alternative'
 import { Route as Hysteria2ClientRouteImport } from './routes/hysteria2-client'
+import { Route as MigrateRouteImport } from './routes/migrate'
 import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
 import { Route as NekoboxAlternativeRouteImport } from './routes/nekobox-alternative'
@@ -50,6 +51,7 @@ import { Route as EnDocsRouteImport } from './routes/en.docs'
 import { Route as EnDownloadRouteImport } from './routes/en.download'
 import { Route as EnHiddifyAlternativeRouteImport } from './routes/en.hiddify-alternative'
 import { Route as EnHysteria2ClientRouteImport } from './routes/en.hysteria2-client'
+import { Route as EnMigrateRouteImport } from './routes/en.migrate'
 import { Route as EnMigrationRouteImport } from './routes/en.migration'
 import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
 import { Route as EnNekoboxAlternativeRouteImport } from './routes/en.nekobox-alternative'
@@ -128,6 +130,11 @@ const HiddifyAlternativeRoute = HiddifyAlternativeRouteImport.update({
 const Hysteria2ClientRoute = Hysteria2ClientRouteImport.update({
   id: '/hysteria2-client',
   path: '/hysteria2-client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MigrateRoute = MigrateRouteImport.update({
+  id: '/migrate',
+  path: '/migrate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MigrationRoute = MigrationRouteImport.update({
@@ -280,6 +287,11 @@ const EnHysteria2ClientRoute = EnHysteria2ClientRouteImport.update({
   path: '/hysteria2-client',
   getParentRoute: () => EnRoute,
 } as any)
+const EnMigrateRoute = EnMigrateRouteImport.update({
+  id: '/migrate',
+  path: '/migrate',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnMigrationRoute = EnMigrationRouteImport.update({
   id: '/migration',
   path: '/migration',
@@ -415,6 +427,7 @@ export interface FileRoutesByFullPath {
   '/en': typeof EnRouteWithChildren
   '/hiddify-alternative': typeof HiddifyAlternativeRoute
   '/hysteria2-client': typeof Hysteria2ClientRoute
+  '/migrate': typeof MigrateRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
@@ -442,6 +455,7 @@ export interface FileRoutesByFullPath {
   '/en/download': typeof EnDownloadRoute
   '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
   '/en/hysteria2-client': typeof EnHysteria2ClientRoute
+  '/en/migrate': typeof EnMigrateRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
@@ -479,6 +493,7 @@ export interface FileRoutesByTo {
   '/download': typeof DownloadRoute
   '/hiddify-alternative': typeof HiddifyAlternativeRoute
   '/hysteria2-client': typeof Hysteria2ClientRoute
+  '/migrate': typeof MigrateRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
@@ -504,6 +519,7 @@ export interface FileRoutesByTo {
   '/en/download': typeof EnDownloadRoute
   '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
   '/en/hysteria2-client': typeof EnHysteria2ClientRoute
+  '/en/migrate': typeof EnMigrateRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
@@ -545,6 +561,7 @@ export interface FileRoutesById {
   '/en': typeof EnRouteWithChildren
   '/hiddify-alternative': typeof HiddifyAlternativeRoute
   '/hysteria2-client': typeof Hysteria2ClientRoute
+  '/migrate': typeof MigrateRoute
   '/migration': typeof MigrationRoute
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
@@ -572,6 +589,7 @@ export interface FileRoutesById {
   '/en/download': typeof EnDownloadRoute
   '/en/hiddify-alternative': typeof EnHiddifyAlternativeRoute
   '/en/hysteria2-client': typeof EnHysteria2ClientRoute
+  '/en/migrate': typeof EnMigrateRoute
   '/en/migration': typeof EnMigrationRoute
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
@@ -614,6 +632,7 @@ export interface FileRouteTypes {
     | '/en'
     | '/hiddify-alternative'
     | '/hysteria2-client'
+    | '/migrate'
     | '/migration'
     | '/mihomo-alternative'
     | '/nekobox-alternative'
@@ -641,6 +660,7 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/hiddify-alternative'
     | '/en/hysteria2-client'
+    | '/en/migrate'
     | '/en/migration'
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
@@ -678,6 +698,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/hiddify-alternative'
     | '/hysteria2-client'
+    | '/migrate'
     | '/migration'
     | '/mihomo-alternative'
     | '/nekobox-alternative'
@@ -703,6 +724,7 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/hiddify-alternative'
     | '/en/hysteria2-client'
+    | '/en/migrate'
     | '/en/migration'
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
@@ -743,6 +765,7 @@ export interface FileRouteTypes {
     | '/en'
     | '/hiddify-alternative'
     | '/hysteria2-client'
+    | '/migrate'
     | '/migration'
     | '/mihomo-alternative'
     | '/nekobox-alternative'
@@ -770,6 +793,7 @@ export interface FileRouteTypes {
     | '/en/download'
     | '/en/hiddify-alternative'
     | '/en/hysteria2-client'
+    | '/en/migrate'
     | '/en/migration'
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
@@ -811,6 +835,7 @@ export interface RootRouteChildren {
   EnRoute: typeof EnRouteWithChildren
   HiddifyAlternativeRoute: typeof HiddifyAlternativeRoute
   Hysteria2ClientRoute: typeof Hysteria2ClientRoute
+  MigrateRoute: typeof MigrateRoute
   MigrationRoute: typeof MigrationRoute
   MihomoAlternativeRoute: typeof MihomoAlternativeRoute
   NekoboxAlternativeRoute: typeof NekoboxAlternativeRoute
@@ -913,6 +938,13 @@ declare module '@tanstack/react-router' {
       path: '/hysteria2-client'
       fullPath: '/hysteria2-client'
       preLoaderRoute: typeof Hysteria2ClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/migrate': {
+      id: '/migrate'
+      path: '/migrate'
+      fullPath: '/migrate'
+      preLoaderRoute: typeof MigrateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/migration': {
@@ -1123,6 +1155,13 @@ declare module '@tanstack/react-router' {
       path: '/hysteria2-client'
       fullPath: '/en/hysteria2-client'
       preLoaderRoute: typeof EnHysteria2ClientRouteImport
+      parentRoute: typeof EnRoute
+    }
+    '/en/migrate': {
+      id: '/en/migrate'
+      path: '/migrate'
+      fullPath: '/en/migrate'
+      preLoaderRoute: typeof EnMigrateRouteImport
       parentRoute: typeof EnRoute
     }
     '/en/migration': {
@@ -1357,6 +1396,7 @@ interface EnRouteChildren {
   EnDownloadRoute: typeof EnDownloadRoute
   EnHiddifyAlternativeRoute: typeof EnHiddifyAlternativeRoute
   EnHysteria2ClientRoute: typeof EnHysteria2ClientRoute
+  EnMigrateRoute: typeof EnMigrateRoute
   EnMigrationRoute: typeof EnMigrationRoute
   EnMihomoAlternativeRoute: typeof EnMihomoAlternativeRoute
   EnNekoboxAlternativeRoute: typeof EnNekoboxAlternativeRoute
@@ -1381,6 +1421,7 @@ const EnRouteChildren: EnRouteChildren = {
   EnDownloadRoute: EnDownloadRoute,
   EnHiddifyAlternativeRoute: EnHiddifyAlternativeRoute,
   EnHysteria2ClientRoute: EnHysteria2ClientRoute,
+  EnMigrateRoute: EnMigrateRoute,
   EnMigrationRoute: EnMigrationRoute,
   EnMihomoAlternativeRoute: EnMihomoAlternativeRoute,
   EnNekoboxAlternativeRoute: EnNekoboxAlternativeRoute,
@@ -1412,6 +1453,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnRoute: EnRouteWithChildren,
   HiddifyAlternativeRoute: HiddifyAlternativeRoute,
   Hysteria2ClientRoute: Hysteria2ClientRoute,
+  MigrateRoute: MigrateRoute,
   MigrationRoute: MigrationRoute,
   MihomoAlternativeRoute: MihomoAlternativeRoute,
   NekoboxAlternativeRoute: NekoboxAlternativeRoute,

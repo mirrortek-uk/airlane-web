@@ -379,4 +379,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.airlane.cloud/migrate</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/migrate"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/migrate"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/migrate"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/migrate</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/migrate"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/migrate"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/migrate"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

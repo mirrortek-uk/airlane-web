@@ -1462,8 +1462,8 @@ function Footer() {
             <Link to={`${lp}/wireguard-client`} className="hover:text-brand transition">
               {lang === "zh" ? "WireGuard 客户端" : "WireGuard Client"}
             </Link>
-            <Link to={`${lp}/migration`} className="hover:text-brand transition">
-              {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
+            <Link to={`${lp}/migrate`} className="hover:text-brand transition">
+              {lang === "zh" ? "迁移到 AirLane" : "Migrate to AirLane"}
             </Link>
           </nav>
         </div>

@@ -83,6 +83,7 @@ export function LandingFooter() {
     { slug: "shadowsocks-client", zh: "Shadowsocks 客户端", en: "Shadowsocks Client" },
     { slug: "vmess-client", zh: "VMess 客户端", en: "VMess Client" },
     { slug: "wireguard-client", zh: "WireGuard 客户端", en: "WireGuard Client" },
+    { slug: "migrate", zh: "迁移到 AirLane", en: "Migrate to AirLane" },
   ];
 
   return (
