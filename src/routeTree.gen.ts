@@ -24,6 +24,7 @@ import { Route as MigrationRouteImport } from './routes/migration'
 import { Route as MihomoAlternativeRouteImport } from './routes/mihomo-alternative'
 import { Route as NekoboxAlternativeRouteImport } from './routes/nekobox-alternative'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as Qv2rayAlternativeRouteImport } from './routes/qv2ray-alternative'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SingBoxGuiRouteImport } from './routes/sing-box-gui'
 import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
@@ -48,6 +49,7 @@ import { Route as EnMigrationRouteImport } from './routes/en.migration'
 import { Route as EnMihomoAlternativeRouteImport } from './routes/en.mihomo-alternative'
 import { Route as EnNekoboxAlternativeRouteImport } from './routes/en.nekobox-alternative'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
+import { Route as EnQv2rayAlternativeRouteImport } from './routes/en.qv2ray-alternative'
 import { Route as EnSingBoxGuiRouteImport } from './routes/en.sing-box-gui'
 import { Route as EnTermsRouteImport } from './routes/en.terms'
 import { Route as EnV2raynAlternativeRouteImport } from './routes/en.v2rayn-alternative'
@@ -136,6 +138,11 @@ const NekoboxAlternativeRoute = NekoboxAlternativeRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Qv2rayAlternativeRoute = Qv2rayAlternativeRouteImport.update({
+  id: '/qv2ray-alternative',
+  path: '/qv2ray-alternative',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -258,6 +265,11 @@ const EnPrivacyRoute = EnPrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => EnRoute,
 } as any)
+const EnQv2rayAlternativeRoute = EnQv2rayAlternativeRouteImport.update({
+  id: '/qv2ray-alternative',
+  path: '/qv2ray-alternative',
+  getParentRoute: () => EnRoute,
+} as any)
 const EnSingBoxGuiRoute = EnSingBoxGuiRouteImport.update({
   id: '/sing-box-gui',
   path: '/sing-box-gui',
@@ -347,6 +359,7 @@ export interface FileRoutesByFullPath {
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
+  '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
@@ -368,6 +381,7 @@ export interface FileRoutesByFullPath {
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
@@ -399,6 +413,7 @@ export interface FileRoutesByTo {
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
+  '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
@@ -418,6 +433,7 @@ export interface FileRoutesByTo {
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
@@ -453,6 +469,7 @@ export interface FileRoutesById {
   '/mihomo-alternative': typeof MihomoAlternativeRoute
   '/nekobox-alternative': typeof NekoboxAlternativeRoute
   '/privacy': typeof PrivacyRoute
+  '/qv2ray-alternative': typeof Qv2rayAlternativeRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
@@ -474,6 +491,7 @@ export interface FileRoutesById {
   '/en/mihomo-alternative': typeof EnMihomoAlternativeRoute
   '/en/nekobox-alternative': typeof EnNekoboxAlternativeRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/qv2ray-alternative': typeof EnQv2rayAlternativeRoute
   '/en/sing-box-gui': typeof EnSingBoxGuiRoute
   '/en/terms': typeof EnTermsRoute
   '/en/v2rayn-alternative': typeof EnV2raynAlternativeRoute
@@ -510,6 +528,7 @@ export interface FileRouteTypes {
     | '/mihomo-alternative'
     | '/nekobox-alternative'
     | '/privacy'
+    | '/qv2ray-alternative'
     | '/reset-password'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
@@ -531,6 +550,7 @@ export interface FileRouteTypes {
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/qv2ray-alternative'
     | '/en/sing-box-gui'
     | '/en/terms'
     | '/en/v2rayn-alternative'
@@ -562,6 +582,7 @@ export interface FileRouteTypes {
     | '/mihomo-alternative'
     | '/nekobox-alternative'
     | '/privacy'
+    | '/qv2ray-alternative'
     | '/reset-password'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
@@ -581,6 +602,7 @@ export interface FileRouteTypes {
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/qv2ray-alternative'
     | '/en/sing-box-gui'
     | '/en/terms'
     | '/en/v2rayn-alternative'
@@ -615,6 +637,7 @@ export interface FileRouteTypes {
     | '/mihomo-alternative'
     | '/nekobox-alternative'
     | '/privacy'
+    | '/qv2ray-alternative'
     | '/reset-password'
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
@@ -636,6 +659,7 @@ export interface FileRouteTypes {
     | '/en/mihomo-alternative'
     | '/en/nekobox-alternative'
     | '/en/privacy'
+    | '/en/qv2ray-alternative'
     | '/en/sing-box-gui'
     | '/en/terms'
     | '/en/v2rayn-alternative'
@@ -671,6 +695,7 @@ export interface RootRouteChildren {
   MihomoAlternativeRoute: typeof MihomoAlternativeRoute
   NekoboxAlternativeRoute: typeof NekoboxAlternativeRoute
   PrivacyRoute: typeof PrivacyRoute
+  Qv2rayAlternativeRoute: typeof Qv2rayAlternativeRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SingBoxGuiRoute: typeof SingBoxGuiRoute
   SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
@@ -791,6 +816,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qv2ray-alternative': {
+      id: '/qv2ray-alternative'
+      path: '/qv2ray-alternative'
+      fullPath: '/qv2ray-alternative'
+      preLoaderRoute: typeof Qv2rayAlternativeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -961,6 +993,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnPrivacyRouteImport
       parentRoute: typeof EnRoute
     }
+    '/en/qv2ray-alternative': {
+      id: '/en/qv2ray-alternative'
+      path: '/qv2ray-alternative'
+      fullPath: '/en/qv2ray-alternative'
+      preLoaderRoute: typeof EnQv2rayAlternativeRouteImport
+      parentRoute: typeof EnRoute
+    }
     '/en/sing-box-gui': {
       id: '/en/sing-box-gui'
       path: '/sing-box-gui'
@@ -1127,6 +1166,7 @@ interface EnRouteChildren {
   EnMihomoAlternativeRoute: typeof EnMihomoAlternativeRoute
   EnNekoboxAlternativeRoute: typeof EnNekoboxAlternativeRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
+  EnQv2rayAlternativeRoute: typeof EnQv2rayAlternativeRoute
   EnSingBoxGuiRoute: typeof EnSingBoxGuiRoute
   EnTermsRoute: typeof EnTermsRoute
   EnV2raynAlternativeRoute: typeof EnV2raynAlternativeRoute
@@ -1145,6 +1185,7 @@ const EnRouteChildren: EnRouteChildren = {
   EnMihomoAlternativeRoute: EnMihomoAlternativeRoute,
   EnNekoboxAlternativeRoute: EnNekoboxAlternativeRoute,
   EnPrivacyRoute: EnPrivacyRoute,
+  EnQv2rayAlternativeRoute: EnQv2rayAlternativeRoute,
   EnSingBoxGuiRoute: EnSingBoxGuiRoute,
   EnTermsRoute: EnTermsRoute,
   EnV2raynAlternativeRoute: EnV2raynAlternativeRoute,
@@ -1170,6 +1211,7 @@ const rootRouteChildren: RootRouteChildren = {
   MihomoAlternativeRoute: MihomoAlternativeRoute,
   NekoboxAlternativeRoute: NekoboxAlternativeRoute,
   PrivacyRoute: PrivacyRoute,
+  Qv2rayAlternativeRoute: Qv2rayAlternativeRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SingBoxGuiRoute: SingBoxGuiRoute,
   SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,

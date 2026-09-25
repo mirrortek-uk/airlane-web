@@ -77,6 +77,7 @@ export function LandingFooter() {
     { slug: "hiddify-alternative", zh: "Hiddify 替代", en: "Hiddify Alternative" },
     { slug: "hysteria2-client", zh: "Hysteria2 客户端", en: "Hysteria2 Client" },
     { slug: "vless-reality-client", zh: "VLESS Reality 客户端", en: "VLESS Reality Client" },
+    { slug: "qv2ray-alternative", zh: "Qv2ray 替代", en: "Qv2ray Alternative" },
   ];
 
   return (

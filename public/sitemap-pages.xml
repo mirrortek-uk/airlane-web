@@ -271,4 +271,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://www.airlane.cloud/qv2ray-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/qv2ray-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/qv2ray-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/qv2ray-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.airlane.cloud/en/qv2ray-alternative</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.airlane.cloud/qv2ray-alternative"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.airlane.cloud/en/qv2ray-alternative"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.airlane.cloud/qv2ray-alternative"/>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

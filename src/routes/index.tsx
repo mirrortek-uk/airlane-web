@@ -1398,6 +1398,11 @@ function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to={`${lp}/qv2ray-alternative`} className="hover:text-brand transition">
+                    {lang === "zh" ? "Qv2ray 替代" : "Qv2ray Alternative"}
+                  </Link>
+                </li>
+                <li>
                   <Link to={`${lp}/migration`} className="hover:text-brand transition">
                     {lang === "zh" ? "从 Clash 迁移" : "Migrate from Clash"}
                   </Link>

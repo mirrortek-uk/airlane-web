@@ -1,29 +1,48 @@
-# Welcome to your Lovable project
+# AirLane — Open-Source Sing-box GUI & Proxy Client
 
-This project was built with [Lovable](https://lovable.dev).
+**AirLane** is a cross-platform **Sing-box GUI**, **proxy client**, and **network proxy manager** — a modern **open-source Clash alternative** for Windows, macOS, Linux, iOS, and Android. It pairs the sing-box core with a visual dashboard for nodes, routing rules, DNS, leak detection, and traffic insights.
 
-## Build with Lovable
+**Website:** [airlane.cloud](https://www.airlane.cloud) · **Download:** [airlane.cloud/download](https://www.airlane.cloud/download) · **Store:** [poolvip.airlane.cloud](https://poolvip.airlane.cloud)
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Why AirLane?
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Sing-box GUI / Dashboard / Control Panel** — visual node manager, outbound groups, and per-app routing without editing JSON.
+- **Clash & NekoBox alternative** — import Clash/V2Ray subscriptions, migrate configs, keep your workflow.
+- **Full protocol support** — VLESS (Reality / XTLS Vision), VMess, Trojan, Shadowsocks, Hysteria2, TUIC, WireGuard, and standard subscription formats.
+- **DNS & leak protection** — Fake-IP / split-DNS management, DNS leak test, WebRTC/IPv6 leak detection.
+- **Network dashboard** — node latency, health monitoring, traffic visualization, and route analysis.
+- **Cross-platform** — desktop via Tauri (Windows/macOS/Linux) plus iOS and Android builds.
+
+## Keyword index
+
+Looking for a specific use case? These pages go deeper:
+
+| Search intent | Page |
+|---|---|
+| Sing-box GUI / client / desktop / manager | [airlane.cloud/sing-box-gui](https://www.airlane.cloud/sing-box-gui) |
+| Clash alternative / Clash Verge replacement | [airlane.cloud/clash-alternative](https://www.airlane.cloud/clash-alternative) |
+| Mihomo alternative | [airlane.cloud/mihomo-alternative](https://www.airlane.cloud/mihomo-alternative) |
+| NekoBox alternative | [airlane.cloud/nekobox-alternative](https://www.airlane.cloud/nekobox-alternative) |
+| V2RayN alternative | [airlane.cloud/v2rayn-alternative](https://www.airlane.cloud/v2rayn-alternative) |
+| Qv2ray alternative | [airlane.cloud/qv2ray-alternative](https://www.airlane.cloud/qv2ray-alternative) |
+| Hiddify alternative | [airlane.cloud/hiddify-alternative](https://www.airlane.cloud/hiddify-alternative) |
+| Hysteria2 client / GUI | [airlane.cloud/hysteria2-client](https://www.airlane.cloud/hysteria2-client) |
+| VLESS Reality client / desktop | [airlane.cloud/vless-reality-client](https://www.airlane.cloud/vless-reality-client) |
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Node.js + npm required.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone https://github.com/mirrortek-uk/airlane-web.git
+cd airlane-web
 npm i
 npm run dev
 ```
 
 ## Built with
 
-- TanStack Start
-- TypeScript
-- React
+- TanStack Start + React + TypeScript
+- Tauri (Rust core) for desktop/mobile shells
+- sing-box network core
 - Tailwind CSS

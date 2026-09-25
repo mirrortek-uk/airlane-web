@@ -25,6 +25,89 @@ export type LandingPageDef = {
 type HeadMeta = { title: string; desc: string; ogTitle: string; ogDesc: string; crumb: string };
 
 export const LANDING_PAGES: Record<string, LandingPageDef> = {
+  "qv2ray-alternative": {
+    zh: {
+      head: {
+        title: "AirLane — Qv2ray 替代方案 | 仍在维护的现代代理客户端",
+        desc: "Qv2ray 已停止维护多年，协议停留在 VMess/VLESS 旧时代。AirLane 是活跃迭代的现代替代：sing-box 内核 38+ 协议（Hysteria2/TUIC/Reality），跨平台可视化策略树、流量仪表盘、健康自愈与 Mesh 组网。",
+        ogTitle: "AirLane — Qv2ray 替代方案",
+        ogDesc: "Qv2ray 已停更——换到活跃维护的 sing-box 可视化客户端，38+ 协议全平台。",
+        crumb: "Qv2ray 替代",
+      },
+      cfg: {
+        badge: "Qv2ray 替代方案",
+        titlePre: "Qv2ray 停更了，",
+        titleEm: "下一站 AirLane",
+        sub: "Qv2ray 项目早已停止维护，新协议（Hysteria2、TUIC、Reality）一概没有。AirLane 是活跃开发的现代化替代：sing-box 内核、38+ 协议、可视化策略树与跨设备 Mesh——延续 Qv2ray 的插件式理念，做成产品。",
+        featuresTitle: "从 Qv2ray 迁移到 AirLane",
+        featuresSub: "当年选 Qv2ray 是因为要可扩展的客户端——AirLane 把这条路走完了。",
+        features: [
+          { icon: Zap, title: "38+ 新协议", desc: "Qv2ray 停在 VMess/VLESS/Trojan 时代；AirLane 原生支持 Hysteria2、TUIC v5、Reality、ShadowTLS、WireGuard。" },
+          { icon: Globe, title: "全平台统一", desc: "Qv2ray 只有桌面三件套；AirLane Windows/macOS/Linux/Android/iOS 同一内核同一 UI。" },
+          { icon: Workflow, title: "策略树编排", desc: "Qv2ray 的路由编辑器平铺规则；AirLane 用可嵌套策略树表达复杂分流。" },
+          { icon: Activity, title: "内置仪表盘", desc: "实时吞吐、连接明细、按出口聚合——Qv2ray 时代要靠日志和外部工具。" },
+          { icon: Gauge, title: "健康自愈", desc: "节点异常自动切换并留痕；Qv2ray 只能手动 ping 再手选。" },
+          { icon: Network, title: "Mesh 资源池", desc: "设备间共享出口，Qv2ray 架构里没有的概念。" },
+        ],
+        compareTitle: "AirLane vs Qv2ray 全面对比",
+        rivalName: "Qv2ray",
+        comparison: [
+          { capability: "维护状态", rival: "已停更（2021）", airlane: "活跃开发中" },
+          { capability: "内核", rival: "v2ray 内核", airlane: "sing-box 内核" },
+          { capability: "新协议", rival: "无 Hy2/TUIC/Reality", airlane: "38+ 协议原生支持" },
+          { capability: "平台", rival: "Win/macOS/Linux", airlane: "桌面 + Android + iOS" },
+          { capability: "路由", rival: "规则编辑器", airlane: "可嵌套策略树" },
+          { capability: "观测性", rival: "连接列表", airlane: "仪表盘 + 决策追踪" },
+          { capability: "多端协同", rival: "无", airlane: "Mesh 共享出口池" },
+        ],
+        ctaTitle: "离开停更项目，不丢任何节点",
+        ctaDesc: "v2ray 订阅和 URI 列表直接导入，历史节点一个不落。",
+        ctaLabel: "免费下载",
+        ctaTo: "/download",
+      },
+    },
+    en: {
+      head: {
+        title: "AirLane — Qv2ray Alternative | An Actively Maintained Proxy Client",
+        desc: "Qv2ray has been unmaintained for years — stuck at VMess-era protocols. AirLane is the actively developed modern alternative: sing-box core, 38+ protocols (Hysteria2/TUIC/Reality), cross-platform policy trees, traffic dashboard, self-healing and Mesh networking.",
+        ogTitle: "AirLane — Qv2ray Alternative",
+        ogDesc: "Qv2ray is unmaintained — switch to an actively developed visual sing-box client, 38+ protocols.",
+        crumb: "Qv2ray Alternative",
+      },
+      cfg: {
+        badge: "Qv2ray Alternative",
+        titlePre: "Qv2ray is unmaintained —",
+        titleEm: "meet AirLane",
+        sub: "The Qv2ray project stopped years ago; it never learned Hysteria2, TUIC or Reality. AirLane is the actively developed modern successor: sing-box core, 38+ protocols, visual policy trees and cross-device Mesh — the plugin-era idea, finished as a product.",
+        featuresTitle: "Migrating from Qv2ray to AirLane",
+        featuresSub: "You chose Qv2ray for an extensible client — AirLane completed that vision.",
+        features: [
+          { icon: Zap, title: "38+ modern protocols", desc: "Qv2ray froze at VMess/VLESS/Trojan; AirLane natively supports Hysteria2, TUIC v5, Reality, ShadowTLS and WireGuard." },
+          { icon: Globe, title: "One client everywhere", desc: "Qv2ray was desktop-only; AirLane runs the same core and UI on Windows, macOS, Linux, Android and iOS." },
+          { icon: Workflow, title: "Policy-tree orchestration", desc: "Qv2ray's flat rule editor becomes AirLane's nestable policy tree for complex splitting." },
+          { icon: Activity, title: "Built-in dashboard", desc: "Live throughput, connection detail, per-exit traffic — things Qv2ray needed external tools for." },
+          { icon: Gauge, title: "Self-healing exits", desc: "Unhealthy nodes fail over automatically with an audit trail; Qv2ray needed manual ping-and-pick." },
+          { icon: Network, title: "Mesh resource pools", desc: "Share exits across devices — a concept Qv2ray never had." },
+        ],
+        compareTitle: "AirLane vs Qv2ray — Full Comparison",
+        rivalName: "Qv2ray",
+        comparison: [
+          { capability: "Maintenance", rival: "Unmaintained (2021)", airlane: "Actively developed" },
+          { capability: "Core", rival: "v2ray core", airlane: "sing-box core" },
+          { capability: "New protocols", rival: "No Hy2/TUIC/Reality", airlane: "38+ native protocols" },
+          { capability: "Platforms", rival: "Win/macOS/Linux", airlane: "Desktop + Android + iOS" },
+          { capability: "Routing", rival: "Rule editor", airlane: "Nestable policy tree" },
+          { capability: "Observability", rival: "Connection list", airlane: "Dashboard + decision tracing" },
+          { capability: "Multi-device", rival: "None", airlane: "Mesh shared pools" },
+        ],
+        ctaTitle: "Leave an unmaintained client, keep every node",
+        ctaDesc: "v2ray subscriptions and URI lists import directly — nothing gets left behind.",
+        ctaLabel: "Download Free",
+        ctaTo: "/en/download",
+      },
+    },
+  },
+
   "sing-box-gui": {
     zh: {
       head: {
