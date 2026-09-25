@@ -376,7 +376,7 @@ function Header() {
           <a href="#features" className="nav-glow">
             {t("nav.features")}
           </a>
-          <Link to={`${lp}/migration`} className="nav-glow">
+          <Link to={`${lp}/migrate`} className="nav-glow">
             {t("home.header.nav.migration")}
           </Link>
           <Link to={`${lp}/docs`} className="nav-glow">

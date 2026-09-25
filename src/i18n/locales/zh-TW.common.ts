@@ -4,7 +4,7 @@ const dict: Record<string, string> = {
 
   "nav.features": "產品能力",
   "nav.decisionTrace": "決策追蹤",
-  "nav.migration": "從 Clash 遷移",
+  "nav.migration": "遷移到 AirLane",
   "nav.download": "下載 AirLane",
   "nav.docs": "閱讀文件",
   "nav.blog": "部落格",

@@ -1,5 +1,5 @@
 const dict: Record<string, string> = {
-  "home.header.nav.migration": "Migra da Clash",
+  "home.header.nav.migration": "Migra ad AirLane",
 
   "home.hero.badge": "Una piattaforma moderna di orchestrazione di rete · basata su sing-box",
   "home.hero.title1": "Ogni pacchetto trova",
@@ -178,7 +178,7 @@ const dict: Record<string, string> = {
   "home.footer.product": "Prodotto",
   "home.footer.download": "Download",
   "home.footer.docs": "Documentazione",
-  "home.footer.migration": "Migra da Clash",
+  "home.footer.migration": "Migra ad AirLane",
   "home.footer.community": "Community",
   "home.footer.status": "Stato",
   "home.footer.statusActive": "In sviluppo attivo",
