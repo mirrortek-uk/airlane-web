@@ -169,9 +169,9 @@ const dict: Record<string, string> = {
   "home.compare.row8.airlane": "Clash/Mihomo 匯入與轉換",
   "home.compare.footnote": "* 傳統生態效能強大、生態成熟；AirLane 在其上補齊視覺化編排、一體化 Mesh 與共享資源能力。",
 
-  "home.roadmap.badge": "持續迭代中",
-  "home.roadmap.title": "專案正在高速迭代",
-  "home.roadmap.desc": "部分進階功能持續完善中。歡迎關注 GitHub 追蹤進度，參與共建 AirLane 的航線圖。",
+  "home.roadmap.badge": "Windows 版已發布",
+  "home.roadmap.title": "AirLane Windows 用戶端現已可用",
+  "home.roadmap.desc": "Windows 版已開放下載，macOS、Linux 與行動版陸續推出。歡迎關注 GitHub 追蹤進度。",
   "home.roadmap.cta": "下載客戶端",
 
   "home.footer.tagline": "現代網路編排平台。從流量代理，到網路編排。",

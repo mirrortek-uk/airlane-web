@@ -80,13 +80,13 @@ export function DownloadPage() {
       name: "macOS",
       arch: t("pages.download.platform.macos.arch"),
       icon: Monitor,
-      status: t("pages.download.status.preview"),
+      status: t("pages.download.status.developing"),
     },
     {
       name: "Linux",
       arch: t("pages.download.platform.linux.arch"),
       icon: Monitor,
-      status: t("pages.download.status.preview"),
+      status: t("pages.download.status.developing"),
     },
     {
       name: "Android",

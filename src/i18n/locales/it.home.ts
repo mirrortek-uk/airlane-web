@@ -169,9 +169,9 @@ const dict: Record<string, string> = {
   "home.compare.row8.airlane": "Importazione e conversione da Clash/Mihomo",
   "home.compare.footnote": "* L'ecosistema tradizionale è potente e maturo; AirLane costruisce su di esso con orchestrazione visiva, mesh integrata e capacità di risorse condivise.",
 
-  "home.roadmap.badge": "In continua evoluzione",
-  "home.roadmap.title": "Il progetto sta iterando rapidamente",
-  "home.roadmap.desc": "Alcune funzionalità avanzate sono ancora in fase di rifinitura. Seguici su GitHub e aiuta a definire la roadmap di AirLane.",
+  "home.roadmap.badge": "Windows ora disponibile",
+  "home.roadmap.title": "AirLane per Windows è qui",
+  "home.roadmap.desc": "L’app per Windows è ora disponibile al download — le versioni macOS, Linux e mobile sono in arrivo. Seguici su GitHub.",
   "home.roadmap.cta": "Scarica l'app",
 
   "home.footer.tagline": "Una piattaforma moderna di orchestrazione di rete. Dal proxy del traffico all'orchestrazione di rete.",

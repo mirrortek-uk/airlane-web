@@ -1264,15 +1264,15 @@ function Roadmap() {
       <div className="max-w-6xl mx-auto px-6 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/5 px-4 py-2 font-mono text-xs text-brand mb-6">
           <Sparkles className="size-3.5" />
-          {lang === "zh" ? "持续迭代中" : "Actively Iterating"}
+          {lang === "zh" ? "Windows 版已发布" : "Windows Now Available"}
         </div>
         <h2 className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
-          {lang === "zh" ? "项目正在高速迭代" : "The Project Is Moving Fast"}
+          {lang === "zh" ? "AirLane Windows 客户端现已可用" : "AirLane for Windows is here"}
         </h2>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
           {lang === "zh"
-            ? "部分高级功能持续完善中。欢迎在博客跟进进展，参与共建 AirLane 的航线图。"
-            : "Advanced features are continually being refined. Follow our blog for progress and help shape AirLane's roadmap."}
+            ? "Windows 版已开放下载，macOS、Linux 与移动端版本陆续推出。欢迎下载体验并在博客跟进进展。"
+            : "The Windows app is available for download now — macOS, Linux, and mobile builds are on the way. Try it out and follow our blog for updates."}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
