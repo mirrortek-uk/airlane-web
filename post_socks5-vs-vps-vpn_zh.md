@@ -26,7 +26,7 @@
 
 ## 举个最直观的例子
 
-假设你在 PoolVIP 上买了一个 VPS。
+假设你在 [PoolVIP](https://poolvip.airlane.cloud)（https://poolvip.airlane.cloud）上买了一个 VPS。
 
 ### 用 SOCKS5
 
@@ -70,34 +70,7 @@ Netflix    → 美国 VPS
 
 ---
 
-## 对 PoolVIP 的产品启示
-
-如果你的业务同时卖代理资源，建议是**两种都提供，但定位不同**：
-
-- **SOCKS5 Proxy**：低价、简单、临时使用，适合"浏览器里临时换个 IP"的场景
-- **VPN / AirLane 节点**：完整设备代理、分流、DNS、UDP、多 App 统一使用
-
-更进一步，可以把同一个 VPS 包装成多种出口资源：
-
-```text
-VPS → 自动生成 SOCKS5 / HTTP / WireGuard / AirLane 节点
-```
-
-同一个 VPS 变成不同类型的"出口资源"，而不是只能卖一种代理形态。
-
-而 AirLane + PoolVIP 最自然的产品链路其实是：
-
-```text
-PoolVIP 买 VPS → 自动部署 sing-box → 自动注册 AirLane
-    → 用户直接拿到一个可用的 AirLane Exit
-```
-
-这样用户甚至不需要理解 SOCKS5、WireGuard 这些底层概念 —— 买了 VPS，打开 AirLane，就能用。
-
----
-
 ## 总结
 
 - **只要浏览器/单个应用走代理** → SOCKS5 够用，便宜简单
-- **要整台设备、所有 App、DNS、UDP、分流** → 用 VPN/TUN 方案（sing-box、WireGuard）
-- **买 VPS 做出口资源池** → 两者都生成，让用户按场景选择；或者干脆封装成 AirLane Exit，用户零配置上手
+- **要整台设备、所有 App、DNS、UDP、分流** → 用 VPN/TUN 方案（sing-box、WireGuard），或用 AirLane 直接接管设备出口，开箱即用

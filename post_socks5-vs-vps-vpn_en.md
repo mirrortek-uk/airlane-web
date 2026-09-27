@@ -26,7 +26,7 @@ You've got a VPS — now how do you turn it into a usable proxy exit? Many peopl
 
 ## A concrete example
 
-Say you bought a VPS on PoolVIP.
+Say you bought a VPS on [PoolVIP](https://poolvip.airlane.cloud) (https://poolvip.airlane.cloud).
 
 ### With SOCKS5
 
@@ -70,34 +70,7 @@ Company sites   → DIRECT
 
 ---
 
-## What this means for PoolVIP
-
-If your business sells proxy resources, the recommendation is **offer both, positioned differently**:
-
-- **SOCKS5 proxy**: cheap, simple, for temporary "switch my browser IP" use cases
-- **VPN / AirLane node**: full-device proxying, split routing, DNS, UDP, one config for all apps
-
-Going further, the same VPS can be packaged into multiple exit types:
-
-```text
-VPS → auto-generate SOCKS5 / HTTP / WireGuard / AirLane node
-```
-
-One VPS becomes different kinds of "exit resources" instead of a single proxy flavor.
-
-And the most natural product pipeline for AirLane + PoolVIP is:
-
-```text
-Buy a VPS on PoolVIP → auto-deploy sing-box → auto-register with AirLane
-    → the user gets a ready-to-use AirLane Exit
-```
-
-The user doesn't even need to understand SOCKS5 or WireGuard — buy a VPS, open AirLane, and it just works.
-
----
-
 ## Summary
 
 - **Need a proxy for a browser or a single app** → SOCKS5 is enough — cheap and simple
-- **Need the whole device, every app, DNS, UDP, and split routing** → go VPN/TUN (sing-box, WireGuard)
-- **Selling VPS-based exit resources** → generate both and let users choose; or wrap it as an AirLane Exit for a zero-config experience
+- **Need the whole device, every app, DNS, UDP, and split routing** → go VPN/TUN (sing-box, WireGuard), or let AirLane take over the device exit for a zero-config experience
