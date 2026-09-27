@@ -1308,8 +1308,8 @@ function Footer() {
 
             <p className="mt-3 text-sm text-muted-foreground max-w-sm">
               {lang === "zh"
-                ? "现代网络编排平台。从流量代理，到网络编排。"
-                : "Modern network orchestration platform. From traffic proxying to network orchestration."}
+                ? "基于规则的网络代理工具，性能和功能远超 Clash。"
+                : "A rule-based network proxy tool that outperforms Clash in both performance and features."}
             </p>
             <div className="mt-4 flex items-center gap-3">
               <a
