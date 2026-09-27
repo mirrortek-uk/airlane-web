@@ -26,7 +26,7 @@
 
 ## 举个最直观的例子
 
-假设你在 [PoolVIP](https://poolvip.airlane.cloud)（https://poolvip.airlane.cloud）上买了一个 VPS。
+假设你在 [PoolVIP](https://poolvip.airlane.cloud)（[https://poolvip.airlane.cloud](https://poolvip.airlane.cloud)）上买了一个 VPS。
 
 ### 用 SOCKS5
 

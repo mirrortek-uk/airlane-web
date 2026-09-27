@@ -26,7 +26,7 @@ You've got a VPS — now how do you turn it into a usable proxy exit? Many peopl
 
 ## A concrete example
 
-Say you bought a VPS on [PoolVIP](https://poolvip.airlane.cloud) (https://poolvip.airlane.cloud).
+Say you bought a VPS on [PoolVIP](https://poolvip.airlane.cloud) ([https://poolvip.airlane.cloud](https://poolvip.airlane.cloud)).
 
 ### With SOCKS5
 
