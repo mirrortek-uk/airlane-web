@@ -43,6 +43,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "Anycast 技术将一个 IP 地址分配给多个地理位置不同的服务器，通过 BGP 路由协议自动选择最近节点响应 DNS 查询。本文讲解 Anycast 的原理、四大优势（低延迟、负载均衡、抗 DDoS、高可用），以及它与 AirLane 出口池设计的相通理念。",
     summary_en: "Anycast assigns one IP address to multiple servers in different locations, using BGP routing to automatically select the nearest node for DNS queries. This article explains Anycast principles, four key advantages, and its shared philosophy with AirLane's Exit Pool design.",
   },
+  "socks5-vs-vps-vpn": {
+    title_zh: "如何选择代理类型：SOCKS5 还是自建 VPS VPN 代理服务器",
+    title_en: "SOCKS5 Proxy or a Self-Hosted VPS VPN? How to Choose",
+    summary_zh: "SOCKS5 是应用层代理，VPN/TUN 是设备级接管。对比两者在浏览器、全局流量、手机 App、DNS、UDP、分流上的差异，以及 PoolVIP 如何把同一个 VPS 包装成多种出口资源。",
+    summary_en: "SOCKS5 is an app-level proxy; VPN/TUN is device-level takeover. Compare both across browsers, global traffic, mobile apps, DNS, UDP and split routing — plus how PoolVIP can turn one VPS into multiple exit types.",
+  },
 };
 
 export type BlogSlugLoaderData = { post: BlogPost | null };

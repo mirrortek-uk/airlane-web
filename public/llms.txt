@@ -28,6 +28,7 @@ Last updated: 2026-09-20. Full-text version: [llms-full.txt](https://www.airlane
 - [AirLane vs Clash: A Smarter Proxy Client for Modern Network Routing](https://www.airlane.cloud/blog/airlane-vs-clash-smarter-proxy-client): From Proxy Group to Policy Tree + NodeFlow — automatic routing, decision trace, split tunneling, Mesh networking, and Clash compatibility
 - [What is QUIC? Why AirLane Chooses QUIC-Based Proxy Protocols](https://www.airlane.cloud/blog/what-is-quic): QUIC protocol explained — 1-RTT handshake, no head-of-line blocking, connection migration, built-in TLS 1.3, and how Hysteria2/TUIC v5 use QUIC in AirLane
 - [Anycast in DNS Resolution: Principles and Advantages](https://www.airlane.cloud/blog/dns-anycast-explained): How Anycast DNS works — one IP, multiple nodes, BGP auto-selects nearest — and how AirLane's Exit Pool applies the same philosophy to proxy traffic
+- [SOCKS5 Proxy or a Self-Hosted VPS VPN? How to Choose](https://www.airlane.cloud/blog/socks5-vs-vps-vpn): SOCKS5 is app-level, VPN/TUN is device-level — compared across browsers, global traffic, mobile apps, DNS, UDP and split routing; plus how PoolVIP turns one VPS into multiple exit types
 
 ## Key Concepts
 

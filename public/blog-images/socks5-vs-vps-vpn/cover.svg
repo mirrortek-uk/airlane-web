@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <!-- left: SOCKS5 -->
+  <rect x="80" y="140" width="440" height="350" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="300" y="200" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="34" font-weight="700" fill="#6366f1">SOCKS5</text>
+  <text x="300" y="238" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#64748b">App-level proxy</text>
+  <rect x="130" y="280" width="110" height="56" rx="12" fill="#eef2ff"/>
+  <text x="185" y="314" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#334155">App 1</text>
+  <rect x="130" y="356" width="110" height="56" rx="12" fill="#f1f5f9" opacity="0.45"/>
+  <text x="185" y="390" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#94a3b8">App 2</text>
+  <rect x="130" y="432" width="110" height="40" rx="10" fill="#f1f5f9" opacity="0.45"/>
+  <text x="185" y="458" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#94a3b8">App 3</text>
+  <path d="M240 308 H400" stroke="#6366f1" stroke-width="3" fill="none" marker-end="url(#arrB)"/>
+  <rect x="400" y="280" width="90" height="56" rx="12" fill="#6366f1"/>
+  <text x="445" y="314" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#ffffff">SOCKS5</text>
+  <text x="300" y="528" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#94a3b8">per-app opt-in</text>
+  <!-- vs -->
+  <circle cx="600" cy="315" r="34" fill="#f59e0b"/>
+  <text x="600" y="326" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700" fill="#ffffff">VS</text>
+  <!-- right: VPN/TUN -->
+  <rect x="680" y="140" width="440" height="350" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="900" y="200" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="34" font-weight="700" fill="#6366f1">VPN / TUN</text>
+  <text x="900" y="238" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#64748b">Device-level exit</text>
+  <g font-family="JetBrains Mono, monospace" font-size="15">
+    <rect x="730" y="268" width="86" height="48" rx="10" fill="#eef2ff"/><text x="773" y="298" text-anchor="middle" fill="#334155">App</text>
+    <rect x="826" y="268" width="86" height="48" rx="10" fill="#eef2ff"/><text x="869" y="298" text-anchor="middle" fill="#334155">App</text>
+    <rect x="922" y="268" width="86" height="48" rx="10" fill="#eef2ff"/><text x="965" y="298" text-anchor="middle" fill="#334155">App</text>
+    <rect x="1018" y="268" width="86" height="48" rx="10" fill="#eef2ff"/><text x="1061" y="298" text-anchor="middle" fill="#334155">App</text>
+  </g>
+  <path d="M773 316 V360 M869 316 V360 M965 316 V360 M1061 316 V360" stroke="#6366f1" stroke-width="2.5" fill="none"/>
+  <rect x="730" y="360" width="374" height="52" rx="12" fill="#6366f1"/>
+  <text x="917" y="393" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#ffffff">TUN — all traffic</text>
+  <rect x="730" y="432" width="374" height="40" rx="10" fill="#eef2ff"/>
+  <text x="917" y="458" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#334155">split routing · DNS · UDP</text>
+  <text x="900" y="528" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#94a3b8">whole-device takeover</text>
+  <defs>
+    <marker id="arrB" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6366f1"/>
+    </marker>
+  </defs>
+</svg>

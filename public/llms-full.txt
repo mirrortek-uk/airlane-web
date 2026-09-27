@@ -165,3 +165,23 @@ Both share the philosophy of "one entry point, multiple backends, auto-select be
 - AirLane Exit Pool works at the application layer via health scoring and policy selection — user-customizable, suited for proxy traffic
 
 AirLane's Exit Pool monitors latency, packet loss, jitter, and availability for each node, automatically selecting the best exit based on the configured strategy (Latency Aware, Health Aware, or Failover).
+
+---
+
+## SOCKS5 Proxy or a Self-Hosted VPS VPN? How to Choose
+
+SOCKS5 is an application-layer proxy — each app must opt in. A VPN/TUN
+client (WireGuard, sing-box, AirLane) takes over the device's entire
+network exit: browsers need no config, mobile apps and UDP/DNS are
+captured automatically, and rule-based split routing (e.g. Netflix → US
+VPS, domestic sites → DIRECT) becomes possible.
+
+For sellers of proxy resources (e.g. PoolVIP), the recommended product
+shape is to offer both — cheap SOCKS5 for quick temporary use, and a
+VPN/AirLane node for full-device use — or better, auto-generate
+SOCKS5/HTTP/WireGuard/AirLane endpoints from the same VPS, so one
+purchase yields multiple exit types. The ideal AirLane + PoolVIP
+pipeline: buy VPS → auto-deploy sing-box → auto-register with AirLane →
+user gets a ready-to-use AirLane Exit with zero protocol knowledge.
+
+URL: https://www.airlane.cloud/blog/socks5-vs-vps-vpn
