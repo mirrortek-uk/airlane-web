@@ -167,6 +167,15 @@ function RootComponent() {
   // Detect auth fragments here, wake the client, and route into /account.
   useEffect(() => {
     const url = window.location.href;
+    // TODO(debug): remove once Google SSO redirect is verified working
+    console.log("[root] href:", url);
+    if (/[?&#]error=/.test(url)) {
+      const m = /error_description=([^&#]+)/.exec(url);
+      console.log(
+        "[root] oauth error:",
+        m ? decodeURIComponent(m[1]!.replace(/\+/g, " ")) : url,
+      );
+    }
     const isRecovery = /type=recovery/.test(url);
     const hasAuthParams =
       url.includes("access_token") ||
