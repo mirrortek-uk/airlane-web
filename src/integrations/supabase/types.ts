@@ -636,6 +636,69 @@ export type Database = {
         }
         Relationships: []
       }
+      poolvip_products: {
+        Row: {
+          id: string
+          owner_identity_id: string
+          kind: string
+          title: Json
+          provider: Json
+          period: string
+          direct_price: number
+          pool_price: number
+          default_seats: number
+          traffic_plan_gb: number
+          specs: Json
+          notes: Json
+          publisher: Json
+          published: boolean
+          fee_flat: number
+          commission_pct: number
+          sold_count: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          owner_identity_id: string
+          kind: string
+          title: Json
+          provider?: Json
+          period: string
+          direct_price: number
+          pool_price: number
+          default_seats?: number
+          traffic_plan_gb?: number
+          specs?: Json
+          notes?: Json
+          publisher?: Json
+          published?: boolean
+          fee_flat?: number
+          commission_pct?: number
+          sold_count?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          owner_identity_id?: string
+          kind?: string
+          title?: Json
+          provider?: Json
+          period?: string
+          direct_price?: number
+          pool_price?: number
+          default_seats?: number
+          traffic_plan_gb?: number
+          specs?: Json
+          notes?: Json
+          publisher?: Json
+          published?: boolean
+          fee_flat?: number
+          commission_pct?: number
+          sold_count?: number
+          created_at?: string
+        }
+        Relationships: []
+      }
       poolvip_orders: {
         Row: {
           auto_renew: boolean

@@ -7,7 +7,7 @@ import { BackupManager } from "@/components/backup-manager";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
-import { useT } from "@/i18n";
+import { useI18n, useT } from "@/i18n";
 import { clearGuestToken, readGuestToken, writeGuestToken } from "@/lib/guest";
 import { ACCOUNT_LIMITS, recoverAnonymousIdentity } from "@/lib/identity.functions";
 import {
@@ -16,6 +16,8 @@ import {
   createPairingCode,
   endGuestSession,
   getAccountOverview,
+  getAccountResources,
+  getGuestResources,
   getGuestSession,
   removeDevice,
   removeGuestDevice,
@@ -56,6 +58,9 @@ function AccountPage() {
   const [busy, setBusy] = useState(false);
   const [overview, setOverview] = useState<Overview | null>(null);
   const [guest, setGuest] = useState<GuestState | null>(null);
+  const [resources, setResources] = useState<
+    Awaited<ReturnType<typeof getAccountResources>>["resources"]
+  >([]);
   const [pendingGuestToken, setPendingGuestToken] = useState<string | null>(null);
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -70,8 +75,9 @@ function AccountPage() {
       const { data } = await supabase.auth.getSession();
       const token = readGuestToken();
       if (data.session) {
-        const result = await getAccountOverview();
+        const [result, res] = await Promise.all([getAccountOverview(), getAccountResources()]);
         setOverview(result);
+        setResources(res.resources);
         setGuest(null);
         setPendingGuestToken(token);
         return;
@@ -81,12 +87,16 @@ function AccountPage() {
         const state = await getGuestSession({ data: { token } });
         if (state.valid) {
           setGuest(state);
+          const res = await getGuestResources({ data: { token } });
+          setResources(res.resources);
         } else {
           clearGuestToken();
           setGuest(null);
+          setResources([]);
         }
       } else {
         setGuest(null);
+        setResources([]);
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : String(error));
@@ -454,22 +464,22 @@ function AccountPage() {
           </section>
         )}
 
-        <DeviceManager
-          identity={profile ? "account" : guest?.valid ? "guest" : "none"}
-          devices={
-            profile
-              ? (overview?.devices ?? [])
-              : guest?.valid
-                ? (guest.devices as DeviceItem[])
-                : []
-          }
-          deviceLimit={guest?.valid ? guest.limits.devices : overview?.limits.devices}
-          onChanged={refresh}
-        />
+        {(profile || guest?.valid) && (
+          <>
+            <DeviceManager
+              identity={profile ? "account" : "guest"}
+              devices={
+                profile ? (overview?.devices ?? []) : (guest!.devices as DeviceItem[])
+              }
+              deviceLimit={guest?.valid ? guest.limits.devices : overview?.limits.devices}
+              onChanged={refresh}
+            />
+
+            <SharedResources resources={resources} />
+          </>
+        )}
 
         {profile && <BackupManager userId={profile.id} />}
-
-        <SharedResources />
 
         <p className="rounded-2xl border border-border bg-muted/60 p-4 text-sm text-foreground">
           {t("account.rule")}
@@ -746,7 +756,7 @@ type SharedResource = {
   id: string;
   kind: "vps" | "residential";
   title: string;
-  status: string;
+  status: "active" | "pending" | "expired";
   detail?: string;
 };
 
@@ -784,10 +794,12 @@ function ResourceColumn({
                 className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
                   r.status === "active"
                     ? "bg-emerald-500/10 text-emerald-600"
-                    : "bg-amber-500/15 text-amber-600"
+                    : r.status === "expired"
+                      ? "bg-rose-500/10 text-rose-600"
+                      : "bg-amber-500/15 text-amber-600"
                 }`}
               >
-                {r.status}
+                {t(`account.resources.status.${r.status}`)}
               </span>
               <span className="text-sm text-card-foreground">{r.title}</span>
               {r.detail && (
@@ -803,13 +815,31 @@ function ResourceColumn({
   );
 }
 
-function SharedResources() {
+function SharedResources({
+  resources,
+}: {
+  resources: Awaited<ReturnType<typeof getAccountResources>>["resources"];
+}) {
   const t = useT();
-  // TODO(poolvip): pull purchased shared-VPS / residential-IP resources from
-  // poolvip.airlane.cloud once resource tables are wired to identity_id.
-  const resources: SharedResource[] = [];
-  const vps = resources.filter((r) => r.kind === "vps");
-  const residential = resources.filter((r) => r.kind === "residential");
+  const { locale } = useI18n();
+  const zh = locale.startsWith("zh");
+  const items: SharedResource[] = resources.map((r, i) => ({
+    id: `${r.order_id}-${i}`,
+    kind: r.product_kind === "vps" ? "vps" : "residential",
+    title:
+      (zh ? r.title?.zh ?? r.title?.en : r.title?.en ?? r.title?.zh) ??
+      (zh ? r.provider?.zh ?? r.provider?.en : r.provider?.en ?? r.provider?.zh) ??
+      "PoolVIP",
+    status: r.expired ? "expired" : r.ready ? "active" : "pending",
+    detail:
+      r.protocols.length > 0
+        ? r.protocols.map((p) => p.toUpperCase()).join("/")
+        : r.traffic.plan_gb > 0
+          ? `${r.traffic.used_gb}/${r.traffic.plan_gb} GB`
+          : undefined,
+  }));
+  const vps = items.filter((r) => r.kind === "vps");
+  const residential = items.filter((r) => r.kind === "residential");
   return (
     <section className="rounded-3xl border border-border bg-card p-8 shadow-sm">
       <div className="flex flex-wrap items-center gap-3">

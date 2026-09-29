@@ -185,6 +185,26 @@ export const createAccountPairingCode = createServerFn({ method: "POST" })
     return { code, expiresAt };
   });
 
+/** Purchased PoolVIP resources for a signed-in account (metadata only). */
+export const getAccountResources = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const identity = await resolveIdentityByUserId(context.userId);
+    if (!identity) return { resources: [] };
+    const { listIdentityResources } = await import("@/lib/poolvip-resources");
+    return { resources: await listIdentityResources(identity.id) };
+  });
+
+/** Same for an anonymous identity (token auth). */
+export const getGuestResources = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => tokenSchema.parse(data))
+  .handler(async ({ data }) => {
+    const identity = await resolveAnonymousByToken(data.token);
+    if (!identity) return { resources: [] };
+    const { listIdentityResources } = await import("@/lib/poolvip-resources");
+    return { resources: await listIdentityResources(identity.id) };
+  });
+
 export const removeDevice = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => z.object({ id: z.string().uuid() }).parse(data))

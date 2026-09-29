@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
+import { expandOrderResources, listIdentityOrders } from "@/lib/poolvip-resources";
+
 const bodySchema = z.object({
   device_id: z.string().uuid(),
 });
@@ -10,72 +12,6 @@ function json(body: unknown, status = 200) {
     status,
     headers: { "content-type": "application/json", "cache-control": "no-store" },
   });
-}
-
-type Credential = {
-  protocol: string | null;
-  host: string | null;
-  port: number | null;
-  username: string | null;
-  password: string | null;
-};
-
-type ParsedLink =
-  | { kind: "pending"; ready: false; credential: null; protocols: string[] }
-  | { kind: "proxy" | "link"; ready: true; credential: Credential | null; protocols: string[] };
-
-/**
- * Best-effort parse of a delivered vpn_link into structured fields.
- *
- * Known upstream formats:
- *  - "host:port:user:pass"        → bare proxy (LinkStatic residential IPs; the
- *                                  upstream supports both HTTP and SOCKS5, so
- *                                  protocol stays null and `protocols` lists both)
- *  - "scheme://[user:pass@]host…" → full URI (trojan/ss/vless/socks5/http/…)
- *  - "pending://…"                → placeholder written before real delivery;
- *                                  surfaced as ready=false so the client can show
- *                                  "provisioning" instead of a broken node
- */
-function parseLink(raw: string | null): ParsedLink {
-  if (!raw || raw.startsWith("pending://")) {
-    return { kind: "pending", ready: false, credential: null, protocols: [] };
-  }
-  const parts = raw.split(":");
-  if (parts.length === 4 && /^\d{2,5}$/.test(parts[1]!)) {
-    return {
-      kind: "proxy",
-      ready: true,
-      credential: {
-        protocol: null,
-        host: parts[0]!,
-        port: Number(parts[1]),
-        username: parts[2]!,
-        password: parts[3]!,
-      },
-      protocols: ["http", "socks5"],
-    };
-  }
-  const scheme = /^([a-z][a-z0-9+.-]*):\/\//i.exec(raw)?.[1]?.toLowerCase() ?? null;
-  if (scheme) {
-    try {
-      const url = new URL(raw);
-      return {
-        kind: "link",
-        ready: true,
-        credential: {
-          protocol: scheme,
-          host: url.hostname || null,
-          port: url.port ? Number(url.port) : null,
-          username: url.username ? decodeURIComponent(url.username) : null,
-          password: url.password ? decodeURIComponent(url.password) : null,
-        },
-        protocols: [scheme],
-      };
-    } catch {
-      return { kind: "link", ready: true, credential: null, protocols: [scheme] };
-    }
-  }
-  return { kind: "link", ready: true, credential: null, protocols: [] };
 }
 
 /**
@@ -124,72 +60,12 @@ export const Route = createFileRoute("/api/public/devices/resources")({
 
         if (!identityId) return json({ ok: true, resources: [] });
 
-        const { data: orders, error } = await supabaseAdmin
-          .from("poolvip_orders")
-          .select(
-            "id, type, status, vpn_link, traffic_plan_gb, used_gb, current_period_end, snapshot, created_at",
-          )
-          .eq("identity_id", identityId)
-          .eq("status", "active")
-          .order("created_at", { ascending: false });
-
-        if (error) return json({ error: "resources_failed" }, 500);
-
-        const now = Date.now();
-        type Resource = {
-          order_id: string;
-          type: string;
-          title: { zh?: string; en?: string } | null;
-          provider: { zh?: string; en?: string } | null;
-          kind: string;
-          ready: boolean;
-          expired: boolean;
-          credential: Credential | null;
-          protocols: string[];
-          vpn_link: string | null;
-          expires_at: string | null;
-          traffic: { plan_gb: number; used_gb: number };
-        };
-        // vpn_link may carry several protocols, one share-link per line —
-        // emit one resource per line so the client gets one node each.
-        const resources = (orders ?? []).flatMap((order): Resource[] => {
-          const snapshot = (order.snapshot ?? null) as {
-            title?: { zh?: string; en?: string };
-            provider?: { zh?: string; en?: string };
-            period?: string;
-          } | null;
-          const expiresAt = order.current_period_end;
-          const expired = expiresAt ? new Date(expiresAt).getTime() < now : false;
-          const lines = (order.vpn_link ?? "")
-            .split("\n")
-            .map((l) => l.trim())
-            .filter(Boolean);
-          const base = {
-            order_id: order.id,
-            type: order.type,
-            title: snapshot?.title ?? null,
-            provider: snapshot?.provider ?? null,
-            expired,
-            expires_at: expiresAt,
-            traffic: { plan_gb: order.traffic_plan_gb, used_gb: order.used_gb },
-          };
-          if (lines.length === 0) {
-            return [{ ...base, kind: "pending" as const, ready: false, credential: null, protocols: [] as string[], vpn_link: null }];
-          }
-          return lines.map((line) => {
-            const link = parseLink(line);
-            return {
-              ...base,
-              kind: link.kind,
-              ready: link.ready,
-              credential: link.credential,
-              protocols: link.protocols,
-              vpn_link: line,
-            };
-          });
-        });
-
-        return json({ ok: true, resources });
+        try {
+          const orders = await listIdentityOrders(identityId, ["active"]);
+          return json({ ok: true, resources: expandOrderResources(orders) });
+        } catch {
+          return json({ error: "resources_failed" }, 500);
+        }
       },
     },
   },
