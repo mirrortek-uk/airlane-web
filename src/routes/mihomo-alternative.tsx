@@ -9,7 +9,7 @@ import { LandingLangSwitch } from "@/components/alt-landing";
 export const Route = createFileRoute("/mihomo-alternative")({
   head: () => ({
     meta: [
-      { title: "AirLane — 现代化的 Mihomo 替代方案 | 可视化代理客户端" },
+      { title: "AirLane — 最好用的 Mihomo 替代方案 | 可视化代理客户端" },
       {
         name: "description",
         content:
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/mihomo-alternative")({
       },
       {
         property: "og:title",
-        content: "AirLane — 现代化的 Mihomo 替代方案",
+        content: "AirLane — 最好用的 Mihomo 替代方案",
       },
       {
         property: "og:description",
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/mihomo-alternative")({
       { property: "og:locale", content: "zh_CN" },
       { property: "og:image", content: canonical("/brand/og-image.png") },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AirLane — 现代化的 Mihomo 替代方案" },
+      { name: "twitter:title", content: "AirLane — 最好用的 Mihomo 替代方案" },
       { name: "twitter:image", content: canonical("/brand/og-image.png") },
     ],
     links: [
@@ -110,7 +110,7 @@ export function MihomoAlternativePage() {
               Mihomo 替代方案
             </div>
             <h1 className="font-display text-4xl md:text-6xl leading-[1.05] tracking-tight text-foreground">
-              AirLane — 现代化的 <span className="text-gradient animate-gradient italic">Mihomo 替代</span> 方案
+              AirLane — 最好用的 <span className="text-gradient animate-gradient italic">Mihomo 替代</span> 方案
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               从 Proxy Group 到网络策略，从日志分析到决策追踪。AirLane 基于 sing-box 内核，兼容 Mihomo 订阅导入，用可视化编排替代 YAML 配置，用内置 Mesh 替代外部组网工具。

@@ -9,7 +9,7 @@ import { LandingLangSwitch } from "@/components/alt-landing";
 export const Route = createFileRoute("/en/clash-alternative")({
   head: () => ({
     meta: [
-      { title: "AirLane — A Modern Clash Alternative | Visual Proxy Client" },
+      { title: "AirLane — Best Clash Alternative | Visual Proxy Client" },
       {
         name: "description",
         content:
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/en/clash-alternative")({
       },
       {
         property: "og:title",
-        content: "AirLane — A Modern Clash Alternative",
+        content: "AirLane — Best Clash Alternative",
       },
       {
         property: "og:description",
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/en/clash-alternative")({
       { property: "og:locale", content: "en_US" },
       { property: "og:image", content: canonical("/brand/og-image.png") },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AirLane — A Modern Clash Alternative" },
+      { name: "twitter:title", content: "AirLane — Best Clash Alternative" },
       { name: "twitter:image", content: canonical("/brand/og-image.png") },
     ],
     links: [
@@ -110,7 +110,7 @@ function EnClashAlternativePage() {
               Clash Alternative
             </div>
             <h1 className="font-display text-4xl md:text-6xl leading-[1.05] tracking-tight text-foreground">
-              AirLane — A Modern <span className="text-gradient animate-gradient italic">Clash Alternative</span>
+              AirLane — The Best <span className="text-gradient animate-gradient italic">Clash Alternative</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               A visual proxy client built on the sing-box core. Compatible with Clash / Mihomo subscriptions, replacing Proxy Group with policy trees, log inspection with decision tracing, and standalone tools with built-in Mesh. Say goodbye to YAML — visually orchestrate your network traffic.

@@ -28,16 +28,16 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "qv2ray-alternative": {
     zh: {
       head: {
-        title: "AirLane — Qv2ray 替代方案 | 仍在维护的现代代理客户端",
+        title: "AirLane — 最好用的 Qv2ray 替代方案 | 仍在维护的现代代理客户端",
         desc: "Qv2ray 已停止维护多年，协议停留在 VMess/VLESS 旧时代。AirLane 是活跃迭代的现代替代：sing-box 内核 38+ 协议（Hysteria2/TUIC/Reality），跨平台可视化策略树、流量仪表盘、健康自愈与 Mesh 组网。",
-        ogTitle: "AirLane — Qv2ray 替代方案",
+        ogTitle: "AirLane — 最好用的 Qv2ray 替代方案",
         ogDesc: "Qv2ray 已停更——换到活跃维护的 sing-box 可视化客户端，38+ 协议全平台。",
         crumb: "Qv2ray 替代",
       },
       cfg: {
         badge: "Qv2ray 替代方案",
-        titlePre: "Qv2ray 停更了，",
-        titleEm: "下一站 AirLane",
+        titlePre: "最好用的",
+        titleEm: "Qv2ray 替代",
         sub: "Qv2ray 项目早已停止维护，新协议（Hysteria2、TUIC、Reality）一概没有。AirLane 是活跃开发的现代化替代：sing-box 内核、38+ 协议、可视化策略树与跨设备 Mesh——延续 Qv2ray 的插件式理念，做成产品。",
         featuresTitle: "从 Qv2ray 迁移到 AirLane",
         featuresSub: "当年选 Qv2ray 是因为要可扩展的客户端——AirLane 把这条路走完了。",
@@ -68,16 +68,16 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "AirLane — Qv2ray Alternative | An Actively Maintained Proxy Client",
+        title: "AirLane — Best Qv2ray Alternative | An Actively Maintained Proxy Client",
         desc: "Qv2ray has been unmaintained for years — stuck at VMess-era protocols. AirLane is the actively developed modern alternative: sing-box core, 38+ protocols (Hysteria2/TUIC/Reality), cross-platform policy trees, traffic dashboard, self-healing and Mesh networking.",
-        ogTitle: "AirLane — Qv2ray Alternative",
+        ogTitle: "AirLane — Best Qv2ray Alternative",
         ogDesc: "Qv2ray is unmaintained — switch to an actively developed visual sing-box client, 38+ protocols.",
         crumb: "Qv2ray Alternative",
       },
       cfg: {
         badge: "Qv2ray Alternative",
-        titlePre: "Qv2ray is unmaintained —",
-        titleEm: "meet AirLane",
+        titlePre: "The Best",
+        titleEm: "Qv2ray Alternative",
         sub: "The Qv2ray project stopped years ago; it never learned Hysteria2, TUIC or Reality. AirLane is the actively developed modern successor: sing-box core, 38+ protocols, visual policy trees and cross-device Mesh — the plugin-era idea, finished as a product.",
         featuresTitle: "Migrating from Qv2ray to AirLane",
         featuresSub: "You chose Qv2ray for an extensible client — AirLane completed that vision.",
@@ -159,7 +159,7 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
       },
       cfg: {
         badge: "Sing-box GUI",
-        titlePre: "The",
+        titlePre: "The Best",
         titleEm: "Sing-box GUI",
         sub: "The sing-box core is incredibly capable — but its JSON config scares most people away. AirLane gives it a product-grade UI: visual node management, nestable policy trees, a live traffic dashboard and node health scoring. What a Sing-box Manager should be.",
         featuresTitle: "Why AirLane is the best Sing-box GUI",
@@ -194,15 +194,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "v2rayn-alternative": {
     zh: {
       head: {
-        title: "AirLane — 现代化的 V2RayN 替代方案 | 跨平台代理客户端",
+        title: "AirLane — 最好用的 V2RayN 替代方案 | 跨平台代理客户端",
         desc: "AirLane 是 V2RayN / v2rayNG 的现代替代：不止 Windows，macOS/Linux/Android/iOS 全平台一致的 sing-box 内核客户端。可视化策略树替代路由规则 JSON，38+ 协议支持，内置流量仪表盘与 Mesh 组网。",
-        ogTitle: "AirLane — 现代化的 V2RayN 替代方案",
+        ogTitle: "AirLane — 最好用的 现代化的 V2RayN 替代方案",
         ogDesc: "不再只有 Windows：sing-box 内核全平台可视化代理客户端，38+ 协议。",
         crumb: "V2RayN 替代",
       },
       cfg: {
         badge: "V2RayN 替代方案",
-        titlePre: "现代化的",
+        titlePre: "最好用的",
         titleEm: "V2RayN 替代",
         sub: "V2RayN 是 Windows 上的经典，但界面停留在上个时代，多平台体验割裂。AirLane 用 sing-box 内核 + 产品级 UI 重做这件事：Windows、macOS、Linux、Android、iOS 同一套交互，38+ 协议全支持。",
         featuresTitle: "从 V2RayN 切换到 AirLane 的理由",
@@ -234,15 +234,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "AirLane — A Modern V2RayN Alternative | Cross-Platform Proxy Client",
+        title: "AirLane — Best V2RayN Alternative | Cross-Platform Proxy Client",
         desc: "AirLane is the modern alternative to V2RayN / v2rayNG: one sing-box-core client across Windows, macOS, Linux, Android and iOS. Visual policy trees replace JSON routing rules, 38+ protocols, built-in traffic dashboard and Mesh networking.",
-        ogTitle: "AirLane — A Modern V2RayN Alternative",
+        ogTitle: "AirLane — Best V2RayN Alternative",
         ogDesc: "Not Windows-only anymore: visual sing-box client on every platform, 38+ protocols.",
         crumb: "V2RayN Alternative",
       },
       cfg: {
         badge: "V2RayN Alternative",
-        titlePre: "A Modern",
+        titlePre: "The Best",
         titleEm: "V2RayN Alternative",
         sub: "V2RayN is a Windows classic, but its UI is from another era and every other platform gets a different app. AirLane redoes it with the sing-box core and a product-grade UI — one interaction model on Windows, macOS, Linux, Android and iOS, 38+ protocols.",
         featuresTitle: "Why switch from V2RayN to AirLane",
@@ -277,16 +277,16 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "nekobox-alternative": {
     zh: {
       head: {
-        title: "AirLane — NekoBox / NekoRay 替代方案 | 全平台 sing-box 客户端",
+        title: "AirLane — 最好用的 NekoBox / NekoRay 替代方案 | 全平台 sing-box 客户端",
         desc: "AirLane 是 NekoBox / NekoRay / NekoBox for Android 的现代替代：同为 sing-box 内核，但提供产品级可视化界面——策略树、流量仪表盘、健康评分、Mesh 组网，桌面与移动端体验统一。",
-        ogTitle: "AirLane — NekoBox 替代方案",
+        ogTitle: "AirLane — 最好用的 NekoBox 替代方案",
         ogDesc: "同内核，更产品化：NekoBox 的现代替代，桌面+移动端统一体验。",
         crumb: "NekoBox 替代",
       },
       cfg: {
         badge: "NekoBox 替代方案",
-        titlePre: "NekoBox 的",
-        titleEm: "现代替代",
+        titlePre: "最好用的",
+        titleEm: "NekoBox 替代",
         sub: "NekoBox / NekoRay 同为 sing-box 内核，能力全面但 UI 偏工程师工具。AirLane 在同内核之上提供产品级体验：可视化策略树、实时仪表盘、健康自愈、跨设备 Mesh——桌面和 Android 体验完全一致。",
         featuresTitle: "AirLane 比 NekoBox 多做了什么",
         featuresSub: "同内核，补齐的是产品化体验和可观测性。",
@@ -317,15 +317,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "AirLane — NekoBox / NekoRay Alternative | Sing-box Client for All Platforms",
+        title: "AirLane — Best NekoBox / NekoRay Alternative | Sing-box Client for All Platforms",
         desc: "AirLane is the modern alternative to NekoBox / NekoRay / NekoBox for Android: same sing-box core, but a product-grade UI — policy trees, traffic dashboard, health scoring and cross-device Mesh, with identical desktop and mobile UX.",
-        ogTitle: "AirLane — NekoBox Alternative",
+        ogTitle: "AirLane — Best NekoBox Alternative",
         ogDesc: "Same core, product-grade UX: the modern NekoBox alternative on desktop and mobile.",
         crumb: "NekoBox Alternative",
       },
       cfg: {
         badge: "NekoBox Alternative",
-        titlePre: "The Modern",
+        titlePre: "The Best",
         titleEm: "NekoBox Alternative",
         sub: "NekoBox / NekoRay runs on the same sing-box core — capable but engineer-oriented. AirLane adds the product layer: visual policy trees, a live dashboard, health self-healing and cross-device Mesh, with identical UX on desktop and Android.",
         featuresTitle: "What AirLane adds over NekoBox",
@@ -360,16 +360,16 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "hiddify-alternative": {
     zh: {
       head: {
-        title: "AirLane — Hiddify 替代方案 | 更深度的可视化代理客户端",
+        title: "AirLane — 最好用的 Hiddify 替代方案 | 更深度的可视化代理客户端",
         desc: "AirLane 是 Hiddify / Hiddify Next 的替代方案：sing-box 内核全平台客户端，但走得更远——可嵌套策略树、逐连接决策追踪、节点健康评分、Mesh 组网与出口资源池，不只是简单的一键连接。",
-        ogTitle: "AirLane — Hiddify 替代方案",
+        ogTitle: "AirLane — 最好用的 Hiddify 替代方案",
         ogDesc: "不止一键连接：策略树、决策追踪、健康自愈、Mesh 组网的深度客户端。",
         crumb: "Hiddify 替代",
       },
       cfg: {
         badge: "Hiddify 替代方案",
-        titlePre: "比 Hiddify",
-        titleEm: "更深一层",
+        titlePre: "最好用的",
+        titleEm: "Hiddify 替代",
         sub: "Hiddify 胜在简单，但当你需要看清流量去向、编排复杂分流、管理多出口资源时它就到头了。AirLane 面向想要可控性的用户：策略树、决策追踪、健康自愈、Mesh 资源池——简单之上，更有深度。",
         featuresTitle: "什么时候该从 Hiddify 换到 AirLane",
         featuresSub: "一键连接满足入门，但这些场景需要更强的控制面。",
@@ -400,16 +400,16 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "AirLane — Hiddify Alternative | Deeper Visual Proxy Client",
+        title: "AirLane — Best Hiddify Alternative | Deeper Visual Proxy Client",
         desc: "AirLane is the alternative to Hiddify / Hiddify Next: a sing-box-core client on all platforms that goes further — nestable policy trees, per-connection decision tracing, node health scoring, Mesh networking and shared exit pools, beyond one-tap connect.",
-        ogTitle: "AirLane — Hiddify Alternative",
+        ogTitle: "AirLane — Best Hiddify Alternative",
         ogDesc: "Beyond one-tap: policy trees, decision tracing, self-healing and Mesh resource pools.",
         crumb: "Hiddify Alternative",
       },
       cfg: {
         badge: "Hiddify Alternative",
-        titlePre: "One Layer",
-        titleEm: "Deeper Than Hiddify",
+        titlePre: "The Best",
+        titleEm: "Hiddify Alternative",
         sub: "Hiddify wins on simplicity — but it ends where real traffic control begins. AirLane is for users who want to see where traffic goes, compose complex splitting and manage multi-exit resources: policy trees, decision tracing, self-healing, Mesh pools.",
         featuresTitle: "When to move from Hiddify to AirLane",
         featuresSub: "One-tap connect covers the basics — these scenarios need a control plane.",
@@ -443,15 +443,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "hysteria2-client": {
     zh: {
       head: {
-        title: "AirLane — Hysteria2 可视化客户端 | Hysteria2 GUI 桌面客户端",
+        title: "AirLane — 最好用的 Hysteria2 可视化客户端 | Hysteria2 GUI 桌面客户端",
         desc: "AirLane 是开箱即用的 Hysteria2 GUI 客户端：粘贴 hysteria2:// 分享链接即导入，自动处理自签证书 insecure 参数，延迟测速、自动切换、流量统计全可视化。Windows/macOS/Linux/Android/iOS 全平台，同时支持 TUIC、VLESS Reality 等 38+ 协议。",
-        ogTitle: "AirLane — Hysteria2 可视化客户端",
+        ogTitle: "AirLane — 最好用的 Hysteria2 可视化客户端",
         ogDesc: "hysteria2:// 链接一键导入，自签证书自动处理，测速与切换全可视化。",
         crumb: "Hysteria2 客户端",
       },
       cfg: {
         badge: "Hysteria2 GUI 客户端",
-        titlePre: "开箱即用的",
+        titlePre: "最好用的",
         titleEm: "Hysteria2 客户端",
         sub: "Hysteria2 基于 QUIC，烂线路上跑满带宽——但官方只有命令行。AirLane 把它变成图形客户端：粘贴 hysteria2:// 链接即导入，insecure 自签证书自动处理，测速、分流、自动切换全部可视化。",
         featuresTitle: "AirLane 的 Hysteria2 体验",
@@ -489,15 +489,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "Hysteria2 Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best Hysteria2 Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a plug-and-play Hysteria2 GUI client: paste a hysteria2:// share link to import, self-signed cert insecure handling is automatic, and latency tests, auto-switching and traffic stats are fully visual. All platforms, plus TUIC, VLESS Reality and 38+ protocols.",
-        ogTitle: "AirLane — Hysteria2 GUI Client",
+        ogTitle: "AirLane — Best Hysteria2 GUI Client",
         ogDesc: "Paste hysteria2:// links to import; self-signed certs, speed tests and failover — all visual.",
         crumb: "Hysteria2 Client",
       },
       cfg: {
         badge: "Hysteria2 GUI Client",
-        titlePre: "Plug-and-play",
+        titlePre: "The Best",
         titleEm: "Hysteria2 Client",
         sub: "Hysteria2 saturates bandwidth on lossy routes over QUIC — but upstream only ships a CLI. AirLane turns it into a GUI client: paste a hysteria2:// link to import, insecure self-signed certs handled automatically, with visual speed tests, splitting and failover.",
         featuresTitle: "The AirLane Hysteria2 experience",
@@ -538,15 +538,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "vless-reality-client": {
     zh: {
       head: {
-        title: "AirLane — VLESS Reality 可视化客户端 | VLESS Reality GUI",
+        title: "AirLane — 最好用的 VLESS Reality 可视化客户端 | VLESS Reality GUI",
         desc: "AirLane 是完整的 VLESS + Reality（xtls-rprx-vision）桌面客户端：vless:// 分享链接一键导入，Reality/vision flow 参数自动识别，配合策略树实现分流与健康自愈。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核，38+ 协议。",
-        ogTitle: "AirLane — VLESS Reality 可视化客户端",
+        ogTitle: "AirLane — 最好用的 VLESS Reality 可视化客户端",
         ogDesc: "vless:// Reality 链接一键导入，xtls-rprx-vision 全支持，分流与健康自愈可视化。",
         crumb: "VLESS Reality 客户端",
       },
       cfg: {
         badge: "VLESS Reality 客户端",
-        titlePre: "完整的",
+        titlePre: "最好用的",
         titleEm: "VLESS Reality 客户端",
         sub: "VLESS+Reality 是当前抗封锁最强的主流方案：TLS1.3 指纹 = 访问真实大站。AirLane 把它做成可视化客户端——vless:// 链接导入即识别 security=reality、flow=xtls-rprx-vision、SNI/pbk/sid 全套参数，无需理解协议细节。",
         featuresTitle: "AirLane 的 VLESS Reality 体验",
@@ -577,15 +577,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "AirLane — VLESS Reality GUI Client | Visual VLESS + Reality Desktop Client",
+        title: "AirLane — Best VLESS Reality GUI Client | Visual VLESS + Reality Desktop Client",
         desc: "AirLane is a complete VLESS + Reality (xtls-rprx-vision) desktop client: one-click vless:// share link import with automatic Reality/vision parameter parsing, visual policy trees and health-driven failover. All platforms, sing-box core, 38+ protocols.",
-        ogTitle: "AirLane — VLESS Reality GUI Client",
+        ogTitle: "AirLane — Best VLESS Reality GUI Client",
         ogDesc: "vless:// Reality links import in one click — full xtls-rprx-vision support with visual routing.",
         crumb: "VLESS Reality Client",
       },
       cfg: {
         badge: "VLESS Reality Client",
-        titlePre: "A Complete",
+        titlePre: "The Best",
         titleEm: "VLESS Reality Client",
         sub: "VLESS+Reality is the strongest anti-blocking mainstream protocol today: TLS 1.3 fingerprints indistinguishable from visiting a real site. AirLane makes it visual — paste a vless:// link and security=reality, flow=xtls-rprx-vision, SNI/pbk/sid parse automatically. No protocol expertise required.",
         featuresTitle: "The AirLane VLESS Reality experience",
@@ -618,15 +618,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "tuic-client": {
     zh: {
       head: {
-        title: "TUIC 客户端 · TUIC GUI 桌面客户端 | AirLane",
+        title: "最好用的 TUIC 客户端 · TUIC GUI 桌面客户端 | AirLane",
         desc: "AirLane 是可视化 TUIC 客户端：粘贴 tuic:// 链接即导入，TUIC v5 QUIC 并发流、UDP relay 与延迟测速全图形化。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核同时支持 Hysteria2、VLESS 等 38+ 协议。",
-        ogTitle: "TUIC 客户端 · TUIC GUI — AirLane",
+        ogTitle: "最好用的 TUIC 客户端 · TUIC GUI — AirLane",
         ogDesc: "tuic:// 链接一键导入，QUIC 并发与测速全可视化。",
         crumb: "TUIC 客户端",
       },
       cfg: {
         badge: "TUIC GUI 客户端",
-        titlePre: "开箱即用的",
+        titlePre: "最好用的",
         titleEm: "TUIC 客户端",
         sub: "TUIC v5 用 QUIC 单连接并发流跑赢拥塞线路——但官方只有命令行。AirLane 提供图形客户端：粘贴 tuic:// 链接即导入，uuid/密码/SNI 自动解析，测速、分流、自动切换全部可视化。",
         featuresTitle: "AirLane 的 TUIC 体验",
@@ -664,15 +664,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "TUIC Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best TUIC Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a visual TUIC client: paste a tuic:// link to import, with TUIC v5 QUIC streams, UDP relay and latency tests all graphical. All platforms, plus Hysteria2, VLESS Reality and 38+ protocols via the sing-box core.",
-        ogTitle: "TUIC Client · TUIC GUI — AirLane",
+        ogTitle: "Best TUIC Client · TUIC GUI — AirLane",
         ogDesc: "Paste tuic:// links to import; QUIC streams and speed tests — all visual.",
         crumb: "TUIC Client",
       },
       cfg: {
         badge: "TUIC GUI Client",
-        titlePre: "Plug-and-play",
+        titlePre: "The Best",
         titleEm: "TUIC Client",
         sub: "TUIC v5 beats congested routes with concurrent QUIC streams — but upstream only ships a CLI. AirLane is a GUI client: paste a tuic:// link to import, uuid/token/SNI parsed automatically, with visual speed tests, splitting and failover.",
         featuresTitle: "The AirLane TUIC experience",
@@ -712,15 +712,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "trojan-client": {
     zh: {
       head: {
-        title: "Trojan 客户端 · Trojan GUI 桌面客户端 | AirLane",
+        title: "最好用的 Trojan 客户端 · Trojan GUI 桌面客户端 | AirLane",
         desc: "AirLane 是可视化 Trojan 客户端：粘贴 trojan:// 链接即导入，TLS 伪装节点测速、分流、自动切换全图形化。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核同时支持 VLESS、Hysteria2 等 38+ 协议。",
-        ogTitle: "Trojan 客户端 · Trojan GUI — AirLane",
+        ogTitle: "最好用的 Trojan 客户端 · Trojan GUI — AirLane",
         ogDesc: "trojan:// 链接一键导入，测速与分流全可视化。",
         crumb: "Trojan 客户端",
       },
       cfg: {
         badge: "Trojan GUI 客户端",
-        titlePre: "开箱即用的",
+        titlePre: "最好用的",
         titleEm: "Trojan 客户端",
         sub: "Trojan 把代理流量伪装成 HTTPS 直达——隐蔽性强，但生态里缺少好用的桌面 GUI。AirLane 提供图形客户端：粘贴 trojan:// 链接即导入，密码/SNI 自动解析，测速、分流、自动切换全部可视化。",
         featuresTitle: "AirLane 的 Trojan 体验",
@@ -758,15 +758,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "Trojan Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best Trojan Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a visual Trojan client: paste a trojan:// link to import, with TLS-camouflaged node benchmarking, routing and failover all graphical. All platforms, plus VLESS, Hysteria2 and 38+ protocols via the sing-box core.",
-        ogTitle: "Trojan Client · Trojan GUI — AirLane",
+        ogTitle: "Best Trojan Client · Trojan GUI — AirLane",
         ogDesc: "Paste trojan:// links to import; benchmarking and routing — all visual.",
         crumb: "Trojan Client",
       },
       cfg: {
         badge: "Trojan GUI Client",
-        titlePre: "Plug-and-play",
+        titlePre: "The Best",
         titleEm: "Trojan Client",
         sub: "Trojan disguises proxy traffic as HTTPS — highly stealthy, but the ecosystem lacks a good desktop GUI. AirLane is a GUI client: paste a trojan:// link to import, password/SNI parsed automatically, with visual benchmarking, splitting and failover.",
         featuresTitle: "The AirLane Trojan experience",
@@ -806,15 +806,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "shadowsocks-client": {
     zh: {
       head: {
-        title: "Shadowsocks 客户端 · SS GUI 桌面客户端 | AirLane",
+        title: "最好用的 Shadowsocks 客户端 · SS GUI 桌面客户端 | AirLane",
         desc: "AirLane 是现代化 Shadowsocks 客户端：粘贴 ss:// 链接即导入，支持 SS2022 加密套件，测速、分流、自动切换全图形化。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核同时支持 VLESS、Hysteria2 等 38+ 协议。",
-        ogTitle: "Shadowsocks 客户端 · SS GUI — AirLane",
+        ogTitle: "最好用的 Shadowsocks 客户端 · SS GUI — AirLane",
         ogDesc: "ss:// 链接一键导入，SS2022 与测速全可视化。",
         crumb: "Shadowsocks 客户端",
       },
       cfg: {
         badge: "Shadowsocks GUI 客户端",
-        titlePre: "现代",
+        titlePre: "最好用的",
         titleEm: "Shadowsocks 客户端",
         sub: "Shadowsocks 轻量、省电、多路复用优秀——但经典客户端要么停更要么界面老旧。AirLane 是新一代 SS 客户端：粘贴 ss:// 链接即导入，SS2022 加密套件原生支持，测速、分流、自动切换全部可视化。",
         featuresTitle: "AirLane 的 Shadowsocks 体验",
@@ -852,15 +852,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "Shadowsocks Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best Shadowsocks Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a modern Shadowsocks client: paste an ss:// link to import, with native SS2022 cipher support and benchmarking, routing and failover all graphical. All platforms, plus VLESS, Hysteria2 and 38+ protocols via the sing-box core.",
-        ogTitle: "Shadowsocks Client · SS GUI — AirLane",
+        ogTitle: "Best Shadowsocks Client · SS GUI — AirLane",
         ogDesc: "Paste ss:// links to import; SS2022 and benchmarking — all visual.",
         crumb: "Shadowsocks Client",
       },
       cfg: {
         badge: "Shadowsocks GUI Client",
-        titlePre: "A modern",
+        titlePre: "The Best",
         titleEm: "Shadowsocks Client",
         sub: "Shadowsocks is lightweight, battery-friendly and multiplexes well — but classic clients are abandoned or dated. AirLane is the next-gen SS client: paste an ss:// link to import, SS2022 ciphers supported natively, with visual benchmarking, splitting and failover.",
         featuresTitle: "The AirLane Shadowsocks experience",
@@ -900,15 +900,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "vmess-client": {
     zh: {
       head: {
-        title: "VMess 客户端 · VMess GUI 桌面客户端 | AirLane",
+        title: "最好用的 VMess 客户端 · VMess GUI 桌面客户端 | AirLane",
         desc: "AirLane 是可视化 VMess 客户端：粘贴 vmess:// 链接即导入，WebSocket/TLS 传输参数自动解析，测速、分流、自动切换全图形化。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核同时支持 VLESS、Hysteria2 等 38+ 协议。",
-        ogTitle: "VMess 客户端 · VMess GUI — AirLane",
+        ogTitle: "最好用的 VMess 客户端 · VMess GUI — AirLane",
         ogDesc: "vmess:// 链接一键导入，WS/TLS 参数自动解析。",
         crumb: "VMess 客户端",
       },
       cfg: {
         badge: "VMess GUI 客户端",
-        titlePre: "开箱即用的",
+        titlePre: "最好用的",
         titleEm: "VMess 客户端",
         sub: "VMess 节点存量巨大——机场订阅、自建服务器到处都在用。AirLane 是可视化 VMess 客户端：粘贴 vmess:// 链接即导入，WS path/host、TLS、alterId 全部自动解析，测速、分流、自动切换全部可视化。",
         featuresTitle: "AirLane 的 VMess 体验",
@@ -946,15 +946,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "VMess Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best VMess Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a visual VMess client: paste a vmess:// link to import, with WebSocket/TLS transport params parsed automatically and benchmarking, routing and failover all graphical. All platforms, plus VLESS, Hysteria2 and 38+ protocols via the sing-box core.",
-        ogTitle: "VMess Client · VMess GUI — AirLane",
+        ogTitle: "Best VMess Client · VMess GUI — AirLane",
         ogDesc: "Paste vmess:// links to import; WS/TLS params parsed automatically.",
         crumb: "VMess Client",
       },
       cfg: {
         badge: "VMess GUI Client",
-        titlePre: "Plug-and-play",
+        titlePre: "The Best",
         titleEm: "VMess Client",
         sub: "VMess nodes are everywhere — airport subscriptions, self-hosted servers. AirLane is a visual VMess client: paste a vmess:// link to import, WS path/host, TLS and alterId parsed automatically, with visual benchmarking, splitting and failover.",
         featuresTitle: "The AirLane VMess experience",
@@ -994,15 +994,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
   "wireguard-client": {
     zh: {
       head: {
-        title: "WireGuard 客户端 · WireGuard GUI 管理器 | AirLane",
+        title: "最好用的 WireGuard 客户端 · WireGuard GUI 管理器 | AirLane",
         desc: "AirLane 是可视化 WireGuard 客户端与管理器：粘贴 wg 配置或链接即导入，多 peer 隧道管理、分流规则、测速全图形化。Windows/macOS/Linux/Android/iOS 全平台，sing-box 内核同时支持 VLESS、Hysteria2 等 38+ 协议。",
-        ogTitle: "WireGuard 客户端 · WireGuard GUI — AirLane",
+        ogTitle: "最好用的 WireGuard 客户端 · WireGuard GUI — AirLane",
         ogDesc: "wg 配置一键导入，多隧道与分流全可视化。",
         crumb: "WireGuard 客户端",
       },
       cfg: {
         badge: "WireGuard GUI 客户端",
-        titlePre: "可视化",
+        titlePre: "最好用的",
         titleEm: "WireGuard 管理器",
         sub: "WireGuard 快而省电，但官方客户端只管一条隧道、没有分流。AirLane 把 WireGuard 变成可编排的出口：导入 peer 配置即上线，按域名/IP 分流进不同隧道，测速、监控、自动切换全部可视化——还能和代理协议混跑。",
         featuresTitle: "AirLane 的 WireGuard 体验",
@@ -1040,15 +1040,15 @@ export const LANDING_PAGES: Record<string, LandingPageDef> = {
     },
     en: {
       head: {
-        title: "WireGuard Client for Windows, macOS, Android & iOS — AirLane GUI",
+        title: "Best WireGuard Client for Windows, macOS, Android & iOS — AirLane GUI",
         desc: "AirLane is a visual WireGuard client and manager: import wg configs or links, manage multiple peer tunnels, route traffic by rules and benchmark — all graphical. All platforms, plus VLESS, Hysteria2 and 38+ protocols via the sing-box core.",
-        ogTitle: "WireGuard Client · WireGuard GUI — AirLane",
+        ogTitle: "Best WireGuard Client · WireGuard GUI — AirLane",
         ogDesc: "Import wg configs; multi-tunnel routing and benchmarking — all visual.",
         crumb: "WireGuard Client",
       },
       cfg: {
         badge: "WireGuard GUI Manager",
-        titlePre: "A visual",
+        titlePre: "The Best",
         titleEm: "WireGuard Manager",
         sub: "WireGuard is fast and battery-friendly, but the official client handles a single tunnel with no routing. AirLane turns WireGuard into an orchestrable exit: import a peer config and go live, route domains/IPs into different tunnels, with benchmarking, monitoring and failover — and it can mix with proxy protocols.",
         featuresTitle: "The AirLane WireGuard experience",
