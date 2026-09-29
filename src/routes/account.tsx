@@ -221,6 +221,14 @@ function AccountPage() {
             <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-3">
+            {profile && (
+              <button
+                onClick={signOut}
+                className="rounded-full border border-input px-4 py-2 text-sm font-semibold text-foreground hover:bg-accent"
+              >
+                {t("account.action.signOut")}
+              </button>
+            )}
             <LanguageSwitcher />
           </div>
         </header>
@@ -302,14 +310,6 @@ function AccountPage() {
               </div>
             )}
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                onClick={signOut}
-                className="rounded-full border border-input px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-accent"
-              >
-                {t("account.action.signOut")}
-              </button>
-            </div>
           </section>
         ) : guest?.valid ? (
           <section className="rounded-3xl border border-border bg-card p-8 shadow-lg">
