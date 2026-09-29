@@ -56,8 +56,18 @@ function AuthPage() {
       hashParams.get("error");
     if (errorDesc) toast.error(decodeURIComponent(errorDesc.replace(/\+/g, " ")));
 
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/account", replace: true });
+    const code = params.get("code");
+    supabase.auth.getSession().then(async ({ data }) => {
+      if (data.session) {
+        navigate({ to: "/account", replace: true });
+        return;
+      }
+      // Auto-detect may have already consumed/failed the code — retry once
+      // so a real failure surfaces instead of silently staying on /auth.
+      if (code) {
+        const { error } = await supabase.auth.exchangeCodeForSession(code);
+        if (error) toast.error(`OAuth exchange failed: ${error.message}`);
+      }
     });
   }, [navigate]);
 
