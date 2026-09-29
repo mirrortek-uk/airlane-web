@@ -56,8 +56,21 @@ function AuthPage() {
       hashParams.get("error");
     if (errorDesc) toast.error(decodeURIComponent(errorDesc.replace(/\+/g, " ")));
 
+    // TODO(debug): remove once Google SSO redirect is verified working
+    console.log("[auth] href:", window.location.href);
+    console.log(
+      "[auth] cookies:",
+      document.cookie
+        .split(";")
+        .map((c) => c.trim().split("=")[0])
+        .filter(Boolean)
+        .join(", "),
+    );
+    console.log("[auth] localStorage keys:", Object.keys(localStorage).join(", "));
+
     const code = params.get("code");
     supabase.auth.getSession().then(async ({ data }) => {
+      console.log("[auth] session after getSession:", !!data.session);
       if (data.session) {
         navigate({ to: "/account", replace: true });
         return;
