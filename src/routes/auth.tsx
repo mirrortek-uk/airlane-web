@@ -3,12 +3,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { Turnstile, TURNSTILE_ENABLED } from "@/components/turnstile";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/i18n";
-import { writeGuestToken } from "@/lib/guest";
-import { createGuestSession } from "@/lib/account.functions";
-import { recoverAnonymousIdentity } from "@/lib/identity.functions";
 
 export const Route = createFileRoute("/auth")({
   ssr: false,
@@ -47,10 +43,7 @@ function AuthPage() {
   const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
-  const [anonRecovery, setAnonRecovery] = useState<string | null>(null);
-  const [showRecover, setShowRecover] = useState(false);
-  const [recoveryInput, setRecoveryInput] = useState("");
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -64,43 +57,6 @@ function AuthPage() {
       if (session) navigate({ to: "/account", replace: true });
     });
   }, [navigate]);
-
-  async function startAnonymous() {
-    setBusy(true);
-    try {
-      const session = await createGuestSession({
-        data: { captchaToken: captchaToken ?? undefined },
-      });
-      writeGuestToken(session.token);
-      setAnonRecovery(session.recoveryCode);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : String(error));
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function handleRecover(event: React.FormEvent) {
-    event.preventDefault();
-    if (!recoveryInput.trim()) return;
-    setBusy(true);
-    try {
-      const result = await recoverAnonymousIdentity({
-        data: { recoveryCode: recoveryInput },
-      });
-      if (!result.ok) {
-        toast.error(t("auth.anon.recoverInvalid"));
-        return;
-      }
-      writeGuestToken(result.token);
-      toast.success(t("auth.anon.recoverOk"));
-      navigate({ to: "/account", replace: true });
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : String(error));
-    } finally {
-      setBusy(false);
-    }
-  }
 
   async function handleSendOtp(event: React.FormEvent) {
     event.preventDefault();
@@ -423,80 +379,6 @@ function AuthPage() {
           </div>
         </div>
 
-        {/* Anonymous identity — no email required */}
-        <div className="rounded-3xl border border-dashed border-border bg-card/70 p-6">
-          <h2 className="font-display text-lg font-semibold text-card-foreground">
-            {t("auth.anon.title")}
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">{t("auth.anon.desc")}</p>
-
-          {anonRecovery ? (
-            <div className="mt-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                {t("auth.anon.recoveryTitle")}
-              </p>
-              <p className="mt-2 rounded-2xl bg-muted px-4 py-3 text-center font-mono text-xl font-semibold tracking-[0.15em] text-foreground">
-                {anonRecovery}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-amber-600">
-                {t("auth.anon.recoveryWarning")}
-              </p>
-              <button
-                type="button"
-                onClick={() => navigate({ to: "/account", replace: true })}
-                className="mt-3 w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-              >
-                {t("auth.anon.recoveryConfirm")}
-              </button>
-            </div>
-          ) : (
-            <>
-              <Turnstile onVerify={setCaptchaToken} />
-              <button
-                type="button"
-                onClick={startAnonymous}
-                disabled={busy || (TURNSTILE_ENABLED && !captchaToken)}
-                className="mt-4 w-full rounded-full border border-input bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent disabled:opacity-60"
-              >
-                {busy ? t("auth.anon.creating") : t("auth.anon.button")}
-              </button>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                {t("auth.anon.note")}
-              </p>
-
-              <button
-                type="button"
-                onClick={() => setShowRecover((v) => !v)}
-                className="mt-3 text-sm text-primary hover:underline"
-              >
-                {t("auth.anon.recoverLink")}
-              </button>
-              {showRecover && (
-                <form onSubmit={handleRecover} className="mt-3 flex flex-col gap-2">
-                  <input
-                    type="text"
-                    required
-                    value={recoveryInput}
-                    onChange={(e) => setRecoveryInput(e.target.value)}
-                    placeholder={t("auth.anon.recoverPlaceholder")}
-                    className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-center font-mono text-sm tracking-widest text-foreground outline-none focus:border-primary"
-                  />
-                  <button
-                    type="submit"
-                    disabled={busy}
-                    className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream disabled:opacity-60"
-                  >
-                    {t("auth.anon.recoverButton")}
-                  </button>
-                </form>
-              )}
-            </>
-          )}
-        </div>
-
-        <p className="text-center text-xs leading-relaxed text-muted-foreground">
-          {t("auth.localNotice")}
-        </p>
       </div>
     </main>
   );

@@ -116,7 +116,6 @@ const dict: Record<string, string> = {
   "account.field.parent": "归属主账号",
   "account.field.since": "创建时间",
 
-  "account.rule": "铁则：无论处于哪一种账号状态，客户端本地代理、策略、多出口与解锁检测全部 100% 可用，不会被锁住。",
 
 
   // Devices / pairing

@@ -127,8 +127,6 @@ const dict: Record<string, string> = {
   "account.field.parent": "Owner account",
   "account.field.since": "Created",
 
-  "account.rule":
-    "Hard rule: in every identity state, local proxying, policies, multi-exit and unlock detection stay 100% available and are never locked.",
 
 
   "devices.title": "Client pairing",

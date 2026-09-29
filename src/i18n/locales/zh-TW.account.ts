@@ -82,7 +82,6 @@ const dict: Record<string, string> = {
   "account.field.parent": "歸屬主帳號",
   "account.field.since": "建立時間",
 
-  "account.rule": "鐵則：無論處於哪一種帳號狀態，客戶端本機代理、策略、多節點與解鎖偵測全部 100% 可用，不會被鎖住。",
 
 
   // Devices / pairing

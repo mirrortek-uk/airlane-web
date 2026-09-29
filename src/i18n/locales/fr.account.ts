@@ -88,8 +88,6 @@ const dict: Record<string, string> = {
   "account.field.parent": "Compte propriétaire",
   "account.field.since": "Créé le",
 
-  "account.rule":
-    "Règle absolue : dans chaque état d'identité, le proxy local, les politiques, le multi-sortie et la détection de déblocage restent disponibles à 100 % et ne sont jamais verrouillés.",
 
 
   "devices.title": "Appairage des clients",

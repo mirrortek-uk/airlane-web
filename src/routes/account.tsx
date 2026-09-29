@@ -480,10 +480,6 @@ function AccountPage() {
         )}
 
         {profile && <BackupManager userId={profile.id} />}
-
-        <p className="rounded-2xl border border-border bg-muted/60 p-4 text-sm text-foreground">
-          {t("account.rule")}
-        </p>
       </div>
 
       {anonOpen && (

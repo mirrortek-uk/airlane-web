@@ -88,8 +88,6 @@ const dict: Record<string, string> = {
   "account.field.parent": "Hauptkonto",
   "account.field.since": "Erstellt",
 
-  "account.rule":
-    "Feste Regel: In jedem Identitätsstatus bleiben lokales Proxying, Policies, Multi-Exit und Entsperrungs-Erkennung zu 100 % verfügbar und werden nie gesperrt.",
 
 
   "devices.title": "Client-Kopplung",
