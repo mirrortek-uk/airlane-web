@@ -46,6 +46,16 @@ function AuthPage() {
 
 
   useEffect(() => {
+    // Surface OAuth errors carried back in the URL (?error=… or #error=…)
+    const params = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const errorDesc =
+      params.get("error_description") ??
+      hashParams.get("error_description") ??
+      params.get("error") ??
+      hashParams.get("error");
+    if (errorDesc) toast.error(decodeURIComponent(errorDesc.replace(/\+/g, " ")));
+
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) navigate({ to: "/account", replace: true });
     });
