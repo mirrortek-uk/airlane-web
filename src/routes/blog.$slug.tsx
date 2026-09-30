@@ -193,6 +193,29 @@ export function BlogPostView() {
       <div className="markdown-body mt-8">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{pick(post, "body", lang)}</ReactMarkdown>
       </div>
+
+      <nav
+        aria-label={lang === "zh" ? "相关工具" : "Related tools"}
+        className="mt-12 rounded-2xl border border-ink/10 bg-white/60 p-6"
+      >
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          {lang === "zh" ? "相关工具" : "Related tools"}
+        </p>
+        <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          <Link to={`${lp}/download`} className="text-brand hover:underline">
+            {lang === "zh" ? "下载 AirLane" : "Download AirLane"}
+          </Link>
+          <Link to={`${lp}/clash-alternative`} className="text-brand hover:underline">
+            {lang === "zh" ? "最好用的 Clash 替代" : "Best Clash Alternative"}
+          </Link>
+          <Link to={`${lp}/sing-box-gui`} className="text-brand hover:underline">
+            {lang === "zh" ? "最好用的 Sing-box GUI" : "Best Sing-box GUI"}
+          </Link>
+          <Link to={`${lp}/migration`} className="text-brand hover:underline">
+            {lang === "zh" ? "迁移指南" : "Migration guide"}
+          </Link>
+        </div>
+      </nav>
     </article>
   );
 }

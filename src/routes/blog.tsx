@@ -58,6 +58,34 @@ export function BlogLayout() {
       </div>
 
       <footer className="border-t border-ink/10 bg-white/50">
+        <div className="mx-auto max-w-7xl px-5 pt-7 lg:px-8">
+          <nav
+            aria-label={lang === "zh" ? "替代方案与协议客户端" : "Alternatives and protocol clients"}
+            className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground"
+          >
+            {[
+              { slug: "clash-alternative", zh: "Clash 替代", en: "Clash Alternative" },
+              { slug: "mihomo-alternative", zh: "Mihomo 替代", en: "Mihomo Alternative" },
+              { slug: "sing-box-gui", zh: "Sing-box GUI", en: "Sing-box GUI" },
+              { slug: "v2rayn-alternative", zh: "V2RayN 替代", en: "V2RayN Alternative" },
+              { slug: "nekobox-alternative", zh: "NekoBox 替代", en: "NekoBox Alternative" },
+              { slug: "hiddify-alternative", zh: "Hiddify 替代", en: "Hiddify Alternative" },
+              { slug: "hysteria2-client", zh: "Hysteria2 客户端", en: "Hysteria2 Client" },
+              { slug: "vless-reality-client", zh: "VLESS Reality 客户端", en: "VLESS Reality Client" },
+              { slug: "qv2ray-alternative", zh: "Qv2ray 替代", en: "Qv2ray Alternative" },
+              { slug: "tuic-client", zh: "TUIC 客户端", en: "TUIC Client" },
+              { slug: "trojan-client", zh: "Trojan 客户端", en: "Trojan Client" },
+              { slug: "shadowsocks-client", zh: "Shadowsocks 客户端", en: "Shadowsocks Client" },
+              { slug: "vmess-client", zh: "VMess 客户端", en: "VMess Client" },
+              { slug: "wireguard-client", zh: "WireGuard 客户端", en: "WireGuard Client" },
+              { slug: "migration", zh: "迁移指南", en: "Migration" },
+            ].map((l) => (
+              <Link key={l.slug} to={`${lp}/${l.slug}`} className="hover:text-foreground transition">
+                {lang === "zh" ? l.zh : l.en}
+              </Link>
+            ))}
+          </nav>
+        </div>
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground">AirLane</span>
