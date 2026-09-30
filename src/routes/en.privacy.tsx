@@ -109,7 +109,7 @@ function EnPrivacyPage() {
       <header className="fixed top-0 inset-x-0 z-50">
         <div className="absolute inset-0 bg-cream/70 backdrop-blur-xl border-b border-ink/10" />
         <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link to="/en/" className="flex items-center gap-2.5">
+          <Link to="/en" className="flex items-center gap-2.5">
             <img src="/brand/lockup-on-light.svg" alt="AirLane" className="h-8 w-auto" />
           </Link>
           <Link
