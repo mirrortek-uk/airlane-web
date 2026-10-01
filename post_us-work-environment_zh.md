@@ -60,26 +60,6 @@ Traffic Classifier
 
 ---
 
-## 但有几个东西 VPN 改不了
-
-即使所有网络流量都走美国，下面这些信息不会自动变化：
-
-- Windows 系统地区不会自动变美国
-- GPS 不会自动变美国
-- 手机基站位置不会变
-- 浏览器已有 Cookie 不会消失
-- Google / Apple / Microsoft 账号的历史位置记录不会消失
-- 某些网站会通过账号、Cookie、浏览器指纹推断你以前的位置
-- 美国住宅服务能区分**美国住宅 IP** 和**美国数据中心 VPS IP**
-
-所以更准确的描述是：
-
-> **让你的网络连接看起来来自美国（Make your Internet connection appear to originate from the US）**
-
-而不是"把电脑变成一台物理上在美国的电脑"。
-
----
-
 ## 「美国环境」的五层模型
 
 要把这件事做完整，应该分五层来看。AirLane 能完全接管的是第一层，其余四层需要配合配置：

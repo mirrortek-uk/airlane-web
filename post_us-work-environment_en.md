@@ -61,26 +61,6 @@ Domestic services stay fast and unaffected — only the destinations that need a
 
 ---
 
-## What a VPN cannot change
-
-Even with all network traffic going through the US, these signals don't move on their own:
-
-- Windows system region doesn't become US automatically
-- GPS doesn't relocate to the US
-- Cellular tower location doesn't change
-- Existing browser cookies don't disappear
-- Google / Apple / Microsoft account location history doesn't disappear
-- Some sites infer your past location from accounts, cookies and browser fingerprints
-- US residential services can tell a **US residential IP** from a **US datacenter VPS IP**
-
-So the accurate description is:
-
-> **Make your Internet connection appear to originate from the US.**
-
-Not "turn your computer into a machine physically located in the US."
-
----
-
 ## The five layers of a "US environment"
 
 To do this properly, think in five layers. AirLane fully owns layer 1; the other four need configuration alongside it:
