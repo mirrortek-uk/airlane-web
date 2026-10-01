@@ -43,6 +43,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "Anycast 技术将一个 IP 地址分配给多个地理位置不同的服务器，通过 BGP 路由协议自动选择最近节点响应 DNS 查询。本文讲解 Anycast 的原理、四大优势（低延迟、负载均衡、抗 DDoS、高可用），以及它与 AirLane 出口池设计的相通理念。",
     summary_en: "Anycast assigns one IP address to multiple servers in different locations, using BGP routing to automatically select the nearest node for DNS queries. This article explains Anycast principles, four key advantages, and its shared philosophy with AirLane's Exit Pool design.",
   },
+  "us-work-environment": {
+    title_zh: "如何使用 AirLane 搭建一台位置在美国的工作电脑",
+    title_en: "How to Build a US-Located Work Computer with AirLane",
+    summary_zh: "用 AirLane TUN + 美国 Exit 把网络出口位置变成美国：IP、DNS、IPv6、WebRTC 全走美国，配合系统地区、独立浏览器 Profile 和新账号，五层一致的虚拟位置环境，适合 Claude、Google 等需要稳定美国 IP 的场景。",
+    summary_en: "Turn your network egress location into the US with AirLane TUN + a US exit: IP, DNS, IPv6 and WebRTC all route through the US, aligned with system region, a clean browser profile and a fresh account — a consistent virtual-location environment for Claude, Google and other US-only services.",
+  },
   "socks5-vs-vps-vpn": {
     title_zh: "如何选择代理类型：SOCKS5 还是自建 VPS VPN 代理服务器",
     title_en: "SOCKS5 Proxy or a Self-Hosted VPS VPN? How to Choose",

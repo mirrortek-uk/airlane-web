@@ -176,12 +176,34 @@ network exit: browsers need no config, mobile apps and UDP/DNS are
 captured automatically, and rule-based split routing (e.g. Netflix → US
 VPS, domestic sites → DIRECT) becomes possible.
 
-For sellers of proxy resources (e.g. PoolVIP), the recommended product
-shape is to offer both — cheap SOCKS5 for quick temporary use, and a
-VPN/AirLane node for full-device use — or better, auto-generate
-SOCKS5/HTTP/WireGuard/AirLane endpoints from the same VPS, so one
-purchase yields multiple exit types. The ideal AirLane + PoolVIP
-pipeline: buy VPS → auto-deploy sing-box → auto-register with AirLane →
-user gets a ready-to-use AirLane Exit with zero protocol knowledge.
+VPN/TUN setups can carry UDP, ICMP and DNS when the client supports them
+— the article shows a Chrome-only SOCKS5 flow vs an AirLane TUN flow,
+and concrete split-routing examples: China sites → DIRECT, foreign
+sites → VPS, Netflix → US VPS, company sites → DIRECT.
 
 URL: https://www.airlane.cloud/blog/socks5-vs-vps-vpn
+
+---
+
+## How to Build a US-Located Work Computer with AirLane
+
+AirLane can make a computer's network egress appear to originate from
+the US: public IP, TCP/UDP, DNS, IPv6 and WebRTC all route through a US
+exit (VPS or residential IP from PoolVIP) via TUN mode. But the article
+is explicit about the boundary: VPN cannot change GPS, cellular towers,
+existing cookies, third-party account location history, or turn a
+datacenter IP into a residential one.
+
+The recommended approach is a five-layer model: (1) Network — US exit
+with leak checks; (2) Device — Windows region/language/timezone set to
+US; (3) Browser — a separate clean profile so language, timezone and IP
+are internally consistent; (4) Account — register fresh accounts inside
+the US environment rather than scrubbing history; (5) Exit type —
+residential IP when a datacenter ASN is not enough.
+
+Smart split routing keeps domestic traffic direct while only US-bound
+services take the US exit. A key use case is a stable environment for
+AI services like Claude from China: one fixed US exit + dedicated
+browser profile + dedicated account beats frequently hopping IPs.
+
+URL: https://www.airlane.cloud/blog/us-work-environment

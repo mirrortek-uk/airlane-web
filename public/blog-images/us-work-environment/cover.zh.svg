@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6 Z" fill="#6366f1"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <text x="600" y="90" text-anchor="middle" font-family="Space Grotesk, PingFang SC, Microsoft YaHei, sans-serif" font-size="42" font-weight="700" fill="#0f172a">搭建一台位置在美国的工作电脑</text>
+  <text x="600" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#64748b">AirLane · 虚拟网络环境</text>
+  <!-- China PC -->
+  <rect x="90" y="220" width="260" height="190" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="220" y="270" text-anchor="middle" font-family="Space Grotesk, PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#334155">你的电脑</text>
+  <text x="220" y="302" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#64748b">192.168.x.x</text>
+  <rect x="130" y="330" width="180" height="40" rx="10" fill="#eef2ff"/>
+  <text x="220" y="356" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#6366f1">AirLane TUN</text>
+  <!-- US Exit -->
+  <rect x="470" y="220" width="260" height="190" rx="20" fill="#ffffff" stroke="#6366f1" stroke-width="2.5"/>
+  <text x="600" y="270" text-anchor="middle" font-family="Space Grotesk, PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#6366f1">美国 Exit</text>
+  <text x="600" y="302" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#64748b">US VPS / 住宅 IP</text>
+  <text x="600" y="338" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#64748b">203.x.x.x</text>
+  <text x="600" y="368" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#22c55e">IPv4 · IPv6 · DNS · UDP</text>
+  <!-- Internet -->
+  <rect x="850" y="220" width="260" height="190" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="980" y="270" text-anchor="middle" font-family="Space Grotesk, PingFang SC, sans-serif" font-size="24" font-weight="700" fill="#334155">Internet</text>
+  <text x="980" y="312" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#64748b">Google · YouTube</text>
+  <text x="980" y="342" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#64748b">Claude · Netflix</text>
+  <path d="M350 315 H462" stroke="#6366f1" stroke-width="3.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M730 315 H842" stroke="#6366f1" stroke-width="3.5" fill="none" marker-end="url(#arr)"/>
+  <!-- bottom badges -->
+  <g font-family="JetBrains Mono, monospace" font-size="16">
+    <rect x="150" y="480" width="200" height="44" rx="12" fill="#eef2ff"/><text x="250" y="508" text-anchor="middle" fill="#6366f1">美国公网 IP</text>
+    <rect x="380" y="480" width="200" height="44" rx="12" fill="#eef2ff"/><text x="480" y="508" text-anchor="middle" fill="#6366f1">智能分流</text>
+    <rect x="610" y="480" width="230" height="44" rx="12" fill="#eef2ff"/><text x="725" y="508" text-anchor="middle" fill="#6366f1">DNS / WebRTC 防泄漏</text>
+    <rect x="870" y="480" width="180" height="44" rx="12" fill="#eef2ff"/><text x="960" y="508" text-anchor="middle" fill="#6366f1">浏览器隔离</text>
+  </g>
+  <text x="600" y="576" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#94a3b8">Network → Device → Browser → Account</text>
+</svg>
