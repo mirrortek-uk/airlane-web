@@ -14,7 +14,7 @@
 | 文章图片 | `public/blog-images/<slug>/` 目录 | SVG/PNG/JPG，随 Git 仓库存储在 GitHub |
 | 图片 CDN 分发 | jsDelivr CDN | 从 GitHub 仓库直接分发，不消耗 Vercel 带宽 |
 | SSR 元数据 | `src/routes/blog.$slug.tsx` 的 `POST_META` | 用于服务端渲染 `<head>` 标签 |
-| Sitemap | `public/sitemap-blog.xml` | 添加新文章 URL |
+| Sitemap | `src/routes/sitemap-blog[.]xml.ts`（动态生成） | **无需手动改文件**——sitemap 从 Supabase `blog_posts` 自动拉取，写入数据库即自动收录 |
 | LLMs 文本 | `public/llms.txt` 和 `public/llms-full.txt` | 供 AI 系统发现文章 |
 | 本地备份 | `post_<slug>_zh.md` 和 `post_<slug>_en.md` | 文章 Markdown 源文件备份 |
 
@@ -200,6 +200,7 @@ New-Item -ItemType Directory -Path "public\blog-images\what-is-quic" -Force
 
 ### Markdown 格式要求
 
+- **不支持原始 HTML**：渲染器是 ReactMarkdown + remark-gfm，没有 `rehype-raw`——`<div>`/`<table>` 等 HTML 块会被整个丢弃（不是转义，是消失）。外部来源的文章必须先把 HTML 转成 markdown（表格 → `| |` 语法，卡片 div → 列表/引用）
 - 使用标准 GitHub Flavored Markdown（GFM）
 - 图片用 jsDelivr CDN URL：`![alt](https://cdn.jsdelivr.net/gh/mirrortek-uk/airlane-web@main/public/blog-images/<slug>/filename.svg)`
 - 表格、列表、代码块均支持
@@ -283,7 +284,9 @@ $body = @{
   cover_url = "$cdnBase/cover.svg"
   tags = @("tag1", "tag2", "tag3")
   published = $true
-  published_at = "2026-09-06T10:00:00Z"
+  # ⚠️ 必须用当前时间，不要手填旧日期——列表按 published_at 倒序，
+  # 填旧日期会让新文章沉底，不会出现在"最新文章"前列
+  published_at = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 } | ConvertTo-Json -Depth 3
 
 # 写入数据库
@@ -303,7 +306,7 @@ $resp | ConvertTo-Json -Depth 3
 | `body_zh` | string | 中文正文 Markdown |
 | `body_en` | string | 英文正文 Markdown |
 | `cover_url` | string | 封面图 jsDelivr CDN URL |
-| `tags` | string[] | 标签数组 |
+| `tags` | string[] | 标签数组。建议包含一个 section 标签（`guides`/`comparisons`/`industry`/`airlane`，见 `src/lib/blog-taxonomy.ts`），否则博客列表里该文章显示 "—" 无分类 |
 | `published` | boolean | 是否发布 |
 | `published_at` | string | 发布时间 ISO 8601 格式 |
 
@@ -341,26 +344,9 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
 
 ---
 
-## 步骤 7：更新 Sitemap
+## 步骤 7：Sitemap（无需操作）
 
-编辑 `public/sitemap-blog.xml`，添加新文章的中英文 URL。
-
-```xml
-  <url>
-    <loc>https://www.airlane.cloud/blog/<slug></loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.airlane.cloud/en/blog/<slug></loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-```
-
-在 `</urlset>` 闭合标签之前添加。
+`sitemap-blog.xml` 是动态路由（`src/routes/sitemap-blog[.]xml.ts`），服务端直接从 Supabase `blog_posts` 表生成 URL 列表。文章写入数据库后自动出现在 sitemap，**不需要修改任何文件**。
 
 ---
 
@@ -472,7 +458,7 @@ public/blog-images/<slug>/              # 新建：图片目录（存储在 GitH
   ├── cover.svg                         # 新建：封面图
   ├── diagram1.svg                       # 新建：示意图
   └── ...
-public/sitemap-blog.xml                 # 修改：添加 URL
+（sitemap 动态生成，无需改文件）
 public/llms.txt                         # 修改：添加摘要链接
 public/llms-full.txt                    # 修改：添加详细摘要
 src/routes/blog.$slug.tsx               # 修改：添加 POST_META 条目
