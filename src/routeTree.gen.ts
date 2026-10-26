@@ -31,6 +31,7 @@ import { Route as ShadowsocksClientRouteImport } from './routes/shadowsocks-clie
 import { Route as SingBoxGuiRouteImport } from './routes/sing-box-gui'
 import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
 import { Route as SitemapDocsDotxmlRouteImport } from './routes/sitemap-docs[.]xml'
+import { Route as SitemapIndexDotxmlRouteImport } from './routes/sitemap-index[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TrojanClientRouteImport } from './routes/trojan-client'
 import { Route as TuicClientRouteImport } from './routes/tuic-client'
@@ -185,6 +186,11 @@ const SitemapBlogDotxmlRoute = SitemapBlogDotxmlRouteImport.update({
 const SitemapDocsDotxmlRoute = SitemapDocsDotxmlRouteImport.update({
   id: '/sitemap-docs.xml',
   path: '/sitemap-docs.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapIndexDotxmlRoute = SitemapIndexDotxmlRouteImport.update({
+  id: '/sitemap-index.xml',
+  path: '/sitemap-index.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -438,6 +444,7 @@ export interface FileRoutesByFullPath {
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
+  '/sitemap-index.xml': typeof SitemapIndexDotxmlRoute
   '/terms': typeof TermsRoute
   '/trojan-client': typeof TrojanClientRoute
   '/tuic-client': typeof TuicClientRoute
@@ -504,6 +511,7 @@ export interface FileRoutesByTo {
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
+  '/sitemap-index.xml': typeof SitemapIndexDotxmlRoute
   '/terms': typeof TermsRoute
   '/trojan-client': typeof TrojanClientRoute
   '/tuic-client': typeof TuicClientRoute
@@ -572,6 +580,7 @@ export interface FileRoutesById {
   '/sing-box-gui': typeof SingBoxGuiRoute
   '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
   '/sitemap-docs.xml': typeof SitemapDocsDotxmlRoute
+  '/sitemap-index.xml': typeof SitemapIndexDotxmlRoute
   '/terms': typeof TermsRoute
   '/trojan-client': typeof TrojanClientRoute
   '/tuic-client': typeof TuicClientRoute
@@ -643,6 +652,7 @@ export interface FileRouteTypes {
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
+    | '/sitemap-index.xml'
     | '/terms'
     | '/trojan-client'
     | '/tuic-client'
@@ -709,6 +719,7 @@ export interface FileRouteTypes {
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
+    | '/sitemap-index.xml'
     | '/terms'
     | '/trojan-client'
     | '/tuic-client'
@@ -776,6 +787,7 @@ export interface FileRouteTypes {
     | '/sing-box-gui'
     | '/sitemap-blog.xml'
     | '/sitemap-docs.xml'
+    | '/sitemap-index.xml'
     | '/terms'
     | '/trojan-client'
     | '/tuic-client'
@@ -846,6 +858,7 @@ export interface RootRouteChildren {
   SingBoxGuiRoute: typeof SingBoxGuiRoute
   SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
   SitemapDocsDotxmlRoute: typeof SitemapDocsDotxmlRoute
+  SitemapIndexDotxmlRoute: typeof SitemapIndexDotxmlRoute
   TermsRoute: typeof TermsRoute
   TrojanClientRoute: typeof TrojanClientRoute
   TuicClientRoute: typeof TuicClientRoute
@@ -1015,6 +1028,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap-docs.xml'
       fullPath: '/sitemap-docs.xml'
       preLoaderRoute: typeof SitemapDocsDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-index.xml': {
+      id: '/sitemap-index.xml'
+      path: '/sitemap-index.xml'
+      fullPath: '/sitemap-index.xml'
+      preLoaderRoute: typeof SitemapIndexDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -1464,6 +1484,7 @@ const rootRouteChildren: RootRouteChildren = {
   SingBoxGuiRoute: SingBoxGuiRoute,
   SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
   SitemapDocsDotxmlRoute: SitemapDocsDotxmlRoute,
+  SitemapIndexDotxmlRoute: SitemapIndexDotxmlRoute,
   TermsRoute: TermsRoute,
   TrojanClientRoute: TrojanClientRoute,
   TuicClientRoute: TuicClientRoute,
