@@ -43,6 +43,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "Anycast 技术将一个 IP 地址分配给多个地理位置不同的服务器，通过 BGP 路由协议自动选择最近节点响应 DNS 查询。本文讲解 Anycast 的原理、四大优势（低延迟、负载均衡、抗 DDoS、高可用），以及它与 AirLane 出口池设计的相通理念。",
     summary_en: "Anycast assigns one IP address to multiple servers in different locations, using BGP routing to automatically select the nearest node for DNS queries. This article explains Anycast principles, four key advantages, and its shared philosophy with AirLane's Exit Pool design.",
   },
+  "china-vpn-recommendations-2026": {
+    title_zh: "2026 中国 VPN 推荐：最新实测稳定翻墙软件精选（持续更新）",
+    title_en: "Best VPNs for China in 2026: Tested & Working Picks (Continuously Updated)",
+    summary_zh: "基于中国大陆网络环境的长期实测：StrongVPN、ExpressVPN、MirrorSpeed（免费不限流量）、PureVPN、Surfshark 等中国可用 VPN 横评，附机场客户端 AirLane 推荐、翻墙避坑指南与常见故障排查。",
+    summary_en: "Long-term real-world tests on mainland China networks: StrongVPN, ExpressVPN, MirrorSpeed (free & unlimited), PureVPN, Surfshark and more compared — plus the AirLane airport client, circumvention pitfalls, and troubleshooting.",
+  },
   "us-work-environment": {
     title_zh: "如何使用 AirLane 搭建一台位置在美国的工作电脑",
     title_en: "How to Build a US-Located Work Computer with AirLane",
