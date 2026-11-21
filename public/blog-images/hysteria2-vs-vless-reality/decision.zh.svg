@@ -1,0 +1,55 @@
+<svg width="900" height="540" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="540" fill="#f8fafc"/>
+  <text x="450" y="42" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="26" font-weight="700" fill="#0f172a" text-anchor="middle">选择决策流程</text>
+
+  <!-- Start -->
+  <rect x="350" y="70" width="200" height="48" rx="24" fill="#0f172a"/>
+  <text x="450" y="100" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" fill="#f1f5f9" text-anchor="middle">你的网络环境？</text>
+  <line x1="450" y1="118" x2="450" y2="150" stroke="#64748b" stroke-width="2"/>
+
+  <!-- Q1 -->
+  <rect x="280" y="150" width="340" height="52" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="450" y="181" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="17" fill="#312e81" text-anchor="middle">UDP 被封锁或严重限速？</text>
+
+  <line x1="280" y1="176" x2="150" y2="176" stroke="#22c55e" stroke-width="2"/>
+  <line x1="150" y1="176" x2="150" y2="230" stroke="#22c55e" stroke-width="2"/>
+  <text x="168" y="172" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#15803d">是</text>
+
+  <line x1="620" y1="176" x2="750" y2="176" stroke="#64748b" stroke-width="2"/>
+  <line x1="750" y1="176" x2="750" y2="230" stroke="#64748b" stroke-width="2"/>
+  <text x="732" y="172" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#475569">否</text>
+
+  <!-- Left result: Reality -->
+  <rect x="40" y="230" width="220" height="70" rx="12" fill="#064e3b" stroke="#22c55e" stroke-width="2"/>
+  <text x="150" y="260" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" font-weight="700" fill="#bbf7d0" text-anchor="middle">VLESS + Reality</text>
+  <text x="150" y="284" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#86efac" text-anchor="middle">TCP 伪装，绕开 UDP 限制</text>
+
+  <!-- Q2 right -->
+  <rect x="620" y="230" width="260" height="52" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="750" y="261" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="17" fill="#312e81" text-anchor="middle">优先速度还是隐蔽？</text>
+
+  <line x1="750" y1="282" x2="750" y2="330" stroke="#64748b" stroke-width="2"/>
+  <line x1="750" y1="356" x2="640" y2="356" stroke="#6366f1" stroke-width="2"/>
+  <line x1="640" y1="356" x2="640" y2="400" stroke="#6366f1" stroke-width="2"/>
+  <text x="755" y="345" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#4338ca">速度 / 丢包链路</text>
+
+  <line x1="750" y1="282" x2="750" y2="330" stroke="#64748b" stroke-width="2"/>
+  <line x1="750" y1="380" x2="860" y2="380" stroke="#22c55e" stroke-width="2" stroke-dasharray="0"/>
+  <line x1="860" y1="380" x2="860" y2="400" stroke="#22c55e" stroke-width="2"/>
+  <text x="755" y="375" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#15803d">隐蔽 / 高风险网络</text>
+
+  <!-- Hysteria2 result -->
+  <rect x="530" y="400" width="220" height="70" rx="12" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
+  <text x="640" y="430" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" font-weight="700" fill="#c7d2fe" text-anchor="middle">Hysteria2</text>
+  <text x="640" y="454" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#a5b4fc" text-anchor="middle">QUIC，速度优先</text>
+
+  <!-- Reality result -->
+  <rect x="760" y="400" width="130" height="70" rx="12" fill="#064e3b" stroke="#22c55e" stroke-width="2"/>
+  <text x="825" y="430" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="700" fill="#bbf7d0" text-anchor="middle">Reality</text>
+  <text x="825" y="454" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" fill="#86efac" text-anchor="middle">伪装优先</text>
+
+  <!-- Both note -->
+  <rect x="40" y="400" width="460" height="70" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+  <text x="270" y="430" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="700" fill="#92400e" text-anchor="middle">最稳的做法：两个都部署</text>
+  <text x="270" y="454" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#b45309" text-anchor="middle">AirLane 可按流量类别自动选择出口协议</text>
+</svg>

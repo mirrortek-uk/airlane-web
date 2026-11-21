@@ -61,6 +61,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "SOCKS5 是应用层代理，VPN/TUN 是设备级接管。对比两者在浏览器、全局流量、手机 App、DNS、UDP、分流上的差异，以及 PoolVIP 如何把同一个 VPS 包装成多种出口资源。",
     summary_en: "SOCKS5 is an app-level proxy; VPN/TUN is device-level takeover. Compare both across browsers, global traffic, mobile apps, DNS, UDP and split routing — plus how PoolVIP can turn one VPS into multiple exit types.",
   },
+  "hysteria2-vs-vless-reality": {
+    title_zh: "Hysteria2 vs VLESS Reality：翻墙协议到底怎么选？",
+    title_en: "Hysteria2 vs VLESS Reality: Which Proxy Protocol Should You Choose?",
+    summary_zh: "Hysteria2（QUIC/UDP，速度优先）对比 VLESS+Reality（TCP/TLS 伪装，隐蔽优先）：传输层、隐蔽性、速度、弱网、移动体验、部署成本六维对比与按场景选择建议——以及为什么 AirLane 让你不用二选一。",
+    summary_en: "Hysteria2 (QUIC/UDP, speed-first) vs VLESS+Reality (TCP/TLS camouflage, stealth-first): a six-dimension comparison with scenario-based recommendations — and why AirLane means you don't have to choose.",
+  },
 };
 
 export type BlogSlugLoaderData = { post: BlogPost | null };
