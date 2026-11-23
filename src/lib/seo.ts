@@ -5,7 +5,7 @@
 
 const SITE_URL = "https://www.airlane.cloud";
 const SITE_NAME = "AirLane";
-const SITE_LOGO = "https://www.airlane.cloud/brand/lockup-on-light.svg";
+const SITE_LOGO = "https://www.airlane.cloud/brand/icon-512.png";
 
 /** Build a canonical URL for a path. */
 export function canonical(path: string): string {
