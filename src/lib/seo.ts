@@ -30,7 +30,14 @@ export function organizationSchema(locale: "zh-CN" | "en" = "zh-CN") {
       "https://x.com/airlanecloud",
       "https://t.me/airlanecloud",
       "https://www.youtube.com/@airlanecloud",
+      "https://mirrortek.uk/products/airlane",
     ],
+    parentOrganization: {
+      "@type": "Organization",
+      "@id": "https://mirrortek.uk/#org",
+      name: "Mirrortek",
+      url: "https://mirrortek.uk/",
+    },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
@@ -170,6 +177,7 @@ export function softwareApplicationSchema() {
     applicationCategory: "NetworkingApplication",
     operatingSystem: "Windows, macOS, Linux, Android, iOS",
     url: canonical("/download"),
+    sameAs: ["https://mirrortek.uk/products/airlane"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: { "@id": `${SITE_URL}/#organization` },
   };
