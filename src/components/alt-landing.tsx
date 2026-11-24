@@ -264,10 +264,10 @@ export function altLandingHead(opts: {
       { property: "og:url", content: seo.canonical(isEn ? enPath : path) },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: isEn ? "en_US" : "zh_CN" },
-      { property: "og:image", content: seo.canonical("/brand/og-image.png") },
+      { property: "og:image", content: seo.canonical(isEn ? "/brand/og-image-en.png" : "/brand/og-image.png") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: opts.ogTitle },
-      { name: "twitter:image", content: seo.canonical("/brand/og-image.png") },
+      { name: "twitter:image", content: seo.canonical(isEn ? "/brand/og-image-en.png" : "/brand/og-image.png") },
     ],
     links: [
       { rel: "canonical", href: seo.canonical(isEn ? enPath : path) },

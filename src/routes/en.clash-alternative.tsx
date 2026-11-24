@@ -28,10 +28,10 @@ export const Route = createFileRoute("/en/clash-alternative")({
       { property: "og:url", content: canonical("/en/clash-alternative") },
       { property: "og:site_name", content: "AirLane" },
       { property: "og:locale", content: "en_US" },
-      { property: "og:image", content: canonical("/brand/og-image.png") },
+      { property: "og:image", content: canonical("/brand/og-image-en.png") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "AirLane — Best Clash Alternative" },
-      { name: "twitter:image", content: canonical("/brand/og-image.png") },
+      { name: "twitter:image", content: canonical("/brand/og-image-en.png") },
     ],
     links: [
       { rel: "canonical", href: canonical("/en/clash-alternative") },
