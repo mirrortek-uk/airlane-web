@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useMatches, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useMatches, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
@@ -13,11 +13,9 @@ import { useLocalePrefix } from "@/lib/locale-link";
 export type DocSlugLoaderData = { page: DocPage | null };
 
 async function loadDocPage(slug: string): Promise<DocSlugLoaderData> {
-  try {
-    return { page: await fetchPage(slug) };
-  } catch {
-    return { page: null };
-  }
+  const page = await fetchPage(slug);
+  if (!page) throw notFound();
+  return { page };
 }
 
 export const Route = createFileRoute("/docs/$slug")({

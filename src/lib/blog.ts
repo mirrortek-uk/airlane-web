@@ -33,7 +33,10 @@ export async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
     .select(COLUMNS)
     .eq("slug", slug)
     .single();
-  if (error) return null;
+  if (error) {
+    if (error.code === "PGRST116") return null;
+    throw error;
+  }
   return data as BlogPost;
 }
 

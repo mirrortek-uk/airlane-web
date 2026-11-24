@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useMatches, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useMatches, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -72,11 +72,9 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
 export type BlogSlugLoaderData = { post: BlogPost | null };
 
 async function loadPost(slug: string): Promise<BlogSlugLoaderData> {
-  try {
-    return { post: await fetchPostBySlug(slug) };
-  } catch {
-    return { post: null };
-  }
+  const post = await fetchPostBySlug(slug);
+  if (!post) throw notFound();
+  return { post };
 }
 
 export const Route = createFileRoute("/blog/$slug")({
