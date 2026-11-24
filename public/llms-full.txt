@@ -253,3 +253,28 @@ automatic failover, and PoolVIP/Mesh supply the exits — turning protocol
 selection from a one-time config into a per-flow routing decision.
 
 URL: https://www.airlane.cloud/blog/hysteria2-vs-vless-reality
+
+---
+
+## The Evolution of Proxy Protocols: From Shadowsocks to VLESS + Reality
+
+A complete lineage of circumvention/proxy protocols, organized around a
+key distinction: protocols (how traffic is encrypted/disguised) vs
+frameworks (programs that host protocols). Two family trees emerge —
+frameworks carrying protocols (V2Ray → Xray-core → sing-box/mihomo) and
+standalone protocol stacks (SS-2022, Trojan-Go, TUIC, Hysteria2).
+
+Timeline: enterprise VPNs (pre-2012, fingerprinted by DPI) → Shadowsocks
+(2012, randomized traffic) → V2Ray/VMess framework era (2016-2020) →
+Trojan's fake-TLS (2019) → Xray fork with XTLS Vision, VLESS and the
+watershed Reality (2022, borrowing real websites' TLS handshakes) → the
+QUIC independents Hy2/TUIC and universal cores sing-box/mihomo (2023+).
+
+Three lessons: camouflage iterates toward ever-more-real TLS; transport
+swings between TCP stealth and UDP speed; protocols die but
+multi-protocol dispatch survives. Concludes that AirLane — built on
+sing-box with 38+ protocols, a visual policy tree assigning protocols
+per traffic class, and health-check failover — embodies the end state
+of that evolution.
+
+URL: https://www.airlane.cloud/blog/proxy-protocol-evolution

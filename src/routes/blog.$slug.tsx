@@ -61,6 +61,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "SOCKS5 是应用层代理，VPN/TUN 是设备级接管。对比两者在浏览器、全局流量、手机 App、DNS、UDP、分流上的差异，以及 PoolVIP 如何把同一个 VPS 包装成多种出口资源。",
     summary_en: "SOCKS5 is an app-level proxy; VPN/TUN is device-level takeover. Compare both across browsers, global traffic, mobile apps, DNS, UDP and split routing — plus how PoolVIP can turn one VPS into multiple exit types.",
   },
+  "proxy-protocol-evolution": {
+    title_zh: "代理协议前世今生：从 Shadowsocks 到 VLESS + Reality",
+    title_en: "The Evolution of Proxy Protocols: From Shadowsocks to VLESS + Reality",
+    summary_zh: "代理协议的完整族谱：企业 VPN→Shadowsocks→V2Ray/VMess→Xray/Reality→QUIC 独立军→sing-box/mihomo 通用内核。分清'框架载协议'与'独立协议'两棵树，看懂十五年演化规律——以及为什么 AirLane 能胜任各种复杂环境。",
+    summary_en: "The full lineage of proxy protocols: enterprise VPNs, Shadowsocks, V2Ray/VMess, Xray/Reality, the QUIC independents, and universal cores like sing-box/mihomo. Two trees — frameworks that carry protocols vs standalone protocols — and why AirLane thrives in any network.",
+  },
   "hysteria2-vs-vless-reality": {
     title_zh: "Hysteria2 vs VLESS Reality：翻墙协议到底怎么选？",
     title_en: "Hysteria2 vs VLESS Reality: Which Proxy Protocol Should You Choose?",

@@ -32,6 +32,7 @@ Last updated: 2026-09-20. Full-text version: [llms-full.txt](https://www.airlane
 - [How to Build a US-Located Work Computer with AirLane](https://www.airlane.cloud/blog/us-work-environment): Make your network egress appear to originate from the US — AirLane TUN + US exit covers IP/DNS/IPv6/WebRTC/UDP with smart split routing, plus the five-layer model (network, device, browser, account, exit type) for a consistent virtual location; stable environment guide for Claude and other US-only services
 - [Best VPNs for China in 2026: Tested & Working Picks](https://www.airlane.cloud/blog/china-vpn-recommendations-2026): Long-term mainland-China tests of StrongVPN, ExpressVPN, MirrorSpeed (free unlimited traffic), PureVPN, Surfshark and more — plus AirLane as a modern airport client, GFW pitfalls and troubleshooting
 - [Hysteria2 vs VLESS Reality: Which Proxy Protocol Should You Choose?](https://www.airlane.cloud/blog/hysteria2-vs-vless-reality): Six-dimension comparison — QUIC/UDP speed vs TCP/TLS camouflage — covering transport, stealth, loss tolerance, mobile experience and ops cost, with scenario-based picks and the case for running both through AirLane's policy tree
+- [The Evolution of Proxy Protocols: From Shadowsocks to VLESS + Reality](https://www.airlane.cloud/blog/proxy-protocol-evolution): The full lineage — enterprise VPNs, SS, V2Ray/VMess, Xray/Reality, QUIC independents, universal cores — framed as two trees (frameworks vs standalone protocols) and ending in why AirLane's multi-protocol dispatch fits every network
 
 ## Key Concepts
 

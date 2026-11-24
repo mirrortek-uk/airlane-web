@@ -1,0 +1,58 @@
+<svg width="900" height="560" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="560" fill="#f8fafc"/>
+  <text x="450" y="40" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="24" font-weight="700" fill="#0f172a" text-anchor="middle">两棵树：框架载体 vs 独立协议</text>
+
+  <!-- Left tree: frameworks -->
+  <text x="225" y="80" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="17" font-weight="700" fill="#4338ca" text-anchor="middle">框架 / 内核（载体）</text>
+
+  <rect x="100" y="95" width="250" height="46" rx="10" fill="#312e81"/>
+  <text x="225" y="124" font-family="'Space Grotesk',sans-serif" font-size="17" font-weight="700" fill="#e0e7ff" text-anchor="middle">V2Ray（老框架）</text>
+
+  <line x1="225" y1="141" x2="225" y2="165" stroke="#64748b" stroke-width="2"/>
+  <rect x="60" y="165" width="330" height="58" rx="8" fill="#e0e7ff" stroke="#6366f1"/>
+  <text x="225" y="190" font-family="'JetBrains Mono',monospace" font-size="14" fill="#312e81" text-anchor="middle">VMess · VLESS · Trojan</text>
+  <text x="225" y="210" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" fill="#6366f1" text-anchor="middle">（协议生在框架里）</text>
+
+  <line x1="225" y1="223" x2="225" y2="250" stroke="#64748b" stroke-width="2"/>
+  <text x="238" y="242" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" fill="#64748b">分叉重构</text>
+
+  <rect x="100" y="250" width="250" height="46" rx="10" fill="#4338ca"/>
+  <text x="225" y="279" font-family="'Space Grotesk',sans-serif" font-size="17" font-weight="700" fill="#e0e7ff" text-anchor="middle">Xray-core（新框架）</text>
+
+  <line x1="225" y1="296" x2="225" y2="320" stroke="#64748b" stroke-width="2"/>
+  <rect x="60" y="320" width="330" height="78" rx="8" fill="#e0e7ff" stroke="#6366f1"/>
+  <text x="225" y="344" font-family="'JetBrains Mono',monospace" font-size="14" fill="#312e81" text-anchor="middle">VMess · VLESS · Trojan · SS-2022</text>
+  <text x="225" y="368" font-family="'JetBrains Mono',monospace" font-size="14" fill="#15803d" text-anchor="middle">独有：XTLS Vision · Reality</text>
+  <text x="225" y="390" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="13" fill="#6366f1" text-anchor="middle">Xray 独有伪装能力</text>
+
+  <!-- Right tree: independent -->
+  <text x="675" y="80" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="17" font-weight="700" fill="#b45309" text-anchor="middle">独立协议 / 独立程序</text>
+
+  <g font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14">
+    <rect x="560" y="95" width="230" height="54" rx="8" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="675" y="117" fill="#92400e" font-weight="700" text-anchor="middle">Shadowsocks-2022</text>
+    <text x="675" y="138" fill="#b45309" font-size="12" text-anchor="middle">SS 新版，Xray 只是兼容</text>
+
+    <rect x="560" y="161" width="230" height="54" rx="8" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="675" y="183" fill="#92400e" font-weight="700" text-anchor="middle">Trojan / Trojan-Go</text>
+    <text x="675" y="204" fill="#b45309" font-size="12" text-anchor="middle">独立实现，也可嵌入框架</text>
+
+    <rect x="560" y="227" width="230" height="54" rx="8" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="675" y="249" fill="#92400e" font-weight="700" text-anchor="middle">TUIC</text>
+    <text x="675" y="270" fill="#b45309" font-size="12" text-anchor="middle">QUIC 独立程序，框架不原生</text>
+
+    <rect x="560" y="293" width="230" height="54" rx="8" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="675" y="315" fill="#92400e" font-weight="700" text-anchor="middle">Hysteria / Hysteria2</text>
+    <text x="675" y="336" fill="#b45309" font-size="12" text-anchor="middle">独立 QUIC 协议栈</text>
+  </g>
+
+  <!-- Bottom: universal cores -->
+  <line x1="225" y1="398" x2="225" y2="430" stroke="#64748b" stroke-width="2"/>
+  <line x1="675" y1="347" x2="675" y2="430" stroke="#64748b" stroke-width="2"/>
+  <line x1="225" y1="430" x2="675" y2="430" stroke="#64748b" stroke-width="2"/>
+  <line x1="450" y1="430" x2="450" y2="455" stroke="#64748b" stroke-width="2"/>
+
+  <rect x="180" y="455" width="540" height="80" rx="12" fill="#0f172a"/>
+  <text x="450" y="488" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="18" font-weight="700" fill="#f1f5f9" text-anchor="middle">通用内核时代：sing-box · mihomo</text>
+  <text x="450" y="516" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">一个内核统一运行两棵树上的所有协议 —— AirLane 的数据面</text>
+</svg>
