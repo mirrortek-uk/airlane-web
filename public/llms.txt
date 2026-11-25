@@ -18,7 +18,31 @@ Last updated: 2026-09-20. Full-text version: [llms-full.txt](https://www.airlane
 - [AirLane Help Center](https://www.airlane.cloud/docs): Installation, protocols, policy orchestration, Mesh networking
 - [Welcome to AirLane](https://www.airlane.cloud/docs/welcome): Product tour — dashboard, subscriptions, four-layer policy model, insights, diagnostic tools and settings, with FAQ
 - [Quick Start](https://www.airlane.cloud/docs/quick-start): Add egress, create policies, verify with Decision Trace
+- [Download & Install](https://www.airlane.cloud/docs/install): Platform installers for Windows, macOS, Linux, Android, iOS
+- [Import a Subscription](https://www.airlane.cloud/docs/import-subscription): Subscription URL, Clash migration, manual import — dedup and region groups
+- [Main Window Overview](https://www.airlane.cloud/docs/ui-overview): Module rail, dashboard cards, status bar and tray
+- [Nodes & Subscriptions](https://www.airlane.cloud/docs/nodes): Node list, dedup, Clash migration report, snapshots, sharing and backup
+- [Policy Tree](https://www.airlane.cloud/docs/policy-tree): Four-layer model — traffic, classifier, behavior, policy, exit pools
+- [Rules](https://www.airlane.cloud/docs/rules): GEOSITE/GEOIP/remote/custom rulesets, priority, match simulation, hit analytics
+- [Decision Tracing](https://www.airlane.cloud/docs/decision-trace): Hop-by-hop replay of every connection from entry to exit
+- [Health & Self-healing](https://www.airlane.cloud/docs/health): Latency curves, P95, failover, network diagnostics, config self-check
+- [Connections & Logs](https://www.airlane.cloud/docs/connections): Live connections, traffic ranking, attribution, core logs
+- [Settings](https://www.airlane.cloud/docs/settings): General, network/TUN, DNS, core, profiles, identity, tray
+- [Route AI via Asia](https://www.airlane.cloud/docs/scenario-ai): Pin AI services to an Asia exit pool in four steps
+- [Streaming & Gaming](https://www.airlane.cloud/docs/scenario-streaming): Unlock regions for streaming, low-latency direct for games
+- [TUN vs System Proxy](https://www.airlane.cloud/docs/scenario-tun): Two takeover modes compared and when to use each
+- [DNS & Fake-IP](https://www.airlane.cloud/docs/scenario-dns): DNS profiles, Fake-IP, pollution detection, split-DNS
+- [What is Mesh](https://www.airlane.cloud/docs/mesh-intro): Private device fabric — shared exits, interconnect, policy sync
+- [Shared Resource Pool](https://www.airlane.cloud/docs/poolvip): PoolVIP VPS and residential-IP exits, quota by identity mode
+- [Import PoolVIP Lines](https://www.airlane.cloud/docs/poolvip-import): Add pool lines to exit groups alongside subscriptions
 - [Account Center](https://www.airlane.cloud/docs/account-center): Anonymous identities, login codes, device pairing, plan quotas
+- [Can't Connect](https://www.airlane.cloud/docs/trouble-connect): Diagnostics-first checklist for connectivity failures
+- [Site Won't Open](https://www.airlane.cloud/docs/trouble-site): Classification → DNS → exit debugging for single-site failures
+- [Slow Speeds](https://www.airlane.cloud/docs/trouble-slow): Quantify latency, pool selectors, protocol choice
+- [Platform FAQ](https://www.airlane.cloud/docs/trouble-platform): Windows/macOS/Android/iOS common issues
+- [Supported Protocols](https://www.airlane.cloud/docs/ref-protocols): 38+ protocols — VLESS/Reality, Hysteria2, TUIC, Trojan, SS-2022, WireGuard
+- [Rule Syntax](https://www.airlane.cloud/docs/ref-syntax): Match fields reference — domain, geosite, geoip, process_name, final
+- [Changelog](https://www.airlane.cloud/docs/changelog): Release notes — v1.4 decision tracing and PoolVIP import
 
 ## Blog
 

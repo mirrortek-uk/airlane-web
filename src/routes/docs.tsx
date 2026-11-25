@@ -32,6 +32,21 @@ export const Route = createFileRoute("/docs")({
   component: DocsLayout,
 });
 
+/** Per-slug nav extras: badge tags and sub-anchor links. */
+const NAV_META: Record<string, { tag?: string; sub?: string[] }> = {
+  install: { sub: ["windows", "macos", "linux", "android", "ios"] },
+  "decision-trace": { tag: "NEW" },
+  "poolvip-import": { tag: "v1.4" },
+};
+
+const SUB_LABELS: Record<string, string> = {
+  windows: "Windows",
+  macos: "macOS",
+  linux: "Linux",
+  android: "Android",
+  ios: "iOS",
+};
+
 export function DocsLayout() {
   const { locale, t } = useI18n();
   const lang = docLang(locale);
@@ -128,20 +143,39 @@ export function DocsLayout() {
               items.length === 0 && query ? null : (
                 <div className="grp" key={section.id}>
                   <h6>{pick(section, "title", lang)}</h6>
-                  {items.map((page) => (
-                    <Link
-                      key={page.id}
-                      to={`${lp}/docs/$slug`}
-                      params={{ slug: page.slug }}
-                      activeProps={{ className: "on" }}
-                      activeOptions={{ exact: true }}
-                    >
-                      {pick(page, "title", lang)}
-                      {page.published ? null : (
-                        <span className="tag">{lang === "zh" ? "草稿" : "draft"}</span>
-                      )}
-                    </Link>
-                  ))}
+                  {items.map((page) => {
+                    const meta = NAV_META[page.slug];
+                    if (!page.published) {
+                      return (
+                        <span key={page.id} className="off">
+                          {pick(page, "title", lang)}
+                          <span className="tag">{lang === "zh" ? "即将" : "soon"}</span>
+                        </span>
+                      );
+                    }
+                    return (
+                      <span key={page.id} style={{ display: "contents" }}>
+                        <Link
+                          to={`${lp}/docs/$slug`}
+                          params={{ slug: page.slug }}
+                          activeProps={{ className: "on" }}
+                          activeOptions={{ exact: true }}
+                        >
+                          {pick(page, "title", lang)}
+                          {meta?.tag ? <span className="tag">{meta.tag}</span> : null}
+                        </Link>
+                        {meta?.sub ? (
+                          <span className="sub" style={{ display: "block" }}>
+                            {meta.sub.map((s) => (
+                              <a key={s} href={`${lp}/docs/${page.slug}#${s}`}>
+                                {SUB_LABELS[s] ?? s}
+                              </a>
+                            ))}
+                          </span>
+                        ) : null}
+                      </span>
+                    );
+                  })}
                 </div>
               ),
             )}
