@@ -1,3 +1,4 @@
+import { useLocation } from "@tanstack/react-router";
 import {
   createContext,
   useCallback,
@@ -54,21 +55,24 @@ function interpolate(text: string, vars?: Record<string, string | number>) {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    // Detect locale from URL path on first render (SSR + client)
-    // /en/... -> English, /ru/... -> Russian, etc.
-    if (typeof window !== "undefined") {
-      const path = window.location.pathname;
-      for (const l of LOCALES) {
-        if (l === "zh") continue; // zh is default, no prefix
-        const prefix = `/${l === "zh-TW" ? "zh-TW" : l}/`;
-        if (path.startsWith(prefix) || path === `/${l}`) {
-          return l;
-        }
+  // URL prefix always wins — it is the only locale signal available during SSR.
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const urlLocale = useMemo(() => {
+    for (const l of LOCALES) {
+      if (l === "zh") continue; // zh is default, no prefix
+      const prefix = `/${l === "zh-TW" ? "zh-TW" : l}/`;
+      if (pathname.startsWith(prefix) || pathname === `/${l}`) {
+        return l;
       }
     }
+    return null;
+  }, [pathname]);
+
+  const [storedLocale, setLocaleState] = useState<Locale>(() => {
+    if (typeof window !== "undefined" && urlLocale) return urlLocale;
     return DEFAULT_LOCALE;
   });
+  const locale = urlLocale ?? storedLocale;
 
   useEffect(() => {
     // On client mount, check URL path first, then localStorage, then browser language
@@ -91,7 +95,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       detected = stored ?? normalizeLocale(navigator.language);
     }
 
-    if (detected && detected !== locale) setLocaleState(detected);
+    if (detected && detected !== storedLocale) setLocaleState(detected);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

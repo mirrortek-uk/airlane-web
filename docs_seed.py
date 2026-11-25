@@ -1620,6 +1620,123 @@ Full release history and installers: [GitHub Releases](https://github.com/mirror
 <div class="co note"><div><div class="co-t">Docs track releases</div>This docs site updates with product versions — each page shows its last-revised date in the header.</div></div>''',
 })
 
+PAGES.append({
+ 'section': 'getting-started', 'position': 3, 'published': True,
+ 'slug': 'quick-start',
+ 'title_zh': '5 分钟快速上手', 'title_en': 'Quick Start in 5 Minutes',
+ 'summary_zh': '从零到第一条代理连接的完整教程：安装、选身份模式、导入订阅、启用分流方案、验证连通。',
+ 'summary_en': 'A complete first-run tutorial: install, pick an identity mode, import a subscription, enable a routing profile, verify connectivity.',
+ 'body_zh': '''本教程带你从零走到第一条代理连接，约 5 分钟。完成后你会有一条已导入的订阅、一套分流方案和一份验证通过的链路追踪。
+
+<div class="steps">
+<div class="step"><div class="n">1</div><div><b>下载并安装</b>客户端（<a href="/docs/install">各平台安装指南</a>）</div></div>
+<div class="step"><div class="n">2</div><div><b>选择身份模式</b>——先用「匿名」即可，以后随时换</div></div>
+<div class="step"><div class="n">3</div><div><b>导入订阅</b>——粘贴订阅链接或导入 Clash 配置</div></div>
+<div class="step"><div class="n">4</div><div><b>启用分流方案</b>——推荐「AirLane 推荐」</div></div>
+<div class="step"><div class="n">5</div><div><b>连接并验证</b>——看仪表盘状态 + 链路追踪</div></div>
+</div>
+
+## 第 1 步 · 下载安装
+
+从[下载页](/download)或 GitHub Releases 获取对应平台的安装包，按[下载与安装](/docs/install)完成安装并首次启动。
+
+## 第 2 步 · 选择身份模式
+
+首次启动会让你选三种身份之一：
+
+<div class="shot"><div class="frame"><span class="frame-t">设置 · 账户</span><img class="frame-img" src="{IMG}/welcome/settings-user.png" alt="身份模式选择：匿名 / 账号 / 私有部署"></div><p class="cap">身份模式：选「匿名」最快开始，不收集任何信息</p></div>
+
+- **匿名**：不登录，客户端给你一个匿名标识，可领取 PoolVIP 基础配额——推荐新手从这里开始。
+- **账号**：登录后配额同步、支持 Mesh 多设备。
+- **私有部署**：接自己的后端，完全自主。
+
+## 第 3 步 · 导入订阅
+
+打开「订阅 → 添加订阅」，三种方式任选（详见[导入订阅](/docs/import-subscription)）：
+
+<div class="shot"><div class="frame"><span class="frame-t">添加订阅</span><img class="frame-img" src="{IMG}/welcome/add-subscription.png" alt="添加订阅：远端地址 / 本地 / 手动"></div><p class="cap">粘贴订阅地址即可；Clash 用户用「从 Clash 导入」一键迁移</p></div>
+
+导入后 AirLane 自动去重、按地区分组——节点列表里应该能看到带延迟数字的节点了。
+
+<div class="co tip"><div><div class="co-t">没有订阅？</div>跳过这步也可以：PoolVIP 资源池会直接出现在「网络 → 出口分组」里，见<a href="/docs/poolvip">共享网络资源池</a>。</div></div>
+
+## 第 4 步 · 启用分流方案
+
+「设置 → 分流方案」选 **AirLane 推荐**：AI/流媒体走代理、国内服务直连、广告拦截——开箱即用，之后可以在[策略树](/docs/policy-tree)里改。
+
+## 第 5 步 · 连接并验证
+
+回到仪表盘点「连接」，然后验证：
+
+<div class="mini"><span class="k">工具</span><span class="arr">→</span><span class="k">链路追踪</span><span class="arr">→</span><span class="k">输入 google.com</span><span class="ok">✓</span></div>
+
+- 追踪结果显示完整链路（入口 → 分类 → 出口），说明分流在工作。
+- 或者用浏览器访问一个被代理的网站，看[实时连接](/docs/connections)里有没有这条流。
+
+<div class="co tip"><div><div class="co-t">验证通过</div>到这一步日常就够用了。想让 AI 走特定线路、流媒体单独分流？看<a href="/docs/scenario-ai">场景教程</a>。</div></div>
+
+## 遇到问题
+
+- 连不上 → [连不上 / 无网络](/docs/trouble-connect)（先跑网络诊断）
+- 某个网站打不开 → [排查步骤](/docs/trouble-site)
+- 慢 → [速度优化](/docs/trouble-slow)''',
+ 'body_en': '''This tutorial takes you from zero to your first proxied connection in about five minutes. By the end you will have an imported subscription, a routing profile, and a verified chain trace.
+
+<div class="steps">
+<div class="step"><div class="n">1</div><div><b>Download & install</b> the client (<a href="/en/docs/install">per-platform guide</a>)</div></div>
+<div class="step"><div class="n">2</div><div><b>Pick an identity mode</b> — "Anonymous" is fine to start</div></div>
+<div class="step"><div class="n">3</div><div><b>Import a subscription</b> — paste a URL or migrate Clash config</div></div>
+<div class="step"><div class="n">4</div><div><b>Enable a routing profile</b> — "AirLane recommended" is the preset</div></div>
+<div class="step"><div class="n">5</div><div><b>Connect & verify</b> — dashboard status plus a chain trace</div></div>
+</div>
+
+## Step 1 · Install
+
+Get the installer for your platform from the [download page](/download) or GitHub Releases, then follow [Download & Install](/en/docs/install) through first launch.
+
+## Step 2 · Pick an identity mode
+
+First launch asks which of three identities you want:
+
+<div class="shot"><div class="frame"><span class="frame-t">Settings · Account</span><img class="frame-img" src="{IMG}/welcome/settings-user.png" alt="Identity modes: anonymous / account / self-hosted"></div><p class="cap">"Anonymous" is the fastest start — no info collected (UI in Chinese)</p></div>
+
+- **Anonymous**: no login; the client mints an anonymous ID that claims a basic PoolVIP quota — recommended for newcomers.
+- **Account**: synced quota and multi-device Mesh after signing in.
+- **Self-hosted**: your own backend, fully autonomous.
+
+## Step 3 · Import a subscription
+
+Open Subscriptions → Add subscription and pick one of three paths (details in [Import a subscription](/en/docs/import-subscription)):
+
+<div class="shot"><div class="frame"><span class="frame-t">Add subscription</span><img class="frame-img" src="{IMG}/welcome/add-subscription.png" alt="Add subscription: remote / local / manual"></div><p class="cap">Paste a subscription URL; Clash users can one-click migrate</p></div>
+
+After import, AirLane dedups nodes and groups them by region — the node list should now show latency numbers.
+
+<div class="co tip"><div><div class="co-t">No subscription?</div>You can skip this step: PoolVIP pool exits show up under Network → Exit groups — see <a href="/en/docs/poolvip">Shared resource pool</a>.</div></div>
+
+## Step 4 · Enable a routing profile
+
+Under Settings → Routing profiles pick **AirLane recommended**: AI/streaming proxied, domestic services direct, ads blocked — batteries included, tweakable later in the [policy tree](/en/docs/policy-tree).
+
+## Step 5 · Connect & verify
+
+Back on the dashboard, hit Connect, then verify:
+
+<div class="mini"><span class="k">Tools</span><span class="arr">→</span><span class="k">Chain trace</span><span class="arr">→</span><span class="k">enter google.com</span><span class="ok">✓</span></div>
+
+- The trace shows the full chain (entry → classify → exit) — proof the lanes are working.
+- Or open a proxied site in the browser and watch it appear in [live connections](/en/docs/connections).
+
+<div class="co tip"><div><div class="co-t">Done</div>You have a working setup now. Want AI on specific lanes or dedicated streaming routes? See the <a href="/en/docs/scenario-ai">scenario tutorials</a>.</div></div>
+
+## Problems?
+
+- Won't connect → [Can't connect / no internet](/en/docs/trouble-connect) (run diagnostics first)
+- One site won't open → [Debug steps](/en/docs/trouble-site)
+- Slow → [Speed tuning](/en/docs/trouble-slow)''',
+})
+
+
 # ---- upsert ----
 sec_by_slug = {s['slug']: s for s in req('GET', '/doc_sections?select=id,slug')}
 for s in SECTIONS:
@@ -1631,7 +1748,7 @@ for s in SECTIONS:
         s['id'] = req('POST', '/doc_sections', row)[0]['id']
     print('section', s['slug'], '->', s['id'])
 
-existing = {p['slug']: p['id'] for p in req('GET', '/doc_pages?select=id,slug')}
+existing = {p['slug']: p for p in req('GET', '/doc_pages?select=id,slug,section_id,title_zh,title_en,summary_zh,summary_en,body_zh,body_en,position,published')}
 
 # keep existing docs in their sections/positions
 POSITION_FIX = {
@@ -1645,6 +1762,7 @@ for slug, (sec, pos) in POSITION_FIX.items():
         req('PATCH', '/doc_pages?slug=eq.' + slug, {'section_id': sec_ids[sec], 'position': pos})
         print('fix', slug, '->', sec, pos)
 
+FIELDS = ('section_id', 'title_zh', 'title_en', 'summary_zh', 'summary_en', 'body_zh', 'body_en', 'position', 'published')
 for p in PAGES:
     row = {
         'section_id': sec_ids[p['section']],
@@ -1653,12 +1771,17 @@ for p in PAGES:
         'body_zh': (p.get('body_zh') or STUB_ZH).format(IMG=IMG),
         'body_en': (p.get('body_en') or STUB_EN).format(IMG=IMG),
         'position': p['position'], 'published': p['published'],
-        'updated_at': 'now()',
     }
-    if p['slug'] in existing:
+    old = existing.get(p['slug'])
+    if old:
+        if all(old.get(k) == row[k] for k in FIELDS):
+            print('skip', p['slug'])
+            continue
+        row['updated_at'] = 'now()'  # only bump the displayed date when content really changed
         req('PATCH', '/doc_pages?slug=eq.' + p['slug'], row)
         print('update', p['slug'])
     else:
+        row['updated_at'] = 'now()'
         req('POST', '/doc_pages', row)
         print('create', p['slug'])
 

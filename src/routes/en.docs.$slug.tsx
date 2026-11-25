@@ -1,5 +1,11 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { DocPageView, type DocSlugLoaderData } from "@/routes/docs.$slug";
+import {
+  DocPageView,
+  docSeoTitle,
+  faqSchemaFrom,
+  techArticleSchema,
+  type DocSlugLoaderData,
+} from "@/routes/docs.$slug";
 import { fetchPage } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
@@ -11,7 +17,7 @@ export const Route = createFileRoute("/en/docs/$slug")({
   },
   head: ({ params, loaderData }) => {
     const page = (loaderData as DocSlugLoaderData | undefined)?.page;
-    const title = page?.title_en || params.slug;
+    const title = page ? docSeoTitle(params.slug, page.title_en, "en") : params.slug;
     const desc = page?.summary_en || "AirLane documentation";
     const pageUrl = canonical(`/en/docs/${params.slug}`);
     return {
@@ -42,6 +48,8 @@ export const Route = createFileRoute("/en/docs/$slug")({
                   { name: "Docs", url: canonical("/en/docs") },
                   { name: page.title_en, url: pageUrl },
                 ]),
+                techArticleSchema(page, "en", pageUrl),
+                ...(faqSchemaFrom(page.body_en) ? [faqSchemaFrom(page.body_en)!] : []),
               ]),
             },
           ]

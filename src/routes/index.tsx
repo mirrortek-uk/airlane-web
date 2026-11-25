@@ -710,6 +710,9 @@ function WhyAirLane() {
 
 function CoreFeatures() {
   const t = useT();
+  const { locale } = useI18n();
+  const lp = useLocalePrefix();
+  const docLink = docLang(locale) === "zh" ? "查看文档 →" : "Read the docs →";
   return (
     <section className="max-w-6xl mx-auto px-6 pb-20" id="features">
       <div className="mb-10">
@@ -741,6 +744,9 @@ function CoreFeatures() {
             <div className="pl-8 text-cream/50">└─ Singapore Edge-01</div>
             <div className="pl-4 text-sunset">└─ {t("home.features.card1.mock.streaming")}</div>
           </div>
+          <Link to={`${lp}/docs/policy-tree`} className="mt-4 inline-block text-sm text-brand hover:underline">
+            {docLink}
+          </Link>
         </div></Reveal>
 
         <Reveal delay={140}><div className="h-full rounded-3xl border border-border bg-card/60 p-7 shadow-card hover-lift">
@@ -761,6 +767,9 @@ function CoreFeatures() {
             <div className="pl-4 text-sunset">{t("home.features.card2.mock.exit")}</div>
             <div className="pl-4 text-brand">Reality/TCP ── 148ms</div>
           </div>
+          <Link to={`${lp}/docs/decision-trace`} className="mt-4 inline-block text-sm text-brand hover:underline">
+            {docLink}
+          </Link>
         </div></Reveal>
 
         <Reveal delay={280}><div className="h-full rounded-3xl border border-border bg-card/60 p-7 shadow-card hover-lift">
@@ -780,6 +789,9 @@ function CoreFeatures() {
             <div className="pl-4 text-sky">└─ US Edge</div>
             <div className="pl-4 text-sunset">{t("home.features.card3.mock.group")}</div>
           </div>
+          <Link to={`${lp}/docs/nodes`} className="mt-4 inline-block text-sm text-brand hover:underline">
+            {docLink}
+          </Link>
         </div></Reveal>
       </div>
     </section>
