@@ -67,6 +67,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "代理协议的完整族谱：企业 VPN→Shadowsocks→V2Ray/VMess→Xray/Reality→QUIC 独立军→sing-box/mihomo 通用内核。分清'框架载协议'与'独立协议'两棵树，看懂十五年演化规律——以及为什么 AirLane 能胜任各种复杂环境。",
     summary_en: "The full lineage of proxy protocols: enterprise VPNs, Shadowsocks, V2Ray/VMess, Xray/Reality, the QUIC independents, and universal cores like sing-box/mihomo. Two trees — frameworks that carry protocols vs standalone protocols — and why AirLane thrives in any network.",
   },
+  "flclash-vs-airlane": {
+    title_zh: "FlClash vs AirLane：同为规则代理客户端，差在哪一层",
+    title_en: "FlClash vs AirLane: Two Rule-Based Clients, Two Different Layers",
+    summary_zh: "客观对比 FlClash 与 AirLane：开源轻量的 mihomo 经典客户端 vs sing-box 上的四层策略树编排平台。调度模型、可观测性、出口健康、Mesh 与资源池逐项拆解——以及 FlClash 依然更强的地方。",
+    summary_en: "An honest FlClash vs AirLane comparison: the open-source lightweight mihomo client vs the sing-box orchestration platform with a four-layer policy tree. Routing model, observability, exit health, Mesh and resource pool — plus where FlClash still wins.",
+  },
   "hysteria2-vs-vless-reality": {
     title_zh: "Hysteria2 vs VLESS Reality：翻墙协议到底怎么选？",
     title_en: "Hysteria2 vs VLESS Reality: Which Proxy Protocol Should You Choose?",

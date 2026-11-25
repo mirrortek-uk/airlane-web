@@ -278,3 +278,36 @@ per traffic class, and health-check failover — embodies the end state
 of that evolution.
 
 URL: https://www.airlane.cloud/blog/proxy-protocol-evolution
+
+---
+
+## FlClash vs AirLane: Two Rule-Based Clients, Two Different Layers
+
+An objective comparison of FlClash (open-source GPL-3.0 client on the
+ClashMeta/mihomo core: Windows/macOS/Linux/Android, proxy groups + rule
+list, completely free) and AirLane (closed-source orchestration platform
+on sing-box: adds iOS, four-layer policy tree, optional account).
+
+Core difference: mihomo compresses "whose traffic" and "which group"
+into one rule; AirLane splits a flow into classifier → behavior →
+policy → exit pool, each layer independently configured and observed.
+Practical payoff: node churn never touches routing config, and pool
+selector types (manual/url-test/load-balance/fallback) change without
+editing policies.
+
+AirLane advantages: decision tracing (hop replay, match simulation, hit
+analytics) vs raw core logs; per-pool stability reports (24h latency,
+P95, 7-day uptime, failover counts); built-in unlock/leak/diagnostic
+tests; Mesh multi-device fabric and PoolVIP shared VPS/residential
+exits for the no-subscription cold start; iOS client.
+
+FlClash advantages (stated honestly): open-source and auditable, Linux
+desktop available today, zero account/quota concepts, mihomo YAML
+ecosystem compatibility, completely free.
+
+Verdict: FlClash is enough if routing is all you need; AirLane if
+routing is the start — complex policies, debugging, multi-device,
+or no subscription. Migration: Clash/mihomo YAML one-click import with
+dedup, region groups and a migration report.
+
+URL: https://www.airlane.cloud/blog/flclash-vs-airlane
