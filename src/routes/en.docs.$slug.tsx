@@ -1,15 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { DocPageView, type DocSlugLoaderData } from "@/routes/docs.$slug";
 import { fetchPage } from "@/lib/docs";
 import { canonical, breadcrumbSchema, jsonLd, organizationSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/en/docs/$slug")({
   loader: async ({ params }): Promise<DocSlugLoaderData> => {
-    try {
-      return { page: await fetchPage(params.slug) };
-    } catch {
-      return { page: null };
-    }
+    const page = await fetchPage(params.slug);
+    if (!page) throw notFound();
+    return { page };
   },
   head: ({ params, loaderData }) => {
     const page = (loaderData as DocSlugLoaderData | undefined)?.page;
