@@ -301,9 +301,11 @@ P95, 7-day uptime, failover counts); built-in unlock/leak/diagnostic
 tests; Mesh multi-device fabric and PoolVIP shared VPS/residential
 exits for the no-subscription cold start; iOS client.
 
-FlClash advantages (stated honestly): open-source and auditable, Linux
-desktop available today, zero account/quota concepts, mihomo YAML
-ecosystem compatibility, completely free.
+FlClash advantages (stated honestly): open-source and auditable, plus a
+Linux desktop client available today while AirLane's is on the roadmap.
+Points that are NOT differences: AirLane's anonymous mode is equally
+install-and-go with no account; it natively imports Clash/mihomo YAML so
+the ecosystem is shared; and its core features are free.
 
 Verdict: FlClash is enough if routing is all you need; AirLane if
 routing is the start — complex policies, debugging, multi-device,

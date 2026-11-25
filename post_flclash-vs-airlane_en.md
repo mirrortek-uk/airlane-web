@@ -16,7 +16,7 @@ FlClash and AirLane are both rule-driven proxy clients, but they solve problems 
 | Platforms | Windows / macOS / Linux / Android | Windows / macOS / Android / iOS (Linux planned) |
 | Open source | Yes (GPL-3.0) | No |
 | Account | Not required | Optional (anonymous / account / self-hosted) |
-| Price | Completely free | Free + resource-pool quota |
+| Price | Free | Free (anonymous mode included, pool quota by identity) |
 
 ---
 
@@ -89,17 +89,20 @@ That last point is a dimension FlClash doesn't have: the AirLane client is the f
 
 ---
 
-## Fairness section: where FlClash still wins
+## Fairness section: FlClash's remaining edges
 
-| FlClash advantage | Why it matters |
+| Edge | Why it matters |
 | --- | --- |
-| **Open source (GPL-3.0)** | Auditable code, zero account dependency, community-driven — AirLane is closed source, its genuine trade-off |
-| **Linux desktop today** | FlClash ships a Linux client; AirLane's desktop Linux build is still planned |
-| **Extremely light** | Install and go — no accounts, quotas or pool concepts to learn |
-| **mihomo ecosystem** | A web full of ready-made YAML configs and rulesets, all usable |
-| **Completely free** | No quotas, no plans, no pricing at all |
+| **Open source (GPL-3.0)** | Auditable code, community-driven — AirLane is closed source, its genuine trade-off today |
+| **Linux desktop** | FlClash ships a Linux client; AirLane's desktop Linux build is on the roadmap — meanwhile a compatible sing-box config covers you |
 
-If you want "a trustworthy open-source client: import a subscription and go," FlClash is the right choice — this article won't try to convince you otherwise.
+Other commonly cited points aren't real differences:
+
+- **"Install and go"**: AirLane does the same — anonymous mode needs no account and no personal info, and ships with built-in classifiers plus the "AirLane recommended" routing profile. The resource pool is a bonus, not a gate.
+- **"mihomo ecosystem"**: AirLane is natively compatible with the Clash / mihomo ecosystem — YAML configs and subscriptions import in one click with dedup and region grouping. The sea of ready-made configs isn't FlClash-exclusive (see [Import a subscription](/en/docs/import-subscription)).
+- **"Free"**: AirLane's core features are free and usable in anonymous mode. PoolVIP quotas are extra resources the platform provides — not a paywall around functionality.
+
+If your principle is "open source only," or you need a Linux desktop client today, FlClash is the right choice — and that's the only case where we won't tell you to wait.
 
 ---
 
@@ -108,9 +111,8 @@ If you want "a trustworthy open-source client: import a subscription and go," Fl
 **Choose FlClash if you**:
 
 - Insist on open-source, auditable software
-- Run a Linux desktop
-- Have simple needs: one subscription + rule routing + occasional manual switching
-- Already maintain mihomo configs you don't want to touch
+- Run a Linux desktop and can't wait for AirLane's Linux build
+- Have truly minimal needs: one subscription + rule routing + occasional manual switching, and want no orchestration features at all
 
 **Choose AirLane if you**:
 
