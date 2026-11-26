@@ -1,0 +1,42 @@
+<svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="400" fill="#f8fafc" rx="16"/>
+  <text x="450" y="40" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="20" font-weight="700" fill="#1e293b" text-anchor="middle">防火墙拦截的四种手段</text>
+
+  <!-- blocked lane -->
+  <text x="80" y="95" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#94a3b8">普通请求</text>
+  <g font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" text-anchor="middle">
+    <rect x="70" y="110" width="170" height="56" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="155" y="133" fill="#991b1b">① DNS 污染</text>
+    <text x="155" y="153" fill="#b91c1c" font-size="12">返回错误 IP</text>
+    <rect x="270" y="110" width="170" height="56" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="355" y="133" fill="#991b1b">② IP 封锁</text>
+    <text x="355" y="153" fill="#b91c1c" font-size="12">目标地址直接丢包</text>
+    <rect x="470" y="110" width="170" height="56" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="555" y="133" fill="#991b1b">③ SNI / DPI 探测</text>
+    <text x="555" y="153" fill="#b91c1c" font-size="12">检查域名和流量特征</text>
+    <rect x="670" y="110" width="170" height="56" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="755" y="133" fill="#991b1b">④ 连接重置</text>
+    <text x="755" y="153" fill="#b91c1c" font-size="12">RST 包掐断连接</text>
+  </g>
+  <text x="450" y="200" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#b91c1c" text-anchor="middle">→ 表现：超时 / 连接被重置 / 404 / 解析到错误地址</text>
+
+  <!-- encrypted lane -->
+  <text x="80" y="255" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" fill="#94a3b8">代理流量</text>
+  <rect x="70" y="270" width="230" height="60" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="185" y="295" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#166534" text-anchor="middle">全程加密 + 特征伪装</text>
+  <text x="185" y="316" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" fill="#15803d" text-anchor="middle">Reality / Hysteria2 / Trojan…</text>
+  <line x1="300" y1="300" x2="360" y2="300" stroke="#22c55e" stroke-width="2.5" marker-end="url(#arrB)"/>
+  <rect x="360" y="270" width="230" height="60" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="475" y="295" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#166534" text-anchor="middle">DPI 无法识别</text>
+  <text x="475" y="316" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" fill="#15803d" text-anchor="middle">看起来像正常 HTTPS</text>
+  <line x1="590" y1="300" x2="650" y2="300" stroke="#22c55e" stroke-width="2.5" marker-end="url(#arrB)"/>
+  <rect x="650" y="270" width="190" height="60" rx="10" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="745" y="295" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" font-weight="700" fill="#14532d" text-anchor="middle">到达目标网站</text>
+  <text x="745" y="316" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="12" fill="#15803d" text-anchor="middle">Google · YouTube · ChatGPT…</text>
+
+  <text x="450" y="370" font-family="'Space Grotesk','PingFang SC','Microsoft YaHei',sans-serif" font-size="14" fill="#64748b" text-anchor="middle">关键不是「连出去」，而是「伪装得像」——这是现代协议的核心战场</text>
+
+  <defs>
+    <marker id="arrB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#22c55e"/></marker>
+  </defs>
+</svg>

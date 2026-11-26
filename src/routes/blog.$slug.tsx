@@ -67,6 +67,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "代理协议的完整族谱：企业 VPN→Shadowsocks→V2Ray/VMess→Xray/Reality→QUIC 独立军→sing-box/mihomo 通用内核。分清'框架载协议'与'独立协议'两棵树，看懂十五年演化规律——以及为什么 AirLane 能胜任各种复杂环境。",
     summary_en: "The full lineage of proxy protocols: enterprise VPNs, Shadowsocks, V2Ray/VMess, Xray/Reality, the QUIC independents, and universal cores like sing-box/mihomo. Two trees — frameworks that carry protocols vs standalone protocols — and why AirLane thrives in any network.",
   },
+  "gfw-basics-2027": {
+    title_zh: "2027 年科学上网基础知识：防火墙原理、协议演进与工具选择",
+    title_en: "Circumvention Basics 2027: How the Firewall Works, Protocols, and Tool Choices",
+    summary_zh: "防火墙怎么拦你（DNS 污染/IP 封锁/SNI 探测/连接重置）、SS 到 Reality 的协议演进、2027 年工具怎么选——无订阅用 MirrorSpeed，有机场用 AirLane。",
+    summary_en: "How the GFW blocks you (DNS poisoning, IP blocking, SNI/DPI, resets), the SS-to-Reality protocol evolution, and which tool to pick in 2027: MirrorSpeed without a subscription, AirLane with one.",
+  },
   "v2ray-alternatives-2027": {
     title_zh: "2027 年 v2ray 平替软件推荐：机场首选 AirLane，开箱即用 MirrorSpeed",
     title_en: "Best v2ray Alternatives in 2027: AirLane for Subscriptions, MirrorSpeed Out of the Box",

@@ -59,6 +59,7 @@ Last updated: 2026-09-20. Full-text version: [llms-full.txt](https://www.airlane
 - [The Evolution of Proxy Protocols: From Shadowsocks to VLESS + Reality](https://www.airlane.cloud/blog/proxy-protocol-evolution): The full lineage — enterprise VPNs, SS, V2Ray/VMess, Xray/Reality, QUIC independents, universal cores — framed as two trees (frameworks vs standalone protocols) and ending in why AirLane's multi-protocol dispatch fits every network
 - [FlClash vs AirLane: Two Rule-Based Clients, Two Different Layers](https://www.airlane.cloud/blog/flclash-vs-airlane): Honest comparison — FlClash's open-source mihomo proxy groups vs AirLane's sing-box four-layer policy tree; routing expression, decision tracing vs logs, exit-pool health, Mesh and PoolVIP, plus where FlClash still wins (GPL, Linux desktop, zero-quota)
 - [Best v2ray Alternatives in 2027](https://www.airlane.cloud/blog/v2ray-alternatives-2027): Two answers to "v2rayNG replacement" — AirLane for subscription users (38+ protocols, policy tree, decision tracing, Mesh, PoolVIP), MirrorSpeed for zero-config free unlimited VPN; per-OS client matrix and v2rayNG subscription migration notes
+- [Circumvention Basics 2027](https://www.airlane.cloud/blog/gfw-basics-2027): Beginner explainer — how the GFW blocks (DNS poisoning, IP blocking, SNI/DPI, resets), the 2012→2027 protocol table (SS → VLESS+Reality → Hysteria2), legality notes, and tool picks: MirrorSpeed zero-config free VPN vs AirLane for airport subscriptions
 
 ## Key Concepts
 

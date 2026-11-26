@@ -345,3 +345,30 @@ multi-device), not breakage. Both picks coexist: AirLane for owned
 subscriptions, MirrorSpeed as a zero-config fallback.
 
 URL: https://www.airlane.cloud/blog/v2ray-alternatives-2027
+
+## Circumvention Basics 2027: How the Firewall Works, Protocols, and Tool Choices
+
+A beginner-level explainer updating the classic GFW primer to 2027.
+Covers what circumvention means (翻墙/科学上网/梯子/机场 slang), which
+services are blocked (Google suite, Slack, WhatsApp, Telegram, news
+sites, Wikipedia, ChatGPT/Claude), and the firewall's four blocking
+techniques — DNS poisoning, IP blocking, SNI/DPI inspection, connection
+resets — explaining why blocked sites look like glitches not warnings.
+
+Protocol evolution table 2012→2027: Shadowsocks, VMess, Trojan, VLESS,
+VLESS+Reality (strongest disguise), Hysteria2/TUIC (QUIC, weak networks),
+WireGuard (fast but fingerprintable). Summary rule: disguise gets more
+real, TCP stealth vs UDP speed swing, individual protocols die but
+multi-protocol orchestration is forever.
+
+Tool picks by shape: no subscription → MirrorSpeed (mirrorspeed.com)
+zero-config VPN with free unlimited-traffic nodes and $0.88–3/mo tiers;
+ExpressVPN/StrongVPN as traditional paid alternatives. Have an airport
+subscription → AirLane as the client: 38+ protocols, one-click
+v2rayNG/Clash import with dedup+region grouping, four-layer policy tree,
+decision tracing, Mesh multi-device. Bonus sections on IP hiding and
+public-Wi-Fi safety. FAQ covers China VPN legality (gray zone,
+enforcement targets providers), free-vs-paid sufficiency, airport-vs-VPN,
+and mass-failure causes (protocol fingerprinting → switch protocols).
+
+URL: https://www.airlane.cloud/blog/gfw-basics-2027
