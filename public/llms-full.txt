@@ -313,3 +313,35 @@ or no subscription. Migration: Clash/mihomo YAML one-click import with
 dedup, region groups and a migration report.
 
 URL: https://www.airlane.cloud/blog/flclash-vs-airlane
+
+---
+
+## Best v2ray Alternatives in 2027: AirLane for Subscriptions, MirrorSpeed Out of the Box
+
+A 2027 roundup answering "what replaces v2rayNG/v2ray" by splitting
+readers into two needs. With a subscription ("airport") or own nodes:
+AirLane is the recommended client — sing-box core with 38+ protocols
+(VLESS Reality/XTLS Vision, VMess, Trojan, Hysteria2, TUIC v5,
+Shadowsocks-2022, WireGuard), one-click import of v2rayNG node lists
+and Clash/mihomo YAML with dedup and region grouping, a four-layer
+policy tree replacing flat rule lists, decision tracing instead of log
+grepping, exit-pool health reports with failover, PoolVIP shared exits
+for users without subscriptions, and Mesh multi-device networking.
+Windows/macOS/Android/iOS (Linux planned).
+
+Without a subscription: MirrorSpeed (mirrorspeed.com) is the
+zero-config pick — a standalone VPN with genuinely free unlimited-traffic
+nodes, no accounts/nodes/protocol concepts, and a cheap $0.88–3/mo tier
+unlocking 20+ nodes at up to 1000 Mbps; works for streaming and AI
+tools.
+
+Per-OS alternatives covered: NekoBox, CMFA, Hiddify (Android);
+v2rayN, FlClash (desktop); Shadowrocket, Karing, Stash, Egern (iOS/
+tvOS); sing-box official clients, ClashBox (HarmonyOS), OpenClash/
+PassWall2 (routers). FAQ notes subscription-format differences
+(node-list vs Clash YAML) and that v2rayNG remains maintained — the
+switch driver is new demands (multi-protocol, split lanes, observability,
+multi-device), not breakage. Both picks coexist: AirLane for owned
+subscriptions, MirrorSpeed as a zero-config fallback.
+
+URL: https://www.airlane.cloud/blog/v2ray-alternatives-2027

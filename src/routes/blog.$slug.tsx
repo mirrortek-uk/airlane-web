@@ -67,6 +67,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "代理协议的完整族谱：企业 VPN→Shadowsocks→V2Ray/VMess→Xray/Reality→QUIC 独立军→sing-box/mihomo 通用内核。分清'框架载协议'与'独立协议'两棵树，看懂十五年演化规律——以及为什么 AirLane 能胜任各种复杂环境。",
     summary_en: "The full lineage of proxy protocols: enterprise VPNs, Shadowsocks, V2Ray/VMess, Xray/Reality, the QUIC independents, and universal cores like sing-box/mihomo. Two trees — frameworks that carry protocols vs standalone protocols — and why AirLane thrives in any network.",
   },
+  "v2ray-alternatives-2027": {
+    title_zh: "2027 年 v2ray 平替软件推荐：机场首选 AirLane，开箱即用 MirrorSpeed",
+    title_en: "Best v2ray Alternatives in 2027: AirLane for Subscriptions, MirrorSpeed Out of the Box",
+    summary_zh: "找 v2rayNG / v2ray 平替？按需求两分：有机场订阅首选 AirLane（sing-box、38+ 协议、策略树、决策追踪），没订阅开箱即用选 MirrorSpeed（免费不限流量）。附 Android/iOS/桌面全平台备选清单与订阅迁移指南。",
+    summary_en: "Looking for a v2rayNG / v2ray replacement? Two answers: with a subscription pick AirLane (sing-box, 38+ protocols, policy tree, decision tracing); without one pick MirrorSpeed (free unlimited VPN). Per-OS alternatives and migration notes included.",
+  },
   "flclash-vs-airlane": {
     title_zh: "FlClash vs AirLane：同为规则代理客户端，差在哪一层",
     title_en: "FlClash vs AirLane: Two Rule-Based Clients, Two Different Layers",

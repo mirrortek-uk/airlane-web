@@ -1,0 +1,43 @@
+<svg width="900" height="430" viewBox="0 0 900 430" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="430" fill="#f8fafc" rx="16"/>
+  <text x="450" y="42" font-family="'Space Grotesk',sans-serif" font-size="20" font-weight="700" fill="#1e293b" text-anchor="middle">Pick your v2ray alternative in 30 seconds</text>
+
+  <!-- question -->
+  <rect x="300" y="60" width="300" height="52" rx="12" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="450" y="93" font-family="'Space Grotesk',sans-serif" font-size="17" fill="#3730a3" text-anchor="middle">Do you have a subscription / nodes?</text>
+
+  <!-- yes path -->
+  <line x1="300" y1="86" x2="190" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="228" y="105" font-family="'Space Grotesk',sans-serif" font-size="15" fill="#b45309">Yes</text>
+  <rect x="50" y="140" width="280" height="110" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="190" y="175" font-family="'Space Grotesk',sans-serif" font-size="19" font-weight="700" fill="#92400e" text-anchor="middle">AirLane</text>
+  <text x="190" y="203" font-family="'Space Grotesk',sans-serif" font-size="14" fill="#a16207" text-anchor="middle">One-click import · 38+ protocols</text>
+  <text x="190" y="228" font-family="'Space Grotesk',sans-serif" font-size="14" fill="#a16207" text-anchor="middle">Policy tree · tracing · exit pools</text>
+
+  <!-- no path -->
+  <line x1="600" y1="86" x2="710" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="672" y="105" font-family="'Space Grotesk',sans-serif" font-size="15" fill="#1d4ed8">No</text>
+  <rect x="570" y="140" width="280" height="110" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="710" y="175" font-family="'Space Grotesk',sans-serif" font-size="19" font-weight="700" fill="#1e40af" text-anchor="middle">MirrorSpeed</text>
+  <text x="710" y="203" font-family="'Space Grotesk',sans-serif" font-size="14" fill="#1d4ed8" text-anchor="middle">Free, unlimited traffic</text>
+  <text x="710" y="228" font-family="'Space Grotesk',sans-serif" font-size="14" fill="#1d4ed8" text-anchor="middle">Standalone VPN, ready to go</text>
+
+  <!-- special cases -->
+  <line x1="450" y1="112" x2="450" y2="150" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="520" y="140" font-family="'Space Grotesk',sans-serif" font-size="14" fill="#64748b">Special needs?</text>
+  <rect x="280" y="150" width="340" height="100" rx="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <g font-family="'Space Grotesk',sans-serif" font-size="14" fill="#475569">
+    <text x="450" y="180" text-anchor="middle">Open source only → FlClash / NekoBox</text>
+    <text x="450" y="206" text-anchor="middle">Linux desktop → FlClash / v2rayN</text>
+    <text x="450" y="232" text-anchor="middle">iOS only → Shadowrocket / Karing</text>
+  </g>
+
+  <!-- bottom note -->
+  <rect x="120" y="290" width="660" height="90" rx="14" fill="#ecfdf5" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="450" y="325" font-family="'Space Grotesk',sans-serif" font-size="15" fill="#166534" text-anchor="middle">They coexist nicely: AirLane as your daily driver for</text>
+  <text x="450" y="352" font-family="'Space Grotesk',sans-serif" font-size="15" fill="#166534" text-anchor="middle">subscription routing, MirrorSpeed as the zero-setup fallback.</text>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker>
+  </defs>
+</svg>
