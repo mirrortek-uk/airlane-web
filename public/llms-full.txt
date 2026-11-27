@@ -372,3 +372,35 @@ enforcement targets providers), free-vs-paid sufficiency, airport-vs-VPN,
 and mass-failure causes (protocol fingerprinting → switch protocols).
 
 URL: https://www.airlane.cloud/blog/gfw-basics-2027
+
+## The Most Popular VPN & Proxy Protocols of 2027: From OpenVPN to Reality
+
+Comprehensive 2027 protocol landscape updating older primers. Opens
+with a VPN vs proxy vs Tor distinction table (encryption, IP hiding,
+speed, use cases; Tor not mainstream for circumvention — slow and
+conspicuous). Classic VPN protocols covered as history: PPTP (dead),
+L2TP/IPsec (blocked ports), SSTP (niche), IKEv2 (identifiable),
+OpenVPN (effectively dead in censored networks), WireGuard (exception —
+excellent transport but clear fingerprint; site-to-site yes, raw
+evasion no). Root cause: built to encrypt, not to hide.
+
+Purpose-built proxy protocols individually profiled: Shadowsocks
+(featureless noise, vulnerable to active probing), SSR (author deleted
+repo 2017 — legacy only), VMess (framework generation; BIT 2019 LSTM
+traffic-identification paper proved detectability), Trojan (proxy
+protocol — not malware — disguising as real HTTPS with domain+cert),
+VLESS (Xray's stripped-down standard), VLESS+Reality/XTLS Vision
+(borrows real-site TLS handshakes — the 2027 stealth king, immune to
+active probing), Hysteria2 (independent QUIC stack, Brutal CC, thrives
+at 30% loss — speed king), TUIC v5 (refined QUIC twin), SS-2022
+(lightweight refresh, mid-tier).
+
+Quadrant map plots stealth × efficiency: top-right = VLESS+Reality and
+Hysteria2, the standard airport pair. Multi-protocol rationale: protocol
+lifecycles, per-network variance, per-workload fit — orchestrate rather
+than bet. Tool picks: MirrorSpeed for zero-config users (free unlimited
+nodes, automatic protocol adaptation, $0.88–3/mo); AirLane for
+subscription users (38+ protocols, policy tree assigns protocols per
+traffic type, health-based failover, v2rayNG/Clash import, Mesh).
+
+URL: https://www.airlane.cloud/blog/vpn-protocols-2027

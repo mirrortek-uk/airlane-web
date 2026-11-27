@@ -67,6 +67,12 @@ export const POST_META: Record<string, { title_zh: string; title_en: string; sum
     summary_zh: "代理协议的完整族谱：企业 VPN→Shadowsocks→V2Ray/VMess→Xray/Reality→QUIC 独立军→sing-box/mihomo 通用内核。分清'框架载协议'与'独立协议'两棵树，看懂十五年演化规律——以及为什么 AirLane 能胜任各种复杂环境。",
     summary_en: "The full lineage of proxy protocols: enterprise VPNs, Shadowsocks, V2Ray/VMess, Xray/Reality, the QUIC independents, and universal cores like sing-box/mihomo. Two trees — frameworks that carry protocols vs standalone protocols — and why AirLane thrives in any network.",
   },
+  "vpn-protocols-2027": {
+    title_zh: "2027 年最流行的 VPN 翻墙协议：从 OpenVPN 到 Reality 全解析",
+    title_en: "The Most Popular VPN & Proxy Protocols of 2027: From OpenVPN to Reality",
+    summary_zh: "VPN、代理、Tor 的区别；传统协议为什么出局；SS→SSR→VMess→Trojan→VLESS→Reality→Hysteria2/TUIC 逐一详解；2027 双王：Reality 伪装 + Hysteria2 速度。",
+    summary_en: "VPN vs proxy vs Tor; why classic protocols failed; SS→SSR→VMess→Trojan→VLESS→Reality→Hysteria2/TUIC explained; 2027's dual champions: Reality stealth and Hysteria2 speed.",
+  },
   "gfw-basics-2027": {
     title_zh: "2027 年科学上网基础知识：防火墙原理、协议演进与工具选择",
     title_en: "Circumvention Basics 2027: How the Firewall Works, Protocols, and Tool Choices",

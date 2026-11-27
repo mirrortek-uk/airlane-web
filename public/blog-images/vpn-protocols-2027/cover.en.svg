@@ -1,0 +1,35 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+
+  <text x="600" y="150" font-family="'Space Grotesk',sans-serif" font-size="54" font-weight="700" fill="#f1f5f9" text-anchor="middle">The Most Popular Proxy Protocols of 2027</text>
+  <text x="600" y="205" font-family="'Space Grotesk',sans-serif" font-size="28" fill="#94a3b8" text-anchor="middle">From OpenVPN to Reality — the protocol generations, explained</text>
+
+  <g font-family="'Space Grotesk',sans-serif" text-anchor="middle">
+    <rect x="100" y="270" width="200" height="80" rx="12" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+    <text x="200" y="305" font-size="20" fill="#94a3b8">OpenVPN / IKEv2</text>
+    <text x="200" y="335" font-size="15" fill="#64748b">classic VPN · blocked</text>
+
+    <rect x="330" y="270" width="200" height="80" rx="12" fill="#3f3f46" stroke="#52525b" stroke-width="1.5"/>
+    <text x="430" y="305" font-size="20" fill="#a1a1aa">SS / SSR / VMess</text>
+    <text x="430" y="335" font-size="15" fill="#71717a">early proxies · detectable</text>
+
+    <rect x="560" y="270" width="200" height="80" rx="12" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="660" y="305" font-size="20" fill="#93c5fd">VLESS / Trojan</text>
+    <text x="660" y="335" font-size="15" fill="#60a5fa">TLS camouflage · mainstream</text>
+
+    <rect x="790" y="270" width="200" height="80" rx="12" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+    <text x="890" y="305" font-size="20" fill="#86efac">Reality / Hysteria2</text>
+    <text x="890" y="335" font-size="15" fill="#4ade80">2027 kings · real-TLS + QUIC</text>
+  </g>
+
+  <line x1="200" y1="380" x2="200" y2="420" stroke="#475569" stroke-width="2" marker-end="url(#arrP)"/>
+  <line x1="430" y1="380" x2="430" y2="420" stroke="#475569" stroke-width="2" marker-end="url(#arrP)"/>
+  <line x1="660" y1="380" x2="660" y2="420" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrP)"/>
+  <line x1="890" y1="380" x2="890" y2="420" stroke="#22c55e" stroke-width="2" marker-end="url(#arrP)"/>
+  <text x="600" y="455" font-family="'Space Grotesk',sans-serif" font-size="18" fill="#64748b" text-anchor="middle">Evolution: disguise gets more real · transport gets faster</text>
+  <text x="600" y="545" font-family="'Space Grotesk',sans-serif" font-size="20" fill="#64748b" text-anchor="middle">airlane.cloud</text>
+  <defs>
+    <marker id="arrP" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker>
+  </defs>
+</svg>
